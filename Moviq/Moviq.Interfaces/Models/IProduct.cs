@@ -1,11 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Moviq.Interfaces.Models
+﻿namespace Moviq.Interfaces.Models
 {
+    using System.Collections.Generic;
+
     public interface IProduct
     {
         int Id { get; set; }
