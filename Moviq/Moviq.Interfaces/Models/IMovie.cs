@@ -2,15 +2,14 @@
 {
     using System.Collections.Generic;
 
-    public interface IMovie
+    public interface IMovie : IProduct, IProductVw
     {
-        ulong Id { get; set; }
-        string Title { get; set; }
-        string Description { get; set; }
-        string ThumbnailLink { get; set;}
-
         ICollection<IActor> Actors { get; set; }
-        ICollection<string> PicLinks { get; set; }
         ICollection<string> TrailerLinks { get; set; }
+    }
+
+    public interface IMovieProduct : IMovie
+    {
+        ICollection<IOffering> Offerings { get; set; }
     }
 }
