@@ -2,6 +2,6 @@
 {
     public interface IFactory<T>
     {
-        T Make<T>();
+        T GetInstance();
     }
 }

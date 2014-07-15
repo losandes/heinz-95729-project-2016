@@ -3,11 +3,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{19FB681D-0F52-4D87-B304-8FF4AD4905C7}</ProjectGuid>
+    <ProjectGuid>{20464F56-DE82-46FE-AF6B-58447FCB166A}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Moviq.Domain.Tests</RootNamespace>
-    <AssemblyName>Moviq.Domain.Tests</AssemblyName>
+    <RootNamespace>Moviq.Domain.Movies.Tests</RootNamespace>
+    <AssemblyName>Moviq.Domain.Movies.Tests</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{3AC096D0-A1C2-E12C-1390-A8335801FDAB};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
@@ -36,6 +36,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
+    <Reference Include="System.Data" />
   </ItemGroup>
   <Choose>
     <When Condition="('$(VisualStudioVersion)' == '10.0' or '$(VisualStudioVersion)' == '') and '$(TargetFrameworkVersion)' == 'v3.5'">
@@ -50,8 +51,18 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
-    <Compile Include="UnitTest1.cs" />
+    <Compile Include="MovieDomainTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Moviq.Domain.Movies\Moviq.Domain.Movies.csproj">
+      <Project>{285f393a-0c79-4349-ba93-74f63e6e1958}</Project>
+      <Name>Moviq.Domain.Movies</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Moviq.Interfaces\Moviq.Interfaces.csproj">
+      <Project>{b0708601-0cfa-411e-87b8-a9875aa00c9d}</Project>
+      <Name>Moviq.Interfaces</Name>
+    </ProjectReference>
   </ItemGroup>
   <Choose>
     <When Condition="'$(VisualStudioVersion)' == '10.0' And '$(IsCodedUITest)' == 'True'">

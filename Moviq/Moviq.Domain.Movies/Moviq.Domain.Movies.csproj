@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{ECF652DE-7701-4932-BDCA-B79358FC63FB}</ProjectGuid>
+    <ProjectGuid>{285F393A-0C79-4349-BA93-74F63E6E1958}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Moviq.Domain</RootNamespace>
-    <AssemblyName>Moviq.Domain</AssemblyName>
+    <RootNamespace>Moviq.Domain.Movies</RootNamespace>
+    <AssemblyName>Moviq.Domain.Movies</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -30,17 +30,25 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Grain">
+      <HintPath>..\Moviq.Interfaces\ThirdParty\Grain.NET\Grain.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
-    <Reference Include="System.Xml.Linq" />
-    <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Data" />
-    <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Class1.cs" />
+    <Compile Include="Movie.cs" />
+    <Compile Include="MovieDomain.cs" />
+    <Compile Include="MovieFactory.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Moviq.Interfaces\Moviq.Interfaces.csproj">
+      <Project>{b0708601-0cfa-411e-87b8-a9875aa00c9d}</Project>
+      <Name>Moviq.Interfaces</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

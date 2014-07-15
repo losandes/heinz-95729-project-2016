@@ -7,6 +7,7 @@
         int Id { get; set; }
         string Title { get; set; }
         string Description { get; set; }
+        string MetaData { get; set; }
     }
 
     public interface IOffering
@@ -16,7 +17,7 @@
         decimal Price { get; set; }
     }
 
-    public interface IProductVw 
+    public interface IProductVw : IProduct
     {
         string ThumbnailLink { get; set; }
         ICollection<string> PicLinks { get; set; }

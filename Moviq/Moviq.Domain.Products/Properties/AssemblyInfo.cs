@@ -5,11 +5,11 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("Moviq.Domain.Tests")]
+[assembly: AssemblyTitle("Moviq.Domain.Products")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("Moviq.Domain.Tests")]
+[assembly: AssemblyProduct("Moviq.Domain.Products")]
 [assembly: AssemblyCopyright("Copyright ©  2014")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
@@ -20,7 +20,7 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // The following GUID is for the ID of the typelib if this project is exposed to COM
-[assembly: Guid("43db33e4-35b9-4731-b174-b08aed362da2")]
+[assembly: Guid("38d5adef-00f6-4b10-8f61-6a72edb81f63")]
 
 // Version information for an assembly consists of the following four values:
 //
