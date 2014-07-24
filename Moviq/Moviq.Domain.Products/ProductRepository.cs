@@ -10,20 +10,20 @@
 
     public class ProductRepository : IRepository<IProduct>
     {
-        public ProductRepository(IFactory<IProduct> productFactory, ISqlDbInstance db, ISqlCommandFactory commandFactory)
+        public ProductRepository(IFactory<IProductVw> productFactory, ISqlDbInstance db, ISqlCommandFactory commandFactory)
         {
             this.productFactory = productFactory;
             this.db = db;
             this.commandFactory = commandFactory;
         }
 
-        IFactory<IProduct> productFactory;
+        IFactory<IProductVw> productFactory;
         ISqlDbInstance db;
         ISqlCommandFactory commandFactory;
 
         public IProduct Get(int id)
         {
-            var _command = commandFactory.MakeProcCommand("dbo.getProduct",
+            var _command = commandFactory.MakeProcCommand("dbo.Products_Get",
                 new TupleList<string, SqlDbType, object> {
                     { "Id", SqlDbType.Int, id }
                 });
@@ -32,27 +32,47 @@
 
         public IProduct Set(IProduct movie)
         {
-            throw new NotImplementedException();
+            var _command = commandFactory.MakeProcCommand("dbo.Products_Set",
+                new TupleList<string, SqlDbType, object> {
+                    { "id", SqlDbType.Int, movie.Id },
+                    { "title", SqlDbType.NVarChar, movie.Title },
+                    { "description", SqlDbType.NVarChar, movie.Description },
+                    { "metadata", SqlDbType.NVarChar, movie.Metadata }
+                });
+            return db.ExecuteAsSingle<IProduct>(_command, ModelBinders.ProductBinder(productFactory));
         }
 
-        public ICollection<IProduct> List(int take, int skip)
+        public IEnumerable<IProduct> List(int take, int skip)
         {
-            throw new NotImplementedException();
+            var _command = commandFactory.MakeProcCommand("dbo.Products_List",
+                new TupleList<string, SqlDbType, object> {
+                    { "take", SqlDbType.Int, take },
+                    { "skip", SqlDbType.Int, skip }
+                });
+            return db.ExecuteAs<IProduct>(_command, ModelBinders.ProductBinder(productFactory));
         }
 
-        public ICollection<IProduct> Find(string searchBy)
+        public IEnumerable<IProduct> Find(string searchBy)
         {
-            throw new NotImplementedException();
+            var _command = commandFactory.MakeProcCommand("dbo.Products_Find",
+                new TupleList<string, SqlDbType, object> {
+                    { "searchBy", SqlDbType.NVarChar, searchBy }
+                });
+            return db.ExecuteAs<IProduct>(_command, ModelBinders.ProductBinder(productFactory));
         }
 
         public bool Delete(int id)
         {
-            throw new NotImplementedException();
+            var _command = commandFactory.MakeProcCommand("dbo.Products_Delete",
+                new TupleList<string, SqlDbType, object> {
+                    { "Id", SqlDbType.Int, id }
+                });
+            return db.ExecuteAsSingle<IProduct>(_command, ModelBinders.ProductBinder(productFactory)) != null;
         }
 
         public void Dispose()
         {
-            throw new NotImplementedException();
+            db.Dispose();
         }
     }
 }

@@ -7,7 +7,7 @@
         int Id { get; set; }
         string Title { get; set; }
         string Description { get; set; }
-        string MetaData { get; set; }
+        string Metadata { get; set; }
     }
 
     public interface IOffering

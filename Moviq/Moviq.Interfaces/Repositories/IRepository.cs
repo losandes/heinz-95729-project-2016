@@ -7,8 +7,8 @@
     {
         T Get(int id);
         T Set(T movie);
-        ICollection<T> List(int take, int skip);
-        ICollection<T> Find(string searchBy);
+        IEnumerable<T> List(int take, int skip);
+        IEnumerable<T> Find(string searchBy);
         bool Delete(int id);
     }
 }

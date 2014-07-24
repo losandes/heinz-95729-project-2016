@@ -12,7 +12,7 @@ namespace Moviq.Domain.Products
         public int Id { get; set; }
         public string Title { get; set; }
         public string Description { get; set; }
-        public string MetaData { get; set; }
+        public string Metadata { get; set; }
         public string ThumbnailLink { get; set; }
         public ICollection<string> PicLinks { get; set; }
         public int Rating { get; set; }
