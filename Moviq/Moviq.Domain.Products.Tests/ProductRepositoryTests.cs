@@ -21,7 +21,7 @@
 
             mockProduct = fixture.Freeze<Product>();
             mockProducts = fixture.Freeze<IEnumerable<Product>>();
-            IFactory<IProductVw> productFactory = new ProductFactory();
+            IFactory<IProduct> productFactory = new ProductFactory();
             ISqlCommandFactory commandFactory = new SqlCommandFactory();
             ISqlDbInstance db = new MockSqlDbInstance(mockProduct, mockProducts);
 

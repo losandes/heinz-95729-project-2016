@@ -10,14 +10,14 @@
 
     public class ProductRepository : IRepository<IProduct>
     {
-        public ProductRepository(IFactory<IProductVw> productFactory, ISqlDbInstance db, ISqlCommandFactory commandFactory)
+        public ProductRepository(IFactory<IProduct> productFactory, ISqlDbInstance db, ISqlCommandFactory commandFactory)
         {
             this.productFactory = productFactory;
             this.db = db;
             this.commandFactory = commandFactory;
         }
 
-        IFactory<IProductVw> productFactory;
+        IFactory<IProduct> productFactory;
         ISqlDbInstance db;
         ISqlCommandFactory commandFactory;
 

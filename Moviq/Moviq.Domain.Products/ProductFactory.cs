@@ -3,11 +3,11 @@
     using Moviq.Interfaces.Factories;
     using Moviq.Interfaces.Models;
 
-    public class ProductFactory : IFactory<IProductVw>
+    public class ProductFactory : IFactory<IProduct>
     {
-        public IProductVw GetInstance()
+        public IProduct GetInstance()
         {
-            return new Product() as IProductVw;
+            return new Product() as IProduct;
         }
     }
 }

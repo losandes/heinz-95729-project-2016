@@ -52,7 +52,17 @@
     <Reference Include="System.Core" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Css\component.css" />
+    <Content Include="Css\default.css" />
+    <Content Include="Images\1.jpg" />
+    <Content Include="Images\2.jpg" />
+    <Content Include="Images\3.jpg" />
+    <Content Include="Images\thumbs\1.jpg" />
+    <Content Include="Images\thumbs\2.jpg" />
+    <Content Include="Images\thumbs\3.jpg" />
+    <Content Include="Js\modernizr.custom.js" />
     <Content Include="packages.config" />
+    <Content Include="Images\thumbs\.DS_Store" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -61,6 +71,8 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Js\grid.js" />
+    <Content Include="Views\Home\home.html" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
@@ -70,7 +82,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Api\" />
-    <Folder Include="Views\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

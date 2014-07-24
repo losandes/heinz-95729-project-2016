@@ -7,14 +7,13 @@ using System.Threading.Tasks;
 
 namespace Moviq.Domain.Products
 {
-    public class Product : IProductVw
+    public class Product : IProduct
     {
         public int Id { get; set; }
         public string Title { get; set; }
         public string Description { get; set; }
         public string Metadata { get; set; }
+        public decimal Price { get; set; }
         public string ThumbnailLink { get; set; }
-        public ICollection<string> PicLinks { get; set; }
-        public int Rating { get; set; }
     }
 }

@@ -8,17 +8,19 @@
 
     public static class ModelBinders
     {
-        public static Func<IDataRecord, IProduct> ProductBinder(IFactory<IProductVw> productFactory)
+        public static Func<IDataRecord, IProduct> ProductBinder(IFactory<IProduct> productFactory)
         {
             return r =>
             {
-                var _product = productFactory.GetInstance();
-                _product.Id = r.GetValueOrDefault<int>("Id");
-                _product.Title = r.GetValueOrDefault<string>("Title");
-                _product.Description = r.GetValueOrDefault<string>("Description");
-                _product.Metadata = r.GetValueOrDefault<string>("Metadata");
+                var product = productFactory.GetInstance();
+                    product.Id = r.GetValueOrDefault<int>("Id");
+                    product.Title = r.GetValueOrDefault<string>("Title");
+                    product.Description = r.GetValueOrDefault<string>("Description");
+                    product.Metadata = r.GetValueOrDefault<string>("Metadata");
+                    product.Price = r.GetValueOrDefault<decimal>("Price");
+                    product.ThumbnailLink = r.GetValueOrDefault<string>("ThumbnailLink");
 
-                return _product;
+                return product;
             };
         }
     }

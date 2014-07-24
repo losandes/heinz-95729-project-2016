@@ -8,7 +8,7 @@
         {
             this.Get["/"] = args => 
             {
-                return "Hello World!";
+                return View["home/home.html", new { foo = "bar" }];
             };
         }
     }
