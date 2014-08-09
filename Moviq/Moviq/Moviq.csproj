@@ -14,7 +14,7 @@
     <RootNamespace>Moviq</RootNamespace>
     <AssemblyName>Moviq</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
-    <UseIISExpress>true</UseIISExpress>
+    <UseIISExpress>false</UseIISExpress>
     <IISExpressSSLPort />
     <IISExpressAnonymousAuthentication />
     <IISExpressWindowsAuthentication />
@@ -39,14 +39,25 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Microsoft.CSharp" />
-    <Reference Include="Nancy">
-      <HintPath>..\packages\Nancy.0.23.1\lib\net40\Nancy.dll</HintPath>
+    <Reference Include="Microsoft.Owin">
+      <HintPath>..\packages\Microsoft.Owin.2.1.0\lib\net45\Microsoft.Owin.dll</HintPath>
     </Reference>
-    <Reference Include="Nancy.Authentication.Forms">
-      <HintPath>..\packages\Nancy.Authentication.Forms.0.23.1\lib\net40\Nancy.Authentication.Forms.dll</HintPath>
+    <Reference Include="Microsoft.Owin.Host.SystemWeb">
+      <HintPath>..\packages\Microsoft.Owin.Host.SystemWeb.2.1.0\lib\net45\Microsoft.Owin.Host.SystemWeb.dll</HintPath>
     </Reference>
-    <Reference Include="Nancy.Hosting.Aspnet">
-      <HintPath>..\packages\Nancy.Hosting.Aspnet.0.23.1\lib\net40\Nancy.Hosting.Aspnet.dll</HintPath>
+    <Reference Include="Microsoft.Web.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
+    </Reference>
+    <Reference Include="Nancy, Version=0.23.2.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Nancy.0.23.2\lib\net40\Nancy.dll</HintPath>
+    </Reference>
+    <Reference Include="Nancy.Owin">
+      <HintPath>..\packages\Nancy.Owin.0.23.2\lib\net40\Nancy.Owin.dll</HintPath>
+    </Reference>
+    <Reference Include="Owin">
+      <HintPath>..\packages\Owin.1.0\lib\net40\Owin.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -57,12 +68,33 @@
     <Content Include="Images\1.jpg" />
     <Content Include="Images\2.jpg" />
     <Content Include="Images\3.jpg" />
+    <Content Include="Images\blue-cinema-seats-somaya-langley-flickr-creative-commons.jpg" />
+    <Content Include="Images\Eight_%28film_start%29_cropped2.jpg" />
+    <Content Include="Images\film-reel_hanging-around-by-chubstock.jpg" />
+    <Content Include="Images\film.jpg" />
+    <Content Include="Images\Movies\2001\fanart.jpg" />
+    <Content Include="Images\Movies\2001\folder.jpg" />
+    <Content Include="Images\Movies\2010\fanart.jpg" />
+    <Content Include="Images\Movies\2010\folder.jpg" />
+    <Content Include="Images\Movies\2046\fanart.jpg" />
+    <Content Include="Images\Movies\2046\folder.jpg" />
+    <Content Include="Images\Movies\300\fanart.jpg" />
+    <Content Include="Images\Movies\300\folder.jpg" />
+    <Content Include="Images\Movies\default\folder copy.png" />
+    <Content Include="Images\Movies\default\folder.png" />
+    <Content Include="Images\prometheus2movie.jpg" />
+    <Content Include="Images\shutterstock_92369284.jpg" />
     <Content Include="Images\thumbs\1.jpg" />
     <Content Include="Images\thumbs\2.jpg" />
     <Content Include="Images\thumbs\3.jpg" />
+    <Content Include="Js\compositionRoot.js" />
+    <Content Include="Js\knockout-3.1.0.js" />
     <Content Include="Js\modernizr.custom.js" />
+    <Content Include="Js\movieModels.js" />
+    <Content Include="Js\movies.js" />
+    <Content Include="Js\require.js" />
+    <Content Include="Js\require.shim.js" />
     <Content Include="packages.config" />
-    <Content Include="Images\thumbs\.DS_Store" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -77,6 +109,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\NancyBootstrapper.cs" />
+    <Compile Include="App_Start\OwinBootstrapper.cs" />
     <Compile Include="Controllers\HomeModule.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -98,7 +131,9 @@
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>2373</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
-          <IISUrl>http://localhost:2373/</IISUrl>
+          <IISUrl>http://localhost:54200</IISUrl>
+          <OverrideIISAppRootUrl>True</OverrideIISAppRootUrl>
+          <IISAppRootUrl>http://moviq.hactar.local</IISAppRootUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>
           <CustomServerUrl>
