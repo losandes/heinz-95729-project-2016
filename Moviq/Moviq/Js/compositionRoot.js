@@ -4,9 +4,9 @@
 /*jslint plusplus: true*/
 /*globals require, define*/
 require(['routeEngine', 'views/viewEngine', 'config', 'utils', 'controllers/homeController',
-         'views/codropsGridVw', 'controllers/demoController', 'jquery', 'ko', 'sammy'],
+         'models/demoGrid', 'controllers/demoController', 'jquery', 'ko', 'sammy'],
         function (routeEngineCtor, viewEngineCtor, configCtor, utilsCtor, homeControllerCtor,
-                   codropsGridVwCtor, demoControllerCtor, $, ko, sammy) {
+                   demoGridCtor, demoControllerCtor, $, ko, sammy) {
         "use strict";
 
         var config,
@@ -15,7 +15,7 @@ require(['routeEngine', 'views/viewEngine', 'config', 'utils', 'controllers/home
             routeEngine,
             homeController,
             demoController,
-            CodropsGridVw,
+            DemoGrid,
             movieModels,
             movies;
         
@@ -29,10 +29,10 @@ require(['routeEngine', 'views/viewEngine', 'config', 'utils', 'controllers/home
             
 //        movieModels = movieModelsCtor.init(ko);
 //        movies = moviesCtor.init(ko, movieModels);
-        CodropsGridVw = codropsGridVwCtor.init(ko);
+        DemoGrid = demoGridCtor.init(ko);
         
         // controllers
-        demoController = demoControllerCtor.init(routeEngine, viewEngine, CodropsGridVw);
+        demoController = demoControllerCtor.init(routeEngine, viewEngine, DemoGrid);
         homeController = homeControllerCtor.init(routeEngine, viewEngine);
             
         ko.applyBindings(viewEngine.mainVw, $('#main')[0]);

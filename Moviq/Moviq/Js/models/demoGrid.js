@@ -1,12 +1,12 @@
 /*global define,Grid*/
-define('views/codropsGridVw', { init: function (ko) {
+define('models/demoGrid', { init: function (ko) {
     "use strict";
-    var CodropsGridVw;
+    var DemoGrid;
     
-    CodropsGridVw = function () {
+    DemoGrid = function () {
         this.template = 't-codrops-grid';
         this.message = ko.observable();
     };
     
-    return CodropsGridVw;
+    return DemoGrid;
 }});

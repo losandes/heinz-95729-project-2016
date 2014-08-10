@@ -1,5 +1,5 @@
 /*global define*/
-define('movieModels', { init: function (ko) {
+define('models/movieModels', { init: function (ko) {
     "use strict";
 
     var Movie, Actor, movieVw;
