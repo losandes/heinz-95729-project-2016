@@ -8,7 +8,7 @@ define('models/person', { init: function (ko) {
     
     var Person;
 
-    Person = function () {
+    Person = function (person) {
         var $this = this;
         
         $this.setPersonData = function (person, personData) {
@@ -30,6 +30,10 @@ define('models/person', { init: function (ko) {
             // Ensure updates no more than once per 50-millisecond period
             person.thumbnailAlt.extend({ rateLimit: 50 });
         };
+        
+        if (person) {
+            $this.setPersonData($this, person);
+        }
     };
     
     return Person;

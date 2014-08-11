@@ -8,7 +8,7 @@ define('models/product', { init: function (ko) {
     
     var Product;
 
-    Product = function () {
+    Product = function (product) {
         var $this = this;
         
         $this.setProductData = function (product, productData) {
@@ -32,6 +32,10 @@ define('models/product', { init: function (ko) {
             // Ensure updates no more than once per 50-millisecond period
             product.thumbnailAlt.extend({ rateLimit: 50 });
         };
+        
+        if (product) {
+            $this.setProductData($this, product);
+        }        
     };
     
     return Product;
