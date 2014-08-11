@@ -1,4 +1,3 @@
-/*jshint strict: true, onevar: true*/
 /*global require, describe, it, chai*/
 require(['ko', 'models/product', 'models/book'], function (ko, productCtor, bookCtor) {
     "use strict";
@@ -21,19 +20,26 @@ require(['ko', 'models/product', 'models/book'], function (ko, productCtor, book
                 expect(sut['__proto__'] instanceof Product).to.equal(true);
             });
             
-            it('should have an id property', function () { expect(sut).to.have.property('id'); });
+            it('should have an id property', function () {
+                expect(sut).to.have.property('id');
+                expect(typeof sut.id()).to.equal('number');
+            });
+            
             it('should have an title property', function () { expect(sut).to.have.property('title'); });
             it('should have an description property', function () { expect(sut).to.have.property('description'); });
             it('should have an metadata property', function () { expect(sut).to.have.property('metadata'); });
             it('should have an price property', function () { expect(sut).to.have.property('price'); });
+            it('should have an images property', function () { expect(sut).to.have.property('images'); });
             it('should have an thumbnailLink property', function () { expect(sut).to.have.property('thumbnailLink'); });
             it('should have an thumbnailAlt property', function () { expect(sut).to.have.property('thumbnailAlt'); });
             it('should have an authors property', function () { expect(sut).to.have.property('authors'); });
             it('should have an reviews property', function () { expect(sut).to.have.property('reviews'); });
             it('should have an setProductData property', function () { expect(sut).to.have.property('setProductData'); });
+            
             it('should have an setProductData property in it\'s prototype', function () {
                 expect(sut['__proto__']).to.have.property('setProductData');
             });
+            
             it('should NOT have book properties in it\'s prototype', function () {
                 expect(sut['__proto__']).not.to.have.property('id');
                 expect(sut['__proto__']).not.to.have.property('title');
@@ -78,7 +84,7 @@ require(['ko', 'models/product', 'models/book'], function (ko, productCtor, book
             
             it('should throw an error when the Product argument is not a function', function () {
                 expect(mut2).to.throw('Argument Exception: Product is required to init the book module');
-            });            
+            });
             
         }); // /describe 'the "init" constructor, when called with missing arguments'
         

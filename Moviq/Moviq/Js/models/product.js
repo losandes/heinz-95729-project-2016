@@ -23,6 +23,7 @@ define('models/product', { init: function (ko) {
             product.description = ko.observable(productData.description || undefined);
             product.metadata = ko.observable(productData.metadata || undefined);
             product.price = ko.observable(productData.price || undefined);
+            product.images = ko.observableArray();
             product.thumbnailLink = ko.observable(productData.thumbnailLink || '/images/products/default.png');
             product.thumbnailAlt = ko.computed(function () {
                 return 'thumbnail for ' + product.title();
