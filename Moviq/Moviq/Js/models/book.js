@@ -3,7 +3,11 @@ define('models/book', { init: function (ko, Product) {
     "use strict";
     
     if (!ko) {
-        throw new Error('the book model requires ko');
+        throw new Error('Argument Exception: ko is required to init the book module');
+    }
+    
+    if (typeof Product !== 'function') {
+        throw new Error('Argument Exception: Product is required to init the book module');
     }
     
     var Book;

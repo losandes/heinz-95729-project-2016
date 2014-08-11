@@ -10,17 +10,9 @@ require(['models/movieModels', 'ko'], function (movieModelsCtor, ko) {
         describe('the "init" constructor, when called passing ko in as the first argument', function () {
             var mut = movieModelsCtor.init(ko);
             
-            it('should return an object with a Movie property', function () {
-                expect(mut).to.have.property('Movie');
-            });
-            
-            it('should return an object with a Actor property', function () {
-                expect(mut).to.have.property('Actor');
-            });
-            
-            it('should return an object with a movieVw property', function () {
-                expect(mut).to.have.property('movieVw');
-            });
+            it('should return an object with a Movie property', function () { expect(mut).to.have.property('Movie'); });
+            it('should return an object with a Actor property', function () { expect(mut).to.have.property('Actor'); });
+            it('should return an object with a movieVw property', function () { expect(mut).to.have.property('movieVw'); });
             
         }); // /describe
         
