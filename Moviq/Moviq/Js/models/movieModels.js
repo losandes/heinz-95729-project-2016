@@ -1,6 +1,10 @@
 /*global define*/
 define('models/movieModels', { init: function (ko) {
     "use strict";
+    
+    if (!ko) {
+        throw new Error('the movieModels require ko');
+    }
 
     var Movie, Actor, movieVw;
         

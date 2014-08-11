@@ -11,29 +11,40 @@ require(['routeEngine', 'views/viewEngine', 'config', 'utils', 'controllers/home
 
         var config,
             utils,
-            viewEngine,
             routeEngine,
-            homeController,
-            demoController,
+            viewEngine,
             DemoGrid,
-            movieModels,
-            movies;
+            //movieModels,
+            //movies,
+            homeController,
+            demoController;
         
-            
-        config = configCtor.init();
-        utils = utilsCtor.init();
-        routeEngine = routeEngineCtor.init($, sammy, config, utils);
-        define('routes', function () { return routeEngine; });
-        viewEngine = viewEngineCtor.init(ko);
-        define('views', function () { return viewEngine; });
-            
-//        movieModels = movieModelsCtor.init(ko);
-//        movies = moviesCtor.init(ko, movieModels);
-        DemoGrid = demoGridCtor.init(ko);
+        //region CORE         =================================================================
+        (function () {
+            config = configCtor.init();
+            utils = utilsCtor.init();
+            routeEngine = routeEngineCtor.init($, sammy, config, utils);
+            viewEngine = viewEngineCtor.init(ko);
+
+            define('routes', function () { return routeEngine; });
+            define('views', function () { return viewEngine; });
+        }());
+        //endregion CORE
+
+        //region MODELS       =================================================================
+        (function () {
+            //        movieModels = movieModelsCtor.init(ko);
+            //        movies = moviesCtor.init(ko, movieModels);
+            DemoGrid = demoGridCtor.init(ko);
+        }());
+        //endregion MODELS
         
-        // controllers
-        demoController = demoControllerCtor.init(routeEngine, viewEngine, DemoGrid);
-        homeController = homeControllerCtor.init(routeEngine, viewEngine);
+        //region CONTROLLERS  =================================================================
+        (function () {
+            demoController = demoControllerCtor.init(routeEngine, viewEngine, DemoGrid);
+            homeController = homeControllerCtor.init(routeEngine, viewEngine);
+        }());
+        //endregion CONTROLLERS
             
         ko.applyBindings(viewEngine.mainVw, $('#main')[0]);
         routeEngine.listen();

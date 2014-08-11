@@ -9,6 +9,7 @@
     using Ploeh.AutoFixture.AutoMoq;
     using System.Collections.Generic;
     using System.Linq;
+    using FluentAssertions;
 
     [TestClass]
     public class ProductRepositoryTests
@@ -33,7 +34,8 @@
         IEnumerable<IProduct> mockProducts;
 
         [TestMethod]
-        public void ProductRepository_Get_should_return_a_product_with_the_given_id() 
+        [TestCategory("ProductRepository, when Get is executed with a valid Id")]
+        public void should_return_a_product_with_the_given_id() 
         {
             // given
             var expected = mockProduct;
@@ -42,13 +44,14 @@
             var actual = productRepo.Get(expected.Id);
 
             // then
-            Assert.AreEqual(expected.Id, actual.Id);
-            Assert.AreEqual(expected.Title, actual.Title);
-            Assert.AreEqual(expected.Description, actual.Description);
+            actual.Id.ShouldBeEquivalentTo(expected.Id);
+            actual.Title.ShouldBeEquivalentTo(expected.Title);
+            actual.Description.ShouldBeEquivalentTo(expected.Description);
         }
 
         [TestMethod]
-        public void ProductRepository_Set_should_return_the_product_that_was_created()
+        [TestCategory("ProductRepository, when Set is executed with valid data")]
+        public void should_return_the_product_that_was_created()
         {
             // given
             var expected = mockProduct;
@@ -57,13 +60,14 @@
             var actual = productRepo.Set(expected);
 
             // then
-            Assert.AreEqual(expected.Id, actual.Id);
-            Assert.AreEqual(expected.Title, actual.Title);
-            Assert.AreEqual(expected.Description, actual.Description);
+            actual.Id.ShouldBeEquivalentTo(expected.Id);
+            actual.Title.ShouldBeEquivalentTo(expected.Title);
+            actual.Description.ShouldBeEquivalentTo(expected.Description);
         }
 
         [TestMethod]
-        public void ProductRepository_List_should_return_a_list_of_products()
+        [TestCategory("ProductRepository, when List is executed")]
+        public void should_return_a_list_of_products()
         {
             // given
             var expected = mockProducts;
@@ -72,14 +76,15 @@
             var actual = productRepo.List(20, 0);
 
             // then
-            Assert.IsTrue(actual.Count() > 2);
-            Assert.AreEqual(expected.First().Id, actual.First().Id);
-            Assert.AreEqual(expected.First().Title, actual.First().Title);
-            Assert.AreEqual(expected.First().Description, actual.First().Description);
+            actual.Count().Should().BeGreaterThan(2);
+            actual.First().Id.ShouldBeEquivalentTo(expected.First().Id);
+            actual.First().Title.ShouldBeEquivalentTo(expected.First().Title);
+            actual.First().Description.ShouldBeEquivalentTo(expected.First().Description);
         }
 
         [TestMethod]
-        public void ProductRepository_Find_should_return_products_that_meet_the_search_criteria()
+        [TestCategory("ProductRepository, when Find is executed with valid search criteria")]
+        public void should_return_products_that_meet_the_search_criteria()
         {
             // given
             var expected = mockProducts;
@@ -89,10 +94,10 @@
             var actual = productRepo.Find(searchTerm);
 
             // then
-            Assert.IsTrue(actual.Count() > 2);
-            Assert.AreEqual(expected.First().Id, actual.First().Id);
-            Assert.AreEqual(expected.First().Title, actual.First().Title);
-            Assert.AreEqual(expected.First().Description, actual.First().Description);
+            actual.Count().Should().BeGreaterThan(2);
+            actual.First().Id.ShouldBeEquivalentTo(expected.First().Id);
+            actual.First().Title.ShouldBeEquivalentTo(expected.First().Title);
+            actual.First().Description.ShouldBeEquivalentTo(expected.First().Description);
         }
     }
 }

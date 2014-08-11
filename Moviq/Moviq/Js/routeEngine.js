@@ -48,7 +48,7 @@ define('routeEngine', { init: function ($, globalSammy, config, utils) {
         
         $('body').append(anchor);
         
-        $('#' + id).click();
+        $('#' + id).click().remove();
     };
     
     return {
