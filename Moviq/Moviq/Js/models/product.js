@@ -3,12 +3,10 @@ define('models/product', { init: function (ko) {
     "use strict";
     
     if (!ko) {
-        throw new Error('the product model requires ko');
+        throw new Error('Argument Exception: ko is required to init the product module');
     }
     
-    var Product;
-
-    Product = function (product) {
+    var Product = function (product) {
         var $this = this;
         
         $this.setProductData = function (product, productData) {
@@ -35,7 +33,7 @@ define('models/product', { init: function (ko) {
         
         if (product) {
             $this.setProductData($this, product);
-        }        
+        }
     };
     
     return Product;

@@ -72,6 +72,7 @@
   </Choose>
   <ItemGroup>
     <Compile Include="MockSqlDbInstance.cs" />
+    <Compile Include="Mocks\MockProductRepository.cs" />
     <Compile Include="ProductRepositoryTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

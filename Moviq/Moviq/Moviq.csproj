@@ -56,6 +56,9 @@
     <Reference Include="Nancy.Owin">
       <HintPath>..\packages\Nancy.Owin.0.23.2\lib\net40\Nancy.Owin.dll</HintPath>
     </Reference>
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>..\packages\Newtonsoft.Json.6.0.4\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
     <Reference Include="Owin">
       <HintPath>..\packages\Owin.1.0\lib\net40\Owin.dll</HintPath>
     </Reference>
@@ -63,12 +66,21 @@
     <Reference Include="System.Core" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Css\books\book.css" />
+    <Content Include="Css\books\book2.css" />
+    <Content Include="Css\books\demo.css" />
+    <Content Include="Css\books\normalize.css" />
     <Content Include="Css\component.css" />
     <Content Include="Css\default.css" />
+    <Content Include="Fonts\codropsicons\codropsicons.svg" />
+    <Content Include="Fonts\codropsicons\license.txt" />
     <Content Include="Images\1.jpg" />
     <Content Include="Images\2.jpg" />
     <Content Include="Images\3.jpg" />
     <Content Include="Images\blue-cinema-seats-somaya-langley-flickr-creative-commons.jpg" />
+    <Content Include="Images\Books\bg.jpg" />
+    <Content Include="Images\Books\cover.jpg" />
+    <Content Include="Images\Books\paper.jpg" />
     <Content Include="Images\Eight_%28film_start%29_cropped2.jpg" />
     <Content Include="Images\film-reel_hanging-around-by-chubstock.jpg" />
     <Content Include="Images\film.jpg" />
@@ -100,8 +112,10 @@
     <Content Include="Js\lib\sammy.min.js" />
     <Content Include="Js\models\author.js" />
     <Content Include="Js\models\book.js" />
+    <Content Include="Js\models\books.js" />
     <Content Include="Js\models\person.js" />
     <Content Include="Js\models\product.js" />
+    <Content Include="Js\models\products.js" />
     <Content Include="Js\test\chai.js" />
     <Content Include="Js\test\expect.js" />
     <Content Include="Js\test\mocha.css" />
@@ -115,6 +129,9 @@
     <Content Include="Js\models\demoGrid.js" />
     <Content Include="Js\views\viewEngine.js" />
     <Content Include="packages.config" />
+    <Content Include="Fonts\codropsicons\codropsicons.eot" />
+    <Content Include="Fonts\codropsicons\codropsicons.ttf" />
+    <Content Include="Fonts\codropsicons\codropsicons.woff" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -123,7 +140,10 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Views\Books\index.html" />
+    <Content Include="Views\Books\index2.html" />
     <Content Include="Views\Home\home.html" />
+    <Content Include="Views\Templates\Books\book-grid.html" />
     <Content Include="Views\Templates\empty.html" />
     <Content Include="Views\Templates\LayoutDemos\codrops-grid.html" />
     <Content Include="Views\Templates\LayoutDemos\finchTest.html" />
@@ -132,16 +152,35 @@
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Api\BooksModule.cs" />
     <Compile Include="App_Start\NancyBootstrapper.cs" />
     <Compile Include="App_Start\OwinBootstrapper.cs" />
     <Compile Include="Controllers\HomeModule.cs" />
+    <Compile Include="Helpers\ModuleHelpers.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Api\" />
     <Folder Include="Js\test\controllers\" />
     <Folder Include="Js\test\views\" />
     <Folder Include="Views\Shared\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Moviq.Domain.Books\Moviq.Domain.Books.csproj">
+      <Project>{8a58605a-9ef0-47eb-8d31-daa982aa852d}</Project>
+      <Name>Moviq.Domain.Books</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Moviq.Domain.Products.Tests\Moviq.Domain.Products.Tests.csproj">
+      <Project>{b760c36c-ecb0-4ba8-973e-76374c8403ff}</Project>
+      <Name>Moviq.Domain.Products.Tests</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Moviq.Domain.Products\Moviq.Domain.Products.csproj">
+      <Project>{2de192c4-f87f-4b04-91b9-09ec1d125746}</Project>
+      <Name>Moviq.Domain.Products</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Moviq.Interfaces\Moviq.Interfaces.csproj">
+      <Project>{b0708601-0cfa-411e-87b8-a9875aa00c9d}</Project>
+      <Name>Moviq.Interfaces</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

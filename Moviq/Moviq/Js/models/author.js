@@ -10,9 +10,7 @@ define('models/author', { init: function (ko, Person) {
         throw new Error('Argument Exception: Person is required to init the author module');
     }
     
-    var Author;
-        
-    Author = function (author) {
+    var Author = function (author) {
         var $this = this;
         author = author || {};
         

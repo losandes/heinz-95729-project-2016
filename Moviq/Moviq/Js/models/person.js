@@ -6,9 +6,7 @@ define('models/person', { init: function (ko) {
         throw new Error('the person model requires ko');
     }
     
-    var Person;
-
-    Person = function (person) {
+    var Person = function (person) {
         var $this = this;
         
         $this.setPersonData = function (person, personData) {

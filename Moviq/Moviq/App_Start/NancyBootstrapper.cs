@@ -1,5 +1,13 @@
 ﻿namespace Moviq
 {
+    using Moviq.Domain.Books;
+    using Moviq.Domain.Movies.Tests.Mocks;
+    using Moviq.Domain.Products;
+    using Moviq.Helpers;
+    using Moviq.Interfaces.Factories;
+    using Moviq.Interfaces.Models;
+    using Moviq.Interfaces.Repositories;
+    using Moviq.Interfaces.Services;
     using Nancy;
     using Nancy.Bootstrapper;
     using Nancy.Conventions;
@@ -27,10 +35,17 @@
             );
         }
 
-        //protected override void ConfigureApplicationContainer(TinyIoCContainer container)
-        //{
-        //    // base.ConfigureApplicationContainer(container);
-        //}
+        protected override void ConfigureApplicationContainer(TinyIoCContainer container)
+        {
+            // base.ConfigureApplicationContainer(container);
+
+            container.Register<IRepository<IProduct>, MockProductRepository>().AsMultiInstance();
+            container.Register<IFactory<IProduct>, ProductFactory>().AsMultiInstance();
+
+            container.Register<IModuleHelpers, ModuleHelpers>();
+
+            container.Register<IBookDomain, BookDomain>().AsMultiInstance();
+        }
 
         //protected override void ConfigureRequestContainer(TinyIoCContainer container, NancyContext context)
         //{

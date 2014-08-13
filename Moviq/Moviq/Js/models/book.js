@@ -10,9 +10,7 @@ define('models/book', { init: function (ko, Product) {
         throw new Error('Argument Exception: Product is required to init the book module');
     }
     
-    var Book;
-        
-    Book = function (book) {
+    var Book = function (book) {
         var $this = this;
         book = book || {};
         

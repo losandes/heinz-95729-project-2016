@@ -30,14 +30,14 @@
             return db.ExecuteAsSingle<IProduct>(_command, ModelBinders.ProductBinder(productFactory));
         }
 
-        public IProduct Set(IProduct movie)
+        public IProduct Set(IProduct product)
         {
             var _command = commandFactory.MakeProcCommand("dbo.Products_Set",
                 new TupleList<string, SqlDbType, object> {
-                    { "id", SqlDbType.Int, movie.Id },
-                    { "title", SqlDbType.NVarChar, movie.Title },
-                    { "description", SqlDbType.NVarChar, movie.Description },
-                    { "metadata", SqlDbType.NVarChar, movie.Metadata }
+                    { "id", SqlDbType.Int, product.Id },
+                    { "title", SqlDbType.NVarChar, product.Title },
+                    { "description", SqlDbType.NVarChar, product.Description },
+                    { "metadata", SqlDbType.NVarChar, product.Metadata }
                 });
             return db.ExecuteAsSingle<IProduct>(_command, ModelBinders.ProductBinder(productFactory));
         }

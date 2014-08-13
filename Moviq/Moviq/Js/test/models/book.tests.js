@@ -36,7 +36,8 @@ require(['ko', 'models/product', 'models/book'], function (ko, productCtor, book
             it('should have an reviews property', function () { expect(sut).to.have.property('reviews'); });
             it('should have an setProductData property', function () { expect(sut).to.have.property('setProductData'); });
             
-            it('should have an setProductData property in it\'s prototype', function () {
+                        it('should have an setProductData property in it\'s prototype', function () {
+it('should have an setProductData property in it\'s prototype', function () {
                 expect(sut['__proto__']).to.have.property('setProductData');
             });
             
