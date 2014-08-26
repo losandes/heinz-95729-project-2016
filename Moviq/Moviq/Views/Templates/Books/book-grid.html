@@ -10,7 +10,7 @@
                     <ul class='hardcover_front'>
                         <li>
                             <!-- ko if: book.thumbnailLink != null -->
-                            <img src="" alt="" data-bind="attr: { src: book.thumbnailLink, alt: book.thumbnailAlt }" width="100%" height="100%">
+                            <img src="" alt="" data-bind="attr: { src: book.thumbnailLink, alt: book.thumbnailAlt }">
                             <!-- /ko -->
                             <!-- ko if: book.thumbnailLink == null -->
                             <div class="coverDesign yellow">
@@ -30,7 +30,7 @@
                     <ul class='page'>
                         <li></li>
                         <li>
-                            <a class="btn" href="#">READ MORE</a>
+                            <a class="read-more" href="#" data-bind="attr: { href: book.detailsLink }">READ MORE</a>
                         </li>
                         <li></li>
                         <li></li>
@@ -48,11 +48,12 @@
                         <li></li>
                     </ul>
                     <figcaption>
-                        <h1 data-bind="text: book.title"></h1>
+                        <h1><a data-bind="text: book.title, href: book.detailsLink"></a></h1>
                         <div data-bind="foreach: book.authors">
                             <span data-bind="text: book.name"></span>
                         </div>
                         <div data-bind="html: book.description"></div>
+                        <a class="details-link" data-bind="href: book.detailsLink">Details</a>
                     </figcaption>
                 </figure>
             </li>

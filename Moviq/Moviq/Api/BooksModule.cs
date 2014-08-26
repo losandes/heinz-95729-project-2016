@@ -1,4 +1,4 @@
-﻿namespace Moviq.Api
+namespace Moviq.Api
 {
     using Moviq.Helpers;
     using Moviq.Interfaces.Services;
@@ -17,6 +17,9 @@
                 return helper.ToJson(bookDomain.Repo.List(take, skip));
             };
 
+            this.Get["/api/books/{id}"] = args => {
+                return helper.ToJson(bookDomain.Repo.Get(args.id));
+            };            
         }
     }
 }

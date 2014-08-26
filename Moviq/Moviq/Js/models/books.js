@@ -28,7 +28,7 @@ define('models/books', { init: function (ko, Book, Author) {
             throw new Error('Argument Exception: the argument, author, must be defined to add an author');
         }
 
-        if (!author instanceof Author) {
+        if (!(author instanceof Author)) {
             author = new Author(author);
         }
 
@@ -41,9 +41,11 @@ define('models/books', { init: function (ko, Book, Author) {
             throw new Error('Argument Exception: the argument, book, must be defined to add authors');
         }
 
-        if (!author) {
+        if (!authors) {
             throw new Error('Argument Exception: the argument, authors, must be defined to add authors');
         }
+        
+        var i = 0;
         
         for (i; i < book.authors.length; i++) {
             book = addAuthor(book, book.authors[i]);
@@ -64,7 +66,7 @@ define('models/books', { init: function (ko, Book, Author) {
             
             var i = 0;
             
-            if (!book instanceof Book) {
+            if (!(book instanceof Book)) {
                 book = new Book(book);
             }
             

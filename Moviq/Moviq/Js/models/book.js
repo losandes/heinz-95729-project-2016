@@ -19,6 +19,10 @@ define('models/book', { init: function (ko, Product) {
         $this.thumbnailLink = ko.observable(book.thumbnailLink || '/images/books/default.png');
         $this.authors = ko.observableArray();
         $this.reviews = ko.observableArray();
+        
+        $this.detailsLink = ko.computed(function () {
+            return '/books/' + $this.id();
+        });
     };
     
     Book.prototype = new Product();

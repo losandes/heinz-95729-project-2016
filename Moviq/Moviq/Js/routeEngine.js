@@ -42,13 +42,21 @@ define('routeEngine', { init: function ($, globalSammy, config, utils) {
         return addNewRoute('any', path, callback);
     };
 
+//    navigate = function (path) {
+//        var id = utils.getRandomString(),
+//            anchor = $('<a />').addClass('hidden').attr('href', path).attr('id', id);
+//        
+//        $('body').append(anchor);
+//        
+//        $('#' + id).click().remove();
+//    };    
+    
     navigate = function (path) {
-        var id = utils.getRandomString(),
-            anchor = $('<a />').addClass('hidden').attr('href', path).attr('id', id);
+        var anchor = $('<a />').addClass('hidden').attr('href', path);
         
         $('body').append(anchor);
         
-        $('#' + id).click().remove();
+        anchor.click().remove();
     };
     
     return {

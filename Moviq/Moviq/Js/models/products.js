@@ -20,7 +20,7 @@ define('models/products', { init: function (ko, Product) {
                 throw new Error('Argument Exception: the argument, product, must be defined to add a product');
             }
             
-            if (!product instanceof Product) {
+            if (!(product instanceof Product)) {
                 product = new Product(product);
             }
             

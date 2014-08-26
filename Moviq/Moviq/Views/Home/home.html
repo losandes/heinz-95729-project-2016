@@ -8,24 +8,23 @@
     <link rel="shortcut icon" href="../favicon.ico">
     <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" />
     <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" />
+<!--
     <link rel="stylesheet" type="text/css" href="/css/default.css" />
     <link rel="stylesheet" type="text/css" href="/css/component.css" />
-    <link rel="stylesheet" type="text/css" href="/css/books/books.css" />
+-->
+    <link rel="stylesheet" type="text/css" href="/css/main.css" />
     <script src="/js/lib/modernizr.custom.js"></script>
 </head>
 <body>
+    <header>
+        <h1>Moviq</h1>
+        <nav>
+            <a href="/books">BOOKS</a>
+            <a href="/music">MUSIC</a>
+            <a href="/movies">MOVIES</a>
+        </nav>
+    </header>    
     <div class="container">
-        <header class="clearfix">
-            <h1>
-                Moviq 
-                <span>
-                    <a href="/books">Books</a>, 
-                    <a href="/music">Music</a> and 
-                    <a href="/movies">Movies</a>
-                </span>
-            </h1>
-        </header>
-        
         <section class="main">
             <!-- ko if: viewModel() -->
             <div data-bind="template: { name: viewModel().template, data: viewModel }">
@@ -44,6 +43,7 @@
 <!--    <script id="t-movie-grid" src="../views/shared/_moviegrid.html" type="text/html"></script>-->
     @Partial['../templates/empty.html']
     @Partial['../templates/books/book-grid.html']
+    @Partial['../templates/books/book-details.html']
     @Partial['../templates/layoutdemos/codrops-grid.html']
     <!-- /templates -->
     

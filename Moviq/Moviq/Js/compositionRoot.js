@@ -6,11 +6,11 @@
 require(['routeEngine', 'views/viewEngine', 'config', 'utils', 'controllers/homeController',
          'controllers/demoController', 'controllers/booksController',
          'models/product', 'models/products', 'models/person', 'models/author', 'models/book', 'models/books',
-         'models/demoGrid', 'jquery', 'ko', 'sammy'],
+         'models/demoGrid', 'jquery', 'ko', 'lib/ko.binders', 'sammy'],
         function (routeEngineCtor, viewEngineCtor, configCtor, utilsCtor, homeControllerCtor,
                    demoControllerCtor, booksControllerCtor,
                    ProductCtor, ProductsCtor, PersonCtor, AuthorCtor, BookCtor, BooksCtor,
-                   demoGridCtor, $, ko, sammy) {
+                   demoGridCtor, $, ko, koBinders, sammy) {
         "use strict";
 
         var config,
@@ -29,13 +29,16 @@ require(['routeEngine', 'views/viewEngine', 'config', 'utils', 'controllers/home
             homeController,
             booksController,
             demoController;
+            
+        // initialize ko binding extensions
+        koBinders.init($, ko);
         
         //region CORE         =================================================================
         (function () {
             config = configCtor.init();
             utils = utilsCtor.init();
             routeEngine = routeEngineCtor.init($, sammy, config, utils);
-            viewEngine = viewEngineCtor.init(ko);
+            viewEngine = viewEngineCtor.init($, ko);
 
             define('routes', function () { return routeEngine; });
             define('views', function () { return viewEngine; });
@@ -59,7 +62,7 @@ require(['routeEngine', 'views/viewEngine', 'config', 'utils', 'controllers/home
         
         //region CONTROLLERS  =================================================================
         (function () {
-            booksController = booksControllerCtor.init($, routeEngine, viewEngine, Books);
+            booksController = booksControllerCtor.init($, routeEngine, viewEngine, Books, Book);
             demoController = demoControllerCtor.init(routeEngine, viewEngine, DemoGrid);
             homeController = homeControllerCtor.init(routeEngine, viewEngine);
         }());

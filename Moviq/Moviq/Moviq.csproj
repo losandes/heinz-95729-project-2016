@@ -140,9 +140,8 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Views\Books\index.html" />
-    <Content Include="Views\Books\index2.html" />
     <Content Include="Views\Home\home.html" />
+    <Content Include="Views\Templates\Books\book-details.html" />
     <Content Include="Views\Templates\Books\book-grid.html" />
     <Content Include="Views\Templates\empty.html" />
     <Content Include="Views\Templates\LayoutDemos\codrops-grid.html" />

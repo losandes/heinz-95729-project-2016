@@ -1,5 +1,5 @@
 /*global define*/
-define('views/viewEngine', { init: function (ko) {
+define('views/viewEngine', { init: function ($, ko) {
     "use strict";
     
     var mainVw, setView;
@@ -13,7 +13,11 @@ define('views/viewEngine', { init: function (ko) {
             throw new Error('viewModel is undefined. The mainVw cannot be updated.');
         }
         
-        mainVw.viewModel(viewModel);
+        $('.main').removeClass('in').addClass('out');
+        setTimeout(function () {
+            mainVw.viewModel(viewModel);
+            $('.main').removeClass('out').addClass('in');
+        }, 500);
     };
     
     return {

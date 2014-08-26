@@ -9,9 +9,9 @@
     using System.Data;
     using System.Linq;
 
-    public class MockProductRepository : IRepository<IProduct>
+    public class MockBookRepository : IRepository<IProduct>
     {
-        public MockProductRepository(IFactory<IProduct> productFactory)
+        public MockBookRepository(IFactory<IProduct> productFactory)
         {
             this.productFactory = productFactory;
         }

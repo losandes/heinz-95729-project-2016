@@ -32,6 +32,7 @@ require(['ko', 'models/product', 'models/book'], function (ko, productCtor, book
             it('should have an images property', function () { expect(sut).to.have.property('images'); });
             it('should have an thumbnailLink property', function () { expect(sut).to.have.property('thumbnailLink'); });
             it('should have an thumbnailAlt property', function () { expect(sut).to.have.property('thumbnailAlt'); });
+            it('should have an detailsLink property', function () { expect(sut).to.have.property('detailsLink'); });
             it('should have an authors property', function () { expect(sut).to.have.property('authors'); });
             it('should have an reviews property', function () { expect(sut).to.have.property('reviews'); });
             it('should have an setProductData property', function () { expect(sut).to.have.property('setProductData'); });

@@ -1,0 +1,36 @@
+// main: main.less
+
+.transform (@transformation) {
+    -webkit-transform: @transformation;
+    -moz-transform:    @transformation;
+    -ms-transform:     @transformation;
+    -o-transform:      @transformation;
+    transform:         @transformation;
+}
+
+.transition (@transition) {
+	-webkit-transition: @transition;
+	-moz-transition:    @transition;
+	-ms-transition:     @transition;
+	-o-transition:      @transition;
+    transition:         @transition;
+}
+
+.animate(@name, @duration: 0.6s, @timing: ease-in-out, @delay: 0.2s, @iterationCount: 1, @direction: alternate) {
+    /* Chrome, Safari, Opera */
+    -webkit-animation-name: @name;
+    -webkit-animation-duration: @duration;
+    -webkit-animation-timing-function: @timing;
+    -webkit-animation-delay: @delay;
+    -webkit-animation-iteration-count: @iterationCount;
+    -webkit-animation-direction: @direction;
+//    -webkit-animation-play-state: running;
+    /* Standard syntax */
+    animation-name: @name;
+    animation-duration: @duration;
+    animation-timing-function: @timing;
+    animation-delay: @delay;
+    animation-iteration-count: @iterationCount;
+    animation-direction: @direction;
+//    animation-play-state: running; 
+}

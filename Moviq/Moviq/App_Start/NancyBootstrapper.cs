@@ -39,7 +39,7 @@
         {
             // base.ConfigureApplicationContainer(container);
 
-            container.Register<IRepository<IProduct>, MockProductRepository>().AsMultiInstance();
+            container.Register<IRepository<IProduct>, MockBookRepository>().AsMultiInstance();
             container.Register<IFactory<IProduct>, ProductFactory>().AsMultiInstance();
 
             container.Register<IModuleHelpers, ModuleHelpers>();
