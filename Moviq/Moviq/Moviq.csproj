@@ -105,6 +105,7 @@
     <Content Include="Js\controllers\demoController.js" />
     <Content Include="Js\controllers\homeController.js" />
     <Content Include="Js\lib\grid.js" />
+    <Content Include="Js\lib\ko.binders.js" />
     <Content Include="Js\lib\modernizr.custom.js" />
     <Content Include="Js\lib\require.js" />
     <Content Include="Js\lib\require.shim.js" />
