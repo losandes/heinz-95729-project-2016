@@ -1,6 +1,6 @@
 /*jslint */
 /*global define*/
-define('routeEngine', { init: function ($, globalSammy, config, utils) {
+define('routeEngine', { init: function ($, globalSammy, config, utils, viewEngine) {
     "use strict";
     
     var sammy, listen, addNewRoute, get, post, put, del, any, navigate;
@@ -11,6 +11,17 @@ define('routeEngine', { init: function ($, globalSammy, config, utils) {
             // That is less useful to us, so we are overriding this behaviour, to maintain the full path
             // return path.replace(QUERY_STRING_MATCHER, '');
             return path;
+        };
+        
+        this.notFound = function (verb, path) {
+            viewEngine.setView({
+                template: 't-empty',
+                data: {
+                    verb: verb,
+                    path: path,
+                    errorCode: '404'
+                }
+            });
         };
     });
     
@@ -52,7 +63,7 @@ define('routeEngine', { init: function ($, globalSammy, config, utils) {
 //    };    
     
     navigate = function (path) {
-        var anchor = $('<a />').addClass('hidden').attr('href', path);
+        var anchor = $('<a />').addClass('hidden').attr('href', '/#' + path);
         
         $('body').append(anchor);
         

@@ -3,19 +3,28 @@
 header {
     text-align: justify;
     letter-spacing: 1px;
-    height: 8em;
+    height: 120px;
     padding: 2em 10%;
-    background: #052033;
-    color: #fff;
+    background: @header-bg;
+    color: @header-text;
     
     h1,
     nav {
         display: inline-block;
         
         a {
-            color: #E5E57C;
-            margin-right: 15px;
+            color: @header-link;
+            margin-right: 15px;            
         }
+        
+        .fa {
+            font-size: 1.3em;
+            
+            // add space between the icon and the text
+            &:before {
+                margin: 3px;
+            }
+        }       
     }
     
     &:after {

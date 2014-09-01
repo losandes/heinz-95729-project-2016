@@ -1,26 +1,8 @@
 // out: main.css, compress: true, strictMath: true
 
-@import "default.css";
+@import "variables.less";
 @import "mixins.less";
+@import "default.less";
 @import "header.less";
-
-.main {
-    position: relative;
-    width: 100%;
-    height: 100%;
-    .transition(all 0.3s ease-in-out);
-    
-    /* hardware acceleration */
-    -webkit-transform: translate3d(0, 0, 0);
-    -webkit-backface-visibility: hidden;
-    
-    &.in {
-        .transform(translateY(0%));
-    }
-    
-    &.out {
-        .transform(translateY(100%));
-    }
-}
-
+@import "errors.less";
 @import "books/books.less";

@@ -37,8 +37,8 @@ require(['routeEngine', 'views/viewEngine', 'config', 'utils', 'controllers/home
         (function () {
             config = configCtor.init();
             utils = utilsCtor.init();
-            routeEngine = routeEngineCtor.init($, sammy, config, utils);
             viewEngine = viewEngineCtor.init($, ko);
+            routeEngine = routeEngineCtor.init($, sammy, config, utils, viewEngine);
 
             define('routes', function () { return routeEngine; });
             define('views', function () { return viewEngine; });
@@ -68,7 +68,8 @@ require(['routeEngine', 'views/viewEngine', 'config', 'utils', 'controllers/home
         }());
         //endregion CONTROLLERS
             
-        ko.applyBindings(viewEngine.mainVw, $('#main')[0]);
+        ko.applyBindings(viewEngine.mainVw, $('.main')[0]);
+        ko.applyBindings(viewEngine.headerVw, $('header')[0]);
         routeEngine.listen();
     
     });
