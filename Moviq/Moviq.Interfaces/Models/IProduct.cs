@@ -10,6 +10,7 @@
         string Metadata { get; set; }
         decimal Price { get; set; }
         string ThumbnailLink { get; set; }
+        IEnumerable<string> Tags { get; set; }
     }
 
     //// sample metadata

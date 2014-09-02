@@ -69,6 +69,10 @@
     <Reference Include="Owin">
       <HintPath>..\packages\Owin.1.0\lib\net40\Owin.dll</HintPath>
     </Reference>
+    <Reference Include="RestSharp, Version=104.4.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\RestSharp.104.4.0\lib\net4\RestSharp.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
   </ItemGroup>
@@ -87,7 +91,11 @@
     <Content Include="Images\blue-cinema-seats-somaya-langley-flickr-creative-commons.jpg" />
     <Content Include="Images\Books\bg.jpg" />
     <Content Include="Images\Books\cover.jpg" />
+    <Content Include="Images\Books\dirkgently.jpeg" />
+    <Content Include="Images\Books\hitchiker.jpeg" />
+    <Content Include="Images\Books\lifeandeverything.jpeg" />
     <Content Include="Images\Books\paper.jpg" />
+    <Content Include="Images\Books\restaurantuniverse.jpeg" />
     <Content Include="Images\Eight_%28film_start%29_cropped2.jpg" />
     <Content Include="Images\film-reel_hanging-around-by-chubstock.jpg" />
     <Content Include="Images\film.jpg" />

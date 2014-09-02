@@ -18,6 +18,7 @@
         public string Metadata { get; set; }
         public decimal Price { get; set; }
         public string ThumbnailLink { get; set; }
+        public IEnumerable<string> Tags { get; set; }
         public string _type { get; set; }
     }
 }

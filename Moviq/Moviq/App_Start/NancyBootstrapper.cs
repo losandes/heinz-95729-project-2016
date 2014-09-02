@@ -14,6 +14,7 @@
     using Nancy.Bootstrapper;
     using Nancy.Conventions;
     using Nancy.TinyIoc;
+    using RestSharp;
     using System.IO;
 
     public class NancyBootstrapper : DefaultNancyBootstrapper
@@ -40,8 +41,6 @@
 
         protected override void ConfigureApplicationContainer(TinyIoCContainer container)
         {
-            // base.ConfigureApplicationContainer(container);
-
             container.Register<IRepository<IProduct>, MockBookRepository>().AsMultiInstance();
             container.Register<IFactory<IProduct>, ProductFactory>().AsMultiInstance();
 
@@ -50,6 +49,7 @@
             container.Register<IBookDomain, BookDomain>().AsMultiInstance();
 
             container.Register<ICouchbaseClient, CouchbaseClient>().AsSingleton();
+            container.Register<IRestClient, RestClient>().AsMultiInstance();
 
             container.Register<AnyLocale>().AsSingleton();
         }
