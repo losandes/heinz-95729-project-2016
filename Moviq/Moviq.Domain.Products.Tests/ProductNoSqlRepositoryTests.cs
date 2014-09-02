@@ -39,7 +39,7 @@
         IEnumerable<IProduct> mockProducts;
 
         [TestMethod]
-        [TestCategory("ProductNoSqlRepository, when Set is executed with valid data")]
+        [TestCategory("ProductNoSqlRepository, when Set is executed with valid data, it")]
         public void should_return_the_product_that_was_created()
         {
             // given
@@ -55,7 +55,7 @@
         }
 
         [TestMethod]
-        [TestCategory("ProductNoSqlRepository, when Get is executed with a valid Id")]
+        [TestCategory("ProductNoSqlRepository, when Get is executed with a valid Id, it")]
         public void should_return_a_product_with_the_given_id() 
         {
             // given
@@ -93,7 +93,7 @@
         }
 
         [TestMethod]
-        [TestCategory("ProductNoSqlRepository, when Find is executed with valid search criteria")]
+        [TestCategory("ProductNoSqlRepository, when Find is executed with valid search criteria, it")]
         public void should_return_products_that_meet_the_search_criteria()
         {
             // given

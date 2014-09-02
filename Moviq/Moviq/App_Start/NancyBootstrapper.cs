@@ -59,7 +59,7 @@
                 // FUTURE: get the user's locale
                 var path = Path.Combine(new DefaultRootPathProvider().GetRootPath(),"\\Locale\\en.json");
                 return new AnyLocale().GetLocale(path);
-            }).AsSingleton();
+            });
         }
 
     }
