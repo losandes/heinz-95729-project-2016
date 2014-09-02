@@ -50,15 +50,17 @@
             container.Register<IBookDomain, BookDomain>().AsMultiInstance();
 
             container.Register<ICouchbaseClient, CouchbaseClient>().AsSingleton();
+
+            container.Register<AnyLocale>().AsSingleton();
         }
 
         protected override void ConfigureRequestContainer(TinyIoCContainer container, NancyContext context)
         {
             container.Register<ILocale>((cntr, namedParams) =>
             { 
-                // FUTURE: get the user's locale
+                // FUTURE: get the user's locale instead of hard-coding en.json
                 var path = Path.Combine(new DefaultRootPathProvider().GetRootPath(),"\\Locale\\en.json");
-                return new AnyLocale().GetLocale(path);
+                return container.Resolve<AnyLocale>().GetLocale(path);
             });
         }
 
