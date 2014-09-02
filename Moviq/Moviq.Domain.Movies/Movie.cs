@@ -8,7 +8,7 @@
     {
         public ICollection<IActor> Actors { get; set; }
         public ICollection<string> TrailerLinks { get; set; }
-        public int Id { get; set; }
+        public string Uid { get; set; }
         public string Title { get; set; }
         public string Description { get; set; }
         public string Metadata { get; set; }

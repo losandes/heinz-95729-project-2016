@@ -13,7 +13,7 @@
             return r =>
             {
                 var product = productFactory.GetInstance();
-                    product.Id = r.GetValueOrDefault<int>("Id");
+                    product.Uid = r.GetValueOrDefault<string>("Id");
                     product.Title = r.GetValueOrDefault<string>("Title");
                     product.Description = r.GetValueOrDefault<string>("Description");
                     product.Metadata = r.GetValueOrDefault<string>("Metadata");

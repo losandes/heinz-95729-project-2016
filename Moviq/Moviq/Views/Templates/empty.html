@@ -5,7 +5,12 @@
     </ul>
 -->
     <div class="error-component" data-bind="with: data">
-        <div class="error-404"></span>
+        <div class="error-404"></div>
+        <div class="error-detail">
+            <code data-bind="text: verb.toUpperCase()"></code>
+            <code data-bind="text: path"></code>
+            was not found
+        </div>
     </div>
     
 </script>

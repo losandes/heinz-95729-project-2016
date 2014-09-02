@@ -1,5 +1,6 @@
 ﻿namespace Moviq
 {
+    using Couchbase;
     using Moviq.Domain.Books;
     using Moviq.Domain.Movies.Tests.Mocks;
     using Moviq.Domain.Products;
@@ -8,10 +9,12 @@
     using Moviq.Interfaces.Models;
     using Moviq.Interfaces.Repositories;
     using Moviq.Interfaces.Services;
+    using Moviq.Locale;
     using Nancy;
     using Nancy.Bootstrapper;
     using Nancy.Conventions;
     using Nancy.TinyIoc;
+    using System.IO;
 
     public class NancyBootstrapper : DefaultNancyBootstrapper
     {
@@ -45,12 +48,19 @@
             container.Register<IModuleHelpers, ModuleHelpers>();
 
             container.Register<IBookDomain, BookDomain>().AsMultiInstance();
+
+            container.Register<ICouchbaseClient, CouchbaseClient>().AsSingleton();
         }
 
-        //protected override void ConfigureRequestContainer(TinyIoCContainer container, NancyContext context)
-        //{
-        //    // base.ConfigureRequestContainer(container, context);
-        //}
+        protected override void ConfigureRequestContainer(TinyIoCContainer container, NancyContext context)
+        {
+            container.Register<ILocale>((cntr, namedParams) =>
+            { 
+                // FUTURE: get the user's locale
+                var path = Path.Combine(new DefaultRootPathProvider().GetRootPath(),"\\Locale\\en.json");
+                return new AnyLocale().GetLocale(path);
+            }).AsSingleton();
+        }
 
     }
 }

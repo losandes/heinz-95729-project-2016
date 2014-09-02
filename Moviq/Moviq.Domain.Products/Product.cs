@@ -7,13 +7,19 @@ using System.Threading.Tasks;
 
 namespace Moviq.Domain.Products
 {
-    public class Product : IProduct
+    public class Product : IProduct, IHelpCategorizeNoSqlData
     {
-        public int Id { get; set; }
+        public Product() 
+        {
+            this._type = "product";
+        }
+
+        public string Uid { get; set; }
         public string Title { get; set; }
         public string Description { get; set; }
         public string Metadata { get; set; }
         public decimal Price { get; set; }
         public string ThumbnailLink { get; set; }
+        public string _type { get; set; }
     }
 }

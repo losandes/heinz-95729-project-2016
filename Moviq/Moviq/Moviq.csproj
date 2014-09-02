@@ -38,6 +38,12 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Couchbase">
+      <HintPath>..\packages\CouchbaseNetClient.1.3.8\lib\net40\Couchbase.dll</HintPath>
+    </Reference>
+    <Reference Include="Enyim.Caching">
+      <HintPath>..\packages\CouchbaseNetClient.1.3.8\lib\net40\Enyim.Caching.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="Microsoft.Owin">
       <HintPath>..\packages\Microsoft.Owin.2.1.0\lib\net45\Microsoft.Owin.dll</HintPath>
@@ -56,7 +62,8 @@
     <Reference Include="Nancy.Owin">
       <HintPath>..\packages\Nancy.Owin.0.23.2\lib\net40\Nancy.Owin.dll</HintPath>
     </Reference>
-    <Reference Include="Newtonsoft.Json">
+    <Reference Include="Newtonsoft.Json, Version=6.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\Newtonsoft.Json.6.0.4\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="Owin">
@@ -133,6 +140,7 @@
     <Content Include="Fonts\codropsicons\codropsicons.eot" />
     <Content Include="Fonts\codropsicons\codropsicons.ttf" />
     <Content Include="Fonts\codropsicons\codropsicons.woff" />
+    <Content Include="Locale\en.json" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -180,6 +188,10 @@
     <ProjectReference Include="..\Moviq.Interfaces\Moviq.Interfaces.csproj">
       <Project>{b0708601-0cfa-411e-87b8-a9875aa00c9d}</Project>
       <Name>Moviq.Interfaces</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Moviq.Locale\Moviq.Locale.csproj">
+      <Project>{71687340-2bec-4b85-b35d-75def65958f4}</Project>
+      <Name>Moviq.Locale</Name>
     </ProjectReference>
   </ItemGroup>
   <PropertyGroup>

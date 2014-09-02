@@ -7,10 +7,11 @@
     using System;
     using System.Collections.Generic;
     using System.Data;
+    using System.Threading.Tasks;
 
-    public class ProductRepository : IRepository<IProduct>
+    public class ProductSqlRepository : IRepository<IProduct>
     {
-        public ProductRepository(IFactory<IProduct> productFactory, ISqlDbInstance db, ISqlCommandFactory commandFactory)
+        public ProductSqlRepository(IFactory<IProduct> productFactory, ISqlDbInstance db, ISqlCommandFactory commandFactory)
         {
             this.productFactory = productFactory;
             this.db = db;
@@ -21,11 +22,11 @@
         ISqlDbInstance db;
         ISqlCommandFactory commandFactory;
 
-        public IProduct Get(int id)
+        public IProduct Get(string id)
         {
             var _command = commandFactory.MakeProcCommand("dbo.Products_Get",
                 new TupleList<string, SqlDbType, object> {
-                    { "Id", SqlDbType.Int, id }
+                    { "Id", SqlDbType.NVarChar, id }
                 });
             return db.ExecuteAsSingle<IProduct>(_command, ModelBinders.ProductBinder(productFactory));
         }
@@ -34,7 +35,7 @@
         {
             var _command = commandFactory.MakeProcCommand("dbo.Products_Set",
                 new TupleList<string, SqlDbType, object> {
-                    { "id", SqlDbType.Int, product.Id },
+                    { "id", SqlDbType.NVarChar, product.Uid },
                     { "title", SqlDbType.NVarChar, product.Title },
                     { "description", SqlDbType.NVarChar, product.Description },
                     { "metadata", SqlDbType.NVarChar, product.Metadata }
@@ -52,20 +53,23 @@
             return db.ExecuteAs<IProduct>(_command, ModelBinders.ProductBinder(productFactory));
         }
 
-        public IEnumerable<IProduct> Find(string searchBy)
+        public Task<IEnumerable<IProduct>> Find(string searchBy)
         {
-            var _command = commandFactory.MakeProcCommand("dbo.Products_Find",
-                new TupleList<string, SqlDbType, object> {
+            return Task.Run(() =>
+            {
+                var _command = commandFactory.MakeProcCommand("dbo.Products_Find",
+                    new TupleList<string, SqlDbType, object> {
                     { "searchBy", SqlDbType.NVarChar, searchBy }
                 });
-            return db.ExecuteAs<IProduct>(_command, ModelBinders.ProductBinder(productFactory));
+                return db.ExecuteAs<IProduct>(_command, ModelBinders.ProductBinder(productFactory));
+            });
         }
 
-        public bool Delete(int id)
+        public bool Delete(string id)
         {
             var _command = commandFactory.MakeProcCommand("dbo.Products_Delete",
                 new TupleList<string, SqlDbType, object> {
-                    { "Id", SqlDbType.Int, id }
+                    { "Id", SqlDbType.NVarChar, id }
                 });
             return db.ExecuteAsSingle<IProduct>(_command, ModelBinders.ProductBinder(productFactory)) != null;
         }

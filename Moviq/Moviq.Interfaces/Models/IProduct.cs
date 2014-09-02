@@ -4,7 +4,7 @@
 
     public interface IProduct
     {
-        int Id { get; set; }
+        string Uid { get; set; }
         string Title { get; set; }
         string Description { get; set; }
         string Metadata { get; set; }

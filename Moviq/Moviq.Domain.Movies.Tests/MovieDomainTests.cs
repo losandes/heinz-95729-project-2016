@@ -5,7 +5,7 @@
     [TestClass]
     public class MovieDomainTests
     {
-        [TestMethod]
+        //[TestMethod]
         public void MovieDomain_()
         {
         }

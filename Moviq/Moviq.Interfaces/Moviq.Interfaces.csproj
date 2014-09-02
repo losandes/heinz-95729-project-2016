@@ -39,6 +39,8 @@
     <Compile Include="Models\IActor.cs" />
     <Compile Include="Models\IAuthor.cs" />
     <Compile Include="Models\IBook.cs" />
+    <Compile Include="Models\IHelpCategorizeNoSqlData.cs" />
+    <Compile Include="Models\ILocale.cs" />
     <Compile Include="Models\IMovie.cs" />
     <Compile Include="Models\IProduct.cs" />
     <Compile Include="Models\IReview.cs" />
