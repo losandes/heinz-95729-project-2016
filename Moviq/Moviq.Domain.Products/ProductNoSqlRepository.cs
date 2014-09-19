@@ -53,8 +53,6 @@
             if (!_results.Any())
                 yield break;
 
-            var _output = new Dictionary<string, Product> { };
-
             foreach (var o in _results)
                 yield return JsonConvert.DeserializeObject<Product>(o.ToString());
         }
@@ -71,6 +69,7 @@
 
         public IEnumerable<IProduct> List(int take, int skip)
         {
+            // http://localhost:8092/moviq/_design/dev_books/_view/books?stale=false&connection_timeout=60000&limit=20&skip=0
             throw new NotImplementedException();
         }
 
@@ -82,7 +81,7 @@
             var response = await restClient.ExecutePostTaskAsync(BuildSearchPostRequest(searchFor));
             var result = JsonConvert.DeserializeObject<NoSqlSearchResult>(response.Content);
 
-            if (result.hits.hits.Count < 1) 
+            if (result.hits == null || result.hits.hits == null || result.hits.hits.Count < 1)
             {
                 return null;
             }
@@ -116,17 +115,26 @@
         {
             var request = new RestRequest(searchUrl, Method.POST);
             request.RequestFormat = DataFormat.Json;
-            request.AddBody(new {
-                query = new {
-                    query_string = new {
-                            query_string = new {
-                                query = searchFor
-                            }
+            request.AddBody(new
+            {
+                query = new
+                {
+                    query_string = new
+                    {
+                        query_string = new
+                        {
+                            query = searchFor
                         }
                     }
-                });
+                }
+            });
 
             return request;
+
+            //var request = new RestRequest(searchUrl, Method.GET);
+            //request.AddParameter("q", searchFor);
+
+            //return request;
         }
 
         public void Dispose()

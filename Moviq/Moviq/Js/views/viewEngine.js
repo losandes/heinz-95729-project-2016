@@ -52,6 +52,10 @@ define('views/viewEngine', { init: function ($, ko) {
         setTimeout(function () {
             mainVw.viewModel(viewModel);
             $('.main').removeClass('out').addClass('in');
+            
+            if (typeof viewModel.after === 'function') {
+                viewModel.after();
+            }
         }, 500);
     };
     

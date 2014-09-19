@@ -16,7 +16,7 @@ define('models/product', { init: function (ko) {
             
             productData = productData || {};
             
-            product.id = ko.observable(productData.id || 0);
+            product.uid = ko.observable(productData.uid);
             product.title = ko.observable(productData.title || undefined);
             product.description = ko.observable(productData.description || undefined);
             product.metadata = ko.observable(productData.metadata || undefined);

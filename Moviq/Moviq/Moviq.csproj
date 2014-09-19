@@ -77,12 +77,8 @@
     <Reference Include="System.Core" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Css\books\book.css" />
-    <Content Include="Css\books\book2.css" />
-    <Content Include="Css\books\demo.css" />
-    <Content Include="Css\books\normalize.css" />
     <Content Include="Css\component.css" />
-    <Content Include="Css\default.css" />
+    <Content Include="Css\main.css" />
     <Content Include="Fonts\codropsicons\codropsicons.svg" />
     <Content Include="Fonts\codropsicons\license.txt" />
     <Content Include="Images\1.jpg" />
@@ -149,6 +145,13 @@
     <Content Include="Fonts\codropsicons\codropsicons.ttf" />
     <Content Include="Fonts\codropsicons\codropsicons.woff" />
     <Content Include="Locale\en.json" />
+    <Content Include="Css\books\books.less" />
+    <Content Include="Css\default.less" />
+    <Content Include="Css\errors.less" />
+    <Content Include="Css\header.less" />
+    <Content Include="Css\main.less" />
+    <Content Include="Css\mixins.less" />
+    <Content Include="Css\variables.less" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -160,6 +163,8 @@
     <Content Include="Views\Home\home.html" />
     <Content Include="Views\Templates\Books\book-details.html" />
     <Content Include="Views\Templates\Books\book-grid.html" />
+    <Content Include="Views\Templates\Books\book-search.html" />
+    <Content Include="Views\Templates\noResults.html" />
     <Content Include="Views\Templates\empty.html" />
     <Content Include="Views\Templates\LayoutDemos\codrops-grid.html" />
     <Content Include="Views\Templates\LayoutDemos\finchTest.html" />

@@ -17,9 +17,15 @@ namespace Moviq.Api
                 return helper.ToJson(bookDomain.Repo.List(take, skip));
             };
 
-            this.Get["/api/books/{id}"] = args => {
-                return helper.ToJson(bookDomain.Repo.Get(args.id));
-            };            
+            this.Get["/api/books/{uid}"] = args => {
+                return helper.ToJson(bookDomain.Repo.Get(args.uid));
+            };
+
+            this.Post["/api/books/search", true] = async (args, cancellationToken) => {
+                var searchTerm = this.Request.Query.q;
+                var result = await bookDomain.Repo.Find(searchTerm);
+                return helper.ToJson(result);
+            };
         }
     }
 }

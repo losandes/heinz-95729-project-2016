@@ -9,8 +9,10 @@ header {
     color: @header-text;
     
     h1,
+    .search-form,
     nav {
         display: inline-block;
+        vertical-align: middle;
         
         a {
             color: @header-link;
@@ -25,6 +27,14 @@ header {
                 margin: 3px;
             }
         }       
+    }
+    
+    h1 {
+        padding-bottom: .5em;
+    }
+    
+    .search-form {
+        width: 80%;
     }
     
     &:after {

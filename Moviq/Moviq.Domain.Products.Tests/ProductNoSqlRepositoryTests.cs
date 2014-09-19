@@ -113,5 +113,27 @@
             actual.First().Title.ShouldBeEquivalentTo(expected.First().Title);
             actual.First().Description.ShouldBeEquivalentTo(expected.First().Description);
         }
+
+        [TestMethod]
+        [TestCategory("ProductNoSqlRepository, when Find is executed with advanced search criteria, it")]
+        public void should_return_products_that_meet_the_advanced_search_criteria()
+        {
+            // given
+            var expected = MockProducts.MockBooks;
+            var searchTerm = "title: " + expected.First().Title;
+            foreach (var product in expected)
+            {
+                productRepo.Set(product);
+            }
+
+            // when (BLOCKING)
+            var actual = productRepo.Find(searchTerm).Result;
+
+            // then
+            actual.Count().Should().BeGreaterThan(2);
+            actual.First().Uid.ShouldBeEquivalentTo(expected.First().Uid);
+            actual.First().Title.ShouldBeEquivalentTo(expected.First().Title);
+            actual.First().Description.ShouldBeEquivalentTo(expected.First().Description);
+        }
     }
 }

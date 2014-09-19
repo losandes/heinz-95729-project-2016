@@ -18,10 +18,20 @@
 <body>
     <header>
         <h1>Moviq</h1>
+        <form class="search-form">
+            <div class="input-group input-group-lg">
+                <input type="text" class="form-control" placeholder="search">
+                <span class="input-group-btn">
+                    <button class="btn btn-default" type="submit">Go!</button>
+                </span>
+            </div><!-- /input-group -->
+        </form>        
         <nav>
+<!--
             <span data-bind="foreach: links">
                 <a data-bind="text: text, href: href"></a>               
             </span>
+-->
             <a href="/#checkout">
                 <i class="fa fa-shopping-cart" data-bind="text: cartCount"></i>
             </a>
@@ -45,8 +55,10 @@
     <!-- templates -->
 <!--    <script id="t-movie-grid" src="../views/shared/_moviegrid.html" type="text/html"></script>-->
     @Partial['../templates/empty.html']
+    @Partial['../templates/noResults.html']
     @Partial['../templates/books/book-grid.html']
     @Partial['../templates/books/book-details.html']
+    @Partial['../templates/books/book-search.html']
     @Partial['../templates/layoutdemos/codrops-grid.html']
     <!-- /templates -->
     

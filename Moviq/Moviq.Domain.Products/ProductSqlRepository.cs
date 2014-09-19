@@ -59,7 +59,7 @@
             {
                 var _command = commandFactory.MakeProcCommand("dbo.Products_Find",
                     new TupleList<string, SqlDbType, object> {
-                    { "searchBy", SqlDbType.NVarChar, searchBy }
+                    { "searchBy", SqlDbType.NVarChar, searchBy.ToString() }
                 });
                 return db.ExecuteAs<IProduct>(_command, ModelBinders.ProductBinder(productFactory));
             });

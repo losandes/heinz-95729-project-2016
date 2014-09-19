@@ -1,5 +1,13 @@
 <!-- Adapted From: http://tympanus.net/Development/AnimatedBooks/ -->
 <script id="t-book-grid" type="text/html">
+    <form class="book-search search-form">
+        <div class="input-group input-group-lg">
+            <input type="text" class="form-control" placeholder="search">
+            <span class="input-group-btn">
+                <button class="btn btn-default" type="submit">Go!</button>
+            </span>
+        </div><!-- /input-group -->
+    </form>
     <div class="book-component">
         <ul class="align" data-bind="foreach: { data: data.books(), as: 'book' }">
             <li>

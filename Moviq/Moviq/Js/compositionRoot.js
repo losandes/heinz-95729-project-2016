@@ -5,12 +5,16 @@
 /*globals require, define*/
 require(['routeEngine', 'views/viewEngine', 'config', 'utils', 'controllers/homeController',
          'controllers/demoController', 'controllers/booksController',
-         'models/product', 'models/products', 'models/person', 'models/author', 'models/book', 'models/books',
-         'models/demoGrid', 'jquery', 'ko', 'lib/ko.binders', 'sammy'],
+         'models/product', 'models/products', 'models/person', 'models/author', 'models/book',
+         'models/books', 'models/demoGrid',
+         'views/booksVw',
+         'jquery', 'ko', 'lib/ko.binders', 'sammy'],
         function (routeEngineCtor, viewEngineCtor, configCtor, utilsCtor, homeControllerCtor,
                    demoControllerCtor, booksControllerCtor,
-                   ProductCtor, ProductsCtor, PersonCtor, AuthorCtor, BookCtor, BooksCtor,
-                   demoGridCtor, $, ko, koBinders, sammy) {
+                   ProductCtor, ProductsCtor, PersonCtor, AuthorCtor, BookCtor,
+                   BooksCtor, demoGridCtor,
+                   booksVwCtor,
+                   $, ko, koBinders, sammy) {
         "use strict";
 
         var config,
@@ -67,6 +71,12 @@ require(['routeEngine', 'views/viewEngine', 'config', 'utils', 'controllers/home
             homeController = homeControllerCtor.init(routeEngine, viewEngine);
         }());
         //endregion CONTROLLERS
+            
+        //region CONTROLLERS  =================================================================
+        (function () {
+            booksVwCtor.init($, routeEngine);
+        }());
+        //endregion CONTROLLERS            
             
         ko.applyBindings(viewEngine.mainVw, $('.main')[0]);
         ko.applyBindings(viewEngine.headerVw, $('header')[0]);

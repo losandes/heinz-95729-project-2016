@@ -15,7 +15,7 @@
         public string Uid { get; set; }
         public string Title { get; set; }
         public string Description { get; set; }
-        public string Metadata { get; set; }
+        public object Metadata { get; set; }
         public decimal Price { get; set; }
         public string ThumbnailLink { get; set; }
         public IEnumerable<string> Tags { get; set; }
