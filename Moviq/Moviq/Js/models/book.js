@@ -21,7 +21,7 @@ define('models/book', { init: function (ko, Product) {
         $this.reviews = ko.observableArray();
         
         $this.detailsLink = ko.computed(function () {
-            return 'books/' + $this.uid();
+            return '/books/' + $this.uid();
         });
     };
     

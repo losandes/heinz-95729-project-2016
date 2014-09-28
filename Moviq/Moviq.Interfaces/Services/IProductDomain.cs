@@ -3,7 +3,7 @@
     using Moviq.Interfaces.Models;
     using Moviq.Interfaces.Repositories;
 
-    public interface IBookDomain
+    public interface IProductDomain
     {
         IRepository<IProduct> Repo { get; set; }
     }

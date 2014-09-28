@@ -1,4 +1,4 @@
-// main: ../main.less
+// main: main.less
 
 /* ///////////////////////////////////////////////////
 
@@ -700,50 +700,6 @@ Table of Contents
 /*
     Modifications
 */
-
-a {
-    &:hover {
-        color: #EA2E49;
-        text-decoration: none;
-    }
-}
-
-.details-link {
-    font-weight: 500;
-    line-height: 1.518;
-    margin-left: .4em;
-    
-    &:hover {
-        color: #EA2E49;
-        text-decoration: none;
-        
-        &:before {
-            left: 1.5em;
-        }
-        
-        &:after {
-            left: 4.4em;
-        }
-    }
-    
-    &:after, &:before {
-        font-size: 150%;
-        line-height: 1;
-        box-sizing: border-box;
-        position: absolute;
-        .transition(left 250ms ease-in);
-    }
-    
-    &:before {
-        content: '[';
-        left: 1.7em;
-    }
-    
-    &:after {
-        content: ']';
-        left: 4.2em; // 30%
-    }
-}
 
 .book-component {
     &.details {

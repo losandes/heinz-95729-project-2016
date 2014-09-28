@@ -47,8 +47,7 @@
     <Compile Include="Models\IUser.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositories\IRepository.cs" />
-    <Compile Include="Services\IBookDomain.cs" />
-    <Compile Include="Services\IMovieDomain.cs" />
+    <Compile Include="Services\IProductDomain.cs" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

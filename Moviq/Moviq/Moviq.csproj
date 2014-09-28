@@ -135,23 +135,24 @@
     <Content Include="Js\test\models\author.tests.js" />
     <Content Include="Js\test\models\book.tests.js" />
     <Content Include="Js\test\utils.tests.js" />
-    <Content Include="Js\views\booksVw.js" />
     <Content Include="Js\routeEngine.js" />
     <Content Include="Js\utils.js" />
     <Content Include="Js\models\demoGrid.js" />
+    <Content Include="Js\views\headerVw.js" />
     <Content Include="Js\views\viewEngine.js" />
     <Content Include="packages.config" />
     <Content Include="Fonts\codropsicons\codropsicons.eot" />
     <Content Include="Fonts\codropsicons\codropsicons.ttf" />
     <Content Include="Fonts\codropsicons\codropsicons.woff" />
     <Content Include="Locale\en.json" />
-    <Content Include="Css\books\books.less" />
-    <Content Include="Css\default.less" />
-    <Content Include="Css\errors.less" />
-    <Content Include="Css\header.less" />
+    <Content Include="Css\_books.less" />
+    <Content Include="Css\_default.less" />
+    <Content Include="Css\_errors.less" />
+    <Content Include="Css\_header.less" />
     <Content Include="Css\main.less" />
-    <Content Include="Css\mixins.less" />
-    <Content Include="Css\variables.less" />
+    <Content Include="Css\_mixins.less" />
+    <Content Include="Css\_variables.less" />
+    <Content Include="Css\_products.less" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -174,6 +175,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Api\BooksModule.cs" />
+    <Compile Include="Api\SearchModule.cs" />
     <Compile Include="App_Start\NancyBootstrapper.cs" />
     <Compile Include="App_Start\OwinBootstrapper.cs" />
     <Compile Include="Controllers\HomeModule.cs" />

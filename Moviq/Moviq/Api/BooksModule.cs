@@ -8,7 +8,7 @@ namespace Moviq.Api
 
     public class BooksModule : NancyModule
     {
-        public BooksModule(IBookDomain bookDomain, IModuleHelpers helper) {
+        public BooksModule(IProductDomain bookDomain, IModuleHelpers helper) {
             
             this.Get["/api/books"] = args => {
                 var take = Request.Query.take != null ? Request.Query.take : 20;

@@ -1,14 +1,14 @@
-﻿namespace Moviq.Domain.Books
+﻿namespace Moviq.Domain.Products
 {
     using Moviq.Interfaces.Models;
     using Moviq.Interfaces.Repositories;
     using Moviq.Interfaces.Services;
 
-    public class BookDomain : IBookDomain
+    public class ProductDomain : IProductDomain
     {
-        public BookDomain(IRepository<IProduct> bookRepo)
+        public ProductDomain(IRepository<IProduct> repo)
         {
-            this.Repo = bookRepo;
+            this.Repo = repo;
         }
 
         public IRepository<IProduct> Repo { get; set; }

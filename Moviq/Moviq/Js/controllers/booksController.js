@@ -1,10 +1,10 @@
-/*global define*/
+/*global define, JSON*/
 define('controllers/booksController', { init: function ($, routes, viewEngine, Books, Book) {
     "use strict";
 
     // GET /books/search/?q=searchterm
     // search for a book or books
-    routes.get(/^\/#books\/search\/?/i, function (context) {  // /books ///^\/#books\/search\/(\w+)\/?/i
+    routes.get(/^\/#\/books\/search\/?/i, function (context) {  // /books ///^\/#books\/search\/(\w+)\/?/i
         $.ajax({
             url: '/api/books/search/?q=' + context.params.q,
             method: 'POST'
@@ -28,7 +28,7 @@ define('controllers/booksController', { init: function ($, routes, viewEngine, B
     // GET /books/42
     // Get the details for a single book
     // must precede /books in the route catalog, or /books will match first
-    routes.get(/^\/#books\/(\w+)\/?/i, function (context) {  // /books
+    routes.get(/^\/#\/book\/(\w+)\/?/i, function (context) {  // /books
         $.ajax({
             url: '/api/books/' + context.params.splat[0]
         }).done(function (data) {
@@ -44,7 +44,7 @@ define('controllers/booksController', { init: function ($, routes, viewEngine, B
 
     // GET /books/
     // Get a list of books
-    routes.get(/^\/#books\/?/i, function (context) {  // /books
+    routes.get(/^\/#\/books\/?/i, function (context) {  // /books
 
         viewEngine.setView({
             template: 't-book-search'

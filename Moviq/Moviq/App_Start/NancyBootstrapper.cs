@@ -45,7 +45,7 @@
 
             container.Register<IModuleHelpers, ModuleHelpers>();
 
-            container.Register<IBookDomain, BookDomain>().AsMultiInstance();
+            container.Register<IProductDomain, ProductDomain>().AsMultiInstance();
 
             container.Register<ICouchbaseClient, CouchbaseClient>().AsSingleton();
             container.Register<IRestClient, RestClient>().AsMultiInstance();

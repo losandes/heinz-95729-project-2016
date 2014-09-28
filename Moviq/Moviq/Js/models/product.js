@@ -1,3 +1,4 @@
+/*jslint nomen: true*/
 /*global define*/
 define('models/product', { init: function (ko) {
     "use strict";
@@ -16,6 +17,8 @@ define('models/product', { init: function (ko) {
             
             productData = productData || {};
             
+            var type = productData._type || 'product';
+            
             product.uid = ko.observable(productData.uid);
             product.title = ko.observable(productData.title || undefined);
             product.description = ko.observable(productData.description || undefined);
@@ -26,9 +29,13 @@ define('models/product', { init: function (ko) {
             product.thumbnailAlt = ko.computed(function () {
                 return 'thumbnail for ' + product.title();
             });
+            product.detailsLink = ko.computed(function () {
+                return '/' + type + '/' + product.uid();
+            });
             
             // Ensure updates no more than once per 50-millisecond period
             product.thumbnailAlt.extend({ rateLimit: 50 });
+            product.detailsLink.extend({ rateLimit: 50 });
         };
         
         if (product) {

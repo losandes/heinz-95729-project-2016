@@ -5,6 +5,6 @@ define('views/booksVw', { init: function ($, routes) {
     
     // add singleton events
     $(document).on('submit', 'form.book-search', function (event) {
-        routes.navigate('books/search/?q=' + $('.book-search input').val());
+        routes.navigate('/books/search/?q=' + $('.book-search input').val());
     });
 }});

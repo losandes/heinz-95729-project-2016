@@ -7,13 +7,13 @@ require(['routeEngine', 'views/viewEngine', 'config', 'utils', 'controllers/home
          'controllers/demoController', 'controllers/booksController',
          'models/product', 'models/products', 'models/person', 'models/author', 'models/book',
          'models/books', 'models/demoGrid',
-         'views/booksVw',
+         'views/headerVw',
          'jquery', 'ko', 'lib/ko.binders', 'sammy'],
         function (routeEngineCtor, viewEngineCtor, configCtor, utilsCtor, homeControllerCtor,
                    demoControllerCtor, booksControllerCtor,
                    ProductCtor, ProductsCtor, PersonCtor, AuthorCtor, BookCtor,
                    BooksCtor, demoGridCtor,
-                   booksVwCtor,
+                   headerVwCtor,
                    $, ko, koBinders, sammy) {
         "use strict";
 
@@ -68,13 +68,13 @@ require(['routeEngine', 'views/viewEngine', 'config', 'utils', 'controllers/home
         (function () {
             booksController = booksControllerCtor.init($, routeEngine, viewEngine, Books, Book);
             demoController = demoControllerCtor.init(routeEngine, viewEngine, DemoGrid);
-            homeController = homeControllerCtor.init(routeEngine, viewEngine);
+            homeController = homeControllerCtor.init(routeEngine, viewEngine, Products, Product);
         }());
         //endregion CONTROLLERS
             
         //region CONTROLLERS  =================================================================
         (function () {
-            booksVwCtor.init($, routeEngine);
+            headerVwCtor.init($, routeEngine);
         }());
         //endregion CONTROLLERS            
             
