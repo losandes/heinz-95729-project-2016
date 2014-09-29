@@ -1,6 +1,6 @@
 /*jslint plusplus: true*/
 /*global define*/
-define('models/books', { init: function (ko, Book, Author) {
+define('models/books', { init: function (ko, Book) {
     "use strict";
     
     if (!ko) {
@@ -11,48 +11,7 @@ define('models/books', { init: function (ko, Book, Author) {
         throw new Error('Argument Exception: Book is required to init the books module');
     }
     
-    if (!Author) {
-        throw new Error('Argument Exception: Author is required to init the books module');
-    }
-    
-    var Books,
-        addAuthor,
-        addAuthors;
-    
-    addAuthor = function (book, author) {
-        if (!book) {
-            throw new Error('Argument Exception: the argument, book, must be defined to add an author');
-        }
-
-        if (!author) {
-            throw new Error('Argument Exception: the argument, author, must be defined to add an author');
-        }
-
-        if (!(author instanceof Author)) {
-            author = new Author(author);
-        }
-
-        book.authors.push(author);
-        return book;
-    };
-    
-    addAuthors = function (book, authors) {
-        if (!book) {
-            throw new Error('Argument Exception: the argument, book, must be defined to add authors');
-        }
-
-        if (!authors) {
-            throw new Error('Argument Exception: the argument, authors, must be defined to add authors');
-        }
-        
-        var i = 0;
-        
-        for (i; i < book.authors.length; i++) {
-            book = addAuthor(book, book.authors[i]);
-        }
-        
-        return book;
-    };
+    var Books;
 
     Books = function (books) {
         var $this = this;
@@ -68,10 +27,6 @@ define('models/books', { init: function (ko, Book, Author) {
             
             if (!(book instanceof Book)) {
                 book = new Book(book);
-            }
-            
-            if (book.authors && book.authors instanceof Array) {
-                book = addAuthors(book, book.authors);
             }
             
             $this.books.push(book);

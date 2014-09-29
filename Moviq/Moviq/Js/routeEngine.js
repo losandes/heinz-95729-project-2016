@@ -15,7 +15,7 @@ define('routeEngine', { init: function ($, globalSammy, config, utils, viewEngin
         
         this.notFound = function (verb, path) {
             viewEngine.setView({
-                template: 't-empty',
+                template: 't-not-found',
                 data: {
                     verb: verb,
                     path: path,
