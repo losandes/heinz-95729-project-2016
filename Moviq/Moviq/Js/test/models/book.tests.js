@@ -20,11 +20,7 @@ require(['ko', 'models/product', 'models/book'], function (ko, productCtor, book
                 expect(sut['__proto__'] instanceof Product).to.equal(true);
             });
             
-            it('should have an id property', function () {
-                expect(sut).to.have.property('id');
-                expect(typeof sut.id()).to.equal('number');
-            });
-            
+            it('should have a uid property', function () { expect(sut).to.have.property('uid'); });
             it('should have an title property', function () { expect(sut).to.have.property('title'); });
             it('should have an description property', function () { expect(sut).to.have.property('description'); });
             it('should have an metadata property', function () { expect(sut).to.have.property('metadata'); });
@@ -33,12 +29,10 @@ require(['ko', 'models/product', 'models/book'], function (ko, productCtor, book
             it('should have an thumbnailLink property', function () { expect(sut).to.have.property('thumbnailLink'); });
             it('should have an thumbnailAlt property', function () { expect(sut).to.have.property('thumbnailAlt'); });
             it('should have an detailsLink property', function () { expect(sut).to.have.property('detailsLink'); });
-            it('should have an authors property', function () { expect(sut).to.have.property('authors'); });
             it('should have an reviews property', function () { expect(sut).to.have.property('reviews'); });
             it('should have an setProductData property', function () { expect(sut).to.have.property('setProductData'); });
             
-                        it('should have an setProductData property in it\'s prototype', function () {
-it('should have an setProductData property in it\'s prototype', function () {
+            it('should have an setProductData property in it\'s prototype', function () {
                 expect(sut['__proto__']).to.have.property('setProductData');
             });
             
@@ -50,7 +44,6 @@ it('should have an setProductData property in it\'s prototype', function () {
                 expect(sut['__proto__']).not.to.have.property('price');
                 expect(sut['__proto__']).not.to.have.property('thumbnailLink');
                 expect(sut['__proto__']).not.to.have.property('thumbnailAlt');
-                expect(sut['__proto__']).not.to.have.property('authors');
                 expect(sut['__proto__']).not.to.have.property('reviews');
             });
         }); // /describe 'when constructed with the new operator'
