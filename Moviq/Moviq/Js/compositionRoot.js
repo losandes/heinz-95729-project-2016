@@ -1,5 +1,5 @@
 /**
-*   Composition Root
+*   Composition Root / Startup / Bootstrapper
 */
 /*jslint plusplus: true*/
 /*globals require, define*/
@@ -21,16 +21,10 @@ require(['routeEngine', 'views/viewEngine', 'config', 'utils',
             viewEngine,
             Product,
             Products,
-            Person,
-            Author,
             Book,
             Books,
-            DemoGrid,
-            //movieModels,
-            //movies,
             homeController,
-            booksController,
-            demoController;
+            booksController;
             
         // initialize ko binding extensions
         koBinders.init($, ko);
