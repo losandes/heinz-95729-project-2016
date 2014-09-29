@@ -10,19 +10,19 @@ namespace Moviq.Api
     {
         public BooksModule(IProductDomain bookDomain, IModuleHelpers helper) {
             
-            this.Get["/api/books"] = args => {
-                var take = Request.Query.take != null ? Request.Query.take : 20;
-                var skip = Request.Query.skip != null ? Request.Query.skip : 0;
+            //this.Get["/api/books"] = args => {
+            //    var take = Request.Query.take != null ? Request.Query.take : 20;
+            //    var skip = Request.Query.skip != null ? Request.Query.skip : 0;
 
-                return helper.ToJson(bookDomain.Repo.List(take, skip));
-            };
+            //    return helper.ToJson(bookDomain.Repo.List(take, skip));
+            //};
 
             this.Get["/api/books/{uid}"] = args => {
                 return helper.ToJson(bookDomain.Repo.Get(args.uid));
             };
 
-            this.Post["/api/books/search", true] = async (args, cancellationToken) => {
-                var searchTerm = this.Request.Query.q;
+            this.Get["/api/books/search", true] = async (args, cancellationToken) => {
+                var searchTerm = this.Request.Query.q; // +" AND _type: book";
                 var result = await bookDomain.Repo.Find(searchTerm);
                 return helper.ToJson(result);
             };

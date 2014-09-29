@@ -8,7 +8,7 @@ define('controllers/homeController', { init: function (routes, viewEngine, Produ
     routes.get(/^\/#\/search\/?/i, function (context) {
         $.ajax({
             url: '/api/search/?q=' + context.params.q,
-            method: 'POST'
+            method: 'GET'
         }).done(function (data) {
             var results = new Products(JSON.parse(data));
 

@@ -8,7 +8,7 @@
     {
         public SearchModule(IProductDomain products, IModuleHelpers helper) 
         {
-            this.Post["/api/search", true] = async (args, cancellationToken) =>
+            this.Get["/api/search", true] = async (args, cancellationToken) =>
             {
                 var searchTerm = this.Request.Query.q;
                 var result = await products.Repo.Find(searchTerm);

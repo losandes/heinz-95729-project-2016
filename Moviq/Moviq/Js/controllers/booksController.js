@@ -7,7 +7,7 @@ define('controllers/booksController', { init: function ($, routes, viewEngine, B
     routes.get(/^\/#\/books\/search\/?/i, function (context) {  // /books ///^\/#books\/search\/(\w+)\/?/i
         $.ajax({
             url: '/api/books/search/?q=' + context.params.q,
-            method: 'POST'
+            method: 'GET'
         }).done(function (data) {
             var books = new Books(JSON.parse(data));
 

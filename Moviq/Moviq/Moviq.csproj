@@ -159,11 +159,11 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Home\home.html" />
-    <Content Include="Views\Templates\Books\book-details.html" />
+    <Content Include="Views\Templates\book-details.html" />
     <Content Include="Views\Templates\error-404.html" />
-    <Content Include="Views\Templates\noResults.html" />
+    <Content Include="Views\Templates\search-no-results.html" />
     <Content Include="Views\Templates\empty.html" />
-    <Content Include="Views\Templates\Products\product-grid.html" />
+    <Content Include="Views\Templates\product-grid.html" />
     <Content Include="Views\Test\tests.html" />
     <Content Include="Web.config" />
   </ItemGroup>
