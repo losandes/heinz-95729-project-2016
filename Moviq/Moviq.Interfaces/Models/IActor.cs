@@ -4,7 +4,7 @@
 
     public interface IActor
     {
-        ulong Id { get; set; }
+        int Id { get; set; }
         string Name { get; set; }
         string ThumbnailLink { get; set; }
 

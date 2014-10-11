@@ -8,7 +8,18 @@
         {
             this.Get["/"] = args => 
             {
-                return "Hello World!";
+                return View["home/home.html"];
+            };
+
+            this.Get["/tests"] = args =>
+            {
+                return View["test/tests.html"];
+            };
+
+            // catch-all route
+            Get["{greedy*}"] = x =>
+            {
+                return View["home/home.html"];
             };
         }
     }

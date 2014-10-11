@@ -1,0 +1,26 @@
+http://blog.couchbase.com/announcing-newer-version-couchbase-plug-elasticsearch
+http://docs.couchbase.com/couchbase-elastic-search/#installing-the-plug-ins
+http://www.elasticsearch.org/guide/en/elasticsearch/reference/current/setup-service-win.html
+http://www.elasticsearch.org/guide/en/elasticsearch/client/net-api/current/_elasticsearch_net.html
+
+1. Dowload elasticsearch 1.0.1 (make sure to get exactly that version) http://www.elasticsearch.org/downloads/1-0-1/
+2. Make sure you have the Java JVM installed (i.e. JDK 1.8)
+3. Check the Environment Variables for the computer, and make sure JAVA_HOME points at the JDK instead of the JRE (for performance)
+4. unzip elastic search
+5. navigate to the unzipped bin directory in the cmd shell (i.e. C:\elasticsearch\bin)
+6. in the cmd shell, execute "service install"
+7. From the run prompt, open services.msc
+8. Find the elasticsearch service and double-click it
+9. Set it to start Automatically
+
+Installing the elasticsearch couchbase plugin
+Follow the instructions here: http://docs.couchbase.com/couchbase-elastic-search/#installation-and-configuration
+But it's more practical to edit the yml file yourself, appending this:
+
+################################ Couchbase Config ############################
+couchbase.username: Administrator
+couchbase.password: password
+couchbase.maxConcurrentRequests: 1024
+
+I also found it simpler to fiddle the rest of the settings, since I don't have whatever 
+version of curl they appear to be using in the instructions.

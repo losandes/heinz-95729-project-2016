@@ -1,0 +1,40 @@
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Mocha Tests</title>
+        <link rel="stylesheet" href="/js/test/mocha.css" />
+        <style>
+            #run {
+                margin-left: 30px;
+            }
+        </style>
+    </head>
+    <body>
+        <a id="run" href="javascript:void(0);" onclick="start();">run</a>
+        <div id="mocha"></div>
+        
+        <script src="/js/test/chai.js"></script>
+        <script src="/js/test/mocha.js"></script>
+        <script>mocha.setup('bdd')</script>
+        
+        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+        <script src="http://ajax.aspnetcdn.com/ajax/knockout/knockout-3.1.0.js"></script>
+        <script src="/js/lib/sammy.min.js"></script>
+        <script src="/js/lib/require.js"></script>
+        <script src="/js/lib/require.shim.js"></script>
+<!--        <script src="/js/compositionRoot.js"></script>-->        
+        <script src="/js/test/utils.tests.js"></script>
+        <script src="/js/test/models/book.tests.js"></script>
+        
+        <script>
+            var start = function () {
+//        mocha.checkLeaks();
+//        mocha.globals(['jQuery', 'require', 'chai', 'ko']);                
+                mocha.run();
+            };
+            
+            setTimeout(function () { mocha.run(); }, 500);
+            
+        </script>
+    </body>
+</html>
