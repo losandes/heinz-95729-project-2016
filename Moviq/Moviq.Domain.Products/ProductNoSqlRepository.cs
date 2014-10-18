@@ -69,13 +69,15 @@
 
         public IEnumerable<IProduct> List(int take, int skip)
         {
+            // TODO: We are breaking Liskov Subsitution by not implementing this method!
+
             // http://localhost:8092/moviq/_design/dev_books/_view/books?stale=false&connection_timeout=60000&limit=20&skip=0
-            throw new NotImplementedException();
+            throw new Exception(locale.LiskovSubstitutionInfraction);
         }
 
         public async Task<IEnumerable<IProduct>> Find(string searchFor)
         {
-            // consider the elasticsearch.NET option
+            // alternatively we could use the elasticsearch.NET option
             // http://www.elasticsearch.org/guide/en/elasticsearch/client/net-api/current/_elasticsearch_net.html
 
             var response = await restClient.ExecutePostTaskAsync(BuildSearchPostRequest(searchFor));

@@ -9,5 +9,6 @@ namespace Moviq.Interfaces.Models
     public interface ILocale
     {
         string ProductSetFailure { get; set; }
+        string LiskovSubstitutionInfraction { get; set; }
     }
 }
