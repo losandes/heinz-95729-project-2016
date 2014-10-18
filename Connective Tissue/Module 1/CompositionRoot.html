@@ -1,0 +1,46 @@
+<div class="row-fluid">
+    <div class="span7">
+        <blockquote>
+            A Composition Root is a (preferably) unique location in an application where modules are composed together.
+            <small>Mark Seemann, in <cite title="Dependency Injection in .NET"><a href="http://www.amazon.com/Dependency-Injection-NET-Mark-Seemann/dp/1935182501/ref=sr_1_1?s=books&ie=UTF8&qid=1413139789&sr=1-1&keywords=mark+seemann">Dependency Injection in .NET</a></cite></small>
+        </blockquote>
+        <p>
+            Our project is made up of two apps: the client and the server. We have a Composition 
+            Root for each app. Both of these Composition Roots are defined in the same project: 
+            the web project, <em>Moviq</em>. The client Composition Root can be found in 
+            the <em>js</em> folder and is named, <em>compositionRoot.js</em>. The server 
+            Composition Root is in the <em>App_Start</em> folder and is named, 
+            <em>NancyBootstrapper.cs</em>.
+        </p>
+        <p>
+            These files present a single place for each app where we can compose the object graphs.
+            What does that mean? The Composition Root, is the place where we will satisfy the 
+            dependencies that one object may have on another. It is a single, easy to find location 
+            in our app, where we can redefine these dependencies as/if they change in the future.
+        </p>
+        <p>
+            After reading this article, you should be able to:
+        </p>
+        <ul>
+            <li>Describe Composition Root and where it should be implemented</li>
+        </ul>
+        <p>
+            If you still find that you are unsure about Dependency Inversion and Composition 
+            Root, click <em>Resources</em>, in the left navigation. There you will find 
+            further reading and videos on the subject.
+        </p>
+    </div> <!-- /span8 -->
+    <div class="span5">
+        <p>
+            <img class="bookcover" src="http://ecx.images-amazon.com/images/I/41LsqcfxGbL.jpg" alt="Dependency Injection in .NET" />
+        </p>
+        <div class="well well-large">
+            <div class="link text-center">
+                <a href="http://blog.ploeh.dk/2011/07/28/CompositionRoot/" class="btn btn-success" data-lager="Acatar.Constants.LagerMessages.ReadingStarted"  target="_blank">
+                    Start Reading&nbsp;&nbsp;
+                    <i class="icon_archive icon_white"></i>
+                </a>
+            </div>
+        </div>        
+    </div>    
+</div> <!-- /row -->
