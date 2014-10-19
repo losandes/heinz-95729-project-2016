@@ -1,12 +1,9 @@
-﻿using Grain.DataAccess.Sql;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Moviq.Domain.Products.Tests
+﻿namespace Moviq.Domain.Products.Tests
 {
+    using Grain.DataAccess.Sql;
+    using System;
+    using System.Collections.Generic;
+
     public class MockSqlDbInstance : ISqlDbInstance
     {
         public MockSqlDbInstance(object mockOutput, IEnumerable<object> mockEnumerableOutput) 

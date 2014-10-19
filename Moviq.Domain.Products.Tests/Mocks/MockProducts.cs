@@ -1,12 +1,8 @@
-﻿using Moviq.Interfaces.Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Moviq.Domain.Products.Tests.Mocks
+﻿namespace Moviq.Domain.Products.Tests.Mocks
 {
+    using Moviq.Interfaces.Models;
+    using System.Collections.Generic;
+
     public static class MockProducts
     {
         public static IEnumerable<IProduct> MockBooks = new List<IProduct> { 

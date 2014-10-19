@@ -11,8 +11,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Moviq.Domain.Products", "Mo
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Moviq.Domain.Products.Tests", "Moviq.Domain.Products.Tests\Moviq.Domain.Products.Tests.csproj", "{B760C36C-ECB0-4BA8-973E-76374C8403FF}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Moviq.Domain.Books", "Moviq.Domain.Books\Moviq.Domain.Books.csproj", "{8A58605A-9EF0-47EB-8D31-DAA982AA852D}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Moviq.Interfaces.Tests", "Moviq.Interfaces.Tests\Moviq.Interfaces.Tests.csproj", "{1649E306-14EA-494A-8D1C-EA29A62DC210}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Moviq.Locale", "Moviq.Locale\Moviq.Locale.csproj", "{71687340-2BEC-4B85-B35D-75DEF65958F4}"
@@ -39,10 +37,6 @@ Global
 		{B760C36C-ECB0-4BA8-973E-76374C8403FF}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B760C36C-ECB0-4BA8-973E-76374C8403FF}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B760C36C-ECB0-4BA8-973E-76374C8403FF}.Release|Any CPU.Build.0 = Release|Any CPU
-		{8A58605A-9EF0-47EB-8D31-DAA982AA852D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{8A58605A-9EF0-47EB-8D31-DAA982AA852D}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{8A58605A-9EF0-47EB-8D31-DAA982AA852D}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{8A58605A-9EF0-47EB-8D31-DAA982AA852D}.Release|Any CPU.Build.0 = Release|Any CPU
 		{1649E306-14EA-494A-8D1C-EA29A62DC210}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{1649E306-14EA-494A-8D1C-EA29A62DC210}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1649E306-14EA-494A-8D1C-EA29A62DC210}.Release|Any CPU.ActiveCfg = Release|Any CPU

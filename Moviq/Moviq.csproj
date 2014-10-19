@@ -181,10 +181,6 @@
     <Folder Include="Js\test\views\" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Moviq.Domain.Books\Moviq.Domain.Books.csproj">
-      <Project>{8a58605a-9ef0-47eb-8d31-daa982aa852d}</Project>
-      <Name>Moviq.Domain.Books</Name>
-    </ProjectReference>
     <ProjectReference Include="..\Moviq.Domain.Products.Tests\Moviq.Domain.Products.Tests.csproj">
       <Project>{b760c36c-ecb0-4ba8-973e-76374c8403ff}</Project>
       <Name>Moviq.Domain.Products.Tests</Name>

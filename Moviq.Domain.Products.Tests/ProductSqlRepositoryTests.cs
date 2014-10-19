@@ -1,5 +1,6 @@
 ﻿namespace Moviq.Domain.Products.Tests
 {
+    using FluentAssertions;
     using Grain.DataAccess.Sql;
     using Microsoft.VisualStudio.TestTools.UnitTesting;
     using Moviq.Interfaces.Factories;
@@ -9,7 +10,6 @@
     using Ploeh.AutoFixture.AutoMoq;
     using System.Collections.Generic;
     using System.Linq;
-    using FluentAssertions;
 
     [TestClass]
     public class ProductSqlRepositoryTests

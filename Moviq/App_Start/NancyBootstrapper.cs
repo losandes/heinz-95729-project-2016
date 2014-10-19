@@ -1,8 +1,7 @@
 ﻿namespace Moviq
 {
     using Couchbase;
-    using Moviq.Domain.Books;
-    using Moviq.Domain.Movies.Tests.Mocks;
+    using Moviq.Domain.Products.Tests.Mocks;
     using Moviq.Domain.Products;
     using Moviq.Helpers;
     using Moviq.Interfaces.Factories;

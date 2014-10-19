@@ -1,4 +1,4 @@
-﻿namespace Moviq.Domain.Movies.Tests.Mocks
+﻿namespace Moviq.Domain.Products.Tests.Mocks
 {
     using Moviq.Domain.Products;
     using Moviq.Domain.Products.Tests.Mocks;
