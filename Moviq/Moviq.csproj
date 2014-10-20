@@ -127,11 +127,12 @@
     <Content Include="Js\models\product.js" />
     <Content Include="Js\models\products.js" />
     <Content Include="Js\test\chai.js" />
+    <Content Include="Js\test\controllers\homeController.tests.js" />
     <Content Include="Js\test\expect.js" />
     <Content Include="Js\test\mocha.css" />
     <Content Include="Js\test\mocha.js" />
-    <Content Include="Js\test\models\author.tests.js" />
     <Content Include="Js\test\models\book.tests.js" />
+    <Content Include="Js\test\sinon.js" />
     <Content Include="Js\test\utils.tests.js" />
     <Content Include="Js\routeEngine.js" />
     <Content Include="Js\utils.js" />
@@ -150,6 +151,7 @@
     <Content Include="Css\_mixins.less" />
     <Content Include="Css\_variables.less" />
     <Content Include="Css\_products.less" />
+    <Content Include="Js\test\sinon.extensions.js" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -177,7 +179,6 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Js\test\controllers\" />
     <Folder Include="Js\test\views\" />
   </ItemGroup>
   <ItemGroup>

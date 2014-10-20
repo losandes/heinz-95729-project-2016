@@ -2,11 +2,24 @@
 
 define('controllers/homeController', { init: function (routes, viewEngine, Products, Product) {
     "use strict";
+
+    var onSearch;
     
     // GET /#/search/?q=searchterm
     // search for products
     routes.get(/^\/#\/search\/?/i, function (context) {
-        $.ajax({
+        onSearch(context);
+    });    
+    
+    routes.get('/', function (context) {
+        viewEngine.setView({
+            template: 't-empty',
+            message: 'hello word!'
+        });
+    });
+
+    onSearch = function (context) {
+        return $.ajax({
             url: '/api/search/?q=' + context.params.q,
             method: 'GET'
         }).done(function (data) {
@@ -24,13 +37,10 @@ define('controllers/homeController', { init: function (routes, viewEngine, Produ
                 });
             }
         });
-    });    
-    
-    routes.get('/', function (context) {
-        viewEngine.setView({
-            template: 't-empty',
-            message: 'hello word!'
-        });
-    });
+    };
+
+    return {
+        onSearch: onSearch
+    };
     
 }});
