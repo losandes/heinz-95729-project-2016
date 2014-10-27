@@ -88,6 +88,7 @@
     <Compile Include="MockSqlDbInstance.cs" />
     <Compile Include="Mocks\MockProductRepository.cs" />
     <Compile Include="Mocks\MockProducts.cs" />
+    <Compile Include="ProductNoSqlRepositoryRegressionTests.cs" />
     <Compile Include="ProductSqlRepositoryTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ProductNoSqlRepositoryTests.cs" />
