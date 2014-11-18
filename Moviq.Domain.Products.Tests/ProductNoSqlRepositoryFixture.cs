@@ -20,9 +20,9 @@
     using System.Threading.Tasks;
 
     [TestClass]
-    public class ProductNoSqlRepositoryTests
+    public class ProductNoSqlRepositoryFixture
     {
-        public ProductNoSqlRepositoryTests() 
+        public ProductNoSqlRepositoryFixture() 
         { 
             // Fixture setup
             var fixture = new Fixture()

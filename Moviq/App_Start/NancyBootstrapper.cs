@@ -15,6 +15,7 @@
     using Nancy.TinyIoc;
     using RestSharp;
     using System.IO;
+    using System;
 
     public class NancyBootstrapper : DefaultNancyBootstrapper
     {
@@ -60,7 +61,7 @@
                     container.Resolve<ILocale>(),
                     container.Resolve<IRestClient>(),
                     "http://localhost:9200/moviq/_search");
-            });
+            }); 
         }
 
         protected override void ConfigureRequestContainer(TinyIoCContainer container, NancyContext context)
@@ -80,4 +81,5 @@
         }
 
     }
+
 }
