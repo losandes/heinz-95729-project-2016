@@ -16,6 +16,7 @@
         public string Name { get; set; }
         public string Email { get; set; }
         public string UserName { get { return Email; } }
+        public string Password { get; set; }
         public IEnumerable<string> Claims { get; set; }
         public string _type { get; set; }
     }

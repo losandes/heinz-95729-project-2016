@@ -9,6 +9,7 @@
         string Name { get; set; }
         string Email { get; set; }
         string UserName { get; }
+        string Password { get; set; }
     }
 
     public interface IPrincipal : IUser 

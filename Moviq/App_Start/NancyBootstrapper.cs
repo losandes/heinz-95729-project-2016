@@ -16,6 +16,8 @@
     using RestSharp;
     using System.IO;
     using System;
+    using Nancy.Authentication.Forms;
+    using Moviq.Domain.Auth;
 
     public class NancyBootstrapper : DefaultNancyBootstrapper
     {
@@ -61,13 +63,41 @@
                     container.Resolve<ILocale>(),
                     container.Resolve<IRestClient>(),
                     "http://localhost:9200/moviq/_search");
-            }); 
+            });
+
+            container.Register<IFactory<IUser>, UserFactory>();
+            container.Register<IRepository<IUser>>((cntr, namedParams) => {
+                return new UserRepository(
+                    container.Resolve<ICouchbaseClient>(),
+                    container.Resolve<IFactory<IUser>>(),
+                    container.Resolve<ILocale>(),
+                    "http://localhost:9200/moviq/_search");
+            });
+            container.Register<IUserMapper, UserMapper>();
         }
 
         protected override void ConfigureRequestContainer(TinyIoCContainer container, NancyContext context)
         {
             // FUTURE: get the user's locale instead of hard-coding en.json
             RegisterILocale(container, "Locale\\en.json");
+        }
+
+        protected override void RequestStartup(TinyIoCContainer requestContainer, IPipelines pipelines, NancyContext context)
+        {
+            // At request startup we modify the request pipelines to
+            // include forms authentication - passing in our now request
+            // scoped user name mapper.
+            //
+            // The pipelines passed in here are specific to this request,
+            // so we can add/remove/update items in them as we please.
+            var formsAuthConfiguration =
+                new FormsAuthenticationConfiguration()
+                {
+                    RedirectUrl = "~/login",
+                    UserMapper = requestContainer.Resolve<IUserMapper>(),
+                };
+
+            FormsAuthentication.Enable(pipelines, formsAuthConfiguration);
         }
 
         private void RegisterILocale(TinyIoCContainer container, string locale) 
