@@ -5,6 +5,7 @@
     using Moviq.Interfaces.Models;
     using Nancy;
     using Nancy.Security;
+    using Newtonsoft.Json;
     using System;
 
     public class ExampleSecureModule : NancyModule
@@ -15,11 +16,14 @@
 
             this.Get["/api/examples/ambientContext"] = args =>
             {
-                ICustomClaimsIdentity currentUser = AmbientContext.CurrentClaimsPrinciple.Identity as ICustomClaimsIdentity;
+                ICustomClaimsIdentity currentUser = AmbientContext.CurrentClaimsPrinciple.ClaimsIdentity;
                 string guid = currentUser.GetAttribute(AmbientContext.UserPrincipalGuidAttributeKey).ToString();
 
                 var user = userRepo.Get(guid);
-                return 200;
+                user.Password = null;
+
+                return JsonConvert.SerializeObject(user);
+                //return 200;
             };
 
             this.Get["/api/examples/context"] = args =>
@@ -28,7 +32,9 @@
                 string username = currentUser.UserName;
 
                 var user = userRepo.GetByUsername(username);
-                return 200;
+                user.Password = null;
+
+                return JsonConvert.SerializeObject(user);
             };
         }
     }

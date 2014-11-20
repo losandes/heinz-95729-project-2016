@@ -2,15 +2,15 @@
 {
     using Couchbase;
     using Couchbase.Extensions;
+    using Enyim.Caching.Memcached;
     using Moviq.Interfaces.Factories;
     using Moviq.Interfaces.Models;
     using Moviq.Interfaces.Repositories;
+    using Newtonsoft.Json;
     using System;
     using System.Collections.Generic;
-    using System.Threading.Tasks;
     using System.Linq;
-    using Newtonsoft.Json;
-    using Enyim.Caching.Memcached;
+    using System.Threading.Tasks;
 
     public class UserRepository : IRepository<IUser>, IUserRepository
     {
@@ -37,6 +37,7 @@
         public IUser GetByUsername(string username) 
         {
             var key = db.Get(String.Format(keyPattern, username)).ToString();
+            key = key.Replace("\"", "");
             return db.GetJson<User>(key);
         }
 
