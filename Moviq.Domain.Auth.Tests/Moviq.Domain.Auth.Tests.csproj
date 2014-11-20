@@ -3,11 +3,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{B760C36C-ECB0-4BA8-973E-76374C8403FF}</ProjectGuid>
+    <ProjectGuid>{F664A7E0-3D2C-49A1-9A10-AEE3F0E3F49C}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Moviq.Domain.Products.Tests</RootNamespace>
-    <AssemblyName>Moviq.Domain.Products.Tests</AssemblyName>
+    <RootNamespace>Moviq.Domain.Auth.Tests</RootNamespace>
+    <AssemblyName>Moviq.Domain.Auth.Tests</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{3AC096D0-A1C2-E12C-1390-A8335801FDAB};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
@@ -35,47 +35,37 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Couchbase, Version=1.3.10.0, Culture=neutral, PublicKeyToken=05e9c6b5a9ec94c2, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
+    <Reference Include="Couchbase">
       <HintPath>..\packages\CouchbaseNetClient.1.3.10\lib\net40\Couchbase.dll</HintPath>
     </Reference>
-    <Reference Include="Enyim.Caching, Version=1.3.10.0, Culture=neutral, PublicKeyToken=05e9c6b5a9ec94c2, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
+    <Reference Include="Enyim.Caching">
       <HintPath>..\packages\CouchbaseNetClient.1.3.10\lib\net40\Enyim.Caching.dll</HintPath>
     </Reference>
-    <Reference Include="FluentAssertions, Version=3.2.1.0, Culture=neutral, PublicKeyToken=33f2691a05b67b6a, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
+    <Reference Include="FluentAssertions">
       <HintPath>..\packages\FluentAssertions.3.2.1\lib\net45\FluentAssertions.dll</HintPath>
     </Reference>
-    <Reference Include="FluentAssertions.Core, Version=3.2.1.0, Culture=neutral, PublicKeyToken=33f2691a05b67b6a, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
+    <Reference Include="FluentAssertions.Core">
       <HintPath>..\packages\FluentAssertions.3.2.1\lib\net45\FluentAssertions.Core.dll</HintPath>
     </Reference>
-    <Reference Include="Grain">
-      <HintPath>..\Moviq.Interfaces\ThirdParty\Grain.NET\Grain.dll</HintPath>
-    </Reference>
-    <Reference Include="Moq, Version=4.2.1409.1722, Culture=neutral, PublicKeyToken=69f491c39445e920, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
+    <Reference Include="Moq">
       <HintPath>..\packages\Moq.4.2.1409.1722\lib\net40\Moq.dll</HintPath>
     </Reference>
-    <Reference Include="Newtonsoft.Json, Version=6.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
+    <Reference Include="Nancy">
+      <HintPath>..\packages\Nancy.0.23.2\lib\net40\Nancy.dll</HintPath>
+    </Reference>
+    <Reference Include="Nancy.Authentication.Forms">
+      <HintPath>..\packages\Nancy.Authentication.Forms.0.23.2\lib\net40\Nancy.Authentication.Forms.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json">
       <HintPath>..\packages\Newtonsoft.Json.6.0.6\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
-    <Reference Include="Ploeh.AutoFixture, Version=3.21.1.0, Culture=neutral, PublicKeyToken=b24654c590009d4f, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
+    <Reference Include="Ploeh.AutoFixture">
       <HintPath>..\packages\AutoFixture.3.21.1\lib\net40\Ploeh.AutoFixture.dll</HintPath>
     </Reference>
-    <Reference Include="Ploeh.AutoFixture.AutoMoq, Version=3.21.1.0, Culture=neutral, PublicKeyToken=b24654c590009d4f, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
+    <Reference Include="Ploeh.AutoFixture.AutoMoq">
       <HintPath>..\packages\AutoFixture.AutoMoq.3.21.1\lib\net40\Ploeh.AutoFixture.AutoMoq.dll</HintPath>
     </Reference>
-    <Reference Include="RestSharp, Version=105.0.1.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\RestSharp.105.0.1\lib\net4\RestSharp.dll</HintPath>
-    </Reference>
     <Reference Include="System" />
-    <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
     <Reference Include="System.Xml.Linq" />
   </ItemGroup>
@@ -92,18 +82,14 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
-    <Compile Include="MockSqlDbInstance.cs" />
-    <Compile Include="Mocks\MockProductRepository.cs" />
-    <Compile Include="Mocks\MockProducts.cs" />
-    <Compile Include="ProductNoSqlRepositoryRegressionFixture.cs" />
-    <Compile Include="ProductSqlRepositoryFixture.cs" />
+    <Compile Include="UserMapperFixture.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="ProductNoSqlRepositoryFixture.cs" />
+    <Compile Include="UserRepositoryFixture.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Moviq.Domain.Products\Moviq.Domain.Products.csproj">
-      <Project>{2de192c4-f87f-4b04-91b9-09ec1d125746}</Project>
-      <Name>Moviq.Domain.Products</Name>
+    <ProjectReference Include="..\Moviq.Domain.Auth\Moviq.Domain.Auth.csproj">
+      <Project>{ff6bfde1-54e3-4999-8e5d-04081ad7cbf3}</Project>
+      <Name>Moviq.Domain.Auth</Name>
     </ProjectReference>
     <ProjectReference Include="..\Moviq.Interfaces\Moviq.Interfaces.csproj">
       <Project>{b0708601-0cfa-411e-87b8-a9875aa00c9d}</Project>

@@ -1,4 +1,5 @@
 ﻿{
 	ProductSetFailure: 'Sorry, an error occured while trying to create the product',
+	UserSetFailure: 'Sorry, an error occured while trying to create the user',
 	LiskovSubstitutionInfraction: 'A method that is not implemented in a class that implements an interface breaks the rule of Liskov Substitution'
 }

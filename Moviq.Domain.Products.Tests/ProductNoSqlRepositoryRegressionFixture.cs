@@ -15,9 +15,9 @@
     using System.Linq;
 
     [TestClass]
-    public class ProductNoSqlRepositoryRegressionTests
+    public class ProductNoSqlRepositoryRegressionFixture
     {
-        public ProductNoSqlRepositoryRegressionTests() 
+        public ProductNoSqlRepositoryRegressionFixture() 
         { 
             // Fixture setup
             var fixture = new Fixture()

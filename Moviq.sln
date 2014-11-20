@@ -15,6 +15,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Moviq.Interfaces.Tests", "M
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Moviq.Locale", "Moviq.Locale\Moviq.Locale.csproj", "{71687340-2BEC-4B85-B35D-75DEF65958F4}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Moviq.Domain.Auth", "Moviq.Domain.Auth\Moviq.Domain.Auth.csproj", "{FF6BFDE1-54E3-4999-8E5D-04081AD7CBF3}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Moviq.Domain.Auth.Tests", "Moviq.Domain.Auth.Tests\Moviq.Domain.Auth.Tests.csproj", "{F664A7E0-3D2C-49A1-9A10-AEE3F0E3F49C}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -45,6 +49,14 @@ Global
 		{71687340-2BEC-4B85-B35D-75DEF65958F4}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{71687340-2BEC-4B85-B35D-75DEF65958F4}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{71687340-2BEC-4B85-B35D-75DEF65958F4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FF6BFDE1-54E3-4999-8E5D-04081AD7CBF3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FF6BFDE1-54E3-4999-8E5D-04081AD7CBF3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FF6BFDE1-54E3-4999-8E5D-04081AD7CBF3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FF6BFDE1-54E3-4999-8E5D-04081AD7CBF3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F664A7E0-3D2C-49A1-9A10-AEE3F0E3F49C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F664A7E0-3D2C-49A1-9A10-AEE3F0E3F49C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F664A7E0-3D2C-49A1-9A10-AEE3F0E3F49C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F664A7E0-3D2C-49A1-9A10-AEE3F0E3F49C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

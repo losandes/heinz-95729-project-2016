@@ -12,9 +12,9 @@
     using System.Linq;
 
     [TestClass]
-    public class ProductSqlRepositoryTests
+    public class ProductSqlRepositoryFixure
     {
-        public ProductSqlRepositoryTests() 
+        public ProductSqlRepositoryFixure() 
         { 
             // Fixture setup
             var fixture = new Fixture()
