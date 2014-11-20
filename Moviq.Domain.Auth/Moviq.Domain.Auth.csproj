@@ -57,7 +57,7 @@
   <ItemGroup>
     <Compile Include="IUserProfileService.cs" />
     <Compile Include="IUserRepository.cs" />
-    <Compile Include="PasswordEncryptor.cs" />
+    <Compile Include="PasswordHash.cs" />
     <Compile Include="User.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="UserExistsException.cs" />
