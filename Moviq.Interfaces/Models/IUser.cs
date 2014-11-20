@@ -2,6 +2,7 @@
 {
     using System;
     using System.Collections.Generic;
+    using System.Security.Principal;
 
     public interface IUser
     {
@@ -10,10 +11,5 @@
         string Email { get; set; }
         string UserName { get; }
         string Password { get; set; }
-    }
-
-    public interface IPrincipal : IUser 
-    {
-        bool Active { get; set; }
     }
 }   

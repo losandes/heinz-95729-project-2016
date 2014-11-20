@@ -50,7 +50,7 @@
             container.Register<IProductDomain, ProductDomain>().AsMultiInstance();
 
             container.Register<ICouchbaseClient, CouchbaseClient>().AsSingleton();
-            container.Register<IRestClient, RestClient>().AsMultiInstance();
+            //container.Register<IRestClient, RestClient>().AsMultiInstance();
 
             container.Register<AnyLocale>().AsSingleton();
             RegisterILocale(container, "Locale\\en.json");
@@ -61,19 +61,28 @@
                     container.Resolve<IFactory<IProduct>>(),
                     container.Resolve<ICouchbaseClient>(),
                     container.Resolve<ILocale>(),
-                    container.Resolve<IRestClient>(),
+                    // for some reason, resolving the RestClient throws a StackOverflow Exception
+                    // so we'll new one up explicitly
+                    new RestClient(), //container.Resolve<IRestClient>(),
                     "http://localhost:9200/moviq/_search");
             });
 
             container.Register<IFactory<IUser>, UserFactory>();
-            container.Register<IRepository<IUser>>((cntr, namedParams) => {
+            container.Register<IUserRepository>((cntr, namedParams) =>
+            {
                 return new UserRepository(
                     container.Resolve<ICouchbaseClient>(),
                     container.Resolve<IFactory<IUser>>(),
                     container.Resolve<ILocale>(),
                     "http://localhost:9200/moviq/_search");
             });
+            container.Register<IRepository<IUser>>((cntr, namedParams) =>
+            {
+                return container.Resolve<IUserRepository>();
+            });
             container.Register<IUserMapper, UserMapper>();
+            container.Register<IUserValidator, UserValidator>();
+            container.Register<IUserProfileService, UserProfileService>().AsMultiInstance();
         }
 
         protected override void ConfigureRequestContainer(TinyIoCContainer container, NancyContext context)

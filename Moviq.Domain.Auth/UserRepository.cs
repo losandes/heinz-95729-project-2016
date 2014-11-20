@@ -12,7 +12,7 @@
     using Newtonsoft.Json;
     using Enyim.Caching.Memcached;
 
-    public class UserRepository : IRepository<IUser>
+    public class UserRepository : IRepository<IUser>, IUserRepository
     {
         public UserRepository(ICouchbaseClient db, IFactory<IUser> userFactory, ILocale locale, string searchUrl) 
         {
@@ -34,6 +34,12 @@
             return db.GetJson<User>(String.Format(keyPattern, guid.ToString()));
         }
 
+        public IUser GetByUsername(string username) 
+        {
+            var key = db.Get(String.Format(keyPattern, username)).ToString();
+            return db.GetJson<User>(key);
+        }
+
         private IEnumerable<IUser> Get(IEnumerable<string> keys)
         {
             if (!keys.Any())
@@ -50,7 +56,11 @@
 
         public IUser Set(IUser user)
         {
-            if (db.StoreJson(StoreMode.Set, String.Format(keyPattern, user.Guid.ToString()), user))
+            var mainKey = String.Format(keyPattern, user.Guid.ToString());
+            var lookupByUserName = String.Format(keyPattern, user.UserName);
+            
+            if (db.Store(StoreMode.Set, lookupByUserName, mainKey)
+                && db.StoreJson(StoreMode.Set, mainKey, user))
             {
                 return Get(user.Guid.ToString());
             }

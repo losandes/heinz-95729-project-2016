@@ -1,7 +1,9 @@
 ﻿namespace Moviq.Controllers
 {
+    using Moviq.Interfaces.Services;
     using Nancy;
     using Nancy.Authentication.Forms;
+    using Nancy.Extensions;
     using System;
     using System.Collections.Generic;
     using System.Linq;
@@ -13,7 +15,7 @@
         {
             Get["/login"] = args =>
             {
-                return View["auth/login.html"];
+                return View["home/home.html"];
             };
 
             Get["/logout"] = args =>
@@ -24,7 +26,7 @@
             Post["/login"] = args =>
             {
 
-                var userGuid = userValidator.ValidateUser((string)this.Request.Form.Username, (string)this.Request.Form.Password);
+                var userGuid = userValidator.UserIsValid((string)this.Request.Form.UserName, (string)this.Request.Form.Password);
 
                 if (userGuid == null)
                 {

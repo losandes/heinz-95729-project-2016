@@ -35,7 +35,11 @@
     <Reference Include="Microsoft.CSharp" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AmbientContext.cs" />
     <Compile Include="Factories\IFactory.cs" />
+    <Compile Include="Models\ClaimsInterfaces.cs" />
+    <Compile Include="Models\CustomClaimsIdentity.cs" />
+    <Compile Include="Models\CustomClaimsPrinciple.cs" />
     <Compile Include="Models\IActor.cs" />
     <Compile Include="Models\IAuthor.cs" />
     <Compile Include="Models\IBook.cs" />
@@ -48,6 +52,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositories\IRepository.cs" />
     <Compile Include="Services\IProductDomain.cs" />
+    <Compile Include="Services\IUserValidator.cs" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

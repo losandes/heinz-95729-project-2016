@@ -8,6 +8,6 @@ namespace Moviq.Interfaces.Services
 {
     public interface IUserValidator
     {
-        bool UserIsValid(string username, string password);
+        Guid? UserIsValid(string username, string password);
     }
 }
