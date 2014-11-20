@@ -28,10 +28,8 @@
             {
                 return user.Guid;
             }
-            else 
-            {
-                return null;
-            }
+            
+            return null;
         }
     }
 }

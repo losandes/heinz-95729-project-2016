@@ -28,7 +28,7 @@
 
                 var userGuid = userValidator.UserIsValid((string)this.Request.Form.UserName, (string)this.Request.Form.Password);
 
-                if (userGuid == null)
+                if (userGuid.HasValue)
                 {
                     return this.Context.GetRedirect("~/login?error=true&username=" + (string)this.Request.Form.Username);
                 }

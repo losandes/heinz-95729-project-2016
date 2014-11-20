@@ -58,6 +58,12 @@
         public IUser Set(IUser user)
         {
             var userExists = UserExists(user.UserName);
+
+            if (user.Guid == Guid.Empty) 
+            {
+                user.Guid = Guid.NewGuid();
+            }
+
             var mainKey = String.Format(keyPattern, user.Guid.ToString());
 
             if (userExists && SetUser(user, mainKey))
