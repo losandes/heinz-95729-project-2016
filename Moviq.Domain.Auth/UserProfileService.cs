@@ -15,6 +15,11 @@
 
         public IUser RegisterUser(IUser user)
         {
+            if (userRepo.UserExists(user.UserName)) 
+            {
+                throw new UserExistsException();
+            }
+
             var hashedPassword = PasswordHash.CreateHash(user.Password);
             user.Password = hashedPassword;
             user.Guid = Guid.NewGuid();

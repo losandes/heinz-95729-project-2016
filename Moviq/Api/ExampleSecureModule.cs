@@ -25,9 +25,9 @@
             this.Get["/api/examples/context"] = args =>
             {
                 var currentUser = this.Context.CurrentUser;
-                string guid = currentUser.UserName;
+                string username = currentUser.UserName;
 
-                var user = userRepo.GetByUsername(guid);
+                var user = userRepo.GetByUsername(username);
                 return 200;
             };
         }

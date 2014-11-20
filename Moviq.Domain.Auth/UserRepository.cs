@@ -56,16 +56,42 @@
 
         public IUser Set(IUser user)
         {
+            var userExists = UserExists(user.UserName);
             var mainKey = String.Format(keyPattern, user.Guid.ToString());
-            var lookupByUserName = String.Format(keyPattern, user.UserName);
-            
-            if (db.Store(StoreMode.Set, lookupByUserName, mainKey)
-                && db.StoreJson(StoreMode.Set, mainKey, user))
+
+            if (userExists && SetUser(user, mainKey))
             {
                 return Get(user.Guid.ToString());
             }
+            else if (!userExists && SetUser(user, mainKey) && SetUserId(user, mainKey))
+            {
+                return Get(user.Guid.ToString());           
+            }
 
             throw new Exception(locale.UserSetFailure);
+        }
+
+        private bool SetUser(IUser user, string mainKey) 
+        {
+            var lookupByUserName = String.Format(keyPattern, user.UserName);
+
+            return db.StoreJson(StoreMode.Set, lookupByUserName, mainKey)
+                && db.StoreJson(StoreMode.Set, mainKey, user);
+        }
+
+        private bool SetUserId(IUser user, string mainKey) 
+        {
+            var countKey = String.Format(keyPattern, "count");
+            var id = db.Increment(countKey, 1, 1);
+            var lookupById = String.Format(keyPattern, id.ToString());
+
+            return db.StoreJson(StoreMode.Set, lookupById, mainKey);
+        }
+
+        public bool UserExists(string username) 
+        {
+            var lookupByUserName = String.Format(keyPattern, username);
+            return db.KeyExists(lookupByUserName);
         }
 
         public IEnumerable<IUser> List(int take, int skip)
