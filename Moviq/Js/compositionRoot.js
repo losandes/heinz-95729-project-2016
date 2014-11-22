@@ -6,13 +6,17 @@
 require(['routeEngine', 'views/viewEngine', 'config', 'utils',
          'controllers/homeController', 'controllers/booksController',
          'controllers/authController', 'controllers/profileController',
+         'controllers/cartController',
          'models/product', 'models/products', 'models/book', 'models/books',
+         'models/cart',
          'views/headerVw',
          'jquery', 'ko', 'lib/ko.binders', 'sammy'],
         function (routeEngineCtor, viewEngineCtor, configCtor, utilsCtor,
                    homeControllerCtor, booksControllerCtor,
                    authControllerCtor, profileControllerCtor,
+                   cartControllerCtor,
                    ProductCtor, ProductsCtor, BookCtor, BooksCtor,
+                   CartCtor,
                    headerVwCtor,
                    $, ko, koBinders, sammy) {
         "use strict";
@@ -25,9 +29,11 @@ require(['routeEngine', 'views/viewEngine', 'config', 'utils',
             Products,
             Book,
             Books,
+            Cart,
             homeController,
             booksController,
             authController,
+            cartController,
             profileController;
             
         // initialize ko binding extensions
@@ -51,6 +57,7 @@ require(['routeEngine', 'views/viewEngine', 'config', 'utils',
             Products = ProductsCtor.init(ko, Product);
             Book = BookCtor.init(ko, Product);
             Books = BooksCtor.init(ko, Book);
+            Cart = CartCtor.init(ko);
         }());
         //endregion MODELS
         
@@ -60,6 +67,7 @@ require(['routeEngine', 'views/viewEngine', 'config', 'utils',
             homeController = homeControllerCtor.init(routeEngine, viewEngine, Products, Product);
             authController = authControllerCtor.init($, routeEngine, viewEngine);
             profileController = profileControllerCtor.init($, routeEngine, viewEngine);
+            cartController = cartControllerCtor.init($, routeEngine, viewEngine, Cart);
         }());
         //endregion CONTROLLERS
             
