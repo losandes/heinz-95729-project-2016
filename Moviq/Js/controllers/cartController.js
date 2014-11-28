@@ -3,10 +3,10 @@ define('controllers/cartController', {
     init: function ($, routes, viewEngine, Cart, cart) {
         "use strict";
 
-        //Get /#/checkout
-        routes.get(/^\/#\/checkout\/?/i, function (context) {
+        //Get /#/cart
+        routes.get(/^\/#\/cart\/?/i, function (context) {
             viewEngine.setView({
-                template: 't-checkout',
+                template: 't-cart',
                 data: {
                     cart: cart
                 }
@@ -35,10 +35,8 @@ define('controllers/cartController', {
             */
         });
 
-
-        // GET /#/cart
-        // cart
-        routes.get(/^\/#\/cart\/?/i, function (context) {  
+        // GET /#/checkout
+        routes.get(/^\/#\/checkout\/?/i, function (context) {
             $.ajax({
                 url: '/api/cart',
                 method: 'GET'
@@ -46,18 +44,16 @@ define('controllers/cartController', {
                 var testStr = JSON.parse(data);
                 var cart = new Cart(testStr);
                 console.log(cart);
-                    viewEngine.setView({
-                        template: 't-cart',
-                        data: {
-                            cart: cart,
-                            test: testStr
-                        }
-                    });
-                 
+                viewEngine.setView({
+                    template: 't-cart',
+                    data: {
+                        cart: cart,
+                        test: testStr
+                    }
+                });
+
             });
         });
-
-
 
     }
 });
