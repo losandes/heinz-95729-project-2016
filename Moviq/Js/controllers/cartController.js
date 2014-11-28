@@ -14,7 +14,5 @@ define('controllers/cartController', {
             });
         });
 
-
-
     }
 });
