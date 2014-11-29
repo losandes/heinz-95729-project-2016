@@ -1,7 +1,7 @@
 ﻿<script id="t-checkout" type="text/html">
     <div data-bind="with: data.model">
-
-        <form action="" method="POST" id="payment-form">
+        <div>try: <span data-bind="text: cardNum"></span></div>
+        <form id="payment-form">
             <div class="form-row">
                 <label>
                     <span>Card Number</span>
@@ -25,7 +25,7 @@
                 <input data-bind="value: expYear" type="text" size="4" data-stripe="exp-year" />
             </div>
 
-            <button type="submit">Submit Payment</button>
+            <button data-bind="click: submitPay">Submit Payment</button>
         </form>
     </div>
 </script>

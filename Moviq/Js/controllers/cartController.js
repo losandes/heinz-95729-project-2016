@@ -1,6 +1,6 @@
 /*global define, JSON*/
 define('controllers/cartController', {
-    init: function ($, ko, routes, viewEngine, Cart, cart) {
+    init: function ($, routes, viewEngine, Cart, cart) {
         "use strict";
 
         //Get /#/cart
@@ -33,6 +33,17 @@ define('controllers/cartController', {
             */
         });
 
+        function stripeResponseHandler(status, response) {
+            var form = $('#payment-form');
+            if (response.error) {
+                // Show the errors on the form
+                form.find('.payment-errors').text(response.error.message);
+                form.find('button').prop('disabled', false);
+            } else {
+                var token = response.id;
+            }
+        };
+
         function CheckoutModel() {
             var self = this;
 
@@ -40,16 +51,25 @@ define('controllers/cartController', {
             self.cvc = ko.observable();
             self.expMonth = ko.observable();
             self.expYear = ko.observable();
-        }
 
-        var check = new CheckoutModel();
+            self.submitPay = function () {
+                alert(self.cardNum());
+                Stripe.card.createToken({
+                    number: self.cardNum(),
+                    cvc: self.cvc(),
+                    exp_month: self.expMonth(),
+                    exp_year: self.expYear()
+                }, stripeResponseHandler);
+            };
+
+        }
 
         // GET /#/checkout
         routes.get(/^\/#\/checkout\/?/i, function (context) {
             viewEngine.setView({
                 template: 't-checkout',
                 data: {
-                    model: check
+                    model: new CheckoutModel()
                 }
             });
         });
