@@ -5,7 +5,7 @@ define('controllers/checkoutController', {
     "use strict";
 
     
-    routes.get('/^\/#\/checkout\/?/i', function (context) {
+    routes.get('/#/checkout', function (context) {
         viewEngine.setView({
             template: 't-register',
             data: {}
