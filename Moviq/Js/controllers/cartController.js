@@ -1,6 +1,6 @@
 ﻿/*global define, JSON*/
 define('controllers/cartController', {
-    init: function ($, ko, routes, viewEngine, Cart, cart) {
+    init: function ($, routes, viewEngine, Cart, cart) {
         "use strict";
 
         // GET /#/cart
