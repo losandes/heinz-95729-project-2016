@@ -1,28 +1,4 @@
 ﻿<script id="t-checkout" type="text/html">
 
-    <div class="book-component details" data-bind="with: data">
-        <h1 data-bind="text: cart.description"></h1>
-        <h2 data-bind="text: cart.total">Total </h2>
 
-
-
-        <div class="row" data-bind="foreach: { data: cart.products(), as: 'product' }">
-            <div class="col-sm-6 col-md-4 product-col">
-                <div class="thumbnail">
-                    <a class="thumbnail-img" href="" data-bind="href: product.detailsLink">
-                        <img src="" alt="" data-bind="src: product.thumbnailLink, attr: { alt: product.thumbnailAlt }">
-                    </a>
-
-                    <div class="caption">
-                        <h3><a data-bind="text: product.title, href: product.detailsLink"></a></h3>
-                        <div class="description" data-bind="html: product.description"></div>
-                        <div class="overlay"></div>
-                        <button data-bind="click: function(data) { $parent.cart.removeFromCart(product) }">Remove</button>
-                        <div data-bind="currency: product.price"></div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-    </div>
 </script>

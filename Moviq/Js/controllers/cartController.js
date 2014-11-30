@@ -39,6 +39,13 @@ define('controllers/cartController', {
         // GET /#/cart
         // cart
         routes.get(/^\/#\/cart\/?/i, function (context) {  
+            viewEngine.setView({
+                template: 't-cart',
+                data: {
+                    cart: cart
+                }
+            });
+            /*
             $.ajax({
                 url: '/api/cart',
                 method: 'GET'
@@ -55,6 +62,7 @@ define('controllers/cartController', {
                     });
                  
             });
+            */
         });
 
 
