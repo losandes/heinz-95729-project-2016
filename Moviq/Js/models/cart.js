@@ -19,6 +19,7 @@ define('models/cart', { init: function (ko, CartItem) {
         $this.cart = ko.observableArray();
 
         $this.addCartItem = function (cartItem) {
+            alert("TESTING - ADDED");
             if (!cartItem) {
                 throw new Error('Argument Exception: the argument, book, must be defined to add a book');
             }
