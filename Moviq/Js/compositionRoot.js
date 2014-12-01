@@ -75,5 +75,7 @@ require(['routeEngine', 'views/viewEngine', 'config', 'utils',
         ko.applyBindings(viewEngine.mainVw, $('.main')[0]);
         ko.applyBindings(viewEngine.headerVw, $('header')[0]);
         routeEngine.listen();
-    
+        
+
+       // test();
     });

@@ -134,6 +134,7 @@
     <Content Include="Js\models\book.js" />
     <Content Include="Js\models\books.js" />
     <Content Include="Js\models\cart.js" />
+    <Content Include="Js\models\cartItem.js" />
     <Content Include="Js\models\product.js" />
     <Content Include="Js\models\products.js" />
     <Content Include="Js\test\chai.js" />
