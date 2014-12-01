@@ -5,12 +5,12 @@ define('controllers/checkoutController', {
     "use strict";
 
     
-    routes.get('/#/checkout', function (context) {
-        viewEngine.setView({
-            template: 't-register',
-            data: {}
-        });
-    });
+routes.get('/#/checkout', function (context) {
+    viewEngine.setView({
+  template: 't-checkout',
+  data: {}
+   });
+});
 
     
 }
