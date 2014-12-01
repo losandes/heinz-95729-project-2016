@@ -34,13 +34,21 @@ define('controllers/cartController', {
         });
 
         function stripeResponseHandler(status, response) {
+            alert("in handler");
             var form = $('#payment-form');
             if (response.error) {
                 // Show the errors on the form
                 form.find('.payment-errors').text(response.error.message);
                 form.find('button').prop('disabled', false);
             } else {
+                alert("success");
                 var token = response.id;
+                viewEngine.setView({
+                    template: 't-confirmation',
+                    data: {
+                        cart: cart
+                    }
+                });
             }
         };
 
@@ -51,15 +59,30 @@ define('controllers/cartController', {
             self.cvc = ko.observable();
             self.expMonth = ko.observable();
             self.expYear = ko.observable();
+            self.billingName = ko.observable();
+            self.billingAddr1 = ko.observable();
+            self.billingAddr2 = ko.observable();
+            self.billingCity = ko.observable();
+            self.billingState = ko.observable();
+            self.billingZip = ko.observable();
+            self.billingCountry = ko.observable();
 
-            self.submitPay = function () {
-                alert(self.cardNum());
+            self.submitPay = function() {
                 Stripe.card.createToken({
                     number: self.cardNum(),
                     cvc: self.cvc(),
                     exp_month: self.expMonth(),
                     exp_year: self.expYear()
                 }, stripeResponseHandler);
+            };
+
+            self.editCart = function() {
+                viewEngine.setView({
+                    template: 't-cart',
+                    data: {
+                        cart: cart
+                    }
+                });
             };
 
         }
@@ -69,7 +92,8 @@ define('controllers/cartController', {
             viewEngine.setView({
                 template: 't-checkout',
                 data: {
-                    model: new CheckoutModel()
+                    model: new CheckoutModel(),
+                    cart: cart
                 }
             });
         });
