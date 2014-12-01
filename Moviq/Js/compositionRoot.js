@@ -63,11 +63,11 @@ require(['routeEngine', 'views/viewEngine', 'config', 'utils',
         
         //region CONTROLLERS  =================================================================
         (function () {
-            booksController = booksControllerCtor.init($, routeEngine, viewEngine, Books, Book);
-            homeController = homeControllerCtor.init(routeEngine, viewEngine, Products, Product);
-            authController = authControllerCtor.init($, routeEngine, viewEngine);
-            profileController = profileControllerCtor.init($, routeEngine, viewEngine);
-            checkoutController = checkoutControllerCtor.init($, routeEngine, viewEngine);
+            booksController = booksControllerCtor.init($, routeEngine, viewEngine, Books, Book, Cart);
+            homeController = homeControllerCtor.init(routeEngine, viewEngine, Products, Product,Cart);
+            authController = authControllerCtor.init($, routeEngine, viewEngine, Cart);
+            profileController = profileControllerCtor.init($, routeEngine, viewEngine, Cart);
+            checkoutController = checkoutControllerCtor.init($, routeEngine, viewEngine,Cart);
         }());
         //endregion CONTROLLERS
             

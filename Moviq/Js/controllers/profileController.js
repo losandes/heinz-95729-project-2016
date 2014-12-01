@@ -1,6 +1,6 @@
 ﻿/*global define, JSON*/
 define('controllers/profileController', {
-    init: function ($, routes, viewEngine) {
+    init: function ($, routes, viewEngine,Cart) {
         "use strict";
 
         var submitRegistration;

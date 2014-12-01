@@ -1,7 +1,7 @@
 ﻿/*global define, JSON*/
 
 define('controllers/checkoutController', {
-    init: function ($, routes, viewEngine) {
+    init: function ($, routes, viewEngine,Cart) {
     "use strict";
 
     
