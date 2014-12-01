@@ -1,31 +1,156 @@
 ﻿<script id="t-checkout" type="text/html">
-    <div data-bind="with: data.model">
-        <div>try: <span data-bind="text: cardNum"></span></div>
-        <form id="payment-form">
-            <div class="form-row">
-                <label>
-                    <span>Card Number</span>
-                    <input data-bind="value: cardNum" type="text" size="20" data-stripe="number" />
-                </label>
-            </div>
+    <div data-bind="with: data">
+        <div data-bind="with: cart">
+            <div class="row" data-bind="foreach: { data: products(), as: 'product' }">
+                <div class="col-sm-6 col-md-4 product-col">
+                    <div class="thumbnail">
+                        <a class="thumbnail-img" href="" data-bind="href: product.detailsLink">
+                            <img src="" alt="" data-bind="src: product.thumbnailLink, attr: { alt: product.thumbnailAlt }">
+                        </a>
 
-            <div class="form-row">
-                <label>
-                    <span>CVC</span>
-                    <input data-bind="value: cvc" type="text" size="4" data-stripe="cvc" />
-                </label>
+                        <div class="caption">
+                            <h3><a data-bind="text: product.title, href: product.detailsLink"></a></h3>
+                            <div class="overlay"></div>
+                            <div data-bind="currency: product.price"></div>
+                        </div>
+                    </div>
+                </div>
             </div>
+        </div>
+        <form id="payment-form" data-bind="with: model">
+            <fieldset class="card-info">
+                <legend>Card Infomation</legend>
+                <div class="form-row">
+                    <label>
+                        <span>Card Number: </span>
+                        <input data-bind="value: cardNum" type="text" size="20" data-stripe="number" />
+                    </label>
+                </div>
+                
+                <div class="form-row">
+                    <label>
+                        <span>CVC: </span>
+                        <input data-bind="value: cvc" type="text" size="4" data-stripe="cvc" />
+                    </label>
+                </div>
 
-            <div class="form-row">
-                <label>
-                    <span>Expiration (MM/YYYY)</span>
-                    <input data-bind="value: expMonth" type="text" size="2" data-stripe="exp-month" />
-                </label>
-                <span> / </span>
-                <input data-bind="value: expYear" type="text" size="4" data-stripe="exp-year" />
-            </div>
+                <div class="form-row">
+                    <label>
+                        <span>Expiration (MM/YYYY): </span>
+                        <input data-bind="value: expMonth" type="text" size="2" data-stripe="exp-month" />
+                    </label>
+                    <span> / </span>
+                    <input data-bind="value: expYear" type="text" size="4" data-stripe="exp-year" />
+                </div>
+            </fieldset>
+            
+            <fieldset class="billing-addr">
+                <legend>Billing Address</legend>
+                <div class="form-row">
+                    <label>
+                        <span>Full Name: </span>
+                        <input data-bind="value: billingName" type="text" size="20" data-stripe="name" />
+                    </label>
+                </div>
 
+                <div class="form-row">
+                    <label>
+                        <span>Address Line1: </span>
+                        <input data-bind="value: billingAddr1" type="text" size="30" data-stripe="number" />
+                    </label>
+                </div>
+
+                <div class="form-row">
+                    <label>
+                        <span>Address Line2: </span>
+                        <input data-bind="value: billingAddr2" type="text" size="30" data-stripe="cvc" />
+                    </label>
+                </div>
+
+                <div class="form-row">
+                    <label>
+                        <span>City: </span>
+                        <input data-bind="value: billingCity" type="text" size="15" data-stripe="exp-month" />
+                    </label>
+                </div>
+
+                <div class="form-row">
+                    <label>
+                        <span>State: </span>
+                        <input data-bind="value: billingState" type="text" size="15" data-stripe="exp-month" />
+                    </label>
+                </div>
+
+                <div class="form-row">
+                    <label>
+                        <span>Zip: </span>
+                        <input data-bind="value: billingZip" type="text" size="10" data-stripe="exp-month" />
+                    </label>
+                </div>
+
+                <div class="form-row">
+                    <label>
+                        <span>Country: </span>
+                        <input data-bind="value: billingCountry" type="text" size="20" data-stripe="exp-month" />
+                    </label>
+                </div>
+            </fieldset>
+
+            <!--
+            <fieldset class="shipping-addr">
+                <legend>Shipping Address</legend>
+                <div class="form-row">
+                    <label>
+                        <span>Full Name: </span>
+                        <input data-bind="value: shippingName" type="text" size="20" data-stripe="name" />
+                    </label>
+                </div>
+
+                <div class="form-row">
+                    <label>
+                        <span>Address Line1: </span>
+                        <input data-bind="value: shippingAddr1" type="text" size="30" data-stripe="number" />
+                    </label>
+                </div>
+
+                <div class="form-row">
+                    <label>
+                        <span>Address Line2: </span>
+                        <input data-bind="value: shippingAddr2" type="text" size="30" data-stripe="cvc" />
+                    </label>
+                </div>
+
+                <div class="form-row">
+                    <label>
+                        <span>City: </span>
+                        <input data-bind="value: shippingCity" type="text" size="15" data-stripe="exp-month" />
+                    </label>
+                </div>
+
+                <div class="form-row">
+                    <label>
+                        <span>State: </span>
+                        <input data-bind="value: shippingState" type="text" size="15" data-stripe="exp-month" />
+                    </label>
+                </div>
+
+                <div class="form-row">
+                    <label>
+                        <span>Zip: </span>
+                        <input data-bind="value: shippingZip" type="text" size="10" data-stripe="exp-month" />
+                    </label>
+                </div>
+
+                <div class="form-row">
+                    <label>
+                        <span>Country: </span>
+                        <input data-bind="value: shippingCountry" type="text" size="20" data-stripe="exp-month" />
+                    </label>
+                </div>
+            </fieldset>
+            -->
             <button data-bind="click: submitPay">Submit Payment</button>
         </form>
     </div>
+
 </script>
