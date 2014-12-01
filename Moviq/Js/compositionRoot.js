@@ -7,14 +7,14 @@ require(['routeEngine', 'views/viewEngine', 'config', 'utils',
          'controllers/homeController', 'controllers/booksController',
          'controllers/authController', 'controllers/profileController',
          'controllers/checkoutController',
-         'models/product', 'models/products', 'models/book', 'models/books',
+         'models/product', 'models/products', 'models/book', 'models/books', 'models/cart', 'models/cartItem',
          'views/headerVw',
          'jquery', 'ko', 'lib/ko.binders', 'sammy'],
         function (routeEngineCtor, viewEngineCtor, configCtor, utilsCtor,
                    homeControllerCtor, booksControllerCtor,
                    authControllerCtor, profileControllerCtor,
                    checkoutControllerCtor,
-                   ProductCtor, ProductsCtor, BookCtor, BooksCtor,
+                   ProductCtor, ProductsCtor, BookCtor, BooksCtor,CartCtor,CartItemCtor,
                    headerVwCtor,
                    $, ko, koBinders, sammy) {
         "use strict";
@@ -27,6 +27,8 @@ require(['routeEngine', 'views/viewEngine', 'config', 'utils',
             Products,
             Book,
             Books,
+            Cart,
+            CartItem,
             homeController,
             booksController,
             authController,
@@ -53,6 +55,8 @@ require(['routeEngine', 'views/viewEngine', 'config', 'utils',
             Products = ProductsCtor.init(ko, Product);
             Book = BookCtor.init(ko, Product);
             Books = BooksCtor.init(ko, Book);
+            CartItem = CartItemCtor.init(ko, Product);
+            Cart = CartCtor.init(ko, CartItem);
 
         }());
         //endregion MODELS
