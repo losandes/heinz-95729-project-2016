@@ -750,4 +750,17 @@ Table of Contents
     width: 320px;
   }
 }
+.cart-container {
+  margin: auto;
+  width: 960px;
+}
+.cart-container .thumbnail {
+  height: 210px;
+}
+.cart-container .product-image {
+  height: 200px;
+  margin-left: 20px;
+  margin-right: 50px;
+  float: left;
+}
 /*# sourceMappingURL=main.css.map */
