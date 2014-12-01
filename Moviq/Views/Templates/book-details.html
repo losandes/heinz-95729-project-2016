@@ -57,7 +57,7 @@
         </figure>
         
         <div class="purchase">
-            <button class="btn btn-success btn-buy" data-bind="text: book.price"></button>
+            <button class="btn btn-success btn-buy" data-bind="text: book.price, click: function() { addCartItem(book); }"></button>
             
         </div>
     </div>
