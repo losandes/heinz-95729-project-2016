@@ -1,4 +1,4 @@
-﻿/*global define, JSON*/
+/*global define, JSON*/
 define('controllers/cartController', {
     init: function ($, routes, viewEngine, Cart, cart) {
         "use strict";
@@ -13,8 +13,6 @@ define('controllers/cartController', {
                 }
             });
         });
-
-
 
     }
 });
