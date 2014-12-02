@@ -6,17 +6,17 @@
 require(['routeEngine', 'views/viewEngine', 'config', 'utils',
          'controllers/homeController', 'controllers/booksController',
          'controllers/authController', 'controllers/profileController',
-         'controllers/cartController',
+         'controllers/cartController', 'controllers/paymentController',
          'models/product', 'models/products', 'models/book', 'models/books',
-         'models/cart',
+         'models/cart', 'models/payment',
          'views/headerVw',
          'jquery', 'ko', 'lib/ko.binders', 'sammy'],
         function (routeEngineCtor, viewEngineCtor, configCtor, utilsCtor,
                    homeControllerCtor, booksControllerCtor,
                    authControllerCtor, profileControllerCtor,
-                   cartControllerCtor,
+                   cartControllerCtor, paymentControllerCtor,
                    ProductCtor, ProductsCtor, BookCtor, BooksCtor,
-                   CartCtor,
+                   CartCtor, PaymentCtor,
                    headerVwCtor,
                    $, ko, koBinders, sammy) {
         "use strict";
@@ -30,10 +30,12 @@ require(['routeEngine', 'views/viewEngine', 'config', 'utils',
             Book,
             Books,
             Cart,
+            Payment,
             homeController,
             booksController,
             authController,
             cartController,
+            paymentController,
             profileController,
             cart;
             
@@ -58,7 +60,12 @@ require(['routeEngine', 'views/viewEngine', 'config', 'utils',
             Products = ProductsCtor.init(ko, Product);
             Book = BookCtor.init(ko, Product);
             Books = BooksCtor.init(ko, Book);
+<<<<<<< Updated upstream
             Cart = CartCtor.init(ko, viewEngine, Product);
+=======
+            Cart = CartCtor.init(ko, viewEngine);
+            Payment = PaymentCtor.init(ko, viewEngine);
+>>>>>>> Stashed changes
         }());
         //endregion MODELS
         
@@ -71,6 +78,7 @@ require(['routeEngine', 'views/viewEngine', 'config', 'utils',
             authController = authControllerCtor.init($, routeEngine, viewEngine);
             profileController = profileControllerCtor.init($, routeEngine, viewEngine);
             cartController = cartControllerCtor.init($, routeEngine, viewEngine, Cart, cart);
+            paymentController = paymentControllerCtor.init($, routeEngine, viewEngine, Payment, cart);
         }());
         //endregion CONTROLLERS
             

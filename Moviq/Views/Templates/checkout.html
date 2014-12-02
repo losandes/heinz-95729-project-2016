@@ -1,22 +1,35 @@
 ﻿<script id="t-checkout" type="text/html">
     <div data-bind="with: data">
-        <div data-bind="with: cart">
-            <div class="row" data-bind="foreach: { data: products(), as: 'product' }">
-                <div class="col-sm-6 col-md-4 product-col">
-                    <div class="thumbnail">
-                        <a class="thumbnail-img" href="" data-bind="href: product.detailsLink">
-                            <img src="" alt="" data-bind="src: product.thumbnailLink, attr: { alt: product.thumbnailAlt }">
-                        </a>
+        <div class="cart-container" data-bind="visible: cart.products().length > 0">
+            <h1 class="text-center">Shopping Cart</h1>
+            <div class="row">
+                <div class="col-md-8">
 
-                        <div class="caption">
-                            <h3><a data-bind="text: product.title, href: product.detailsLink"></a></h3>
-                            <div class="overlay"></div>
-                            <div data-bind="currency: product.price"></div>
+                    <div class="row" data-bind="foreach: { data: cart.products(), as: 'product' }">
+                        <div class="thumbnail">
+
+                            <img class="product-image" src="" alt="" data-bind="src: product.thumbnailLink, attr: { alt: product.thumbnailAlt }">
+
+                            <div class="product-details">
+                                <h2 data-bind="text: product.title"></h2>
+                                <h3 data-bind="currency: product.price"></h3>
+                                <button class="btn bnt-sm btn-danger" data-bind="click: function(data) { $parent.cart.removeFromCart(product) }">Remove</button>
+                            </div>
+
                         </div>
+                        <div class="clearfix"></div>
                     </div>
+
+
+                </div>
+                <div class="col-md-3 col-md-offset-1">
+                    <h2>Total (<span data-bind="text: cart.products().length"></span> item<span data-bind="visible: cart.products().length > 1">s</span>)</h2>
+                    <h1 data-bind="currency: cart.total"></h1>
+                    <button class="btn btn-lg btn-success">Proceed to checkout</button>
                 </div>
             </div>
         </div>
+
         <form id="payment-form" data-bind="with: model">
             <fieldset class="card-info">
                 <legend>Card Infomation</legend>
