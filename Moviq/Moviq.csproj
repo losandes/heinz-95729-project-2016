@@ -86,6 +86,9 @@
   <ItemGroup>
     <Content Include="Css\component.css" />
     <Content Include="Css\main.css" />
+    <Content Include="Css\main.min.css">
+      <DependentUpon>main.css</DependentUpon>
+    </Content>
     <Content Include="Fonts\codropsicons\codropsicons.svg" />
     <Content Include="Fonts\codropsicons\license.txt" />
     <Content Include="Images\1.jpg" />
@@ -121,6 +124,7 @@
     <Content Include="Js\config.js" />
     <Content Include="Js\controllers\authController.js" />
     <Content Include="Js\controllers\booksController.js" />
+    <Content Include="Js\controllers\cartController.js" />
     <Content Include="Js\controllers\homeController.js" />
     <Content Include="Js\controllers\profileController.js" />
     <Content Include="Js\lib\grid.js" />
@@ -161,6 +165,9 @@
     <Content Include="Css\_variables.less" />
     <Content Include="Css\_products.less" />
     <Content Include="Js\test\sinon.extensions.js" />
+    <Content Include="Css\main.css.map">
+      <DependentUpon>main.css</DependentUpon>
+    </Content>
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -171,6 +178,8 @@
   <ItemGroup>
     <Content Include="Views\Home\home.html" />
     <Content Include="Views\Templates\book-details.html" />
+    <Content Include="Views\Templates\cart.html" />
+    <Content Include="Views\Templates\checkout.html" />
     <Content Include="Views\Templates\error-404.html" />
     <Content Include="Views\Templates\login.html" />
     <Content Include="Views\Templates\register.html" />
@@ -182,6 +191,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Api\BooksModule.cs" />
+    <Compile Include="Api\CartModule.cs" />
     <Compile Include="Api\ExampleSecureModule.cs" />
     <Compile Include="Api\SearchModule.cs" />
     <Compile Include="App_Start\NancyBootstrapper.cs" />
@@ -199,6 +209,10 @@
     <ProjectReference Include="..\Moviq.Domain.Auth\Moviq.Domain.Auth.csproj">
       <Project>{ff6bfde1-54e3-4999-8e5d-04081ad7cbf3}</Project>
       <Name>Moviq.Domain.Auth</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Moviq.Domain.Cart\Moviq.Domain.Cart.csproj">
+      <Project>{fe7230c7-b9b9-4d82-85ec-237954415d43}</Project>
+      <Name>Moviq.Domain.Cart</Name>
     </ProjectReference>
     <ProjectReference Include="..\Moviq.Domain.Products.Tests\Moviq.Domain.Products.Tests.csproj">
       <Project>{b760c36c-ecb0-4ba8-973e-76374c8403ff}</Project>
