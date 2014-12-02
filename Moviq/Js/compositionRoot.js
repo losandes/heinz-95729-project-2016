@@ -60,12 +60,9 @@ require(['routeEngine', 'views/viewEngine', 'config', 'utils',
             Products = ProductsCtor.init(ko, Product);
             Book = BookCtor.init(ko, Product);
             Books = BooksCtor.init(ko, Book);
-<<<<<<< Updated upstream
             Cart = CartCtor.init(ko, viewEngine, Product);
-=======
-            Cart = CartCtor.init(ko, viewEngine);
             Payment = PaymentCtor.init(ko, viewEngine);
->>>>>>> Stashed changes
+
         }());
         //endregion MODELS
         
