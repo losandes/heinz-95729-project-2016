@@ -22,11 +22,14 @@ define('models/payment', {
         var Payment = function(cart) {
             var self = this;
 
+            self.months = ko.observableArray(["01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12"]);
+            self.years = ko.observableArray(["2015", "2016", "2017", "2018", "2019", "2020", "2021", "2022", "2023"]);
+
             self.cart = cart;
             self.cardNum = ko.observable();
             self.cvc = ko.observable();
-            self.expMonth = ko.observable();
-            self.expYear = ko.observable();
+            self.expMonth = ko.observable("MM");
+            self.expYear = ko.observable("YYYY");
             self.billingName = ko.observable();
             self.billingAddr1 = ko.observable();
             self.billingAddr2 = ko.observable();
@@ -34,6 +37,8 @@ define('models/payment', {
             self.billingState = ko.observable();
             self.billingZip = ko.observable();
             self.billingCountry = ko.observable();
+
+            self.shippingName = ko.observable();
 
             self.submitPay = function () {
                 Stripe.card.createToken({
