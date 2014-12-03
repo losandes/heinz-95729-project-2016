@@ -61,7 +61,7 @@ namespace Moviq.Domain.Cart
                 prodQuantity.Add(prod.Uid, quantity);
             }
         }
-
+        
         public bool deleteItemFromCart(IProduct product)
         {
             bool res = false;
@@ -77,6 +77,7 @@ namespace Moviq.Domain.Cart
             return res;
         }
 
+        //calculate the total price of items in the cart.
         public void calTotalPrice()
         {
             decimal total = 0;
@@ -89,6 +90,7 @@ namespace Moviq.Domain.Cart
             totalPrice = total;
         }
 
+        //calculate the number of items in the cart.
         public void calCount()
         {
             KeyValuePair<string,int> kv = new KeyValuePair<string,int>();
