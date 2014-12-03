@@ -2,7 +2,7 @@
 /*global define*/
 define('models/product', { init: function (ko) {
     "use strict";
-    
+    alert("initialzing product");
     if (!ko) {
         throw new Error('Argument Exception: ko is required to init the product module');
     }

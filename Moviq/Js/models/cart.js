@@ -2,7 +2,7 @@
 /*global define*/
 define('models/cart', { init: function (ko, CartItem) {
     "use strict";
-    
+    alert("Initializing cart");
     if (!ko) {
         throw new Error('Argument Exception: ko is required to init the books module');
     }

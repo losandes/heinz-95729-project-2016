@@ -58,7 +58,7 @@ define('views/viewEngine', { init: function ($, ko) {
             }
         }, 500);
     };
-    
+
     return {
         // mainVw is a singleton - there will only ever be one
         // it is the master view model that is used for refreshing page content
