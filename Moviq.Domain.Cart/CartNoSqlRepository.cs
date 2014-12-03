@@ -40,7 +40,14 @@
 
         public ICart Get(string guid)
         {
-            return db.GetJson<Cart>(String.Format(keyPattern, guid.ToString()));
+            if (db.KeyExists(String.Format(keyPattern, guid)))
+            {
+                return db.GetJson<Cart>(String.Format(keyPattern, guid));
+            }
+            else
+            {
+                return new Cart(new Guid(guid));
+            }           
         }
 
         private IEnumerable<ICart> Get(IEnumerable<string> keys)
@@ -52,7 +59,7 @@
         {
             if (cart.guid != Guid.Empty)
             {
-                if (db.StoreJson(StoreMode.Replace, String.Format(keyPattern, cart.guid), cart))
+                if (db.StoreJson(StoreMode.Replace, String.Format(keyPattern, cart.guid.ToString()), cart))
                 {
                     return Get(cart.guid.ToString());
                 }
