@@ -6,13 +6,15 @@
 require(['routeEngine', 'views/viewEngine', 'config', 'utils',
          'controllers/homeController', 'controllers/booksController',
          'controllers/authController', 'controllers/profileController',
-         'models/product', 'models/products', 'models/book', 'models/books',
+         'controllers/checkoutController',
+         'models/product', 'models/products', 'models/book', 'models/books', 'models/cart', 'models/cartItem',
          'views/headerVw',
          'jquery', 'ko', 'lib/ko.binders', 'sammy'],
         function (routeEngineCtor, viewEngineCtor, configCtor, utilsCtor,
                    homeControllerCtor, booksControllerCtor,
                    authControllerCtor, profileControllerCtor,
-                   ProductCtor, ProductsCtor, BookCtor, BooksCtor,
+                   checkoutControllerCtor,
+                   ProductCtor, ProductsCtor, BookCtor, BooksCtor,CartCtor,CartItemCtor,
                    headerVwCtor,
                    $, ko, koBinders, sammy) {
         "use strict";
@@ -25,11 +27,13 @@ require(['routeEngine', 'views/viewEngine', 'config', 'utils',
             Products,
             Book,
             Books,
+            Cart,
+            CartItem,
             homeController,
             booksController,
             authController,
-            profileController;
-            
+            profileController,
+            checkoutController;
         // initialize ko binding extensions
         koBinders.init($, ko);
         
@@ -51,15 +55,19 @@ require(['routeEngine', 'views/viewEngine', 'config', 'utils',
             Products = ProductsCtor.init(ko, Product);
             Book = BookCtor.init(ko, Product);
             Books = BooksCtor.init(ko, Book);
+            CartItem = CartItemCtor.init(ko, Product);
+            Cart = CartCtor.init(ko, CartItem);
+
         }());
         //endregion MODELS
         
         //region CONTROLLERS  =================================================================
         (function () {
-            booksController = booksControllerCtor.init($, routeEngine, viewEngine, Books, Book);
-            homeController = homeControllerCtor.init(routeEngine, viewEngine, Products, Product);
-            authController = authControllerCtor.init($, routeEngine, viewEngine);
-            profileController = profileControllerCtor.init($, routeEngine, viewEngine);
+            booksController = booksControllerCtor.init($, routeEngine, viewEngine, Books, Book, Cart);
+            homeController = homeControllerCtor.init(routeEngine, viewEngine, Products, Product,Cart);
+            authController = authControllerCtor.init($, routeEngine, viewEngine, Cart);
+            profileController = profileControllerCtor.init($, routeEngine, viewEngine, Cart);
+            checkoutController = checkoutControllerCtor.init($, routeEngine, viewEngine,Cart);
         }());
         //endregion CONTROLLERS
             
@@ -72,5 +80,7 @@ require(['routeEngine', 'views/viewEngine', 'config', 'utils',
         ko.applyBindings(viewEngine.mainVw, $('.main')[0]);
         ko.applyBindings(viewEngine.headerVw, $('header')[0]);
         routeEngine.listen();
-    
+        
+
+       // test();
     });

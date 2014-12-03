@@ -1,6 +1,6 @@
 /*global define, JSON*/
 
-define('controllers/homeController', { init: function (routes, viewEngine, Products, Product) {
+define('controllers/homeController', { init: function (routes, viewEngine, Products, Product, Cart) {
     "use strict";
 
     var onSearch;

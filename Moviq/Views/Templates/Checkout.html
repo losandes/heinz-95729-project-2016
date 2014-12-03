@@ -1,0 +1,29 @@
+﻿<script id="t-checkout" type="text/html">
+    <h1>You've got a great bag of books there.</h1>
+
+    LIST ALL ITEMS (see our mockup from design doc)
+
+    <div class="product-component">
+        <div class="row">   <!-- CHANGE THIS TO cart.products() for live version.  IS THIS THE PROPER NOMENCLATURE FOR CART.PRODUCTS()???-->
+            <table>
+                <thead>
+                    <tr><th></th><th></th><th>Price</th><th>Remove</th></tr>
+                </thead>
+                <tbody data-bind="foreach: { data: data.testcart, as: 'item' }">
+                    <tr>
+                        <td data-bind="src: item.thumbnailLink, attr: { alt: item.thumbnailAlt }, href: item.detailsLink"></td>
+                        <td><strong data-bind="text: item.title, href: item.detailsLink"></strong></td>
+                        <td data-bind="currency: item.price"></td>
+                        <td data-bind="click: function() { alert('item is now removed-ish'); cart.removeCartItem(item); }">X</td>
+                    </tr>
+                </tbody>
+            </table>    
+        </div>
+
+    </div>
+
+    better table formatting, make the X an obvious link to remove item
+    TOTAL COST OF ITEMS IN CART
+    BUY BUTTON
+
+</script>

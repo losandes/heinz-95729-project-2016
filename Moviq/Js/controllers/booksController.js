@@ -1,5 +1,5 @@
 /*global define, JSON*/
-define('controllers/booksController', { init: function ($, routes, viewEngine, Books, Book) {
+define('controllers/booksController', { init: function ($, routes, viewEngine, Books, Book,Cart) {
     "use strict";
 
     // GET /books/search/?q=searchterm

@@ -1,5 +1,7 @@
 <!-- Adapted From: http://tympanus.net/Development/AnimatedBooks/ -->
 <script id="t-book-details" type="text/html">
+    
+
     <div class="book-component details" data-bind="with: data">
         <figure class='book'>
 
@@ -53,8 +55,10 @@
                 <div data-bind="html: book.description"></div>
             </figcaption>
         </figure>
+        
         <div class="purchase">
-            <button class="btn btn-success btn-buy" data-bind="currency: book.price"></button>
-        </div>        
+            <button class="btn btn-success btn-buy" data-bind="text: book.price, click: function() { addCartItem(book); }"></button>
+            
+        </div>
     </div>
-</script>
+    </script>

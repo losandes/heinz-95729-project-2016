@@ -12,8 +12,10 @@
                         <h3><a data-bind="text: product.title, href: product.detailsLink"></a></h3>
                         <div class="description" data-bind="html: product.description"></div>
                         <div class="overlay"></div>
-                        <a class="buy-now" href="javascript:void(0);" data-bind="currency: product.price"></a>
+                        <a class="buy-now" href="" data-bind="currency: product.price, click: function() { Cart.addCartItem(book); }"></a>
                     </div>
+
+                    </script>
                 </div>
             </div>
         </div>        
