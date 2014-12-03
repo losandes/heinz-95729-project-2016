@@ -1,0 +1,26 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace Moviq.Domain.Order
+{
+    public class Payment
+    {
+        string ccNum;
+        string name;
+        int expMonth;
+        int expYear;
+        int cvv;
+
+        public Payment(string cc, string nam, int mon, int yr, int cvvNum )
+        {
+            ccNum = cc;
+            name = nam;
+            expMonth = mon;
+            expYear = yr;
+            cvv = cvvNum;
+        }
+    }
+}

@@ -86,7 +86,7 @@ namespace Moviq.Api
             };
 
             //checkout from cart page, merge the existing cart of user with old cart instance
-            this.Get["/api/cart/checkout"] = args =>
+            this.Get["/api/cart/merge"] = args =>
             {
                 ICart currCart = this.Context.Parameters;
 
