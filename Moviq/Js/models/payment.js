@@ -38,8 +38,6 @@ define('models/payment', {
             self.billingZip = ko.observable();
             self.billingCountry = ko.observable();
 
-            self.shippingName = ko.observable();
-
             self.submitPay = function () {
                 Stripe.card.createToken({
                     number: self.cardNum(),
@@ -51,6 +49,14 @@ define('models/payment', {
 
             self.editCart = function () {
                 window.location.href = "/#/cart";
+            };
+
+            self.setExpMonth = function (month) {
+                self.expMonth(month);
+            };
+
+            self.setExpYear = function (year) {
+                self.expYear(year);
             };
 
         };
