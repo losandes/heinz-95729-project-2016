@@ -126,6 +126,7 @@
     <Content Include="Js\controllers\booksController.js" />
     <Content Include="Js\controllers\cartController.js" />
     <Content Include="Js\controllers\homeController.js" />
+    <Content Include="Js\controllers\paymentController.js" />
     <Content Include="Js\controllers\profileController.js" />
     <Content Include="Js\lib\grid.js" />
     <Content Include="Js\lib\ko.binders.js" />
@@ -137,6 +138,7 @@
     <Content Include="Js\models\book.js" />
     <Content Include="Js\models\books.js" />
     <Content Include="Js\models\cart.js" />
+    <Content Include="Js\models\payment.js" />
     <Content Include="Js\models\product.js" />
     <Content Include="Js\models\products.js" />
     <Content Include="Js\test\chai.js" />
@@ -191,7 +193,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Api\BooksModule.cs" />
-    <Compile Include="Api\CartModule.cs" />
     <Compile Include="Api\ExampleSecureModule.cs" />
     <Compile Include="Api\SearchModule.cs" />
     <Compile Include="App_Start\NancyBootstrapper.cs" />
