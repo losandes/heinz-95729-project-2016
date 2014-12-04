@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Express 2013 for Web
-VisualStudioVersion = 12.0.21005.1
+VisualStudioVersion = 12.0.30723.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Moviq", "Moviq\Moviq.csproj", "{AD421F80-AA2D-47BA-AE13-82172052BA8D}"
 EndProject
@@ -18,6 +18,10 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Moviq.Domain.Auth", "Moviq.Domain.Auth\Moviq.Domain.Auth.csproj", "{FF6BFDE1-54E3-4999-8E5D-04081AD7CBF3}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Moviq.Domain.Auth.Tests", "Moviq.Domain.Auth.Tests\Moviq.Domain.Auth.Tests.csproj", "{F664A7E0-3D2C-49A1-9A10-AEE3F0E3F49C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Moviq.Domain.Cart", "Moviq.Domain.Cart\Moviq.Domain.Cart.csproj", "{3ABA1EE9-AB85-40DD-B1FD-D4408F5EFBED}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Moviq.Domain.Order", "Moviq.Domain.Order\Moviq.Domain.Order.csproj", "{375BF8EF-E34C-49F4-9C6C-E91FA6C99D4F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -57,6 +61,14 @@ Global
 		{F664A7E0-3D2C-49A1-9A10-AEE3F0E3F49C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F664A7E0-3D2C-49A1-9A10-AEE3F0E3F49C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F664A7E0-3D2C-49A1-9A10-AEE3F0E3F49C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3ABA1EE9-AB85-40DD-B1FD-D4408F5EFBED}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3ABA1EE9-AB85-40DD-B1FD-D4408F5EFBED}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3ABA1EE9-AB85-40DD-B1FD-D4408F5EFBED}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3ABA1EE9-AB85-40DD-B1FD-D4408F5EFBED}.Release|Any CPU.Build.0 = Release|Any CPU
+		{375BF8EF-E34C-49F4-9C6C-E91FA6C99D4F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{375BF8EF-E34C-49F4-9C6C-E91FA6C99D4F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{375BF8EF-E34C-49F4-9C6C-E91FA6C99D4F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{375BF8EF-E34C-49F4-9C6C-E91FA6C99D4F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

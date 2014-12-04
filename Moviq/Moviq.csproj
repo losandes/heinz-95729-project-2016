@@ -211,7 +211,11 @@
       <Name>Moviq.Domain.Auth</Name>
     </ProjectReference>
     <ProjectReference Include="..\Moviq.Domain.Cart\Moviq.Domain.Cart.csproj">
+<<<<<<< HEAD
+      <Project>{3aba1ee9-ab85-40dd-b1fd-d4408f5efbed}</Project>
+=======
       <Project>{fe7230c7-b9b9-4d82-85ec-237954415d43}</Project>
+>>>>>>> master
       <Name>Moviq.Domain.Cart</Name>
     </ProjectReference>
     <ProjectReference Include="..\Moviq.Domain.Products.Tests\Moviq.Domain.Products.Tests.csproj">

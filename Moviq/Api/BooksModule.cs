@@ -5,6 +5,8 @@ namespace Moviq.Api
     using Nancy;
     using Newtonsoft.Json;
     using Newtonsoft.Json.Serialization;
+    using Moviq.Domain.Auth;
+    using System;
 
     public class BooksModule : NancyModule
     {
@@ -17,7 +19,8 @@ namespace Moviq.Api
             //    return helper.ToJson(bookDomain.Repo.List(take, skip));
             //};
 
-            this.Get["/api/books/{uid}"] = args => {
+            this.Get["/api/books/{uid}"] = args => 
+            {               
                 return helper.ToJson(bookDomain.Repo.Get(args.uid));
             };
 
