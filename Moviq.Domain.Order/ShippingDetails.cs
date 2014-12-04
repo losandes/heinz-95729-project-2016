@@ -3,10 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Moviq.Interfaces.Models;
 
 namespace Moviq.Domain.Order
 {
-    public class ShippingDetails
+    public class ShippingDetails : IShipping
     {
         string address1;
         string address2;
