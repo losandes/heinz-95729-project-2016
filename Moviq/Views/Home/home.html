@@ -13,6 +13,7 @@
     <link rel="stylesheet" type="text/css" href="/css/component.css" />
 -->
     <link rel="stylesheet" type="text/css" href="/css/main.css" />
+    <link rel="stylesheet" type="text/css" href="/css/_checkout.css">
     <script src="/js/lib/modernizr.custom.js"></script>
 </head>
 <body>
@@ -32,7 +33,7 @@
                 <a data-bind="text: text, href: href"></a>               
             </span>
 -->
-            <a href="/#/checkout">
+            <a href="/#/cart">
                 <i class="fa fa-shopping-cart" data-bind="text: cartCount"></i>
             </a>
         </nav>
@@ -61,12 +62,19 @@
     @Partial['../templates/book-details.html']
     @Partial['../templates/login.html']
     @Partial['../templates/register.html']
+    @Partial['../templates/cart.html']
+    @Partial['../templates/checkout.html']
+    @Partial['../templates/confirmation.html']
     
     <!-- /templates -->
     
     <!-- js -->
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
     <script src="http://ajax.aspnetcdn.com/ajax/knockout/knockout-3.1.0.js"></script>
+    <script type="text/javascript" src="https://js.stripe.com/v2/"></script>
+    <script type="text/javascript">
+        Stripe.setPublishableKey('pk_test_nZYuzPbZXnshHWyorf61i3aP');
+    </script>
     <script src="/js/lib/sammy.min.js"></script>
     <script src="/js/lib/require.js"></script>
     <script src="/js/lib/require.shim.js"></script>

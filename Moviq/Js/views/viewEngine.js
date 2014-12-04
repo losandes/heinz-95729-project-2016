@@ -57,7 +57,7 @@ define('views/viewEngine', { init: function ($, ko) {
             if (typeof viewModel.after === 'function') {
                 viewModel.after();
             }
-        }, 500);
+        }, 200);
     };
     
     return {

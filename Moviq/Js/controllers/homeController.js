@@ -1,6 +1,6 @@
 /*global define, JSON*/
 
-define('controllers/homeController', { init: function (routes, viewEngine, Products, Product) {
+define('controllers/homeController', { init: function (routes, viewEngine, Products, Product, cart) {
     "use strict";
 
     var onSearch;
@@ -28,7 +28,10 @@ define('controllers/homeController', { init: function (routes, viewEngine, Produ
             if (results.products().length > 0) {
                 viewEngine.setView({
                     template: 't-product-grid',
-                    data: results
+                    data: {
+                        products: results,
+                        cart: cart
+                    }
                 });
             } else {
                 viewEngine.setView({

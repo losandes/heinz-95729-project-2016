@@ -1,5 +1,5 @@
 /*global define, JSON*/
-define('controllers/booksController', { init: function ($, routes, viewEngine, Books, Book) {
+define('controllers/booksController', { init: function ($, routes, viewEngine, Books, Book, cart) {
     "use strict";
 
     // GET /books/search/?q=searchterm
@@ -36,7 +36,10 @@ define('controllers/booksController', { init: function ($, routes, viewEngine, B
             
             viewEngine.setView({
                 template: 't-book-details',
-                data: { book: book }
+                data: {
+                    book: book,
+                    cart: cart
+                }
             });
 
         });
