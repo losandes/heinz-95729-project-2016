@@ -6,7 +6,8 @@ using System.Threading.Tasks;
 
 namespace Moviq.Interfaces.Models
 {
-    public interface IPayment
+    public interface ICard
     {
+
     }
 }

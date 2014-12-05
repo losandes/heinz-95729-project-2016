@@ -8,10 +8,10 @@ using Moviq.Interfaces.Models;
 
 namespace Moviq.Domain.Order
 {
-    public class Order 
+    public class Order : IOrder
     {
         ICart cart;
-        IPayment payment;
+        ICard card;
         IShipping shipDetails;       
     }
 }

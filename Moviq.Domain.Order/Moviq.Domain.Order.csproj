@@ -40,7 +40,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Order.cs" />
-    <Compile Include="Payment.cs" />
+    <Compile Include="Card.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ShippingDetails.cs" />
   </ItemGroup>

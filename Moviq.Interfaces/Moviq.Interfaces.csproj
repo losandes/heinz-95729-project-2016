@@ -48,7 +48,7 @@
     <Compile Include="Models\ILocale.cs" />
     <Compile Include="Models\IMovie.cs" />
     <Compile Include="Models\IOrder.cs" />
-    <Compile Include="Models\IPayment.cs" />
+    <Compile Include="Models\ICard.cs" />
     <Compile Include="Models\IProduct.cs" />
     <Compile Include="Models\IReview.cs" />
     <Compile Include="Models\IShipping.cs" />

@@ -9,19 +9,21 @@ namespace Moviq.Domain.Cart
 {
     public class Cart : ICart, IHelpCategorizeNoSqlData
     {
+        #region attributes
         public int count { get; set; }
         public decimal totalPrice { get; set; }
         public Guid guid { get; set; }
         public ICollection<IProduct> cartItems { get; set; }
         public string _type { get; set; }
         public IDictionary<string, int> prodQuantity { get; set; }
+        #endregion
 
         public Cart(Guid guid)
         {
             this._type = "cart";
             this.count = 0;
             this.guid = guid ;
-            this.totalPrice = 0;
+            this.totalPrice = 0;            
         }
 
         public int AddItemToCart(IProduct product)
