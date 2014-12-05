@@ -20,7 +20,7 @@ namespace Moviq.Api
     {
         public CartModule(IProductDomain bookDomain, ICartDomain cartDomain, IModuleHelpers helper, TinyIoCContainer container)
         {
-            
+            IProduct product;
             //ICart cart = container.Resolve<ICart>();
 
 
@@ -72,8 +72,7 @@ namespace Moviq.Api
 
                 ICart cart;
                 cart = cartDomain.Repo.Get(guid);
-
-                IProduct product;
+                                
                 //get the product details which needs to be added
                 product = bookDomain.Repo.Get(args.uid); 
                
