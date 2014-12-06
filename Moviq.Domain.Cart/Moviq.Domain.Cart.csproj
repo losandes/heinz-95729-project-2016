@@ -55,7 +55,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Cart.cs" />
+    <Compile Include="CartProducts.cs" />
+    <Compile Include="CartUID.cs" />
     <Compile Include="CartDomain.cs" />
     <Compile Include="CartFactory.cs" />
     <Compile Include="CartNoSqlRepository.cs" />

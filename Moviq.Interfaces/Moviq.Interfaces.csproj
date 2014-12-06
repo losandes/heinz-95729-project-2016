@@ -37,6 +37,7 @@
   <ItemGroup>
     <Compile Include="AmbientContext.cs" />
     <Compile Include="Factories\IFactory.cs" />
+    <Compile Include="Models\ICartItems.cs" />
     <Compile Include="Models\ClaimsInterfaces.cs" />
     <Compile Include="Models\CustomClaimsIdentity.cs" />
     <Compile Include="Models\CustomClaimsPrinciple.cs" />

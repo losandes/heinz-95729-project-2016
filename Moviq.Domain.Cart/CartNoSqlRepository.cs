@@ -42,11 +42,11 @@
         {
             if (db.KeyExists(String.Format(keyPattern, guid)))
             {
-                return db.GetJson<ICart>(String.Format(keyPattern, guid));
+                return db.GetJson<CartUID>(String.Format(keyPattern, guid));
             }
             else
             {
-                return new Cart(new Guid(guid));
+                return new CartUID(new Guid(guid));
             }           
         }
 
@@ -87,7 +87,7 @@
 
         public bool Delete(string guid)
         {
-            return false;
+            return db.Remove(String.Format(keyPattern, guid));
         }
 
         private bool KeyExists(string uid)
