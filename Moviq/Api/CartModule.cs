@@ -127,7 +127,7 @@ namespace Moviq.Api
 
                     return helper.ToJson(populateProducts(currCart, bookDomain, guid));
                 }
-
+                //
                 return helper.ToJson("user not logged in");
             };
 
