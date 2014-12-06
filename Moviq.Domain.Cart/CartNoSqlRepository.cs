@@ -42,7 +42,7 @@
         {
             if (db.KeyExists(String.Format(keyPattern, guid)))
             {
-                return db.GetJson<Cart>(String.Format(keyPattern, guid));
+                return db.GetJson<ICart>(String.Format(keyPattern, guid));
             }
             else
             {

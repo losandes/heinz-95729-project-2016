@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Moviq.Interfaces.Models;
+//using Moviq.Domain.Products;
 
 namespace Moviq.Domain.Cart
 {
@@ -23,7 +24,9 @@ namespace Moviq.Domain.Cart
             this._type = "cart";
             this.count = 0;
             this.guid = guid ;
-            this.totalPrice = 0;            
+            this.totalPrice = 0; 
+            cartItems = new List<IProduct>();
+            prodQuantity = new Dictionary<string,int>();
         }
 
         public int AddItemToCart(IProduct product)
