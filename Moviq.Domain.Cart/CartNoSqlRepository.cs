@@ -59,7 +59,7 @@
         {
             if (cart.guid != Guid.Empty)
             {
-                if (db.StoreJson(StoreMode.Replace, String.Format(keyPattern, cart.guid.ToString()), cart))
+                if (db.StoreJson(StoreMode.Set, String.Format(keyPattern, cart.guid.ToString()), cart))
                 {
                     return Get(cart.guid.ToString());
                 }
