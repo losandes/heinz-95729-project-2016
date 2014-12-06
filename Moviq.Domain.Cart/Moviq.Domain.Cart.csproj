@@ -55,13 +55,18 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Cart.cs" />
+    <Compile Include="CartProducts.cs" />
+    <Compile Include="CartUID.cs" />
     <Compile Include="CartDomain.cs" />
     <Compile Include="CartFactory.cs" />
     <Compile Include="CartNoSqlRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Moviq.Domain.Products\Moviq.Domain.Products.csproj">
+      <Project>{2de192c4-f87f-4b04-91b9-09ec1d125746}</Project>
+      <Name>Moviq.Domain.Products</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Moviq.Interfaces\Moviq.Interfaces.csproj">
       <Project>{b0708601-0cfa-411e-87b8-a9875aa00c9d}</Project>
       <Name>Moviq.Interfaces</Name>

@@ -10,13 +10,13 @@ namespace Moviq.Interfaces.Models
     public interface ICart
     {
         Guid guid { get; set;}
-        ICollection<IProduct> cartItems { get; set; }
+        //ICollection<IProduct> cartItems { get; set; }
         IDictionary<string, int> prodQuantity { get; set; }
 
        // void calPrice();
-        int AddItemToCart(IProduct product);
+        int AddItemToCart(string uid);
         //int calCount();
-        bool deleteItemFromCart(IProduct product);
+        bool deleteItemFromCart(string uid);
         void mergeCart(ICart oldCart);
         void updateQuantity(string uid, int quant);
     }

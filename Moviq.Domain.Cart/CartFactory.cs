@@ -13,7 +13,7 @@ namespace Moviq.Domain.Cart
     {
         public ICart GetInstance()
         {
-            return new Cart(Guid.Empty) as ICart;
+            return new CartUID(Guid.Empty) as ICart;
         }
     }
 }

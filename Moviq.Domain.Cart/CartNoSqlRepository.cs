@@ -42,11 +42,11 @@
         {
             if (db.KeyExists(String.Format(keyPattern, guid)))
             {
-                return db.GetJson<Cart>(String.Format(keyPattern, guid));
+                return db.GetJson<CartUID>(String.Format(keyPattern, guid));
             }
             else
             {
-                return new Cart(new Guid(guid));
+                return new CartUID(new Guid(guid));
             }           
         }
 
@@ -59,7 +59,7 @@
         {
             if (cart.guid != Guid.Empty)
             {
-                if (db.StoreJson(StoreMode.Replace, String.Format(keyPattern, cart.guid.ToString()), cart))
+                if (db.StoreJson(StoreMode.Set, String.Format(keyPattern, cart.guid.ToString()), cart))
                 {
                     return Get(cart.guid.ToString());
                 }
@@ -87,7 +87,7 @@
 
         public bool Delete(string guid)
         {
-            return false;
+            return db.Remove(String.Format(keyPattern, guid));
         }
 
         private bool KeyExists(string uid)

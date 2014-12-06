@@ -60,7 +60,7 @@
 
             container.Register<ICartDomain, CartDomain>();
 
-            container.Register<ICart, Cart>().AsSingleton();
+            container.Register<ICart, CartUID>().AsSingleton();
             container.Register<IFactory<ICart>, CartFactory>();
 
             container.Register<IRepository<ICart>>((cntr, namedParams) =>

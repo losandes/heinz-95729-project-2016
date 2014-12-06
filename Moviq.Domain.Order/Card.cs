@@ -7,7 +7,7 @@ using Moviq.Interfaces.Models;
 
 namespace Moviq.Domain.Order
 {
-    public class Payment : IPayment
+    public class Card : ICard
     {
         string ccNum;
         string name;
@@ -15,7 +15,7 @@ namespace Moviq.Domain.Order
         int expYear;
         int cvv;
 
-        public Payment(string cc, string nam, int mon, int yr, int cvvNum )
+        public Card(string cc, string nam, int mon, int yr, int cvvNum )
         {
             ccNum = cc;
             name = nam;

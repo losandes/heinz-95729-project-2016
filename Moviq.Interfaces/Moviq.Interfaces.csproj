@@ -37,6 +37,7 @@
   <ItemGroup>
     <Compile Include="AmbientContext.cs" />
     <Compile Include="Factories\IFactory.cs" />
+    <Compile Include="Models\ICartItems.cs" />
     <Compile Include="Models\ClaimsInterfaces.cs" />
     <Compile Include="Models\CustomClaimsIdentity.cs" />
     <Compile Include="Models\CustomClaimsPrinciple.cs" />
@@ -48,7 +49,7 @@
     <Compile Include="Models\ILocale.cs" />
     <Compile Include="Models\IMovie.cs" />
     <Compile Include="Models\IOrder.cs" />
-    <Compile Include="Models\IPayment.cs" />
+    <Compile Include="Models\ICard.cs" />
     <Compile Include="Models\IProduct.cs" />
     <Compile Include="Models\IReview.cs" />
     <Compile Include="Models\IShipping.cs" />
