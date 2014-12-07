@@ -54,7 +54,8 @@ define('models/cart', {
 
                 //If a user is logged in, load the user's cart and remove the guest cart from localstorage
                 if ($this.userId != "GUEST") {
-                    var jsonUserCart = getFromLocalStorage(userCartId);                    
+                    //var jsonUserCart = getFromLocalStorage(userCartId);    
+                    var jsonUserCart = getFromServer($this.userId);
                     localStorage.removeItem(guestCartId);
                 }
 
@@ -72,6 +73,14 @@ define('models/cart', {
                 return value;
             }
 
+            var getFromServer = function (userId) {
+                $.ajax({
+                    url: "/api/cart/load"
+                }).done(function (data) {
+                    console.log(data);
+                });
+            }
+
             var loadProductsFromJson = function (jsonCart) {
                 if (jsonCart !== undefined) {
                     for (var i = 0; i < jsonCart.products.length; i++) {
@@ -87,6 +96,17 @@ define('models/cart', {
                     $this.products.push(product);
                     $this.save();
                 }
+                
+                if ($this.userId != "GUEST") {
+                    $.ajax({
+                        url: "/api/cart/add/" + product.uid()
+                    }).done(function (data) {
+                        console.log(data);
+                    });
+                }
+
+
+
 
             };
 
@@ -112,7 +132,7 @@ define('models/cart', {
 
             $this.save = function () {
                 var jsonData = ko.toJSON($this);
-                localStorage.setItem("cart-"+$this.userId, jsonData);
+                localStorage.setItem("cart-" + $this.userId, jsonData);
             }
         };
 
