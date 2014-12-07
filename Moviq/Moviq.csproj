@@ -192,6 +192,7 @@
   <ItemGroup>
     <Compile Include="Api\BooksModule.cs" />
     <Compile Include="Api\CartModule.cs" />
+    <Compile Include="Api\OrderModule.cs" />
     <Compile Include="Api\ExampleSecureModule.cs" />
     <Compile Include="Api\SearchModule.cs" />
     <Compile Include="App_Start\NancyBootstrapper.cs" />

@@ -36,7 +36,6 @@
         ILocale locale;
         IRestClient restClient;
         string searchUrl;
-        string query = "{ \"query\": { \"query_string\": { \"query_string\": { \"query\": \"{0}\" } } } }";
 
         public ICart Get(string guid)
         {
@@ -119,11 +118,6 @@
             });
 
             return request;
-
-            //var request = new RestRequest(searchUrl, Method.GET);
-            //request.AddParameter("q", searchFor);
-
-            //return request;
         }
 
         public void Dispose()
