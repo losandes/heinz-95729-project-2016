@@ -11,5 +11,7 @@ namespace Moviq.Interfaces.Models
         string _type {get; set;}
         ICollection<string> orders { get; set; }
         Guid guid { get; set; }
+
+        void addOrder(string oID);
     }
 }

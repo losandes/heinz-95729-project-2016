@@ -59,6 +59,7 @@
     <Compile Include="Repositories\IRepository.cs" />
     <Compile Include="Services\ICartDomain.cs" />
     <Compile Include="Services\IOrderDomain.cs" />
+    <Compile Include="Services\IOrderHistoryDomain.cs" />
     <Compile Include="Services\IProductDomain.cs" />
     <Compile Include="Services\IUserValidator.cs" />
   </ItemGroup>

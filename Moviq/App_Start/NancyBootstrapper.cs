@@ -57,7 +57,13 @@
             container.Register<AnyLocale>().AsSingleton();
             RegisterILocale(container, "Locale\\en.json");
 
+            container.Register<IOrderHistory, OrderHistory>();
+            container.Register<IOrderHistoryDomain, OrderHistoryDomain>();
+            container.Register<IFactory<IOrderHistory>, OrderHistoryFactory>();
+
             container.Register<IOrderDomain, OrderDomain>();
+            
+
             container.Register<IOrder, Order>().AsSingleton();
             container.Register<IFactory<IOrder>, OrderFactory>();
             container.Register<IRepository<IOrder>>((cntr, namedParams) =>
