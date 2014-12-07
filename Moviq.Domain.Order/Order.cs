@@ -9,11 +9,11 @@ using RestSharp;
 
 namespace Moviq.Domain.Order
 {
-    public class Order : IOrder
+    public class Order : IOrder, IHelpCategorizeNoSqlData
     {
         ICard card;
         IShipping shipDetails;
-        string _type;
+        public string _type { get; set; }
         //public string guid { get; set; }
         public IDictionary<string, int> prodQuantity { get; set; }
         decimal amount;

@@ -8,7 +8,7 @@ using Moviq.Interfaces.Models;
 
 namespace Moviq.Domain.Order
 {
-    class OrderFactory : IFactory<IOrder>
+    public class OrderFactory : IFactory<IOrder>
     {
         public IOrder GetInstance()
         {

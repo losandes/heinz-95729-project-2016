@@ -9,7 +9,7 @@ using Moviq.Interfaces.Services;
 
 namespace Moviq.Domain.Order
 {
-    class OrderDomain
+    public class OrderDomain : IOrderDomain
     {
         public OrderDomain(IRepository<IOrder> repo)
         {

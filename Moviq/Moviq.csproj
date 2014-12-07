@@ -216,6 +216,10 @@
       <Project>{fe7230c7-b9b9-4d82-85ec-237954415d43}</Project>
       <Name>Moviq.Domain.Cart</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Moviq.Domain.Order\Moviq.Domain.Order.csproj">
+      <Project>{375bf8ef-e34c-49f4-9c6c-e91fa6c99d4f}</Project>
+      <Name>Moviq.Domain.Order</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Moviq.Domain.Products.Tests\Moviq.Domain.Products.Tests.csproj">
       <Project>{b760c36c-ecb0-4ba8-973e-76374c8403ff}</Project>
       <Name>Moviq.Domain.Products.Tests</Name>
