@@ -54,7 +54,6 @@ define('models/cart', {
 
                 //If a user is logged in, load the user's cart 
                 if ($this.userId != "GUEST") {
-
                     $.ajax({
                         url: "/api/cart/load"
                     }).done(function (loadResponse) {
@@ -154,9 +153,7 @@ define('models/cart', {
                             console.log("Add api call results: " + data);
                         });
                     }
-                }
-                
-              
+                }               
 
             };
 
@@ -193,7 +190,6 @@ define('models/cart', {
                     var jsonData = ko.toJSON($this);
                     localStorage.setItem("cart-" + $this.userId, jsonData);
                 }
-
             }
         };
 
