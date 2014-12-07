@@ -141,6 +141,7 @@
     <Content Include="Js\models\payment.js" />
     <Content Include="Js\models\product.js" />
     <Content Include="Js\models\products.js" />
+    <Content Include="Js\models\user.js" />
     <Content Include="Js\test\chai.js" />
     <Content Include="Js\test\controllers\homeController.tests.js" />
     <Content Include="Js\test\expect.js" />
