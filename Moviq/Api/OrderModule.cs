@@ -17,7 +17,7 @@ using Moviq.Domain.Order;
         {
             public OrderModule(IModuleHelpers helper, IOrderDomain orderDomain, IOrderHistoryDomain orderHistoryDomain)
             {
-                this.Get["/api/order/charge", true] = async (args, cancellationToken) =>
+                this.Get["/api/order/get", true] = async (args, cancellationToken) =>
                 {
                     //identify user and get the order
                     var amount = this.Request.Query.a;
@@ -54,13 +54,13 @@ using Moviq.Domain.Order;
                         orderHistory.addOrder(order.getOID());
 
                         orderHistory = orderHistoryDomain.Repo.Set(orderHistory);
-                                                
-                        return helper.ToJson(true);
+
+                        return helper.ToJson(order);
                     }
                     return helper.ToJson("user not logged in");
                 };
 
-                this.Get["/api/order/chargeAPI", true] = async (args, cancellationToken) =>
+                this.Get["/api/order/charge", true] = async (args, cancellationToken) =>
                 {
                     //identify user and get the order
                     var amount = this.Request.Query.a;
