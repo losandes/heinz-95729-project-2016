@@ -8,14 +8,21 @@ define('models/payment', {
             throw new Error('Argument Exception: ko is required to init the product module');
         }
 
-        function stripeResponseHandler(status, response) {
+        function stripeResponseHandler(status, response, cart) {
             //var form = $('#payment-form');
             if (response.error) {
                 // form.find('.payment-errors').text(response.error.message);
                 // form.find('button').prop('disabled', false);
             } else {
                 var token = response.id;
-                window.location.href = '/#/confirmation';
+                $.ajax({
+                    url: "/api/cart/clean"
+                }).done(function (data) {
+                    console.log("Clean API call results: " + data);
+                    cart.clean();
+                    window.location.href = '/#/confirmation';
+                });
+                
             }
         };
 
@@ -44,19 +51,13 @@ define('models/payment', {
                     cvc: self.cvc(),
                     exp_month: self.expMonth(),
                     exp_year: self.expYear()
-                }, stripeResponseHandler);
+                }, function (status, response) {
+                    stripeResponseHandler(status, response, self.cart);
+                });
             };
 
             self.editCart = function () {
                 window.location.href = "/#/cart";
-            };
-
-            self.setExpMonth = function (month) {
-                self.expMonth(month);
-            };
-
-            self.setExpYear = function (year) {
-                self.expYear(year);
             };
 
         };

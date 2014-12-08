@@ -33,12 +33,6 @@
   float: left;
 }
 
-.checkout-cart button {
-  float: right;
-  margin-top: 10px;
-  margin-right: 20px;
-}
-
 
 /* checkout form style */
 .payment-form {
