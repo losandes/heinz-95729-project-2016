@@ -5,7 +5,7 @@ define('models/user', {
         "use strict";
 
         if (!ko) {
-            throw new Error('Argument Exception: ko is required to init the product module');
+            throw new Error('Argument Exception: ko is required to init the user module');
         }
 
         var User = function () {
