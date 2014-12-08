@@ -24,9 +24,11 @@
 
                 </div>
                 <div class="col-md-3 col-md-offset-1">
+                    <h2>Hi, <span data-bind="text: user.name"></span></h2>
                     <h2>Total (<span data-bind="text: cart.products().length"></span> item<span data-bind="visible: cart.products().length > 1">s</span>)</h2>
                     <h1 data-bind="currency: cart.total"></h1>
-                    <a href="/#/checkout" class="btn btn-lg btn-success">Proceed to checkout</a>
+                    <a href="/#/checkout" data-bind="visible: !user.isGuest"class="btn btn-lg btn-success">Proceed to checkout</a>     
+                    <a href="/#/cartLogin" data-bind="visible: user.isGuest" class="btn btn-lg btn-success">Login to complete checkout</a>
                 </div>
             </div>
         </div>
