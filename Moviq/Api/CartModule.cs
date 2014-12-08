@@ -47,9 +47,6 @@ namespace Moviq.Api
                     ICart cart;
                     cart = cartDomain.Repo.Get(guid);
 
-                    //get the product details which needs to be added
-                    //product = bookDomain.Repo.Get(args.uid);                
-
                     int count = cart.AddItemToCart(args.uid);
                     cart = cartDomain.Repo.Set(cart);
                     return helper.ToJson(count);
@@ -120,10 +117,10 @@ namespace Moviq.Api
                     ICart oldCart = cartDomain.Repo.Get(guid);
 
                     //merge carts
-                    currCart.mergeCart(oldCart);
+                    oldCart.mergeCart(currCart);
 
                     //persisting cart in couchbase
-                    currCart = cartDomain.Repo.Set(currCart);
+                    currCart = cartDomain.Repo.Set(oldCart);
 
                     return helper.ToJson(populateProducts(currCart, bookDomain, guid));
                 }

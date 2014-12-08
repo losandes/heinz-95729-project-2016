@@ -7,17 +7,15 @@ using Moviq.Interfaces.Models;
 using Moviq.Interfaces.Repositories;
 using Moviq.Interfaces.Services;
 
-namespace Moviq.Domain.Cart
+namespace Moviq.Domain.Order
 {
-    public class CartDomain :  ICartDomain
+    public class OrderDomain : IOrderDomain
     {
-        public CartDomain(IRepository<ICart> repo)
+        public OrderDomain(IRepository<IOrder> repo)
         {
             this.Repo = repo;
         }
 
-        public IRepository<ICart> Repo { get; set; }
+        public IRepository<IOrder> Repo { get; set; }
     }
-
-    
 }

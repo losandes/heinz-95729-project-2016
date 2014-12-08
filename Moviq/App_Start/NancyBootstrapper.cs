@@ -19,8 +19,7 @@
     using Nancy.Authentication.Forms;
     using Moviq.Domain.Auth;
     using Moviq.Domain.Cart;
-    
-    
+    using Moviq.Domain.Order;    
 
     public class NancyBootstrapper : DefaultNancyBootstrapper
     {
@@ -58,11 +57,42 @@
             container.Register<AnyLocale>().AsSingleton();
             RegisterILocale(container, "Locale\\en.json");
 
-            container.Register<ICartDomain, CartDomain>();
+            container.Register<IOrderHistory, OrderHistory>();
+            container.Register<IOrderHistoryDomain, OrderHistoryDomain>();
+            container.Register<IFactory<IOrderHistory>, OrderHistoryFactory>();
 
+            container.Register<IOrderDomain, OrderDomain>();
+            
+
+            container.Register<IOrder, Order>().AsSingleton();
+            container.Register<IFactory<IOrder>, OrderFactory>();
+            container.Register<IRepository<IOrder>>((cntr, namedParams) =>
+            {
+                return new OrderNoSqlRepository(
+                    container.Resolve<IFactory<IOrder>>(),
+                    container.Resolve<ICouchbaseClient>(),
+                    container.Resolve<ILocale>(),
+                    // for some reason, resolving the RestClient throws a StackOverflow Exception
+                    // so we'll new one up explicitly
+                    new RestClient(), //container.Resolve<IRestClient>(),
+                    "http://localhost:9200/moviq/_search");
+            });
+
+            container.Register<IRepository<IOrderHistory>>((cntr, namedParams) =>
+            {
+                return new OrderHistoryNoSqlRepository(
+                    container.Resolve<IFactory<IOrderHistory>>(),
+                    container.Resolve<ICouchbaseClient>(),
+                    container.Resolve<ILocale>(),
+                    // for some reason, resolving the RestClient throws a StackOverflow Exception
+                    // so we'll new one up explicitly
+                    new RestClient(), //container.Resolve<IRestClient>(),
+                    "http://localhost:9200/moviq/_search");
+            });
+
+            container.Register<ICartDomain, CartDomain>();
             container.Register<ICart, CartUID>().AsSingleton();
             container.Register<IFactory<ICart>, CartFactory>();
-
             container.Register<IRepository<ICart>>((cntr, namedParams) =>
             {
                 return new CartNoSqlRepository(
