@@ -59,6 +59,25 @@ using Moviq.Domain.Order;
                     }
                     return helper.ToJson("user not logged in");
                 };
+
+                this.Get["/api/order/chargeAPI", true] = async (args, cancellationToken) =>
+                {
+                    //identify user and get the order
+                    var amount = this.Request.Query.a;
+                    var desc = this.Request.Query.d;
+                    var token = this.Request.Query.t;
+
+                    var currUser = this.Context.CurrentUser;
+                    if (currUser != null)
+                    {
+                        ICustomClaimsIdentity currentUser = AmbientContext.CurrentClaimsPrinciple.ClaimsIdentity;
+                        string guid = currentUser.GetAttribute(AmbientContext.UserPrincipalGuidAttributeKey).ToString();
+
+                        Charge charge = new Charge();
+                        return charge.BuildStripePostRequest(amount, desc, token);
+                    }
+                    return helper.ToJson("user not logged in");
+                };
             }
         }
     }

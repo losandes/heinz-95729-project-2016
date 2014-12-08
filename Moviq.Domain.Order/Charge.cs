@@ -8,9 +8,9 @@ using System.Configuration;
 
 namespace Moviq.Domain.Order
 {
-    class Charge
+    public class Charge
     {
-        private RestRequest BuildStripePostRequest(string amount, string desc, string token)
+        public RestRequest BuildStripePostRequest(string amount, string desc, string token)
         {
             string secretKey = ConfigurationManager.AppSettings["StripeApiKey"];
             //var secretKey = "sk_6eeea8ca-2151-4ba6-aecc-2139465876c8"; //your secret key
