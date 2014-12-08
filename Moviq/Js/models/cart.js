@@ -191,6 +191,12 @@ define('models/cart', {
                     localStorage.setItem("cart-" + $this.userId, jsonData);
                 }
             }
+
+            $this.clean = function () {
+                viewEngine.headerVw.cleanCart();
+                $this.products.removeAll();
+                $this.save();
+            }
         };
 
         return Cart;
