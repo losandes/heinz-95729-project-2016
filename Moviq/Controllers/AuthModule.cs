@@ -39,6 +39,10 @@
                     expiry = DateTime.Now.AddDays(7);
                 }
 
+                if (this.Request.Form.Action != null)
+                {
+                    return this.LoginAndRedirect(userGuid.Value, expiry, (string)this.Request.Form.Action);
+                }
                 return this.LoginAndRedirect(userGuid.Value, expiry);
             };        
         }

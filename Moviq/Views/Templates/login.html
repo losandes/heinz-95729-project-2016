@@ -8,6 +8,7 @@
             <label for="user-login-password">Password</label>
             <input type="password" name="Password" class="form-control" id="user-login-password" />
         </div>
+        <input type="hidden" name="Action" data-bind="value: data.redirect" />
         <button type="submit">Login</button>
     </form>
 </script>

@@ -126,6 +126,7 @@
     <Content Include="Js\controllers\booksController.js" />
     <Content Include="Js\controllers\cartController.js" />
     <Content Include="Js\controllers\homeController.js" />
+    <Content Include="Js\controllers\paymentController.js" />
     <Content Include="Js\controllers\profileController.js" />
     <Content Include="Js\lib\grid.js" />
     <Content Include="Js\lib\ko.binders.js" />
@@ -137,8 +138,10 @@
     <Content Include="Js\models\book.js" />
     <Content Include="Js\models\books.js" />
     <Content Include="Js\models\cart.js" />
+    <Content Include="Js\models\payment.js" />
     <Content Include="Js\models\product.js" />
     <Content Include="Js\models\products.js" />
+    <Content Include="Js\models\user.js" />
     <Content Include="Js\test\chai.js" />
     <Content Include="Js\test\controllers\homeController.tests.js" />
     <Content Include="Js\test\expect.js" />
@@ -191,9 +194,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Api\BooksModule.cs" />
-    <Compile Include="Api\CartModule.cs" />
     <Compile Include="Api\ExampleSecureModule.cs" />
     <Compile Include="Api\SearchModule.cs" />
+    <Compile Include="Api\CartModule.cs" />
     <Compile Include="App_Start\NancyBootstrapper.cs" />
     <Compile Include="App_Start\OwinBootstrapper.cs" />
     <Compile Include="Controllers\AuthModule.cs" />
@@ -211,11 +214,7 @@
       <Name>Moviq.Domain.Auth</Name>
     </ProjectReference>
     <ProjectReference Include="..\Moviq.Domain.Cart\Moviq.Domain.Cart.csproj">
-<<<<<<< HEAD
       <Project>{3aba1ee9-ab85-40dd-b1fd-d4408f5efbed}</Project>
-=======
-      <Project>{fe7230c7-b9b9-4d82-85ec-237954415d43}</Project>
->>>>>>> master
       <Name>Moviq.Domain.Cart</Name>
     </ProjectReference>
     <ProjectReference Include="..\Moviq.Domain.Products.Tests\Moviq.Domain.Products.Tests.csproj">
@@ -239,6 +238,9 @@
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
   </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject />
+  </PropertyGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" Condition="false" />
@@ -256,6 +258,9 @@
           <CustomServerUrl>
           </CustomServerUrl>
           <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+          <servers defaultServer="">
+            <server name="SelfHostServer" exePath="" cmdArgs="" url="http://localhost:2373/" workingDir="" />
+          </servers>
         </WebProjectProperties>
       </FlavorProperties>
     </VisualStudio>

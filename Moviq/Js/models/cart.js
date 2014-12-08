@@ -38,7 +38,7 @@ define('models/cart', {
                         var userGuid = JSON.parse(data).Guid;
                     } catch (e) {
                         var userGuid = "GUEST";
-                        console.log("User not logged in - caught redirect page.");
+                        console.log("User not logged in - userId set to GUEST");
                     }
                     $this.userId = userGuid;
                     done("cart-" + $this.userId);
@@ -52,17 +52,64 @@ define('models/cart', {
                 //Always want to load the guest cart data if there is any saved in localstorage
                 var jsonGuestCart = getFromLocalStorage(guestCartId);                
 
-                //If a user is logged in, load the user's cart and remove the guest cart from localstorage
+                //If a user is logged in, load the user's cart 
                 if ($this.userId != "GUEST") {
-                    var jsonUserCart = getFromLocalStorage(userCartId);                    
-                    localStorage.removeItem(guestCartId);
+                    $.ajax({
+                        url: "/api/cart/load"
+                    }).done(function (loadResponse) {
+                        console.log(loadResponse);
+                        var response = JSON.parse(loadResponse);
+                        var jsonUserCart = response.cartItems;
+                        console.log("User json cart: " + jsonUserCart);
+
+                        mergeCart(jsonGuestCart, jsonUserCart);
+                    });
+
+
+                    //var jsonUserCart = getFromServer($this.userId);
+                    
+                    //localStorage.removeItem(guestCartId);
+                } else {
+                    loadProductsFromJson(jsonGuestCart);
                 }
 
-                loadProductsFromJson(jsonGuestCart);
-                loadProductsFromJson(jsonUserCart);
+                console.log("Guest json cart: " + jsonGuestCart);
+             
+
             }
 
-            
+
+
+            var mergeCart = function (guestCart, userCart) {
+
+                //First add all of the products currently saved in the user's cart in the database to the js cart object's product array
+                if (userCart !== undefined) {
+
+                    for (var i = 0; i < userCart.length; i++) {
+                        var product = new Product(userCart[i]);
+                        if (!$this.isProductInCart(product)) {
+                            //Increment the cart count
+                            viewEngine.headerVw.addToCart();
+                            //Add product to products array
+                            $this.products.push(product);
+                        }
+                    }
+                }
+
+
+                //Next loop through the guest cart and add all of those items to the user's cart in database
+                if (guestCart !== undefined) {
+                    for (var i = 0; i < guestCart.products.length; i++) {
+                        //loads product into cart.js products array, increments the cart counter and saves the product to the user's cart in the database
+                        $this.addToCart(new Product(guestCart.products[i]));
+                    }
+                }
+
+                
+
+                //Finally delete the guest cart from local storage
+                localStorage.removeItem("cart-GUEST");
+            }
 
             var getFromLocalStorage = function (key) {
                 var value;
@@ -70,6 +117,17 @@ define('models/cart', {
                     value = JSON.parse(localStorage.getItem(key));
                 }
                 return value;
+            }
+
+            var getFromServer = function (userId) {
+                $.ajax({
+                    url: "/api/cart/load"
+                }).done(function (loadResponse) {
+                    console.log(loadResponse);
+                    var response = JSON.parse(loadResponse);
+                    console.log(response.cartItems);
+                    return response.cartItems;
+                });
             }
 
             var loadProductsFromJson = function (jsonCart) {
@@ -80,13 +138,22 @@ define('models/cart', {
                 }
             }
 
+
             $this.addToCart = function (product) {
                 console.log($this.isProductInCart(product));
                 if (!$this.isProductInCart(product)) {
                     viewEngine.headerVw.addToCart();
                     $this.products.push(product);
                     $this.save();
-                }
+
+                    if ($this.userId != "GUEST") {
+                        $.ajax({
+                            url: "/api/cart/add/" + product.uid()
+                        }).done(function (data) {
+                            console.log("Add api call results: " + data);
+                        });
+                    }
+                }               
 
             };
 
@@ -97,6 +164,14 @@ define('models/cart', {
                 viewEngine.headerVw.subtractFromCart();
                 $this.products.remove(product);
                 $this.save();
+
+                if ($this.userId != "GUEST") {
+                    $.ajax({
+                        url: "/api/cart/del/" + product.uid()
+                    }).done(function (data) {
+                        console.log("Add api call results: " + data);
+                    });
+                }
             };
 
             $this.isProductInCart = function (product) {
@@ -111,8 +186,10 @@ define('models/cart', {
             }
 
             $this.save = function () {
-                var jsonData = ko.toJSON($this);
-                localStorage.setItem("cart-"+$this.userId, jsonData);
+                if ($this.userId == "GUEST") {
+                    var jsonData = ko.toJSON($this);
+                    localStorage.setItem("cart-" + $this.userId, jsonData);
+                }
             }
         };
 

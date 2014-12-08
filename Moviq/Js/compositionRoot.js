@@ -8,7 +8,7 @@ require(['routeEngine', 'views/viewEngine', 'config', 'utils',
          'controllers/authController', 'controllers/profileController',
          'controllers/cartController', 'controllers/paymentController',
          'models/product', 'models/products', 'models/book', 'models/books',
-         'models/cart', 'models/payment',
+         'models/cart', 'models/payment', 'models/user',
          'views/headerVw',
          'jquery', 'ko', 'lib/ko.binders', 'sammy'],
         function (routeEngineCtor, viewEngineCtor, configCtor, utilsCtor,
@@ -16,7 +16,7 @@ require(['routeEngine', 'views/viewEngine', 'config', 'utils',
                    authControllerCtor, profileControllerCtor,
                    cartControllerCtor, paymentControllerCtor,
                    ProductCtor, ProductsCtor, BookCtor, BooksCtor,
-                   CartCtor, PaymentCtor,
+                   CartCtor, PaymentCtor, UserCtor,
                    headerVwCtor,
                    $, ko, koBinders, sammy) {
         "use strict";
@@ -31,13 +31,15 @@ require(['routeEngine', 'views/viewEngine', 'config', 'utils',
             Books,
             Cart,
             Payment,
+            User,
             homeController,
             booksController,
             authController,
             cartController,
             paymentController,
             profileController,
-            cart;
+            cart,
+            user;
             
         // initialize ko binding extensions
         koBinders.init($, ko);
@@ -62,6 +64,7 @@ require(['routeEngine', 'views/viewEngine', 'config', 'utils',
             Books = BooksCtor.init(ko, Book);
             Cart = CartCtor.init(ko, viewEngine, Product);
             Payment = PaymentCtor.init(ko, viewEngine);
+            User = UserCtor.init(ko, viewEngine);
 
         }());
         //endregion MODELS
@@ -70,11 +73,13 @@ require(['routeEngine', 'views/viewEngine', 'config', 'utils',
         (function () {
             cart = new Cart();
             cart.setupCart();
+            user = new User();
+            user.setUser();
             booksController = booksControllerCtor.init($, routeEngine, viewEngine, Books, Book, cart);
             homeController = homeControllerCtor.init(routeEngine, viewEngine, Products, Product, cart);
             authController = authControllerCtor.init($, routeEngine, viewEngine);
             profileController = profileControllerCtor.init($, routeEngine, viewEngine);
-            cartController = cartControllerCtor.init($, routeEngine, viewEngine, Cart, cart);
+            cartController = cartControllerCtor.init($, routeEngine, viewEngine, Cart, cart, user);
             paymentController = paymentControllerCtor.init($, routeEngine, viewEngine, Payment, cart);
         }());
         //endregion CONTROLLERS
