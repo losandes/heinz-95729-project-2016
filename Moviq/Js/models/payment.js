@@ -9,56 +9,44 @@ define('models/payment', {
         }
 
         function stripeResponseHandler(status, response, cart) {
-            
             if (response.error) {
-                var form = $('#payment-form');
-                form.find('.payment-errors').text(response.error.message);
-                // form.find('button').prop('disabled', false);
+                displayError(response.error.message);
             } else {
+                //Token successfully retrieved from Stripe
                 var token = response.id;
-                console.log("Stripe token: " + token);
-                
-                $.ajax({
-                    url: "/api/order/charge",
-                    method: 'GET',
-                    data: {
-                        t: token,
-                        a: cart.total(),
-                        d: ""
-                    }
-                }).done(function (data) {
-                    //Data will contain the response object (see example response object at bottom of class
-                    console.log("Charge results: " + data);
-                    var chargeResults = JSON.parse(data);
+                processPaymentCharge(token, cart);
 
-                    var chargeSuccess = chargeResults.paid;
-                    console.log("Charge success: " + chargeSuccess);
-                    if (chargeSuccess) {
-                        console.log("Charge successful");
-                        var cardId = chargeResults.card.id;
-                        createOrder(cart, cardId);
-                    } else {
-
-                    }
-                    /*
-                    var order = chargeResults.order;
-
-                    if (chargeResults.success) {
-                        orderSuccessCleanup(order);
-                    } else {
-                        //Need to handle case where charge was not successful                    
-                    }
-                    */
-                });
-                
-             
-
-                
             }
-        };
+        }
+        
+
+        function processPaymentCharge(token, cart) {
+            $.ajax({
+                url: "/api/order/charge",
+                method: 'GET',
+                data: {
+                    t: token,
+                    a: cart.total(),
+                    d: ""
+                }
+            }).done(function (data) {
+                //Data will contain the response object (see example response object at bottom of class
+                var chargeResults = JSON.parse(data);
+
+                var chargeSuccess = chargeResults.paid;
+                if (chargeSuccess) {
+                    //console.log("Charge successful");
+                    var cardId = chargeResults.card.id;
+                    createOrder(cart, cardId);
+                } else {
+                    console.log(response);
+                    displayError("Charge was unsuccessful. Session may have ended.");
+                }
+            });
+        }
 
         function createOrder(cart, cardId) {
-            console.log("Create order function");
+            //console.log("Create order function");
             $.ajax({
                 url: "/api/order/add",
                 data: {
@@ -67,19 +55,27 @@ define('models/payment', {
                 }
             }).done(function (data) {
                 var orderResponse = JSON.parse(data);
-                console.log("Create order response: " + orderResponse);
+                //console.log("Create order response: " + orderResponse);
                 orderSuccessCleanup(cart, orderResponse);
             });
         }
-        var orderSuccessCleanup = function (cart, order) {
+
+        function displayError(message) {
+            var form = $('#payment-form');
+            var alertModalHtml = "<div class=\"alert alert-danger alert-dismissible fade in\" role=\"alert\">";
+            alertModalHtml += "<button type=\"button\" class=\"close\" data-dismiss=\"alert\"><span aria-hidden=\"true\">×</span><span class=\"sr-only\">Close</span></button>";
+            alertModalHtml += message + "</div>";
+            $('#payment-errors').html(alertModalHtml);
+        }
+
+        function orderSuccessCleanup(cart, order) {
             //Stripe charge complete, clean the cart and redirect to the confirmation page
             $.ajax({
                 url: "/api/cart/clean"
             }).done(function (data) {
-                console.log("Clean API call results: " + data);
+                //console.log("Clean API call results: " + data);
                 cart.clean();
 
-                //window.location.href = '/#/confirmation';
                 viewEngine.setView({
                     template: 't-confirmation',
                     data: {
@@ -109,6 +105,7 @@ define('models/payment', {
             self.billingCountry = ko.observable();
 
             self.submitPay = function () {
+                $('#payment-form').html("");
                 Stripe.card.createToken({
                     number: self.cardNum(),
                     cvc: self.cvc(),

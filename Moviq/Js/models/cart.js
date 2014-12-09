@@ -37,7 +37,7 @@ define('models/cart', {
                         var userGuid = JSON.parse(data).Guid;
                     } catch (e) {
                         var userGuid = "GUEST";
-                        console.log("User not logged in - userId set to GUEST");
+                        //console.log("User not logged in - userId set to GUEST");
                     }
                     $this.userId = userGuid;
                     doneFunction();
@@ -56,10 +56,10 @@ define('models/cart', {
                     $.ajax({
                         url: "/api/cart/load"
                     }).done(function (loadResponse) {
-                        console.log(loadResponse);
+                        //console.log(loadResponse);
                         var response = JSON.parse(loadResponse);
                         var jsonUserCart = response.cartItems;
-                        console.log("User json cart: " + jsonUserCart);
+                        //console.log("User json cart: " + jsonUserCart);
 
                         mergeCart(jsonGuestCart, jsonUserCart);
                     });
@@ -67,7 +67,7 @@ define('models/cart', {
                     loadProductsFromJson(jsonGuestCart);
                 }
 
-                console.log("Guest json cart: " + jsonGuestCart);
+                //console.log("Guest json cart: " + jsonGuestCart);
              
 
             }

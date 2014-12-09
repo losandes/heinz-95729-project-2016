@@ -42,7 +42,6 @@ define('models/user', {
                     $this.isGuest = isGuest;
                 });
                 
-                console.log("USER MODEL");
             }
             
         };
