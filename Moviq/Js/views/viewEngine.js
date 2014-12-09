@@ -31,6 +31,10 @@ define('views/viewEngine', { init: function ($, ko) {
                 self.cartCount('');
             }
         };
+
+        self.cleanCart = function () {
+            self.cartCount('');
+        };
         
         self.links.push({ text: 'BOOKS', href: 'books' });
         self.links.push({ text: 'MUSIC', href: 'music' });
