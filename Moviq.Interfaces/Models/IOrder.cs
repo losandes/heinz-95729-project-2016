@@ -10,9 +10,10 @@ namespace Moviq.Interfaces.Models
     {
         DateTime stamp { get; set; }
 
-        string getOID();
+        string guid { get; set; }
         //ICart cart { get; set; }
-        //ICard card { get; set; }
-        //IShipping shipDetails { get; set; }
+        IDictionary<string, int> prodQuantity { get; set; }
+        string card { get; set; }
+        double orderTotal { get; set; }
     }
 }

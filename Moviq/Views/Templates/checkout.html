@@ -23,9 +23,10 @@
             </div>
         </fieldset>
 
-        <form class="payment-form" data-bind="with: model">
+        <form class="payment-form" data-bind="with: model, visible: cart.products().length > 0" >
             <fieldset class="card-info col-md-5">
                 <legend class="text-center">Card Infomation</legend>
+                <div id="payment-errors"></div>
                 <div class="form-group">
                     <label for="card-number">Card Number: </label>
                     <input data-bind="value: cardNum" type="text" class="form-control" id="card-number" placeholder="Enter Card Number" />
@@ -103,6 +104,12 @@
 
             <button class="btn btn-lg btn-success button-center" data-bind="click: submitPay">Submit Payment</button>
         </form>
+
+        <div data-bind="visible: cart.products().length == 0">
+            <h1 class="text-center">Shopping cart is empty</h1>
+            <h3 class="text-center">Find exactly what you're looking for by using the search box above</h3>
+        </div>
+
     </div>
 
 </script>

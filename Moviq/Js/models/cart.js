@@ -5,7 +5,7 @@ define('models/cart', {
         "use strict";
 
         if (!ko) {
-            throw new Error('Argument Exception: ko is required to init the product module');
+            throw new Error('Argument Exception: ko is required to init the cart module');
         }
 
         var Cart = function () {
@@ -27,8 +27,7 @@ define('models/cart', {
                 $this.setUser(afterSetUser);
             }
 
-            $this.setUser = function (done) {
-                
+            $this.setUser = function (doneFunction) {                
                 $.ajax({
                     url: '/api/examples/context',
                     method: 'GET'
@@ -38,10 +37,10 @@ define('models/cart', {
                         var userGuid = JSON.parse(data).Guid;
                     } catch (e) {
                         var userGuid = "GUEST";
-                        console.log("User not logged in - userId set to GUEST");
+                        //console.log("User not logged in - userId set to GUEST");
                     }
                     $this.userId = userGuid;
-                    done("cart-" + $this.userId);
+                    doneFunction();
                 });                
             }
 
@@ -57,23 +56,18 @@ define('models/cart', {
                     $.ajax({
                         url: "/api/cart/load"
                     }).done(function (loadResponse) {
-                        console.log(loadResponse);
+                        //console.log(loadResponse);
                         var response = JSON.parse(loadResponse);
                         var jsonUserCart = response.cartItems;
-                        console.log("User json cart: " + jsonUserCart);
+                        //console.log("User json cart: " + jsonUserCart);
 
                         mergeCart(jsonGuestCart, jsonUserCart);
                     });
-
-
-                    //var jsonUserCart = getFromServer($this.userId);
-                    
-                    //localStorage.removeItem(guestCartId);
                 } else {
                     loadProductsFromJson(jsonGuestCart);
                 }
 
-                console.log("Guest json cart: " + jsonGuestCart);
+                //console.log("Guest json cart: " + jsonGuestCart);
              
 
             }

@@ -15,7 +15,8 @@ using Moviq.Domain.Order;
     {
         public class OrderModule : NancyModule
         {
-            public OrderModule(IModuleHelpers helper, IOrderDomain orderDomain, IOrderHistoryDomain orderHistoryDomain)
+            public OrderModule(IModuleHelpers helper, IOrderDomain orderDomain, IOrderHistoryDomain orderHistoryDomain,
+                ICartDomain cartDomain)
             {
                 this.Get["/api/order/get", true] = async (args, cancellationToken) =>
                 {
@@ -47,11 +48,17 @@ using Moviq.Domain.Order;
 
                         orderHistory = orderHistoryDomain.Repo.Get(guid);
 
+                        if (orderHistory == null)
+                        {
+                            orderHistory = new OrderHistory(new Guid(guid));
+                        }
                         var tempOrder = this.Context.Parameters.Order;
-                        order = new Order(tempOrder.Cart, tempOrder.Card, tempOrder.Ship);
+                        ICart cart = cartDomain.Repo.Get(this.Request.Query.cartId);
+
+                        order = new Order(cart, this.Request.Query.cardId);
                         order = orderDomain.Repo.Set(order);
 
-                        orderHistory.addOrder(order.getOID());
+                        orderHistory.addOrder(order.guid);
 
                         orderHistory = orderHistoryDomain.Repo.Set(orderHistory);
 
