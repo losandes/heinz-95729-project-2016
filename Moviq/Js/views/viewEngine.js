@@ -10,7 +10,7 @@ define('views/viewEngine', { init: function ($, ko) {
     
     headerVw = function () {
         var self = {};
-        
+        debugger;
         self.home = { text: 'Moviq', path: '/' };
         self.links = [];
         self.cartCount = ko.observable();
@@ -31,6 +31,10 @@ define('views/viewEngine', { init: function ($, ko) {
                 self.cartCount('');
             }
         };
+
+        self.cleanCart = function () {
+            self.cartCount('');
+        };
         
         self.links.push({ text: 'BOOKS', href: 'books' });
         self.links.push({ text: 'MUSIC', href: 'music' });
@@ -40,6 +44,7 @@ define('views/viewEngine', { init: function ($, ko) {
     };
     
     setView = function (viewModel) {
+        debugger;
         if (!viewModel) {
             throw new Error('viewModel is undefined. The mainVw cannot be updated.');
         }
@@ -56,7 +61,7 @@ define('views/viewEngine', { init: function ($, ko) {
             if (typeof viewModel.after === 'function') {
                 viewModel.after();
             }
-        }, 500);
+        }, 200);
     };
     
     return {

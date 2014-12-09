@@ -1,0 +1,115 @@
+﻿<script id="t-checkout" type="text/html">
+    <div class="checkout" data-bind="with: data">
+        <fieldset class="checkout-cart" data-bind="visible: cart.products().length > 0">
+            <legend class="text-center">Complete Order</legend>
+            <div class="row">
+                <div class="col-md-8">
+                    <div class="row" data-bind="foreach: { data: cart.products(), as: 'product' }">
+                        <div class="thumbnail">
+                            <img class="product-image" src="" alt="" data-bind="src: product.thumbnailLink, attr: { alt: product.thumbnailAlt }">
+                            <div class="product-details">
+                                <h2 class="title" data-bind="text: product.title"></h2>
+                                <h3 class="price" data-bind="currency: product.price"></h3>
+                            </div>
+                        </div>
+                        <div class="clearfix"></div>
+                    </div>
+                </div>
+                <div class="col-md-3 col-md-offset-1">
+                    <h2>Total (<span data-bind="text: cart.products().length"></span> item<span data-bind="visible: cart.products().length > 1">s</span>)</h2>
+                    <h1 data-bind="currency: cart.total"></h1>
+                    <a href="/#/cart" class="btn btn-lg btn-success">Edit Cart</a>
+                </div>
+            </div>
+        </fieldset>
+
+        <form class="payment-form" data-bind="with: model, visible: cart.products().length > 0" >
+            <fieldset class="card-info col-md-5">
+                <legend class="text-center">Card Infomation</legend>
+                <div id="payment-errors"></div>
+                <div class="form-group">
+                    <label for="card-number">Card Number: </label>
+                    <input data-bind="value: cardNum" type="text" class="form-control" id="card-number" placeholder="Enter Card Number" />
+                </div>
+
+                <div class="form-group">
+                    <label for="card-cvc">CVC: </label>
+                    <input data-bind="value: cvc" type="text" class="form-control" id="card-cvc" placeholder="Enter Card CVC" />
+                </div>
+
+                <div class="form-group">
+                    <label for="card-expMonth">Expiration (MM/YYYY): </label>
+                    <div class="clearfix"></div>
+                    <div class="dropdown dropdown-mm">
+                        <button class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+                            <span data-bind="text: expMonth"></span>
+                            <span class="caret"></span>
+                        </button>
+                        <ul class="dropdown-menu" data-bind="foreach: { data: months(), as: 'month' }">
+                            <li class="dropdown">
+                                <a href="#" data-bind="text: month, value: month, click: function() { $parent.expMonth(month); }"></a>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <span> / </span>
+
+                    <div class="dropdown dropdown-yyyy">
+                        <button class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+                            <span data-bind="text: expYear"></span>
+                            <span class="caret"></span>
+                        </button>
+                        <ul class="dropdown-menu" data-bind="foreach: { data: years(), as: 'year' }">
+                            <li class="dropdown">
+                                <a href="#" data-bind="text: year, value: year, click: function() { $parent.expYear(year); }"></a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </fieldset>
+            
+            <fieldset class="billing-addr col-md-6 col-md-offset-1">
+                <legend class="text-center">Billing Address</legend>
+
+                <div class="form-group">
+                    <label for="billing-name">Full Name: </label>
+                    <input data-bind="value: billingName" type="text" class="form-control" id="billing-name" placeholder="" />
+                </div>
+                <div class="form-group">
+                    <label for="billing-addr1">Address Line1: </label>
+                    <input data-bind="value: billingAddr1" type="text" class="form-control" id="billing-addr1" placeholder="" />
+                </div>
+                <div class="form-group">
+                    <label for="billing-addr2">Address Line2: </label>
+                    <input data-bind="value: billingAddr2" type="text" class="form-control" id="billing-addr2" placeholder="" />
+                </div>
+                <div class="form-group">
+                    <label for="billing-city">City: </label>
+                    <input data-bind="value: billingCity" type="text" class="form-control" id="billing-city" placeholder="" />
+                </div>
+                <div class="form-group">
+                    <label for="billing-state">State: </label>
+                    <input data-bind="value: billingState" type="text" class="form-control" id="billing-state" placeholder="" />
+                </div>
+                <div class="form-group">
+                    <label for="billing-zip">ZIP: </label>
+                    <input data-bind="value: billingZip" type="text" class="form-control" id="billing-zip" placeholder="" />
+                </div>
+                <div class="form-group">
+                    <label for="billing-country">Country: </label>
+                    <input data-bind="value: billingCountry" type="text" class="form-control" id="billing-country" placeholder="" />
+                </div>
+
+            </fieldset>
+
+            <button class="btn btn-lg btn-success button-center" data-bind="click: submitPay">Submit Payment</button>
+        </form>
+
+        <div data-bind="visible: cart.products().length == 0">
+            <h1 class="text-center">Shopping cart is empty</h1>
+            <h3 class="text-center">Find exactly what you're looking for by using the search box above</h3>
+        </div>
+
+    </div>
+
+</script>

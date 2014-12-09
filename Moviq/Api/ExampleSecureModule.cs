@@ -13,6 +13,7 @@
         public ExampleSecureModule(IUserRepository userRepo) 
         {
             this.RequiresAuthentication();
+            //comment
 
             this.Get["/api/examples/ambientContext"] = args =>
             {

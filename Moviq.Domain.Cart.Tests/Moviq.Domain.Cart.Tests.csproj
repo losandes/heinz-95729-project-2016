@@ -1,0 +1,120 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{BC5BE040-6B7E-4C78-B4AA-17BD11EE6A63}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Moviq.Domain.Cart.Tests</RootNamespace>
+    <AssemblyName>Moviq.Domain.Cart.Tests</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Couchbase">
+      <HintPath>..\packages\CouchbaseNetClient.1.3.10\lib\net40\Couchbase.dll</HintPath>
+    </Reference>
+    <Reference Include="Enyim.Caching">
+      <HintPath>..\packages\CouchbaseNetClient.1.3.10\lib\net40\Enyim.Caching.dll</HintPath>
+    </Reference>
+    <Reference Include="FluentAssertions">
+      <HintPath>..\Moviq.Domain.Products.Tests\bin\Debug\FluentAssertions.dll</HintPath>
+    </Reference>
+    <Reference Include="FluentAssertions.Core">
+      <HintPath>..\Moviq.Domain.Products.Tests\bin\Debug\FluentAssertions.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Grain">
+      <HintPath>..\Moviq.Interfaces\ThirdParty\Grain.NET\Grain.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.VisualStudio.QualityTools.UnitTestFramework, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>C:\Program Files (x86)\Microsoft Visual Studio 12.0\Common7\IDE\PublicAssemblies\Microsoft.VisualStudio.QualityTools.UnitTestFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="Moq">
+      <HintPath>..\Moviq.Domain.Products.Tests\bin\Debug\Moq.dll</HintPath>
+    </Reference>
+    <Reference Include="Moviq.Locale">
+      <HintPath>..\Moviq.Domain.Products.Tests\bin\Debug\Moviq.Locale.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>..\Moviq.Domain.Products.Tests\bin\Debug\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="Ploeh.AutoFixture">
+      <HintPath>..\Moviq.Domain.Products.Tests\bin\Debug\Ploeh.AutoFixture.dll</HintPath>
+    </Reference>
+    <Reference Include="Ploeh.AutoFixture.AutoMoq">
+      <HintPath>..\Moviq.Domain.Products.Tests\bin\Debug\Ploeh.AutoFixture.AutoMoq.dll</HintPath>
+    </Reference>
+    <Reference Include="RestSharp">
+      <HintPath>..\Moviq.Domain.Products.Tests\bin\Debug\RestSharp.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="CartNoSqlRepositoryFixture.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Moviq.Domain.Auth.Tests\Moviq.Domain.Auth.Tests.csproj">
+      <Project>{f664a7e0-3d2c-49a1-9a10-aee3f0e3f49c}</Project>
+      <Name>Moviq.Domain.Auth.Tests</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Moviq.Domain.Auth\Moviq.Domain.Auth.csproj">
+      <Project>{ff6bfde1-54e3-4999-8e5d-04081ad7cbf3}</Project>
+      <Name>Moviq.Domain.Auth</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Moviq.Domain.Cart\Moviq.Domain.Cart.csproj">
+      <Project>{3aba1ee9-ab85-40dd-b1fd-d4408f5efbed}</Project>
+      <Name>Moviq.Domain.Cart</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Moviq.Domain.Products.Tests\Moviq.Domain.Products.Tests.csproj">
+      <Project>{b760c36c-ecb0-4ba8-973e-76374c8403ff}</Project>
+      <Name>Moviq.Domain.Products.Tests</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Moviq.Domain.Products\Moviq.Domain.Products.csproj">
+      <Project>{2de192c4-f87f-4b04-91b9-09ec1d125746}</Project>
+      <Name>Moviq.Domain.Products</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Moviq.Interfaces\Moviq.Interfaces.csproj">
+      <Project>{b0708601-0cfa-411e-87b8-a9875aa00c9d}</Project>
+      <Name>Moviq.Interfaces</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Moviq\Moviq.csproj">
+      <Project>{ad421f80-aa2d-47ba-ae13-82172052ba8d}</Project>
+      <Name>Moviq</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
