@@ -37,7 +37,14 @@ namespace Moviq.Domain.Order
 
         public IOrderHistory Get(string guid)
         {
-            return db.GetJson<OrderHistory>(String.Format(keyPattern, guid));
+            if (db.KeyExists(String.Format(keyPattern, guid)))
+            {
+                return db.GetJson<OrderHistory>(String.Format(keyPattern, guid));                
+            }
+            else
+            {
+                return new OrderHistory(new Guid(guid));
+            }            
         }
 
         public IOrderHistory Set(IOrderHistory orderHistory)

@@ -10,10 +10,12 @@ namespace Moviq.Interfaces.Models
     {
         DateTime stamp { get; set; }
 
-        string guid { get; set; }
+        string oid { get; set; }
         //ICart cart { get; set; }
         IDictionary<string, int> prodQuantity { get; set; }
         string card { get; set; }
-        double orderTotal { get; set; }
+        //double orderTotal { get; set; }
+        decimal totalAmount { get; set; }
+        int totalQty { get; set; }
     }
 }
