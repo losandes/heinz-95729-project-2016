@@ -23,6 +23,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Moviq.Domain.Cart", "Moviq.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Moviq.Domain.Order", "Moviq.Domain.Order\Moviq.Domain.Order.csproj", "{375BF8EF-E34C-49F4-9C6C-E91FA6C99D4F}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Moviq.Domain.Cart.Tests", "Moviq.Domain.Cart.Tests\Moviq.Domain.Cart.Tests.csproj", "{BC5BE040-6B7E-4C78-B4AA-17BD11EE6A63}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Moviq.Domain.Order.Tests", "Moviq.Domain.Order.Tests\Moviq.Domain.Order.Tests.csproj", "{2BEDA070-3272-494B-AFAA-E968B38C4188}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -69,6 +73,14 @@ Global
 		{375BF8EF-E34C-49F4-9C6C-E91FA6C99D4F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{375BF8EF-E34C-49F4-9C6C-E91FA6C99D4F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{375BF8EF-E34C-49F4-9C6C-E91FA6C99D4F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BC5BE040-6B7E-4C78-B4AA-17BD11EE6A63}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BC5BE040-6B7E-4C78-B4AA-17BD11EE6A63}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BC5BE040-6B7E-4C78-B4AA-17BD11EE6A63}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BC5BE040-6B7E-4C78-B4AA-17BD11EE6A63}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2BEDA070-3272-494B-AFAA-E968B38C4188}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2BEDA070-3272-494B-AFAA-E968B38C4188}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2BEDA070-3272-494B-AFAA-E968B38C4188}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2BEDA070-3272-494B-AFAA-E968B38C4188}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
