@@ -10,7 +10,6 @@ define('views/viewEngine', { init: function ($, ko) {
     
     headerVw = function () {
         var self = {};
-        
         self.home = { text: 'Moviq', path: '/' };
         self.links = [];
         self.cartCount = ko.observable();
@@ -30,6 +29,10 @@ define('views/viewEngine', { init: function ($, ko) {
             } else {
                 self.cartCount('');
             }
+        };
+
+        self.cleanCart = function () {
+            self.cartCount('');
         };
         
         self.links.push({ text: 'BOOKS', href: 'books' });
@@ -56,7 +59,7 @@ define('views/viewEngine', { init: function ($, ko) {
             if (typeof viewModel.after === 'function') {
                 viewModel.after();
             }
-        }, 500);
+        }, 200);
     };
     
     return {

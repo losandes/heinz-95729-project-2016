@@ -1,0 +1,8 @@
+﻿.confirmation h1 {
+    text-align: center;
+}
+
+.confirmation .button-center {
+  display: block;
+  margin: 50px auto;
+}
