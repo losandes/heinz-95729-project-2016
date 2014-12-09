@@ -19,11 +19,11 @@ namespace Moviq.Domain.Order
         //public string guid { get; set; }
         public IDictionary<string, int> prodQuantity { get; set; }
         //public List<Product> prodList { get; set; }
-        //decimal amount { get; set; }
-        //int totalQty { get; set; }
+        public decimal totalAmount { get; set; }
+        public int totalQty { get; set; }
         public DateTime stamp { get; set; }
-        public string guid { get; set; }
-        public double orderTotal { get; set; }
+        public string oid { get; set; }
+        //public double orderTotal { get; set; }
 
 
         public Order()
@@ -31,22 +31,24 @@ namespace Moviq.Domain.Order
             this._type = "order";
             //this.guid = guid.ToString();
             //prodList = new List<Product>();
-            //amount = 0;
-            //totalQty = 0;
+            totalAmount = 0;
+            totalQty = 0;
             stamp = DateTime.Now;
-            this.guid = Guid.NewGuid().ToString();
+            this.oid = Guid.NewGuid().ToString();
         }
 
-        public Order(ICart cart, string card)
+        public Order(ICart cart, string card, decimal total, int qty)
         {
             this._type = "order";
             stamp = DateTime.Now;
             this.card = card;
             //this.cart = cart;
             this.prodQuantity = cart.prodQuantity;
-            this.guid = Guid.NewGuid().ToString();
-            //Need to add the cart total to the cart object so it can be retrieved and saved with the order
-            this.orderTotal = -1;
+            this.oid = Guid.NewGuid().ToString();
+            
+            //this.orderTotal = -1;
+            this.totalAmount = total;
+            this.totalQty = qty;
         }
 
         

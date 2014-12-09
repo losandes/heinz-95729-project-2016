@@ -13,8 +13,8 @@ namespace Moviq.Domain.Order
         public String BuildStripePostRequest(double amount, string desc, string token)
         {
             //Source: http://stackoverflow.com/questions/26416252/restsharp-how-to-add-key-value-pair-as-parameter
-            //string secretKey = ConfigurationManager.AppSettings["StripeApiKey"];
-            var secretKey = "sk_test_hXJllj8ykA6fkc8xh3lMmxf2"; //your secret key
+            string secretKey = ConfigurationManager.AppSettings["StripeApiKey"];
+            //var secretKey = "sk_test_hXJllj8ykA6fkc8xh3lMmxf2"; //your secret key
             const string baseUrl = "https://api.stripe.com/";
             const string endPoint = "v1/charges";
 

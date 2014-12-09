@@ -43,9 +43,9 @@ namespace Moviq.Domain.Order
         public IOrder Set(IOrder order)
         {
 
-            if (db.StoreJson(StoreMode.Set, String.Format(keyPattern, order.guid), order))
+            if (db.StoreJson(StoreMode.Set, String.Format(keyPattern, order.oid), order))
             {
-                return Get(order.guid);
+                return Get(order.oid);
             }
             throw new Exception(locale.ProductSetFailure);
         }
