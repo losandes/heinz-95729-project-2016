@@ -28,10 +28,13 @@ define('models/payment', {
                     }
                 }).done(function (data) {
                     //Data will contain the response object (see example response object at bottom of class
+                    console.log("Charge results: " + data);
                     var chargeResults = JSON.parse(data);
 
                     var chargeSuccess = chargeResults.paid;
+                    console.log("Charge success: " + chargeSuccess);
                     if (chargeSuccess) {
+                        console.log("Charge successful");
                         var cardId = chargeResults.card.id;
                         createOrder(cart, cardId);
                     } else {
@@ -54,25 +57,27 @@ define('models/payment', {
             }
         };
 
-        var createOrder = function (cart, cardId) {
+        function createOrder(cart, cardId) {
+            console.log("Create order function");
             $.ajax({
                 url: "/api/order/add",
                 data: {
-                    Cart: cart,
-                    Card: cardId
+                    cartId: cart.userId,
+                    cardId: cardId
                 }
             }).done(function (data) {
-                console.log("Create order response: " + data);
+                var orderResponse = JSON.parse(data);
+                console.log("Create order response: " + orderResponse);
+                orderSuccessCleanup(cart, orderResponse);
             });
         }
-        var orderSuccessCleanup = function (order) {
+        var orderSuccessCleanup = function (cart, order) {
             //Stripe charge complete, clean the cart and redirect to the confirmation page
             $.ajax({
                 url: "/api/cart/clean"
             }).done(function (data) {
                 console.log("Clean API call results: " + data);
                 cart.clean();
-
 
                 //window.location.href = '/#/confirmation';
                 viewEngine.setView({

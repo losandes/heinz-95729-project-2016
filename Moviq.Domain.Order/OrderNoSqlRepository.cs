@@ -35,16 +35,17 @@ namespace Moviq.Domain.Order
             this.searchUrl = searchUrl;
         }
 
-        public IOrder Get(string dateTime)
+        public IOrder Get(string guid)
         {
-            return db.GetJson<Order>(String.Format(keyPattern, dateTime));
+            return db.GetJson<Order>(String.Format(keyPattern, guid));
         }
 
         public IOrder Set(IOrder order)
         {
-            if (db.StoreJson(StoreMode.Set, String.Format(keyPattern, order.stamp), order))
+
+            if (db.StoreJson(StoreMode.Set, String.Format(keyPattern, order.guid), order))
             {
-                return Get(order.stamp.ToString());
+                return Get(order.guid);
             }
             throw new Exception(locale.ProductSetFailure);
         }

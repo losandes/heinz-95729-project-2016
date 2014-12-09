@@ -7,21 +7,24 @@ using Moviq.Interfaces;
 using Moviq.Interfaces.Models;
 using RestSharp;
 using Moviq.Domain.Products;
+using Moviq.Domain.Cart;
 
 namespace Moviq.Domain.Order
 {
     public class Order : IOrder, IHelpCategorizeNoSqlData
     {
-        ICard card { get; set; }
-        ICart cart { get; set; }
-        IShipping shipDetails { get; set; }
+        public string card { get; set; }
+        //public ICart cart { get; set; }
         public string _type { get; set; }
         //public string guid { get; set; }
-        //public IDictionary<string, int> prodQuantity { get; set; }
+        public IDictionary<string, int> prodQuantity { get; set; }
         //public List<Product> prodList { get; set; }
         //decimal amount { get; set; }
         //int totalQty { get; set; }
         public DateTime stamp { get; set; }
+        public string guid { get; set; }
+        public double orderTotal { get; set; }
+
 
         public Order()
         {
@@ -31,20 +34,21 @@ namespace Moviq.Domain.Order
             //amount = 0;
             //totalQty = 0;
             stamp = DateTime.Now;
+            this.guid = Guid.NewGuid().ToString();
         }
 
-        public Order(ICart cart, ICard card, IShipping ship)
+        public Order(ICart cart, string card)
         {
             this._type = "order";
             stamp = DateTime.Now;
             this.card = card;
-            this.cart = cart;
-            this.shipDetails = ship;
+            //this.cart = cart;
+            this.prodQuantity = cart.prodQuantity;
+            this.guid = Guid.NewGuid().ToString();
+            //Need to add the cart total to the cart object so it can be retrieved and saved with the order
+            this.orderTotal = -1;
         }
 
-        public string getOID()
-        {
-            return _type + "::" + stamp.ToString();
-        }
+        
     }
 }
