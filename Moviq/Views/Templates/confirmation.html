@@ -1,9 +1,28 @@
 ﻿<script id="t-confirmation" type="text/html">
     <div class="confirmation" data-bind="with: data">
         <h1>Thanks for your purchase. Payment confirmed.</h1>
-        <a href="/">
-            <button class="btn btn-lg btn-success button-center">Go Back</button>
-        </a>
-        <div data-bind="text: JSON.stringify(order)"></div>
+        <fieldset class="checkout-cart" data-bind="">
+            <legend class="text-center">Order Processed</legend>
+            <div class="row">
+                <div class="col-md-8">
+                    <div class="row" data-bind="foreach: { data: order.products(), as: 'product' }">
+                        <div class="thumbnail">
+                            <img class="product-image" src="" alt="" data-bind="src: product.thumbnailLink, attr: { alt: product.thumbnailAlt }">
+                            <div class="product-details">
+                                <h2 class="title" data-bind="text: product.title"></h2>
+                                <h3 class="price" data-bind="currency: product.price"></h3>
+                            </div>
+                        </div>
+                        <div class="clearfix"></div>
+                    </div>
+                </div>
+                <div class="col-md-3 col-md-offset-1">
+                    <h2>Total (<span data-bind="text: order.products().length"></span> item<span data-bind="visible: order.products().length > 1">s</span>)</h2>
+                    <h1 data-bind="currency: order.total"></h1>
+                    <a href="/" class="btn btn-lg btn-success">Go Home</a>
+                </div>
+            </div>
+        </fieldset>
+        
     </div>
 </script>

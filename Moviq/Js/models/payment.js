@@ -1,7 +1,7 @@
 ﻿/*jslint nomen: true*/
 /*global define*/
 define('models/payment', {
-    init: function (ko, viewEngine) {
+    init: function (ko, viewEngine, Order) {
         "use strict";
 
         if (!ko) {
@@ -68,7 +68,7 @@ define('models/payment', {
             $('#payment-errors').html(alertModalHtml);
         }
 
-        function orderSuccessCleanup(cart, order) {
+        function orderSuccessCleanup(cart, orderData) {
             //Stripe charge complete, clean the cart and redirect to the confirmation page
             $.ajax({
                 url: "/api/cart/clean"
@@ -76,6 +76,9 @@ define('models/payment', {
                 //console.log("Clean API call results: " + data);
                 cart.clean();
 
+                var order = new Order();
+                order.loadOrder(orderData);
+                console.log("Order obj: " + JSON.stringify(order));
                 viewEngine.setView({
                     template: 't-confirmation',
                     data: {
