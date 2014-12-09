@@ -29,8 +29,8 @@ using Moviq.Domain.Order;
                         ICustomClaimsIdentity currentUser = AmbientContext.CurrentClaimsPrinciple.ClaimsIdentity;
                         string guid = currentUser.GetAttribute(AmbientContext.UserPrincipalGuidAttributeKey).ToString();
 
-                        IOrder order;
-                        order = orderDomain.Repo.Get(guid);
+                        IOrderHistory order;
+                        order = orderHistoryDomain.Repo.Get(guid);
                         return helper.ToJson(order);
                     }
                     return helper.ToJson("user not logged in");

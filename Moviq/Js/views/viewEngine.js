@@ -10,7 +10,6 @@ define('views/viewEngine', { init: function ($, ko) {
     
     headerVw = function () {
         var self = {};
-        debugger;
         self.home = { text: 'Moviq', path: '/' };
         self.links = [];
         self.cartCount = ko.observable();
@@ -44,7 +43,6 @@ define('views/viewEngine', { init: function ($, ko) {
     };
     
     setView = function (viewModel) {
-        debugger;
         if (!viewModel) {
             throw new Error('viewModel is undefined. The mainVw cannot be updated.');
         }

@@ -1,0 +1,22 @@
+﻿<script id="t-orders" type="text/html">
+    <div class="" data-bind="with: data">
+        <!-- Block visible when user is not logged in -->
+        <div data-bind="visible: user.isGuest">
+            <h2 class="text-center">Please <a href="/#/login" class="btn btn-lg btn-success text-center">Login</a> to view your history</h2>
+            <span class="text-center"></span>
+        </div>
+
+        <!-- Block visible when user is logged in -->
+        <div data-bind="visible: !user.isGuest">
+
+            <h3 class="text-center" data-bind="visible: orderHistory.length == 0">No orders found</h3>
+            <div data-bind="visible: orderHistory.length > 0">
+                <h1 class="text-center">Order History</h1>
+                <div class="text" data-bind="foreach: { data: orderHistory, as: 'order' }">
+                    <div data-bind="text: order"></div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</script>

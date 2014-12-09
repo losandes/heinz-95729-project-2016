@@ -15,12 +15,15 @@ define('models/user', {
             $this.userId;
             $this.name;
             $this.isGuest;
+            $this.orderHistory = [];
 
             /*** User functions ***/
-
+            $this.setupUser = function () {
+                var afterSetUser = $this.getOrders;
+                $this.setUser(afterSetUser);
+            }
             
-            $this.setUser = function () {
-                
+            $this.setUser = function(afterSetUserFunction) {                
                 $.ajax({
                     url: '/api/examples/context',
                     method: 'GET'
@@ -34,15 +37,44 @@ define('models/user', {
                         userGuid = JSON.parse(data).Guid;
                         name = JSON.parse(data).Name;
                         isGuest = false;
+
+
                     } catch (e) {      
-                        console.log("USER MODEL: User not logged in - userId set to GUEST");
+                        console.log("USER MODEL: User not logged in - userId set to: " + userGuid);
                     }
                     $this.userId = userGuid;
                     $this.name = name;
                     $this.isGuest = isGuest;
+
+                    afterSetUserFunction();
                 });
                 
             }
+
+
+            $this.getOrders = function (callbackFunction) {
+                
+                if ($this.userId != "GUEST") {
+                    console.log("Get orders");
+                    $.ajax({
+                        url: '/api/order/get'
+                    }).done(function (data) {
+                        //console.log(data);
+                        var orderIds = JSON.parse(data).orders;
+                        console.log(data);
+                        if (orderIds !== undefined && orderIds.length > 0) {
+                            for(var i=0; i<orderIds.length; i++){
+                                $this.orderHistory.push(orderIds[i]);
+                            }
+                        }
+                        console.log($this.orderHistory.length);
+
+                        if (callbackFunction !== undefined) {
+                            callbackFunction();
+                        }
+                    });
+                }
+            };
             
         };
         
