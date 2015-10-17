@@ -1,3 +1,5 @@
+. ./provision-shared.ps1
+
 echo "Installing atom packages"
 apm install language-csharp
 apm install omnisharp-atom
@@ -22,3 +24,7 @@ npm install -g http-server
 npm install -g json-server
 npm install -g mocha
 npm install -g jshint
+
+if (ConfirmStep  "Provision-2 complete. This window will close. You need to start a new powershell session as an Administrator and execute ./provision-3" 30) {
+    stop-process -Id $PID
+}

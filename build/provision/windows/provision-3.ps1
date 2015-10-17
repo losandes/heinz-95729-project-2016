@@ -1,3 +1,5 @@
+. ./provision-shared.ps1
+
 $commandsFolder = "C:\tools\commands"
 
 function MakeCommandsFolder {
@@ -74,3 +76,7 @@ If ((Test-Path $confDestPath) -eq $false) {
 }
 
 Copy-Item -Path $confSourcePath -Destination $confDestPath
+
+if (ConfirmStep  "Provision-3 complete. This window will now close." 30) {
+    stop-process -Id $PID
+}
