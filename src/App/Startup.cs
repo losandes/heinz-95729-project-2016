@@ -7,36 +7,72 @@ namespace App
     using Nancy.Conventions;
     using Nancy.TinyIoc;
     using App.Domain.Auth;
+    using System;
+    using System.IO;
 
     public class Startup
     {
         public void Configure(IApplicationBuilder app)
         {
+            app.UseStaticFiles();
             app.UseOwin(x => x.UseNancy());
         }
     }
 
     public class NancyBootstrapper : DefaultNancyBootstrapper
     {
+        public DirectoryInfo RootPath {
+            get { return new DirectoryInfo(RootPathProvider.GetRootPath()); }
+        }
+
         protected override void ApplicationStartup(TinyIoCContainer container, IPipelines pipelines)
         {
              // your customization goes here
         }
 
-        // protected override void ConfigureConventions(NancyConventions conventions)
-        // {
-        //     base.ConfigureConventions(conventions);
-        //
-        //     conventions.StaticContentsConventions.Add(
-        //         StaticContentConventionBuilder.AddDirectory("js", @"Js")
-        //     );
-        //     conventions.StaticContentsConventions.Add(
-        //         StaticContentConventionBuilder.AddDirectory("css", @"Css")
-        //     );
-        //     conventions.StaticContentsConventions.Add(
-        //         StaticContentConventionBuilder.AddDirectory("images", @"Images")
-        //     );
-        // }
+        protected override void ConfigureConventions(NancyConventions conventions)
+        {
+            base.ConfigureConventions(conventions);
+
+            // conventions.ViewLocationConventions.Add((viewName, model, context) =>
+            // {
+            //     Console.WriteLine(viewName.Split('.')[0]);
+            //     return string.Concat("/wwwroot/views/Home/", viewName);
+            // });
+
+
+            //All static content is in wwwroot
+            conventions.StaticContentsConventions.Clear();
+
+            // conventions.StaticContentsConventions.Add((context, rootPath) => {
+            //     Console.WriteLine(rootPath);
+            //     Console.WriteLine(context.Request.Path);
+            //     return null;
+            // });
+
+            conventions.StaticContentsConventions.Add(
+                StaticContentConventionBuilder.AddDirectory("js", @"wwwroot/Js")
+            );
+
+            conventions.StaticContentsConventions.Add(
+                StaticContentConventionBuilder.AddDirectory("css", @"wwwroot/Css")
+            );
+
+            conventions.StaticContentsConventions.Add(
+                StaticContentConventionBuilder.AddDirectory("images", @"wwwroot/Images")
+            );
+
+            //Layout Directory
+            //nancyConventions.ViewLocationConventions.Clear();
+            conventions.ViewLocationConventions.Insert(0, (viewName, model, context) =>
+                string.Concat("Views/", viewName));
+
+            //Module Views
+            conventions.ViewLocationConventions.Insert(1, (viewName, model, context) =>
+                string.IsNullOrWhiteSpace(context.ModulePath)
+                    ? string.Concat("Views/", context.ModuleName, "/", viewName)
+                    : string.Concat("Views/", context.ModulePath, "/", context.ModuleName, "/", viewName));
+        }
 
         protected override void ConfigureApplicationContainer(TinyIoCContainer container)
         {
