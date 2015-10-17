@@ -5,7 +5,7 @@ var Spawner = function (options) {
         spawn = require('child_process').spawn,
         isWin = /^win/.test(process.platform),
         log,
-        nonExecutables = ['npm', 'grunt'],
+        nonExecutables = ['npm', 'grunt', 'dnu', 'dnx'],
         isNotExecutable;
 
     options = options || {};

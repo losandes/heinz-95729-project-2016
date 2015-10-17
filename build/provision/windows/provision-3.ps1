@@ -1,5 +1,3 @@
-echo Installing MongoDb
-
 $commandsFolder = "C:\tools\commands"
 
 function MakeCommandsFolder {
@@ -18,6 +16,13 @@ function MakeCommandsFolder {
     return $commandsFolder
 }
 
+echo "Installing the .NET Execution Environment (DNX)"
+dnvm upgrade -r coreclr
+# not sure why, but you have to `dnvm upgrade` to get it working on Windows
+dnvm upgrade
+# dnvm upgrade -r clr # use this instead, if you want to install the full .NET framework
+
+echo "Installing MongoDb"
 MakeCommandsFolder
 
 $mongoVersion = '3.0.6'
