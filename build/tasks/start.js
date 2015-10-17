@@ -34,11 +34,12 @@ module.exports = function (grunt) {
         };
 
         series.push(function (callback) {
-            if (isWin) {
-                spawner.spawnThis('dnx', ['web'], { cwd: '../src/App' }, callback);
-            } else {
-                spawner.spawnThis('dnx', ['kestrel'], { cwd: '../src/App' }, callback);
-            }
+            spawner.spawnThis('dnx', ['kestrel'], { cwd: '../src/App' }, callback);
+            // if (isWin) {
+            //     spawner.spawnThis('dnx', ['web'], { cwd: '../src/App' }, callback);
+            // } else {
+            //     spawner.spawnThis('dnx', ['kestrel'], { cwd: '../src/App' }, callback);
+            // }
         });
 
         async.parallel(series, doneHandler);
