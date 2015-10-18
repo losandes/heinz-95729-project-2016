@@ -35,7 +35,7 @@ packages/
 .lock-wscript
 
 # Config Files
-environment
+# environment
 
 # Copied Directories for deployment
 deployed_*
