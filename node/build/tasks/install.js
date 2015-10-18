@@ -5,7 +5,7 @@ var Spawner = require('./Spawner'),
 module.exports = function (grunt) {
     'use strict';
 
-    grunt.registerTask('restore', 'restores the app packages (nuget)', function () {
+    grunt.registerTask('install', 'installs dependencies (i.e. node modules and bower components)', function () {
         var spawner = new Spawner(),
             done = this.async(),
             makeAction,
