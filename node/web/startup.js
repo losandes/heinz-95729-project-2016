@@ -81,7 +81,7 @@ var Hilary = require('hilary'),
         return function (expressApp) {
             // BEFORE
             (function () {
-
+                expressApp.use(scope.resolve('authenticationMiddleware'));
             }());
 
             configureRoutes(scope, expressApp);
