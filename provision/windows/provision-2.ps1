@@ -13,9 +13,6 @@ npm install -g node-inspector
 npm install -g less
 npm install -g yo
 npm install -g generator-hilary
-npm install -g generator-aspnet
-npm install -g http-server
-npm install -g json-server
 npm install -g mocha
 npm install -g jshint
 

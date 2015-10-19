@@ -37,7 +37,7 @@ Write-Host " "
 
 . ./provision-shared.ps1
 
-if (ConfirmStep  "Before running this script, you need to install Node.js manually. You need to run this as an administrator. You should also review this script and comment out apps that you already have installed. Click 'Yes', if you already have." 20000) {
+if (ConfirmStep  "Before running this script, you need to install Node.js and Git manually. You need to run this as an administrator. You should also review this script and comment out apps that you already have installed. Click 'Yes', if you already have." 20000) {
     echo Installing choclatey
     Invoke-Expression ((new-object net.webclient).DownloadString('https://chocolatey.org/install.ps1'))
 
@@ -48,6 +48,7 @@ if (ConfirmStep  "Before running this script, you need to install Node.js manual
     choco install -y cmder
     choco install -y atom
     choco install -y nuget.commandline
+    choco install -y couchbasecommunityedition
 
     if (ConfirmStep  "Do you want to install Visual Studio Community (It takes a while)?" 20000) {
         choco install visualstudio2015community
