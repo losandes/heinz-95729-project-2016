@@ -18,8 +18,6 @@ Hilary.scope('heinz').register({
         // search for products
         $this.get['/search'] = new GidgetRoute({
             routeHandler: function (err, req) {
-                console.log(req.uri.query.q);
-
                 $.ajax({
                     url: '/api/search?q=' + req.uri.query.q,
                     method: 'GET'
