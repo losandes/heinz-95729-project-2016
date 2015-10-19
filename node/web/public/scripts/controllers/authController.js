@@ -23,6 +23,17 @@ Hilary.scope('heinz').register({
             }
         });
 
+        // GET /register
+        // Register a new account
+        $this.get['/register'] = new GidgetRoute({
+            routeHandler: function () {
+                viewEngine.setVM({
+                    template: 't-register',
+                    data: {}
+                });
+            }
+        });
+
         return $this;
     }
 });
