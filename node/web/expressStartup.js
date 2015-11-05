@@ -27,12 +27,12 @@ module.exports.factory = function (app, path, cookieParser, bodyParser, serveSta
         app.use(serveStatic(path.join(__dirname, 'public')));
         app.use(favicon(__dirname + '/public/favicon.ico'));
 
-        hbs.registerPartials(__dirname + '/views/templates');        
+        hbs.registerPartials(__dirname + '/views/templates');
     };
 
     after = function () {
         // make 404's a greedy index route for the SPA
-        app.use(function (req, res, next) {
+        app.use(function (req, res) {
             res.render('index', { title: 'web' });
         });
 
@@ -41,14 +41,14 @@ module.exports.factory = function (app, path, cookieParser, bodyParser, serveSta
         // development error handler
         // will print stacktrace
         if (app.get('env') === 'development') {
-            app.use(function (err, req, res, next) {
+            app.use(function (err, req, res) {
                 res.status(err.status || 500);
                 res.render('error', { title: 'error', message: err.message, error: err });
             });
         } else {
             // production error handler
             // no stacktraces leaked to user
-            app.use(function (err, req, res, next) {
+            app.use(function (err, req, res) {
                 res.status(err.status || 500);
                 res.render('error', { title: 'error', message: err.message, error: {} });
             });
