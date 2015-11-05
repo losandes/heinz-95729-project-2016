@@ -27,7 +27,7 @@ module.exports.factory = function (app, path, cookieParser, bodyParser, serveSta
         app.use(serveStatic(path.join(__dirname, 'public')));
         app.use(favicon(__dirname + '/public/favicon.ico'));
 
-        hbs.registerPartials(__dirname + '/views/templates');
+        hbs.registerPartials(__dirname + '/views/templates');        
     };
 
     after = function () {
