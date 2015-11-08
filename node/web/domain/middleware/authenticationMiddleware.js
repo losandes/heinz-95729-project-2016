@@ -8,7 +8,8 @@ module.exports.factory = function (User) {
 
         if (authCookie) {
             res.locals.user = new User(authCookie);
-            next();
         }
+        
+        next();
     };
 };
