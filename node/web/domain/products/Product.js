@@ -48,9 +48,6 @@ module.exports.factory = function (Blueprint, ObjectID, exceptions) {
             return;
         }
 
-        // TODO: (Question) Why do you think we cast the product to self,
-        // instead of just returning the product if it passes the blueprint check?
-
         // define the Product properties from the product argument
         self._id = new ObjectID(product._id);
         self.uid = product.uid;
@@ -65,11 +62,6 @@ module.exports.factory = function (Blueprint, ObjectID, exceptions) {
     };
 
     /*
-    // In JavaScript, you can add properties to objects you might not expect
-    // you could. Here we are defining a db property on the Product constructor.
-    // Note that Product.db is static, while the result of constructing a Product
-    // is not.
-    //
     // The db object is used to create and connect to the appropriate database
     // collection, which is similar to a table in relational storage.
     */

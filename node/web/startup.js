@@ -68,8 +68,8 @@ var Hilary = require('hilary'),
     // This will auto-resolve any controllers that are included in controller/index.js
     */
     configureRoutes = function (scope, expressApp) {
-        scope.autoResolve(require('./api'));            // execute the api modules to register routes
         scope.autoResolve(require('./controllers'));    // execute the controller modules to register routes
+        scope.autoResolve(require('./api'));            // execute the api modules to register routes
         expressApp.use(scope.resolve('router'));        // use the router, after the controllers are all registered
     };
 
@@ -81,7 +81,7 @@ var Hilary = require('hilary'),
         return function (expressApp) {
             // BEFORE
             (function () {
-
+                expressApp.use(scope.resolve('authenticationMiddleware'));
             }());
 
             configureRoutes(scope, expressApp);
