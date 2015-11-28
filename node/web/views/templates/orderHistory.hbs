@@ -1,0 +1,33 @@
+<script id="t-order-history" type="text/html">    
+
+    <div data-bind="foreach: { data: data.orders, as: 'order'}">
+        <p>
+            <h3>Orderer: <span data-bind="text: email"></span></h3>
+        </p>
+
+        <table>
+            <thead><tr>
+                <th>Title</th><th>Price</th><th>Quantity</th><th>Subtotal</th><th></th>
+            </tr></thead>
+
+            <tbody data-bind="foreach: { data: order.items, as: 'item' }">
+                <tr>
+                    <td data-bind="text: title"></td>
+                    <td data-bind="text: $parent.formatCurrency(price())"></td>
+                    <td data-bind='text: quantity'></td>
+                    <td>
+                        <span data-bind='text: $parent.formatCurrency(subtotal())'></span>
+                    </td>
+                </tr>    
+            </tbody>
+        </table>
+
+        <p>
+            Total value: <span data-bind='text: formatCurrency(total())'> </span>
+        </p>
+        <!-- <button data-bind='click: saveOrder'>Save order</button> -->
+        <!-- <button data-bind='click: submitOrder'>Submit order</button> -->
+    </div>
+
+</script>
+

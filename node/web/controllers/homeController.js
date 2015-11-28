@@ -5,7 +5,12 @@ module.exports.factory = function (router) {
 
     /* GET home page. */
     router.get('/', function (req, res) {
-        res.render('index', { title: 'web' });
+        if(req.cookies.auth) {
+            console.log('I want the / page');
+            res.render('index', { title: 'web logged in!' });
+        } else {
+            res.render('index', { title: 'web no logged in' });
+        }
     });
 
     /* Throw an example error. */

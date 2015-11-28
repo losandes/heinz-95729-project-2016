@@ -4,6 +4,9 @@ module.exports.factory = function (router, repo, exceptions) {
     'use strict';
 
     router.get('/api/search', function (req, res) {
+        console.log("Oh!!!/api/search is called with req:\n");
+        //console.log(req);
+        
         repo.find({ query: { $text: { $search: req.query.q } } }, function (err, books) {
             if (err) {
                 exceptions.throwException(err);
