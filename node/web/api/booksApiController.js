@@ -1,6 +1,6 @@
 module.exports.name = 'booksApiController';
-module.exports.dependencies = ['router', 'productsRepo', 'exceptions'];
-module.exports.factory = function (router, repo, exceptions) {
+module.exports.dependencies = ['router', 'productsRepo','usersRepo', 'exceptions'];
+module.exports.factory = function (router, repo,usersRepo, exceptions) {
     'use strict';
 
     router.get('/api/books/search', function (req, res) {
@@ -24,6 +24,28 @@ module.exports.factory = function (router, repo, exceptions) {
 
             res.send(book);
         });
+    });
+
+    router.post('/api/product', function (req, res) {
+      console.log("cookie: "+req.cookies.email);
+      var count = "";
+      usersRepo.update(req.cookies.email, req.query.product, function (err, user) {
+          if (err) {
+              res.status(400);
+              return;
+          }
+          usersRepo.getCount(req.cookies.email, function (err,doc) {
+              if (err) {
+                res.status(400);
+                return;
+              }
+              console.log("Document after update: "+ doc.quantity);
+              count = doc.quantity;
+              console.log("Value of Count: "+count);
+              res.send(String(count));
+          });
+
+      });
     });
 
     return router;

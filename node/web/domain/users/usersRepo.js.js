@@ -10,7 +10,9 @@ module.exports.factory = function (db, User, Blueprint, exceptions, is) {
             find: undefined,
             create: undefined,
             update: undefined,
-            remove: undefined
+            remove: undefined,
+            getCount: undefined
+
         },
         collection = db.collection(User.db.collection),
         i;
@@ -61,5 +63,47 @@ module.exports.factory = function (db, User, Blueprint, exceptions, is) {
         collection.insertOne(payload, callback);
     };
 
+    self.update = function (email,product, callback) {
+        if (is.not.string(email)) {
+            exceptions.throwArgumentException('', 'payload');
+            return;
+        }
+        if (is.not.string(product)) {
+            exceptions.throwArgumentException('', 'payload');
+            return;
+        }
+        if (is.not.function(callback)) {
+            exceptions.throwArgumentException('', 'callback');
+            return;
+        }
+
+        collection.updateOne(
+          {email : email},
+          {
+            $push: { "products": product },
+            $inc: { "quantity": 1}
+          }
+          , callback);
+    };
+    self.getCount = function (email,callback) {
+        if (is.not.string(email)) {
+            exceptions.throwArgumentException('', 'payload');
+            return;
+        }
+
+        if (is.not.function(callback)) {
+            exceptions.throwArgumentException('', 'callback');
+            return;
+        }
+
+        collection.find({email : email},{ _id:0, quantity: 1}).next (function (err, doc) {
+            if (err) {
+                callback(err);
+                return;
+            }
+
+            callback(null, doc);
+        });
+    };
     return self;
 };

@@ -8,7 +8,13 @@ module.exports.factory = function (Blueprint, exceptions, ObjectID) {
 
     blueprint = new Blueprint({
         name: 'string',
-        email: 'string'
+        email: 'string',
+        products: new Blueprint({
+
+                type: 'array',
+                required: true
+            
+        })
     });
 
     User = function (user) {
@@ -22,10 +28,10 @@ module.exports.factory = function (Blueprint, exceptions, ObjectID) {
         self._id = new ObjectID(user._id);
         self.name = user.name;
         self.email = user.email;
-
+        self.products = user.products;
         return self;
     };
-
+    console.log("DB entry");
     User.db = {
         collection: 'users',
         indexes: [

@@ -33,7 +33,6 @@ Hilary.scope('heinz').register({
                 });
             }
         });
-
         return $this;
     }
 });

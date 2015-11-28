@@ -6,8 +6,8 @@ Hilary.scope('heinz').register({
         'use strict';
 
         var blueprint,
-            Product;
-
+            Product,
+			count=0;
         blueprint = new Blueprint({
             title: 'string',
             description: 'string',
@@ -60,7 +60,12 @@ Hilary.scope('heinz').register({
             self.click = function () {
                 router.navigate(self.detailsLink());
             };
-
+			self.price.click = function () {
+				count++;
+				
+        console.log(product.uid);
+        router.navigate('/product?product='+product.uid);
+            };
             return self;
         };
 
