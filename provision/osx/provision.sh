@@ -19,20 +19,20 @@ echo "             \\|_________|"
 echo ""
 echo ""
 
-echo Installing Homebrew
-ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+#echo Installing Homebrew
+#ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
 
 echo Installing Node Version Manager
 brew install nvm
 source $(brew --prefix nvm)/nvm.sh
 
-echo Installing Node.js
-nvm install 4.0.0
-nvm install 4.2.1
+#echo Installing Node.js
+#nvm install 4.0.0
+#nvm install 4.2.1
 
-echo Update user path and install git
-export PATH=/usr/local/bin:$PATH
-brew install git
+#echo Update user path and install git
+#export PATH=/usr/local/bin:$PATH
+#brew install git
 
 echo Installing caskroom
 echo All apps will be installed into this location
