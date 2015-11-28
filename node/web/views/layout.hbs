@@ -32,8 +32,15 @@
             <a href="/checkout">
                 <i class="fa fa-shopping-cart"><span id="cart"></span></i>
             </a>
+<<<<<<< HEAD
             <span id="user"><span>
           
+=======
+            <!-- temporarily put it here -->
+            <a href="/orderhistory">
+                <i class="fa fa-shopping-cart"></i>
+            </a>
+>>>>>>> 51943a542b4e37deff9c601daed0fe82aa221997
         </nav>
     </header>
     <div class="container">
@@ -49,6 +56,8 @@
     {{> bookDetails}}
     {{> login}}
     {{> register}}
+    {{> checkout}}
+    {{> orderHistory}}
 
     <!-- /templates -->
 
@@ -68,6 +77,8 @@
     <script src="/scripts/controllers/booksController.js"></script>
     <script src="/scripts/controllers/homeController.js"></script>
     <script src="/scripts/controllers/exampleController.js"></script>
+    <script src="/scripts/controllers/checkoutController.js"></script>
+
 
     <script src="/scripts/locale/en_US.js"></script>
 
@@ -75,6 +86,9 @@
     <script src="/scripts/models/Books.js"></script>
     <script src="/scripts/models/Product.js"></script>
     <script src="/scripts/models/Products.js"></script>
+    <script src="/scripts/models/Order.js"></script>
+    <script src="/scripts/models/Orders.js"></script>
+
 
     <script src="/scripts/viewModels/HomeVM.js"></script>
 

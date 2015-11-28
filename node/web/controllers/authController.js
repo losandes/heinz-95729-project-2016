@@ -35,7 +35,7 @@ module.exports.factory = function (router, repo) {
     });
 
     router.post('/login', function (req, res) {
-        console.log(req.body);
+        console.log('Server side /login in authController is called!!');
         repo.get(req.body.email, function (err, user) {
             if (!err) {
                 addCookie(user, res);
