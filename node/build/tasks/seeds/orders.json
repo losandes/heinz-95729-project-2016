@@ -1,0 +1,19 @@
+[ {
+      "email" : "john@gmail.com",
+      "items" : [
+         {
+            "uid" : "leave_you",
+            "title" : "This Is Where I Leave You: A Novel",
+            "price" : 7.99,
+            "quantity" : 2
+         },
+         {
+            "uid" : "hitchhikers_guide_galaxy",
+            "title" : "The Hitchhiker's Guide to the Galaxy",
+            "price" : 4.59,
+            "quantity" : 1
+         }
+      ],
+      "isCompleted" : false
+   }
+]
