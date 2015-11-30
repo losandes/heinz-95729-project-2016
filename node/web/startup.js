@@ -26,7 +26,8 @@ var Hilary = require('hilary'),
             bodyParser = require('body-parser'),
             less = require('less-middleware'),
             debug = require('debug')('expressdefault:server'),
-            serveStatic = require('serve-static');
+            serveStatic = require('serve-static'),
+            stripe = require("stripe")("sk_test_pyrNc5uk6hcBrWc0zswegEyc");
             //isWin = /^win/.test(process.platform);
 
         /*
@@ -48,6 +49,7 @@ var Hilary = require('hilary'),
         scope.register({ name: 'less',                  factory: function () { return less; }});
         scope.register({ name: 'debug',                 factory: function () { return debug; }});
         scope.register({ name: 'serve-static',          factory: function () { return serveStatic; }});
+        scope.register({ name: 'stripe',                factory: function () { return stripe; }});
 
         /*
         // Alternatively, you can let Hilary gracefully degrade to node's require function.
