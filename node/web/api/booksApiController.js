@@ -56,6 +56,7 @@ module.exports.factory = function (router, repo,usersRepo,ordersRepo, exceptions
                 res.status(400);
                 return;
               }
+              count = doc.quantity;
               res.send(String(count));
           });
 
