@@ -10,7 +10,8 @@ module.exports.factory = function (db, Order, Blueprint, exceptions, is) {
             find: undefined,
             create: undefined,
             update: undefined,
-            remove: undefined
+            remove: undefined,
+            updateCart: undefined
         },
         collection = db.collection(Order.db.collection),
         findOptionsBlueprint,
@@ -124,5 +125,29 @@ module.exports.factory = function (db, Order, Blueprint, exceptions, is) {
         collection.replaceOne({"email": email}, payload, callback);
     };
 
+    self.updateCart = function (email, payload, callback) {
+
+        console.log("orders db updateCart get called!");
+        if (is.not.object({"email":email})) {
+            exceptions.throwArgumentException('', 'email');
+            return;
+        }
+
+        if (is.not.object(payload)) {
+            exceptions.throwArgumentException('', 'payload');
+            return;
+        }
+
+        if (is.not.function(callback)) {
+            exceptions.throwArgumentException('', 'callback');
+            return;
+        }
+        // actually replace an order
+        collection.findAndModify({"email": email},[],{$setOnInsert: { "email": email} },{ upsert:true}, callback);
+        collection.update( {"email" : email, "items.title" : payload.title },{$inc : {"items.$.quantity" : 1} } ,{upsert:false }, callback);
+        collection.update({email : email , "items.title" : { $ne : payload.title}},
+                    {$addToSet : {"items" : {"title" : payload.title, "price" : payload.price , "quantity" : 1 }} } ,
+                           {upsert:false}, callback);
+    };
     return self;
 };

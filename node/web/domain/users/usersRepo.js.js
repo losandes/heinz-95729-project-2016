@@ -59,8 +59,7 @@ module.exports.factory = function (db, User, Blueprint, exceptions, is) {
             exceptions.throwArgumentException('', 'callback');
             return;
         }
-
-        collection.insertOne(payload, callback);
+        collection.updateOne({"email":payload.email},payload,{upsert:true}, callback);
     };
 
     self.update = function (email,product, callback) {

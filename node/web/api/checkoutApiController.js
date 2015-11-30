@@ -7,10 +7,10 @@ module.exports.factory = function (router, repo, exceptions) {
     router.get('/api/checkout', function (req, res) {
         console.log("Oh!!!/api/checkout is called with req:\n");
         //console.log(req);
-        
+
         // the query should return one order that's supposed to be not completed
         // but return all the orders for simplicity now?
-        repo.find({ query: { email: "john@gmail.com" }}, function (err, orders) {
+        repo.find({ query: { email: req.cookies.email }}, function (err, orders) {
             if (err) {
                 exceptions.throwException(err);
                 res.status(400);

@@ -19,7 +19,7 @@ module.exports.factory = function (router, repo) {
     router.post('/register', function (req, res) {
 
         repo.create(req.body, function (err, result) {
-            if (!err && result.insertedId) {
+            if (!err) {
                 repo.get(req.body.email, function (err, user) {
                     if (!err) {
                         addCookie(user, res);
