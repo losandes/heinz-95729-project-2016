@@ -61,6 +61,10 @@ Hilary.scope('heinz').register({
                     // prompt user the result
                     if(data == "Success") {
                         alert("Save order succeeded!");
+                        viewEngine.setVM({
+                        template: 't-payment',
+
+                        });
                     } else {
                         alert("Save order failed!");
                     }
