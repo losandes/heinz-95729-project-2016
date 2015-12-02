@@ -39,7 +39,7 @@ module.exports.factory = function (router, repo) {
         repo.get(req.body.email, function (err, user) {
             if (!err) {
                 addCookie(user, res);
-                res.redirect('/');
+                res.redirect('/loggedin?user'+user._id);
             } else {
                 res.status(400);
             }
