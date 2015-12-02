@@ -1,0 +1,26 @@
+<script type="text/javascript" src="https://js.stripe.com/v1/"></script>
+
+
+<script id="t-payment" type="text/html">
+
+<div id="stripe-form">
+  <form action="/enterhere" method="POST" id="payment-form">
+
+      <div>Amount</div>
+      <input type="decimal" size="10" autocomplete="off" class="card-amount"/>
+      <div>Card Number</div>
+      <input type="text" size="30" autocomplete="off" class="card-number"/>
+      <div>CVC</div>
+      <input type="text" size="4" autocomplete="off" class="card-cvc"/>
+      <div >Expiration (MM/YYYY)</div>
+      <input type="text" size="2" class="card-expiry-month"/>
+      <span> / </span>
+      <input type="text" size="4" class="card-expiry-year"/>
+      <br>
+    <input type="hidden" name="amount" id="cc-amount">
+    <button type="submit" class="submit-button">Submit Payment</button>
+  </form>
+</div>
+<div id="error" class="hidden"></div>
+<div id="success" class="hidden">Thank you for the payment!</div>
+</script>
