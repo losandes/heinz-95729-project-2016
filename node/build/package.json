@@ -34,6 +34,7 @@
     "mocha": "^2.3.3",
     "mongodb": "^2.0.46",
     "nconf": "^0.8.1",
-    "phantomjs": "^1.9.18"
+    "phantomjs": "^1.9.18",
+    "stripe": "^4.0.0"
   }
 }

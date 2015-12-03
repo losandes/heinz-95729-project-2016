@@ -1,7 +1,7 @@
 Hilary.scope('heinz').register({
     name: 'checkoutController',
-    dependencies: ['newGidgetModule', 'GidgetRoute', 'locale', 'viewEngine', 'Orders', 'jQuery'],
-    factory: function ($this, GidgetRoute, locale, viewEngine, Orders, $) {
+    dependencies: ['newGidgetModule', 'GidgetRoute', 'locale', 'viewEngine', 'Orders', 'Payment', 'jQuery'],
+    factory: function ($this, GidgetRoute, locale, viewEngine, Orders, Payment, $) {
         'use strict';
 
         // temporary put it here, hard code the page to a search result
@@ -87,6 +87,41 @@ Hilary.scope('heinz').register({
                             template: 't-no-results',
                             data: { searchterm: "no orders?!" }
                         });
+                    }
+                });
+            }
+        });
+
+
+        // temporary put it here
+        // GET /payment
+        $this.get['/payment'] = new GidgetRoute({
+            routeHandler: function () {
+                viewEngine.setVM({
+                    template: 't-payment',
+                    data: new Payment()
+                });
+            }
+        });
+
+        // temporary put it here
+        // POST /checkout
+        $this.post['/payment'] = new GidgetRoute({
+            routeHandler: function (err, req) {
+                console.log(req.payload);
+                $.ajax({
+                    // consider add email, now hard code on server side first
+                    url: '/payment',
+                    method: 'POST',
+                    data: req.payload,
+                    contentType: 'application/json'
+                }).done(function (data) {
+
+                    // prompt user the result
+                    if(data == 500) {
+                        console.log("Save order failed!");
+                    } else if(data == 204) {
+                        console.log("Save order succeeded!");
                     }
                 });
             }

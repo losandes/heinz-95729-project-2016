@@ -1,6 +1,6 @@
 module.exports.name = 'checkoutApiController';
-module.exports.dependencies = ['router', 'ordersRepo', 'exceptions'];
-module.exports.factory = function (router, repo, exceptions) {
+module.exports.dependencies = ['router', 'ordersRepo', 'exceptions', 'stripe'];
+module.exports.factory = function (router, repo, exceptions, stripe) {
     'use strict';
 
     // get order
@@ -39,6 +39,32 @@ module.exports.factory = function (router, repo, exceptions) {
         });
 
     });
+
+    // payment
+    // temporarily put it here
+    router.post('/payment', function(req, res) {
+
+        console.log("a post to /api/payment !!");
+
+        var stripeToken = req.body.id;
+
+        console.log(stripeToken);
+        var amount = 1000; // unit: cent
+
+        stripe.charges.create({
+            card: stripeToken,
+            currency: 'usd',
+            amount: amount
+        },
+        function(err, charge) {
+            if (err) {
+                res.sendStatus(500);
+            } else {
+                res.sendStatus(204);
+            }
+        });
+    });
+
 
     return router;
 };

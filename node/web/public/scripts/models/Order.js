@@ -71,6 +71,8 @@ Hilary.scope('heinz').register({
             // operation: save order
             self.saveOrder = function() {
                 
+                console.log("save order callled!");
+
                 // send updated order as JSON
                 var dataToSave = {
                     email: self.email(),
@@ -83,8 +85,6 @@ Hilary.scope('heinz').register({
                             }
                         })
                 };
-
-                // alert("Could now send this to server: " + JSON.stringify(dataToSave));
 
                 router.post("/checkout", JSON.stringify(dataToSave));
 
