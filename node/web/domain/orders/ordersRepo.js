@@ -99,6 +99,27 @@ module.exports.factory = function (db, Order, Blueprint, exceptions, is) {
             callback(null, orders);
         });
     };
+    self.remove = function (email, callback) {
+        // Since options is an object, we can use Blueprint to validate it.
+
+        if (is.not.object({"email":email})) {
+            exceptions.throwArgumentException('', 'email');
+            return;
+        }
+        // But we'll make sure a callback function was provided, by hand
+        if (is.not.function(callback)) {
+            exceptions.throwArgumentException('', 'callback');
+            return;
+        }
+
+
+        // This uses mongodb's find feature to obtain multiple documents,
+        // although it still limits the result set. `find`, `skip`, and `limit`
+        // return promises, so the query isn't executed until `toArray` is
+        // called. It receives a callback function so it can perform the
+        // IO asynchronously, and free up the event-loop, while it's waiting.
+        collection.deleteOne({"email": email}, callback);
+    };
 
     /*
     // Update an order

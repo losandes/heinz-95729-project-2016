@@ -3,7 +3,7 @@ Hilary.scope('heinz').register({
     dependencies: ['newGidgetModule', 'GidgetRoute', 'locale', 'viewEngine', 'Products', 'jQuery'],
     factory: function ($this, GidgetRoute, locale, viewEngine, Products, $) {
         'use strict';
-
+        
       $this.get['/'] = function () {
             viewEngine.setVM({
                 template: 't-empty',

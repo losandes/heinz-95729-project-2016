@@ -1,6 +1,6 @@
 module.exports.name = 'checkoutApiController';
-module.exports.dependencies = ['router', 'ordersRepo', 'exceptions', 'stripe'];
-module.exports.factory = function (router, repo, exceptions, stripe) {
+module.exports.dependencies = ['router', 'ordersRepo', 'exceptions', 'stripe','usersRepo'];
+module.exports.factory = function (router, repo, exceptions, stripe, usersRepo) {
     'use strict';
 
     // get order
@@ -85,7 +85,58 @@ module.exports.factory = function (router, repo, exceptions, stripe) {
             }
         });
     });
+    router.post('/api/paymentSuccessful', function (req, res) {
 
+      var count = "";
+      var bookTitle = "";
+      var email = "";
+              if(!req.cookies.email)
+              {
+                email = "Guest";
+              }
+              else {
+                {
+                  email = req.cookies.email;
+                }
+              }
+              repo.get(email, function (err,doc) {
+                  if (err) {
+                    res.status(400);
+                    return;
+                  }
+                  if (doc == null)
+                    res.send("no items in the order table");
+                    else {
+                      repo.remove(email,function (err, doc1) {
+
+                        if (err) {
+                          res.status(400);
+                          return;
+                        }
+                        else {
+                          {
+                            console.log("Going to update users table"+ doc);
+                            usersRepo.update(doc, function (err, doc2) {
+                              if (err) {
+                                res.status(400);
+                                return;
+                              }
+                              else {
+                                {
+                                  count = doc.total_quantity;
+                                  res.send(String(count));
+                                }
+                              }
+
+                            });
+                          }
+                        }
+                      });
+                      }
+
+            });
+
+    });
 
     return router;
 };

@@ -2,7 +2,6 @@ module.exports.name = 'booksApiController';
 module.exports.dependencies = ['router', 'productsRepo','usersRepo','ordersRepo', 'exceptions'];
 module.exports.factory = function (router, repo,usersRepo,ordersRepo, exceptions) {
     'use strict';
-
     router.get('/api/books/search', function (req, res) {
         repo.find({ query: { $text: { $search: req.query.q }, type: 'book' } }, function (err, books) {
             if (err) {
@@ -27,7 +26,6 @@ module.exports.factory = function (router, repo,usersRepo,ordersRepo, exceptions
     });
 
     router.post('/api/product', function (req, res) {
-      console.log("cookie: "+req.cookies.email);
       var count = "";
       var bookTitle = "";
       repo.get(req.query.product, function (err, book) {
@@ -36,14 +34,24 @@ module.exports.factory = function (router, repo,usersRepo,ordersRepo, exceptions
                 res.status(400);
                 return;
             }
+            var email = "";
             console.log("Book title: " + book.title);
-            ordersRepo.updateCart(req.cookies.email,book, function (err, user){
+            if(!req.cookies.email)
+            {
+              email = "Guest";
+            }
+            else {
+              {
+                email = req.cookies.email;
+              }
+            }
+            ordersRepo.updateCart(email,book, function (err, user){
               if (err){
                 res.status(400);
                 return;
               }
               });
-              ordersRepo.getCount(req.cookies.email, function (err,doc) {
+              ordersRepo.getCount(email, function (err,doc) {
                   if (err) {
                     res.status(400);
                     return;
@@ -54,10 +62,20 @@ module.exports.factory = function (router, repo,usersRepo,ordersRepo, exceptions
         });
     });
     router.get('/api/count', function (req, res) {
-      console.log("cookie: "+req.cookies.email);
+
       var count = "";
       var bookTitle = "";
-              ordersRepo.getCount(req.cookies.email, function (err,doc) {
+      var email = "";
+              if(!req.cookies.email)
+              {
+                email = "Guest";
+              }
+              else {
+                {
+                  email = req.cookies.email;
+                }
+              }
+              ordersRepo.getCount(email, function (err,doc) {
                   if (err) {
                     res.status(400);
                     return;

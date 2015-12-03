@@ -62,12 +62,8 @@ module.exports.factory = function (db, User, Blueprint, exceptions, is) {
        collection.updateOne({"email":payload.email},payload,{upsert:true}, callback);
     };
 
-    self.update = function (email,product, callback) {
-        if (is.not.string(email)) {
-            exceptions.throwArgumentException('', 'payload');
-            return;
-        }
-        if (is.not.string(product)) {
+    self.update = function (payload, callback) {
+        if (is.not.object(payload)) {
             exceptions.throwArgumentException('', 'payload');
             return;
         }
@@ -77,10 +73,9 @@ module.exports.factory = function (db, User, Blueprint, exceptions, is) {
         }
 
         collection.updateOne(
-          {email : email},
+          {email : payload.email},
           {
-            $push: { "products": product },
-            $inc: { "quantity": 1}
+            $addToSet: { "Orders": {"order_id":payload._id,"order_details":payload.items} }
           }
           , callback);
     };

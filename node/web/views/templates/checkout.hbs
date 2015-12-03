@@ -1,4 +1,4 @@
-<script id="t-checkout" type="text/html">    
+<script id="t-checkout" type="text/html">
 
     <div data-bind="foreach: { data: data.orders, as: 'order'}">
         <p>
@@ -24,17 +24,18 @@
                     <td>
                         <a href='javascript:void(0);' data-bind='click: $parent.removeItem' style='color:red; text-decoration:underline'>Remove</a>
                     </td>
-                </tr>    
+                </tr>
             </tbody>
         </table>
 
         <p>
             Total value: <span data-bind='text: formatCurrency(total())'> </span>
         </p>
+        <p>
+            Total value: <span data-bind='text: totalQuantity()'> </span>
+        </p>
         <button data-bind='click: saveOrder'>Save order</button>
         <button data-bind='click: submitOrder'>Submit order</button>
     </div>
 
 </script>
-
-

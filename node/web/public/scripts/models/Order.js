@@ -64,6 +64,13 @@ Hilary.scope('heinz').register({
                 return total;
             });
 
+            self.totalQuantity = ko.pureComputed(function() {
+                var total = 0;
+                $.each(self.items(), function() { total += Number(this.quantity()) });
+                console.log("total quantity:" +total );
+                return total;
+
+            });
             // operation: remove an item
             self.removeItem = function(item) {
                 self.items.remove(item);
@@ -71,7 +78,7 @@ Hilary.scope('heinz').register({
 
             // operation: save order
             self.saveOrder = function() {
-                
+
                 console.log("save order callled!");
 
                 // send updated order as JSON
@@ -85,6 +92,7 @@ Hilary.scope('heinz').register({
                                 quantity: item.quantity()
                             }
                         }),
+                    total_quantity: self.totalQuantity()
                     // isCompleted: self.isCompleted()
                 };
 
@@ -94,7 +102,7 @@ Hilary.scope('heinz').register({
 
             // operation: submit order
             self.submitOrder = function() {
-                
+
                 console.log("submit order callled!");
 
                 console.log(self.total());
@@ -113,6 +121,7 @@ Hilary.scope('heinz').register({
                                 }
                             }),
                         // isCompleted: self.isCompleted()
+                        total_quantity: self.totalQuantity()
                     }
                 };
 
