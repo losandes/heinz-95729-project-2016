@@ -26,10 +26,28 @@ module.exports.factory = function (router, repo, exceptions, stripe) {
 
 
     // save order
-    router.post('/api/checkout', function (req, res) {
+    router.post('/api/saveOrder', function (req, res) {
 
-        console.log("a post to /api/checkout !!");
+        console.log("a post to /api/saveOrder !!");
 
+        repo.update(req.body.email, req.body, function (err, result) {
+            if (!err) {
+                res.send("Success");
+            } else {
+                res.send("Fail");
+            }
+        });
+
+    });
+
+    // submit order
+    router.post('/api/submitOrder', function (req, res) {
+
+        console.log("a post to /api/submitOrder !!");
+
+        // currently only save the order, but
+        // consider set a flag in the order table to indicate the order has
+        // been submitted but the payment is pending
         repo.update(req.body.email, req.body, function (err, result) {
             if (!err) {
                 res.send("Success");
@@ -47,9 +65,11 @@ module.exports.factory = function (router, repo, exceptions, stripe) {
         console.log("a post to /api/payment !!");
 
         var stripeToken = req.body.id;
+        // unit: cent, thus the multiplication is needed
+        var amount = req.body.amount * 100;
 
         console.log(stripeToken);
-        var amount = 1000; // unit: cent
+        // var amount = 1000; // unit: cent
 
         stripe.charges.create({
             card: stripeToken,
@@ -58,9 +78,10 @@ module.exports.factory = function (router, repo, exceptions, stripe) {
         },
         function(err, charge) {
             if (err) {
-                res.sendStatus(500);
+                // send in data rather than status code
+                res.send("500");
             } else {
-                res.sendStatus(204);
+                res.send("204");
             }
         });
     });

@@ -19,14 +19,9 @@ module.exports.factory = function (Blueprint, ObjectID, exceptions) {
         items: {
             type: 'array',
             required: false
-        }
+        },
+        // isCompleted : 'boolean'
         
-        // items: new Blueprint({
-        // 	uid: 'string',
-        // 	title: 'string',
-        // 	price: 'money',
-        // 	quantity: 'number'
-        // }),
     });
 
     /*
@@ -49,6 +44,7 @@ module.exports.factory = function (Blueprint, ObjectID, exceptions) {
         self._id = new ObjectID(order._id);
         self.email = order.email;
         self.items = order.items;
+        // self.isCompleted = order.isCompleted;
 
         return self;
     };

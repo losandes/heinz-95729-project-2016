@@ -14,7 +14,8 @@ Hilary.scope('heinz').register({
             items: {
                 type: 'array',
                 required: false
-            }
+            },
+            // isCompleted : 'boolean'
         });
 
         // single order item
@@ -43,6 +44,7 @@ Hilary.scope('heinz').register({
 
             self.email = ko.observable(order.email);
           	self.items = ko.observableArray();
+            // self.isCompleted = ko.observable(order.isCompleted);
 
             // initialize order items
             var i;
@@ -67,7 +69,6 @@ Hilary.scope('heinz').register({
                 self.items.remove(item);
             };
 
-
             // operation: save order
             self.saveOrder = function() {
                 
@@ -83,10 +84,39 @@ Hilary.scope('heinz').register({
                                 price: item.price(),
                                 quantity: item.quantity()
                             }
-                        })
+                        }),
+                    // isCompleted: self.isCompleted()
                 };
 
-                router.post("/checkout", JSON.stringify(dataToSave));
+                router.post("/saveOrder", dataToSave);
+
+            };
+
+            // operation: submit order
+            self.submitOrder = function() {
+                
+                console.log("submit order callled!");
+
+                console.log(self.total());
+
+                // send updated order as JSON
+                var dataToSubmit = {
+                    "totalValue": self.total(),
+                    "order": {
+                        email: self.email(),
+                        items:
+                            $.map(self.items(), function(item) {
+                                return {
+                                    title: item.title(),
+                                    price: item.price(),
+                                    quantity: item.quantity()
+                                }
+                            }),
+                        // isCompleted: self.isCompleted()
+                    }
+                };
+
+                router.post("/submitOrder", dataToSubmit);
 
             };
 

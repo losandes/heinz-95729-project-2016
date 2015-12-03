@@ -46,46 +46,6 @@ Hilary.scope('heinz').register({
             }
         });
 
-        // POST /checkout
-        $this.post['/checkout'] = new GidgetRoute({
-            routeHandler: function (err, req) {
-                console.log(req.payload);
-                $.ajax({
-                    // consider add email, now hard code on server side first
-                    url: '/api/checkout',
-                    method: 'POST',
-                    data: req.payload,
-                    contentType: 'application/json',
-                }).done(function (data) {
-
-                    // prompt user the result
-                    if(data == "Success") {
-                        alert("Save order succeeded!");
-                        viewEngine.setVM({
-                        template: 't-payment',
-
-                        });
-                    } else {
-                        alert("Save order failed!");
-                    }
-                //     // var value = JSON.parse(result);
-                //     var results = new Orders(data);
-
-                //     if (results.orders().length > 0) {
-                //         viewEngine.setVM({
-                //             template: 't-checkout',
-                //             data: results
-                //         });
-                //     } else {
-                //         viewEngine.setVM({
-                //             template: 't-no-results',
-                //             data: { searchterm: "no no no?!" }
-                //         });
-                //     }
-                });
-            }
-        });
-
         // temporary put it here, hard code the page to a search result
         // GET /checkout
         $this.get['/orderhistory'] = new GidgetRoute({
@@ -112,17 +72,74 @@ Hilary.scope('heinz').register({
             }
         });
 
+        // POST /saveOrder
+        $this.post['/saveOrder'] = new GidgetRoute({
+            routeHandler: function (err, req) {
+                console.log(req.payload);
 
-        // temporary put it here
-        // GET /payment
-        $this.get['/payment'] = new GidgetRoute({
-            routeHandler: function () {
-                viewEngine.setVM({
-                    template: 't-payment',
-                    data: new Payment()
+                $.ajax({
+                    // consider add email, now hard code on server side first
+                    url: '/api/saveOrder',
+                    method: 'POST',
+                    data: JSON.stringify(req.payload),
+                    contentType: 'application/json',
+                }).done(function (data) {
+
+                    // prompt user the result
+                    if(data == "Success") {
+                        alert("Save order succeeded!");
+                    } else {
+                        alert("Save order failed!");
+                    }
                 });
             }
         });
+
+        // POST /submitOrder
+        $this.post['/submitOrder'] = new GidgetRoute({
+            routeHandler: function (err, req) {
+                console.log(req.payload);
+
+                var totalValue = req.payload.totalValue;
+                console.log(typeof totalValue);
+                $.ajax({
+                    // consider add email, now hard code on server side first
+                    url: '/api/submitOrder',
+                    method: 'POST',
+                    data: JSON.stringify(req.payload.order),
+                    contentType: 'application/json',
+                }).done(function (data) {
+
+                    // prompt user the result
+                    if(data == "Success") {
+                        alert("Submit order succeeded. Redirect to payment page.");
+
+                        // Shall I send the order again after the payment is successful?
+
+                        // render the payment page
+                        viewEngine.setVM({
+                            template: 't-payment',
+                            // show amount to pay
+                            data: new Payment(totalValue)
+                        });
+                    } else {
+                        alert("Submit order failed!");
+                    }
+                });
+            }
+        });
+
+
+        // temporary put it here
+        // GET /payment
+        // $this.get['/payment'] = new GidgetRoute({
+        //     routeHandler: function () {
+        //         viewEngine.setVM({
+        //             template: 't-payment',
+        //             data: new Payment()
+        //         });
+        //     }
+        // });
 
         // temporary put it here
         // POST /checkout
@@ -136,13 +153,19 @@ Hilary.scope('heinz').register({
                     data: req.payload,
                     contentType: 'application/json'
                 }).done(function (data) {
-
                     // prompt user the result
-                    if(data == 500) {
-                        console.log("Save order failed!");
-                    } else if(data == 204) {
-                        console.log("Save order succeeded!");
+                    if(data == "500") {
+                        alert("Payment failed! Please retry!");
+                    } else if(data == "204") {
+                        console.log("Payment succeeded!");
+                        // should redirect user to payment successful page
+                        viewEngine.setVM({
+                            template: 't-paymentSuccess',
+                            // Consider putting user information in the data
+                            data: {}
+                        });
                     }
+
                 });
             }
         });
