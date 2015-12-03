@@ -28,7 +28,7 @@ Hilary.scope('heinz').register({
             self.subtotal = ko.pureComputed(function() {
                 return self.price() * self.quantity();
             });
-         
+
         };
 
         Order = function (order) {
@@ -63,11 +63,11 @@ Hilary.scope('heinz').register({
             });
 
             // operation: remove an item
-            self.removeItem = function(item) { 
-                self.items.remove(item); 
+            self.removeItem = function(item) {
+                self.items.remove(item);
             };
 
- 
+
             // operation: save order
             self.saveOrder = function() {
                 
@@ -76,7 +76,7 @@ Hilary.scope('heinz').register({
                 // send updated order as JSON
                 var dataToSave = {
                     email: self.email(),
-                    items: 
+                    items:
                         $.map(self.items(), function(item) {
                             return {
                                 title: item.title(),

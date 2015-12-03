@@ -45,6 +45,22 @@ Hilary.scope('heinz').register({
                     });
 
                 });
+                $.ajax({
+                    url: '/api/count',
+                    method: 'GET'
+                }).done(function (data) {
+                  var cart = document.getElementById("cart");
+                  cart.style.color = "#fff";
+                  cart.style.background= "#ff0000";
+                  cart.style.fontSize= "12px";
+                  cart.style.padding = "0 5px";
+                  cart.style.position = "absolute";
+                  cart.style.marginLeft="-2px";
+                  cart.style.verticalAlign = top;
+                  cart.style.borderRadius = "50px 15px";
+                  cart.innerHTML = "";
+                  cart.appendChild(document.createTextNode(data));
+                });
             }
         });
 

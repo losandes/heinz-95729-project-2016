@@ -11,7 +11,8 @@ module.exports.factory = function (db, Order, Blueprint, exceptions, is) {
             create: undefined,
             update: undefined,
             remove: undefined,
-            updateCart: undefined
+            updateCart: undefined,
+            getCount: undefined
         },
         collection = db.collection(Order.db.collection),
         findOptionsBlueprint,
@@ -144,10 +145,30 @@ module.exports.factory = function (db, Order, Blueprint, exceptions, is) {
         }
         // actually replace an order
         collection.findAndModify({"email": email},[],{$setOnInsert: { "email": email} },{ upsert:true}, callback);
-        collection.update( {"email" : email, "items.title" : payload.title },{$inc : {"items.$.quantity" : 1} } ,{upsert:false }, callback);
+        collection.update( {"email" : email, "items.title" : payload.title },{$inc : {"items.$.quantity" : 1, "total_quantity" : 1}} ,{upsert:false }, callback);
         collection.update({email : email , "items.title" : { $ne : payload.title}},
-                    {$addToSet : {"items" : {"title" : payload.title, "price" : payload.price , "quantity" : 1 }} } ,
+                    {$addToSet : {"items" : {"title" : payload.title, "price" : payload.price , "quantity" : 1 }},$inc : {"total_quantity" : 1}},
                            {upsert:false}, callback);
+    };
+
+    self.getCount = function (email,callback) {
+        if (is.not.string(email)) {
+            exceptions.throwArgumentException('', 'payload');
+            return;
+        }
+
+        if (is.not.function(callback)) {
+            exceptions.throwArgumentException('', 'callback');
+            return;
+        }
+
+        collection.find({"email" : email}).next (function (err, doc) {
+            if (err) {
+                callback(err);
+                return;
+            }
+            callback(null, doc);
+        });
     };
     return self;
 };

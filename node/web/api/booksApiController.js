@@ -42,26 +42,35 @@ module.exports.factory = function (router, repo,usersRepo,ordersRepo, exceptions
                 res.status(400);
                 return;
               }
-
-            } )
+              });
+              ordersRepo.getCount(req.cookies.email, function (err,doc) {
+                  if (err) {
+                    res.status(400);
+                    return;
+                  }
+                  count = doc.total_quantity;
+                  res.send(String(count));
+            });
         });
-
-      usersRepo.update(req.cookies.email, req.query.product, function (err, user) {
-          if (err) {
-              res.status(400);
-              return;
-          }
-          usersRepo.getCount(req.cookies.email, function (err,doc) {
-              if (err) {
-                res.status(400);
-                return;
-              }
-              count = doc.quantity;
-              res.send(String(count));
-          });
-
-      });
     });
+    router.get('/api/count', function (req, res) {
+      console.log("cookie: "+req.cookies.email);
+      var count = "";
+      var bookTitle = "";
+              ordersRepo.getCount(req.cookies.email, function (err,doc) {
+                  if (err) {
+                    res.status(400);
+                    return;
+                  }
+                  if (doc == null)
+                    res.send("0");
+                    else {
+                      count = doc.total_quantity;
+                      res.send(String(count));
+                    }
 
+            });
+
+    });
     return router;
 };
