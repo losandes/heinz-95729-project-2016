@@ -14,7 +14,16 @@ Hilary.scope('heinz').register({
                 });
             }
         });
-
+        // GET /#/login
+        // login
+        $this.get['/Guest'] = new GidgetRoute({
+            routeHandler: function () {
+                viewEngine.setVM({
+                    template: 't-login-guest',
+                    data: { }
+                });
+            }
+        });
         // POST /login
         // login
         $this.post['/login'] = new GidgetRoute({
@@ -22,7 +31,13 @@ Hilary.scope('heinz').register({
                 return true; // ignore
             }
         });
-
+        // POST /login
+        // login
+        $this.post['/Guest'] = new GidgetRoute({
+            routeHandler: function () {
+                return true; // ignore
+            }
+        });
         // GET /register
         // Register a new account
         $this.get['/register'] = new GidgetRoute({

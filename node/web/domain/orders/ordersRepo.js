@@ -172,6 +172,33 @@ module.exports.factory = function (db, Order, Blueprint, exceptions, is) {
                            {upsert:false}, callback);
     };
 
+    self.merge = function(email1,callback) {
+      //collection.findAndModify({"email": "Guest"},[],{$set:{ "email": email1 }},{ upsert:true}, callback);
+      collection.find({ email: "Guest" }).limit(1).next(function (err, order) {
+          if (err) {
+              callback(err);
+              return;
+          }
+
+          var result = new Order(order);
+          console.log("Array: "+JSON.stringify(result.items));
+          var itemsArray = result.items;
+          var total = result.total_quantity;
+          console.log("title at index 0: "+itemsArray[0].title);
+          console.log("title at index 0: "+itemsArray[0].quantity);
+          console.log("title at index 0: "+order.total_quantity);
+          for (var i in itemsArray)
+          {
+            collection.update( {"email" : email1, "items.title" : itemsArray[i].title },{$inc : {"items.$.quantity" : itemsArray[i].quantity}} ,{upsert:false }, callback);
+            collection.update({"email" : email1 , "items.title" : { $ne : itemsArray[i].title}},
+                        {$addToSet : {"items" : {"title" : itemsArray[i].title, "price" : itemsArray[i].price , "quantity" : itemsArray[i].quantity }}},
+                               {upsert:false}, callback);
+          }
+          collection.update( {"email" : email1 },{$inc : {"total_quantity" : order.total_quantity}} ,{upsert:false }, callback);
+          collection.deleteOne({"email": "Guest"}, callback);
+          callback(null, new Order(order));
+      });
+    };
     self.getCount = function (email,callback) {
         if (is.not.string(email)) {
             exceptions.throwArgumentException('', 'payload');

@@ -3,7 +3,7 @@ Hilary.scope('heinz').register({
     dependencies: ['newGidgetModule', 'GidgetRoute', 'locale', 'viewEngine', 'Products', 'jQuery'],
     factory: function ($this, GidgetRoute, locale, viewEngine, Products, $) {
         'use strict';
-        
+
       $this.get['/'] = function () {
             viewEngine.setVM({
                 template: 't-empty',
@@ -31,17 +31,20 @@ Hilary.scope('heinz').register({
                 url: '/api/count',
                 method: 'GET'
             }).done(function (data) {
-              var cart = document.getElementById("cart");
-              cart.style.color = "#fff";
-              cart.style.background= "#ff0000";
-              cart.style.fontSize= "12px";
-              cart.style.padding = "0 5px";
-              cart.style.position = "absolute";
-              cart.style.marginLeft="-2px";
-              cart.style.verticalAlign = top;
-              cart.style.borderRadius = "50px 15px";
-              cart.innerHTML = "";
-              cart.appendChild(document.createTextNode(data));
+              if (data > 0)
+              {
+                var cart = document.getElementById("cart");
+                cart.style.color = "#fff";
+                cart.style.background= "#ff0000";
+                cart.style.fontSize= "12px";
+                cart.style.padding = "0 5px";
+                cart.style.position = "absolute";
+                cart.style.marginLeft="-2px";
+                cart.style.verticalAlign = top;
+                cart.style.borderRadius = "50px 15px";
+                cart.innerHTML = "";
+                cart.appendChild(document.createTextNode(data));
+              }
               viewEngine.setVM({
                   template: 't-empty',
                   data: {
@@ -78,17 +81,21 @@ Hilary.scope('heinz').register({
                   url: '/api/count',
                   method: 'GET'
               }).done(function (data) {
-                var cart = document.getElementById("cart");
-        				cart.style.color = "#fff";
-        				cart.style.background= "#ff0000";
-        				cart.style.fontSize= "12px";
-        				cart.style.padding = "0 5px";
-        				cart.style.position = "absolute";
-        				cart.style.marginLeft="-2px";
-        				cart.style.verticalAlign = top;
-        				cart.style.borderRadius = "50px 15px";
-        				cart.innerHTML = "";
-        				cart.appendChild(document.createTextNode(data));
+                if (data > 0)
+                {
+                  var cart = document.getElementById("cart");
+          				cart.style.color = "#fff";
+          				cart.style.background= "#ff0000";
+          				cart.style.fontSize= "12px";
+          				cart.style.padding = "0 5px";
+          				cart.style.position = "absolute";
+          				cart.style.marginLeft="-2px";
+          				cart.style.verticalAlign = top;
+          				cart.style.borderRadius = "50px 15px";
+          				cart.innerHTML = "";
+          				cart.appendChild(document.createTextNode(data));
+                }
+
               });
 
           }
@@ -100,17 +107,20 @@ Hilary.scope('heinz').register({
                   url: '/api/product?product=' +req.uri.query.product ,
                   method: 'POST'
               }).done(function (data) {
-                var cart = document.getElementById("cart");
-        				cart.style.color = "#fff";
-        				cart.style.background= "#ff0000";
-        				cart.style.fontSize= "12px";
-        				cart.style.padding = "0 5px";
-        				cart.style.position = "absolute";
-        				cart.style.marginLeft="-2px";
-        				cart.style.verticalAlign = top;
-        				cart.style.borderRadius = "50px 15px";
-        				cart.innerHTML = "";
-        				cart.appendChild(document.createTextNode(data));
+                if (data > 0)
+                {
+                  var cart = document.getElementById("cart");
+          				cart.style.color = "#fff";
+          				cart.style.background= "#ff0000";
+          				cart.style.fontSize= "12px";
+          				cart.style.padding = "0 5px";
+          				cart.style.position = "absolute";
+          				cart.style.marginLeft="-2px";
+          				cart.style.verticalAlign = top;
+          				cart.style.borderRadius = "50px 15px";
+          				cart.innerHTML = "";
+          				cart.appendChild(document.createTextNode(data));
+                }
               });
           }
         });

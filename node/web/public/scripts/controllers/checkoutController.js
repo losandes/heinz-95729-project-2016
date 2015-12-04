@@ -1,48 +1,59 @@
 Hilary.scope('heinz').register({
     name: 'checkoutController',
-    dependencies: ['newGidgetModule', 'GidgetRoute', 'locale', 'viewEngine', 'Orders', 'Payment', 'jQuery'],
-    factory: function ($this, GidgetRoute, locale, viewEngine, Orders, Payment, $) {
+    dependencies: ['newGidgetModule', 'GidgetRoute', 'locale', 'viewEngine', 'Orders', 'Payment', 'jQuery','router'],
+    factory: function ($this, GidgetRoute, locale, viewEngine, Orders, Payment, $,router) {
         'use strict';
 
         // temporary put it here, hard code the page to a search result
         // GET /checkout
         $this.get['/checkout'] = new GidgetRoute({
             routeHandler: function (err, req) {
-                $.ajax({
-                    // consider add email, now hard code on server side first
-                    url: '/api/checkout',
-                    method: 'GET'
-                }).done(function (data) {
-                    var results = new Orders(data);
+              console.log("Guest cookie"+ window.document.cookie )
+              if(window.document.cookie == "email=Guest")
+              {
+                router.navigate('/Guest');
+              }
+                else {
 
-                    if (results.orders().length > 0) {
-                        viewEngine.setVM({
-                            template: 't-checkout',
-                            data: results
-                        });
-                    } else {
-                        viewEngine.setVM({
-                            template: 't-no-results',
-                            data: { searchterm: "no orders?!" }
-                        });
+                  $.ajax({
+                      // consider add email, now hard code on server side first
+                      url: '/api/checkout',
+                      method: 'GET'
+                  }).done(function (data) {
+                      var results = new Orders(data);
+
+                      if (results.orders().length > 0) {
+                          viewEngine.setVM({
+                              template: 't-checkout',
+                              data: results
+                          });
+                      } else {
+                          viewEngine.setVM({
+                              template: 't-no-results',
+                              data: { searchterm: "no orders?!" }
+                          });
+                      }
+                  });
+                  $.ajax({
+                      url: '/api/count',
+                      method: 'GET'
+                  }).done(function (data) {
+                    if (data > 0)
+                    {
+                      var cart = document.getElementById("cart");
+              				cart.style.color = "#fff";
+              				cart.style.background= "#ff0000";
+              				cart.style.fontSize= "12px";
+              				cart.style.padding = "0 5px";
+              				cart.style.position = "absolute";
+              				cart.style.marginLeft="-2px";
+              				cart.style.verticalAlign = top;
+              				cart.style.borderRadius = "50px 15px";
+              				cart.innerHTML = "";
+              				cart.appendChild(document.createTextNode(data));
                     }
-                });
-                $.ajax({
-                    url: '/api/count',
-                    method: 'GET'
-                }).done(function (data) {
-                  var cart = document.getElementById("cart");
-                  cart.style.color = "#fff";
-                  cart.style.background= "#ff0000";
-                  cart.style.fontSize= "12px";
-                  cart.style.padding = "0 5px";
-                  cart.style.position = "absolute";
-                  cart.style.marginLeft="-2px";
-                  cart.style.verticalAlign = top;
-                  cart.style.borderRadius = "50px 15px";
-                  cart.innerHTML = "";
-                  cart.appendChild(document.createTextNode(data));
-                });
+                  });
+                }
             }
         });
 

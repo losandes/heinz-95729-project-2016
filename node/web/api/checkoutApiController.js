@@ -10,7 +10,17 @@ module.exports.factory = function (router, repo, exceptions, stripe, usersRepo) 
 
         // the query should return one order that's supposed to be not completed
         // but return all the orders for simplicity now?
-        repo.find({ query: { email: req.cookies.email }}, function (err, orders) {
+        var email = "";
+        if(!req.cookies.email)
+        {
+          email = "Guest";
+        }
+        else {
+          {
+            email = req.cookies.email;
+          }
+        }
+        repo.find({ query: { email: email }}, function (err, orders) {
             if (err) {
                 exceptions.throwException(err);
                 res.status(400);
@@ -26,11 +36,21 @@ module.exports.factory = function (router, repo, exceptions, stripe, usersRepo) 
 
 
     // save order
+
     router.post('/api/saveOrder', function (req, res) {
 
         console.log("a post to /api/saveOrder !!");
-
-        repo.update(req.body.email, req.body, function (err, result) {
+        var email = "";
+        if(!req.cookies.email)
+        {
+          email = "Guest";
+        }
+        else {
+          {
+            email = req.cookies.email;
+          }
+        }
+        repo.update(email, req.body, function (err, result) {
             if (!err) {
                 res.send("Success");
             } else {
@@ -44,11 +64,20 @@ module.exports.factory = function (router, repo, exceptions, stripe, usersRepo) 
     router.post('/api/submitOrder', function (req, res) {
 
         console.log("a post to /api/submitOrder !!");
-
+        var email = "";
         // currently only save the order, but
         // consider set a flag in the order table to indicate the order has
         // been submitted but the payment is pending
-        repo.update(req.body.email, req.body, function (err, result) {
+        if(!req.cookies.email)
+        {
+          email = "Guest";
+        }
+        else {
+          {
+            email = req.cookies.email;
+          }
+        }
+        repo.update(email, req.body, function (err, result) {
             if (!err) {
                 res.send("Success");
             } else {

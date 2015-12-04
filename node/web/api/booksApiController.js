@@ -38,6 +38,7 @@ module.exports.factory = function (router, repo,usersRepo,ordersRepo, exceptions
             console.log("Book title: " + book.title);
             if(!req.cookies.email)
             {
+
               email = "Guest";
             }
             else {
@@ -69,6 +70,18 @@ module.exports.factory = function (router, repo,usersRepo,ordersRepo, exceptions
               if(!req.cookies.email)
               {
                 email = "Guest";
+                ordersRepo.remove(email, function (err,doc) {
+                    if (err) {
+                      res.status(400);
+                      return;
+                    }
+                    else {
+                      var authCookieExpiryDurationMinutes = 43200, // 30 days
+                          maxAge = authCookieExpiryDurationMinutes * 60 * 1000;
+                      res.cookie('email', email, { maxAge: maxAge, httpOnly: false });
+                    }
+
+              });
               }
               else {
                 {

@@ -1,7 +1,7 @@
 
 module.exports.name = 'authController';
-module.exports.dependencies = ['router', 'usersRepo'];
-module.exports.factory = function (router, repo) {
+module.exports.dependencies = ['router', 'usersRepo','ordersRepo'];
+module.exports.factory = function (router, repo,ordersRepo) {
     'use strict';
 
     var authCookieExpiryDurationMinutes = 43200, // 30 days
@@ -40,6 +40,26 @@ module.exports.factory = function (router, repo) {
             if (!err) {
                 addCookie(user, res);
                 res.redirect('/loggedin?user'+user._id);
+            } else {
+                res.status(400);
+            }
+        });
+    });
+    router.post('/Guest', function (req, res) {
+        console.log('Guest login called');
+        repo.get(req.body.email, function (err, user) {
+            if (!err) {
+                ordersRepo.merge(req.body.email, function (err, user) {
+                  if (!err)
+                  {
+                    console.log("ok");
+                  }
+                  else {
+                    res.status(400);
+                  }
+                });
+                addCookie(user, res);
+                res.redirect('/checkout?user'+user._id);
             } else {
                 res.status(400);
             }

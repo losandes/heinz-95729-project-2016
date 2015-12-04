@@ -13,7 +13,7 @@ module.exports.factory = function (Blueprint, exceptions, ObjectID) {
 
                 type: 'array',
                 required: true
-            
+
         })
     });
 
