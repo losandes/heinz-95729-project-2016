@@ -97,7 +97,9 @@ module.exports.factory = function (router, repo, exceptions, stripe, usersRepo) 
         // unit: cent
         var amount = req.body.amount * 100;
         // remove too many digits
-        amount = Math.ceil(amount * 100)/100;
+        amount = Math.round(amount);
+
+        console.log("Will charge cents:"+amount);
 
         console.log(stripeToken);
 

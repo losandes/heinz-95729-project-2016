@@ -40,17 +40,23 @@ Hilary.scope('heinz').register({
                   }).done(function (data) {
                     if (data > 0)
                     {
-                      var cart = document.getElementById("cart");
-              				cart.style.color = "#fff";
-              				cart.style.background= "#ff0000";
-              				cart.style.fontSize= "12px";
-              				cart.style.padding = "0 5px";
-              				cart.style.position = "absolute";
-              				cart.style.marginLeft="-2px";
-              				cart.style.verticalAlign = top;
-              				cart.style.borderRadius = "50px 15px";
-              				cart.innerHTML = "";
-              				cart.appendChild(document.createTextNode(data));
+                      // var cart = document.getElementById("cart");
+              				// cart.style.color = "#fff";
+              				// cart.style.background= "#ff0000";
+              				// cart.style.fontSize= "12px";
+              				// cart.style.padding = "0 5px";
+              				// cart.style.position = "absolute";
+              				// cart.style.marginLeft="-2px";
+              				// cart.style.verticalAlign = top;
+              				// cart.style.borderRadius = "50px 15px";
+              				// cart.innerHTML = "";
+              				// cart.appendChild(document.createTextNode(data));
+
+                      // Get the view model for id="cart-count" and update value
+                      var cart = document.getElementById("cart-count");
+                      var vm = ko.contextFor(cart);
+                      vm.$data.cartCount(data);
+
                     }
                   });
                 }
@@ -102,17 +108,22 @@ Hilary.scope('heinz').register({
                           url: '/api/count',
                           method: 'GET'
                       }).done(function (data) {
-                        var cart = document.getElementById("cart");
-                        cart.style.color = "#fff";
-                        cart.style.background= "#ff0000";
-                        cart.style.fontSize= "12px";
-                        cart.style.padding = "0 5px";
-                        cart.style.position = "absolute";
-                        cart.style.marginLeft="-2px";
-                        cart.style.verticalAlign = top;
-                        cart.style.borderRadius = "50px 15px";
-                        cart.innerHTML = "";
-                        cart.appendChild(document.createTextNode(data));
+                        // var cart = document.getElementById("cart");
+                        // cart.style.color = "#fff";
+                        // cart.style.background= "#ff0000";
+                        // cart.style.fontSize= "12px";
+                        // cart.style.padding = "0 5px";
+                        // cart.style.position = "absolute";
+                        // cart.style.marginLeft="-2px";
+                        // cart.style.verticalAlign = top;
+                        // cart.style.borderRadius = "50px 15px";
+                        // cart.innerHTML = "";
+                        // cart.appendChild(document.createTextNode(data));
+
+                          // Get the view model for id="cart-count" and update value
+                          var cart = document.getElementById("cart-count");
+                          var vm = ko.contextFor(cart);
+                          vm.$data.cartCount(data);
                           alert("Save order succeeded!");
                       });
 
@@ -191,17 +202,23 @@ Hilary.scope('heinz').register({
                               url: '/api/count',
                               method: 'GET'
                           }).done(function (data) {
-                            var cart = document.getElementById("cart");
-                            cart.style.color = "#fff";
-                            cart.style.background= "#ff0000";
-                            cart.style.fontSize= "12px";
-                            cart.style.padding = "0 5px";
-                            cart.style.position = "absolute";
-                            cart.style.marginLeft="-2px";
-                            cart.style.verticalAlign = top;
-                            cart.style.borderRadius = "50px 15px";
-                            cart.innerHTML = "";
-                            cart.appendChild(document.createTextNode(data));
+                            // var cart = document.getElementById("cart");
+                            // cart.style.color = "#fff";
+                            // cart.style.background= "#ff0000";
+                            // cart.style.fontSize= "12px";
+                            // cart.style.padding = "0 5px";
+                            // cart.style.position = "absolute";
+                            // cart.style.marginLeft="-2px";
+                            // cart.style.verticalAlign = top;
+                            // cart.style.borderRadius = "50px 15px";
+                            // cart.innerHTML = "";
+                            // cart.appendChild(document.createTextNode(data));
+
+                            // Get the view model for id="cart-count" and update value
+                            var cart = document.getElementById("cart-count");
+                            var vm = ko.contextFor(cart);
+                            vm.$data.cartCount(data);
+                            
                             viewEngine.setVM({
                                 template: 't-paymentSuccess',
                                 // Consider putting user information in the data

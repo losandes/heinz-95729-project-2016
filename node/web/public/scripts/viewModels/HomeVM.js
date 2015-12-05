@@ -34,6 +34,28 @@ Hilary.scope('heinz').register({
             // but don't auto-search more than twice per second
             self.onSearchInputChanged.extend({ rateLimit: 500 });
 
+
+            self.cartCount = ko.observable();
+
+            // self.updateCartCount = ko.computed(function() {
+
+            //     $.ajax({
+            //             url: '/api/count',
+            //             method: 'GET'
+            //     }).done(function (data) {
+                          
+            //         // Get the view model for id="cart-count" and update value
+            //         // var cart = document.getElementById("cart-count");
+            //         // var vm = ko.contextFor(cart);
+            //         self.cartCount(data);             
+            //     });
+            // });
+
+            // // Check number of cart items per second?
+            // self.updateCartCount.extend({ rateLimit: 1000 });
+
+            
+
             return self;
         };
 
