@@ -61,6 +61,7 @@ Hilary.scope('heinz').register({
             self.total = ko.pureComputed(function() {
                 var total = 0;
                 $.each(self.items(), function() { total += this.subtotal() });
+
                 // Don't want too many digits, ceil it
                 // 1.74444 => 1.75
                 // 1.005 => 1.01
@@ -73,6 +74,11 @@ Hilary.scope('heinz').register({
                 var total = 0;
                 $.each(self.items(), function() { total += Number(this.quantity()) });
                 console.log("total quantity:" +total );
+
+                var cart = document.getElementById("cart-count");
+                var vm = ko.contextFor(cart);
+                vm.$data.cartCount(total);
+
                 return total;
 
             });
