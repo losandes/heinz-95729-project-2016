@@ -11,7 +11,7 @@
     <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="/css/main.css" />
     <script src="/scripts/lib/modernizr.custom.js"></script>
-    <script> function SignOutIcon() {if(window.location.pathname != "/login" &&  window.location.pathname != "/Guest" && window.document.cookie!="email=Guest"){document.getElementById("logout").innerHTML = "<a href=\"/logout\"><span style= \"position:fixed; right:10px;top:5px;\"><b>Logout</b> <i class=\"fa fa-sign-out\"\></a>";}}
+    <script> function SignOutIcon() {if(window.location.pathname != "/login" &&  window.location.pathname != "/Guest" && window.document.cookie && window.document.cookie!="email=Guest"){document.getElementById("logout").innerHTML = "<a href=\"/logout\"><span style= \"position:fixed; right:10px;top:5px;\"><b>Logout</b> <i class=\"fa fa-sign-out\"\></a>";}}
     </script>
 </head>
 <body onload="SignOutIcon()" >
