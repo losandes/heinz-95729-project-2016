@@ -15,9 +15,18 @@ Hilary.scope('heinz').register({
           	self.cvc = ko.observable();
           	self.expMonth = ko.observable();
           	self.expYear = ko.observable();
+            self.canSubmit = ko.observable(true);
+
+            // helper function to format output
+            self.formatCurrency = function (value) {
+                return "$"+value.toFixed(2);
+            }
  
             // operation: requestPayment
             self.requestPayment = function() {
+
+                // disable submit button
+                self.canSubmit(false);
 
             	Stripe.setPublishableKey('pk_test_zOdcuCsgsySkaoRVCWNHQ8NY');			
 				
@@ -40,9 +49,9 @@ Hilary.scope('heinz').register({
 						console.log(response);
 
 						// token contains id, last4, and card type
-                        var token = {'id':response['id'], 'amount': self.amount()};
+                        var token = {id:response['id'], amount: self.amount()};
 
-                        router.post("/payment", JSON.stringify(token));
+                        router.post("/payment", token);
 
 					}
 				});

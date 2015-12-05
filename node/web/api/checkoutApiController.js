@@ -94,11 +94,12 @@ module.exports.factory = function (router, repo, exceptions, stripe, usersRepo) 
         console.log("a post to /api/payment !!");
 
         var stripeToken = req.body.id;
-        // unit: cent, thus the multiplication is needed
+        // unit: cent
         var amount = req.body.amount * 100;
+        // remove too many digits
+        amount = Math.ceil(amount * 100)/100;
 
         console.log(stripeToken);
-        // var amount = 1000; // unit: cent
 
         stripe.charges.create({
             card: stripeToken,

@@ -131,18 +131,16 @@ Hilary.scope('heinz').register({
                 var totalValue = req.payload.totalValue;
                 console.log(typeof totalValue);
 
-                    // prompt user the result
+                  // prompt user the result
 
-                        alert("Submit order succeeded. Redirect to payment page.");
+                  alert("Submit order succeeded. Redirect to payment page.");
 
-                        // Shall I send the order again after the payment is successful?
-
-                        // render the payment page
-                        viewEngine.setVM({
-                            template: 't-payment',
-                            // show amount to pay
-                            data: new Payment(totalValue)
-                        });
+                  // render the payment page
+                  viewEngine.setVM({
+                      template: 't-payment',
+                      // show amount to pay
+                      data: new Payment(totalValue)
+                  });
 
                 }
             });
@@ -163,17 +161,25 @@ Hilary.scope('heinz').register({
         // POST /checkout
         $this.post['/payment'] = new GidgetRoute({
             routeHandler: function (err, req) {
+                console.log("payload is:")
                 console.log(req.payload);
+                var totalValue = req.payload.amount;
                 $.ajax({
                     // consider add email, now hard code on server side first
                     url: '/payment',
                     method: 'POST',
-                    data: req.payload,
+                    data: JSON.stringify(req.payload),
                     contentType: 'application/json'
                 }).done(function (data) {
                     // prompt user the result
                     if(data == "500") {
                         alert("Payment failed! Please retry!");
+                        viewEngine.setVM({
+                            template: 't-payment',
+                            // show amount to pay
+                            data: new Payment(totalValue)
+                        });
+
                     } else if(data == "204") {
                         console.log("Payment succeeded!");
                         // should redirect user to payment successful page

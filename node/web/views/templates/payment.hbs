@@ -1,34 +1,32 @@
 
 <script id="t-payment" type="text/html">
 
-<div id="stripe-form", data-bind="with: data">
-  <!-- <form action="/enterhere" method="POST" id="payment-form"> -->
+<form id="stripe-payment-form" data-bind="with: data" role="form">
+    <div class="form-group">
+        <label for="stripe-payment-cardnumber">Card Number</label>
+        <input type="text" class="form-control" data-bind='value: cardNum, valueUpdate: "afterkeydown"'/>
+    </div>    
 
-    <div>Amount</div>
-    <span type="decimal" size="10" autocomplete="off" class="card-amount", data-bind="text: amount"></span>
-    
-    <div>Card Number</div>
-    <input type="text" size="30" autocomplete="off" class="card-number", data-bind='value: cardNum, valueUpdate: "afterkeydown"' />
-    
-    <div>CVC</div>
-    <input type="text" size="4" autocomplete="off" class="card-cvc", data-bind='value: cvc, valueUpdate: "afterkeydown"' />
-    
-    <div >Expiration (MM/YY)</div>
-    <input type="text" size="2" class="card-expiry-month", data-bind='value: expMonth, valueUpdate: "afterkeydown"' />
-    <span> / </span>
-    <input type="text" size="2" class="card-expiry-year", data-bind='value: expYear, valueUpdate: "afterkeydown"' />
-    <br>
-    
-    <!-- <input type="hidden" name="amount" id="cc-amount"> -->
-    <button type="submit" class="submit-button", data-bind='click: requestPayment'>Submit Payment</button>
-<!--  </form> -->
+    <div class="form-group">
+        <label for="stripe-payment-cvc">CVC</label>
+        <input type="text" class="form-control" data-bind='value: cvc, valueUpdate: "afterkeydown"' />
+    </div>
 
-</div>
-<!--
-<div id="error" class="hidden"></div>
-<div id="success" class="hidden">Thank you for the payment!</div>
--->
+    <div class="form-group form-group-expiration">
+        <label for="stripe-payment-expiration">Expiration (MM/YY)</label>
+        <input type="text" maxlength="2" class="form-control form-control-expiration" data-bind='value: expMonth, valueUpdate: "afterkeydown"' />
+        <label for="stripe-payment-expiration">/</label>
+        <input type="text" maxlength="2" class="form-control form-control-expiration" data-bind='value: expYear, valueUpdate: "afterkeydown"' />
+    </div>
+
+    <button class="btn btn-success" type="submit" data-bind='click: requestPayment, enable: canSubmit()'>
+        Pay <span data-bind='text: formatCurrency(amount())'></span>
+    </button>
+</form>
+
+
 </script>
+
 
 
 

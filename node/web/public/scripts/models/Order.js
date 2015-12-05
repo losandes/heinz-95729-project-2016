@@ -54,7 +54,7 @@ Hilary.scope('heinz').register({
 
             // helper function to format output
             self.formatCurrency = function (value) {
-                return "$"+value;
+                return "$"+value.toFixed(2);
             }
 
             // operation: compute total order value
