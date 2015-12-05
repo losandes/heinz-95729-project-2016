@@ -53,13 +53,34 @@ Hilary.scope('heinz').register({
                 return '/' + type + '/' + self.uid();
             });
 
+            self.buyABookLink = ko.computed(function () {
+                return '/' + type + '/' + self.uid() + '/buy_a_book';
+            });
+
+            self.deleteABookLink = ko.computed(function () {
+                return '/' + type + '/' + self.uid() + '/delete_a_book';
+            });
+
             // Ensure updates no more than once per 50-millisecond period
             self.thumbnailAlt.extend({ rateLimit: 50 });
             self.detailsLink.extend({ rateLimit: 50 });
+            self.buyABookLink.extend({ rateLimit: 50 });
+            self.deleteABookLink.extend({ rateLimit: 50 });
 
             self.click = function () {
                 router.navigate(self.detailsLink());
             };
+
+            self.buyABook = function () {
+                router.navigate(self.buyABookLink());
+                console.log(self.buyABookLink());
+            };
+
+            self.deleteABook = function () {
+                router.navigate(self.deleteABookLink());
+            };
+
+
 
             return self;
         };
