@@ -1,0 +1,37 @@
+<script id="t-cart" type="text/html">
+    <div>
+        <h3>Cart:</h3>
+    </div>
+    <div class="book-component">
+        <div class="row" data-bind="foreach: { data: data.books(), as: 'book' }">
+            <div class="col-sm-6 col-md-4 book-col" style="padding:25px;border:1px solid lightgreen;">
+                <div class="thumbnail">
+                    <!--<a class="thumbnail-img" href="javascript:void(0);" data-bind="click: book.click">-->
+                        <!--<img src="" alt="" data-bind="src: book.thumbnailLink, attr: { alt: book.thumbnailAlt }">-->
+                    <!--</a>-->
+                    <div class="caption">
+                        <h3><a href="javascript:void(0);" data-bind="text: book.title, click: book.click"></a></h3>
+                        <!--<div class="description" data-bind="html: book.description"></div>-->
+                        <div class="btn-group-vertical" style= "float:right;">
+                            <button class="btn btn-success btn-lg" href="javascript:void(0);" data-bind="click: book.buyABook">Add a book</button>
+                            <button class="btn btn-danger btn-lg" href="javascript:void(0);" data-bind="click: book.deleteABook">Delete a book</button>
+                        </div>
+                        <h5>Amount:</h5>
+                        <div class="amountOfBooks" data-bind="text: book.amountofBooks"></div>
+                        <h5>Price:</h5>
+                        <div class="overlay">
+                        </div>
+                        <a class="buy-now" href="javascript:void(0);" data-bind="currency: book.price"></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="pay" data-bind="with: data">
+        <h3>Total amount:</h3>
+        <h3><p data-bind="text: totalAmount"></p></h3>
+        <button class="btn btn-success" href="javascript:void(0);" >Check out</button>
+        <a href="/"><button class="btn btn-success">Continue shopping</button></a>
+    </div>
+
+</script>
