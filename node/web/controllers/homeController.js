@@ -3,8 +3,15 @@ module.exports.dependencies = ['router'];
 module.exports.factory = function (router) {
     'use strict';
 
+    var cleanCookie;
+    cleanCookie = function (res) {
+        res.clearCookie('auth');
+    };
     /* GET home page. */
     router.get('/', function (req, res) {
+        //console.log('req.cookies login: ', req.cookies);
+        //cleanCookie(res);
+        //console.log('req.cookies login: ', req.cookies);
         res.render('index', { title: 'web' });
     });
 

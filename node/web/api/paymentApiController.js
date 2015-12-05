@@ -8,7 +8,7 @@ module.exports.factory = function (router, exceptions, stripe) {
 
     router.post('/api/payment/', function (req, res) {
         console.log(req.body.token);
-        chargeCard(req.body.token, res, function (err) {
+        chargeCard(req.body.token, req.body.amount, res, function (err) {
             if (!err) {
                 res.send({ charged: true });
             } else {
@@ -17,15 +17,17 @@ module.exports.factory = function (router, exceptions, stripe) {
         });
     });
 
-    chargeCard = function (token, res, chargeCardCallback) {
+    chargeCard = function (token, price, res, chargeCardCallback) {
+        console.log(price);
         stripe.charges.create({
-            amount: amount,
+            amount: price,
             currency: "usd",
             source: token,
             description: "test"
         }, function (err, charge) {
-            console.log(charge.id);
+            //console.log(charge.id);
             if (err) {
+                console.log("err--->" + err);
                 chargeCardCallback(err);
             } else {
                 chargeCardCallback(null);

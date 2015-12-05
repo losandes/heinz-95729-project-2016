@@ -29,10 +29,14 @@
                 <a data-bind="text: text, href: href"></a>
             </span>
     -->
-            <a href="/checkout">
+            <a href="/checkLogin">
+                <i class="fa fa-user"></i>
+            </a>
+            <a href="/cart">
                 <i class="fa fa-shopping-cart"></i>
             </a>
         </nav>
+
     </header>
     <div class="container">
         {{{body}}}
@@ -47,7 +51,12 @@
     {{> bookDetails}}
     {{> login}}
     {{> register}}
+    {{> loginWithError}}
+    {{> profile}}
+    {{> cart}}
     {{> payment}}
+    {{> paysuccess}}
+    {{> payfailed}}
 
     <!-- /templates -->
 
@@ -65,6 +74,7 @@
     <script src="/scripts/lib/grid.js"></script>
 
     <script src="/scripts/controllers/authController.js"></script>
+    <script src="/scripts/controllers/buyController.js"></script>
     <script src="/scripts/controllers/booksController.js"></script>
     <script src="/scripts/controllers/homeController.js"></script>
     <script src="/scripts/controllers/exampleController.js"></script>
@@ -76,10 +86,13 @@
     <script src="/scripts/models/Books.js"></script>
     <script src="/scripts/models/Product.js"></script>
     <script src="/scripts/models/Products.js"></script>
-    
+
 
     <script src="/scripts/viewModels/HomeVM.js"></script>
     <script src="/scripts/viewModels/PaymentVM.js"></script>
+    <script src="/scripts/viewModels/CartVM.js"></script>
+    <script src="/scripts/viewModels/PaySuccessVM.js"></script>
+    <script src="/scripts/viewModels/PayFailVM.js"></script>
 
     <script src="/scripts/ExceptionHandler.js"></script>
     <script src="/scripts/utils.js"></script>

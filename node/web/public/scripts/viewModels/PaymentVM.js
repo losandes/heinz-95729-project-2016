@@ -16,7 +16,7 @@ Hilary.scope('heinz').register({
                 month: undefined,
                 year: undefined,
                 pay: undefined,
-                amount: paymentAmount
+                amount: paymentAmount.totalAmount.toFixed(2)
             },
                 createToken,
                 chargeCardWithToken,
@@ -64,7 +64,8 @@ Hilary.scope('heinz').register({
                         url: "/api/payment/",
                         contentType: "application/json; charset=utf-8",
                         data: JSON.stringify({
-                            token: response.id
+                            token: response.id,
+                            amount: Math.round(paymentAmount.totalAmount.toFixed(2) * 100)
                         })
                     }).done(confirmPayment).fail(failurePayment);
 
@@ -79,11 +80,17 @@ Hilary.scope('heinz').register({
             confirmPayment = function (data) {
                 console.log('confirmed payment');
                 console.log(data.charged);
+                $.ajax({
+                    url: "/api/clearcart",
+                }).done(function(data) {
+                    console.log("Cart after payment--->" + data);
+                });
+                window.location.replace('/paysuccess');
             };
 
             failurePayment = function (jqXHR) {
                 console.log('failed payment');
-                
+                window.location.replace('/payfailed');
             };
 
             return self;

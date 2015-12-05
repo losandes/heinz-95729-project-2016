@@ -21,6 +21,6 @@
     "nconf": "^0.7.1",
     "serve-favicon": "^2.3.0",
     "serve-static": "^1.10.0",
-    "stripe": "^4.0.0"
+    "stripe": "^4.1.0"
   }
 }
