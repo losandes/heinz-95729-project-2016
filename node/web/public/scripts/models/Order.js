@@ -54,14 +54,19 @@ Hilary.scope('heinz').register({
 
             // helper function to format output
             self.formatCurrency = function (value) {
-                return "$"+value.toFixed(2);
+                return "$"+value;
             }
 
             // operation: compute total order value
             self.total = ko.pureComputed(function() {
                 var total = 0;
                 $.each(self.items(), function() { total += this.subtotal() });
-                return total;
+                // Don't want too many digits, ceil it
+                // 1.74444 => 1.75
+                // 1.005 => 1.01
+                // 9.1 => 9.1
+                return Math.ceil(total * 100) / 100;
+
             });
 
             self.totalQuantity = ko.pureComputed(function() {

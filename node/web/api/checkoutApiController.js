@@ -108,6 +108,7 @@ module.exports.factory = function (router, repo, exceptions, stripe, usersRepo) 
         function(err, charge) {
             if (err) {
                 // send in data rather than status code
+                console.log(err);
                 res.send("500");
             } else {
                 res.send("204");
