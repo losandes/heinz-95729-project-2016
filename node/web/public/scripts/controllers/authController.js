@@ -1,7 +1,7 @@
 Hilary.scope('heinz').register({
     name: 'authController',
-    dependencies: ['newGidgetModule', 'GidgetRoute', 'locale', 'viewEngine'],
-    factory: function ($this, GidgetRoute, locale, viewEngine) {
+    dependencies: ['router','newGidgetModule', 'GidgetRoute', 'locale', 'viewEngine'],
+    factory: function (router,$this, GidgetRoute, locale, viewEngine) {
         'use strict';
 
         // GET /#/login
@@ -47,6 +47,16 @@ Hilary.scope('heinz').register({
                     data: {}
                 });
             }
+        });
+        $this.get['/logout'] = new GidgetRoute({
+          routeHandler: function (err, req) {
+            $.ajax({
+                url: '/api/logout',
+                method: 'GET'
+            }).done(function (data) {
+              router.navigate("/login");
+            });
+          }
         });
         return $this;
     }

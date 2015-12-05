@@ -65,6 +65,9 @@ module.exports.factory = function (router, repo,ordersRepo) {
             }
         });
     });
-
+    router.get('/api/logout', function (req, res) {
+                res.clearCookie('email');
+                res.send("ok");
+    });
     return router;
 };
