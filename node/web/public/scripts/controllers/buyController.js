@@ -47,7 +47,7 @@ Hilary.scope('heinz').register({
         $this.get['/cart'] = new GidgetRoute({
             routeHandler: function (err, req) {
                 $.ajax({
-                    url: '/api/buy',
+                    url: '/api/cart',
                     method: 'GET'
                 }).done(function (data) {
                     console.log(data);

@@ -24,6 +24,7 @@ module.exports.factory = function (Blueprint, exceptions, ObjectID) {
         self.name = user.name;
         self.email = user.email;
         self.cart = user.cart;
+        self.orderhistory = user.orderhistory;
 
         return self;
     };

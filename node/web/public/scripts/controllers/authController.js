@@ -1,7 +1,7 @@
 Hilary.scope('heinz').register({
     name: 'authController',
-    dependencies: ['newGidgetModule', 'GidgetRoute', 'locale', 'viewEngine'],
-    factory: function ($this, GidgetRoute, locale, viewEngine) {
+    dependencies: ['newGidgetModule', 'GidgetRoute', 'locale', 'viewEngine', 'ProfileVM'],
+    factory: function ($this, GidgetRoute, locale, viewEngine, ProfileVM) {
         'use strict';
 
         $this.get['/checkLogin'] = new GidgetRoute({
@@ -30,10 +30,16 @@ Hilary.scope('heinz').register({
 
 
         $this.get['/profile'] = new GidgetRoute({
-            routeHandler: function () {
-                viewEngine.setVM({
-                    template: 't-profile',
-                    data: { }
+            routeHandler: function (err, req) {
+                $.ajax({
+                    url: '/api/cart',
+                    method: 'GET'
+                }).done(function (data) {
+                    console.log(data);
+                    viewEngine.setVM({
+                        template: 't-profile',
+                        data: new ProfileVM(data)
+                    });
                 });
             }
         });
@@ -68,6 +74,15 @@ Hilary.scope('heinz').register({
             routeHandler: function () {
                 viewEngine.setVM({
                     template: 't-register',
+                    data: {}
+                });
+            }
+        });
+
+        $this.get['/registerWithError'] = new GidgetRoute({
+            routeHandler: function () {
+                viewEngine.setVM({
+                    template: 't-registerWithError',
                     data: {}
                 });
             }

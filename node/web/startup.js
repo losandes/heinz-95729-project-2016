@@ -47,7 +47,8 @@ var Hilary = require('hilary'),
             cookie: {maxAge: 80000 },
             resave: false,
             saveUninitialized: true,
-            cart: {totalAmount:0, books:[]}
+            cart: {totalAmount:0, books:[]},
+            orderhistory: {totalAmountOfHistory:0, booksOfHistory:[]}
         }));
         scope.register({ name: 'express',               factory: function () { return express; }});          // lib
         scope.register({ name: 'expressSingleton',      factory: function () { return expressSingleton; }}); // single instance used for app

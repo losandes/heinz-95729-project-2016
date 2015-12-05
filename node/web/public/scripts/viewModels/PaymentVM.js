@@ -7,7 +7,7 @@ Hilary.scope('heinz').register({
         var PaymentVM;
 
         //payment details
-        PaymentVM = function (paymentAmount) {
+        PaymentVM = function (user) {
 
             var self = {
                 cardNo: undefined,
@@ -16,7 +16,7 @@ Hilary.scope('heinz').register({
                 month: undefined,
                 year: undefined,
                 pay: undefined,
-                amount: paymentAmount.totalAmount.toFixed(2)
+                amount: user.cart.totalAmount.toFixed(2)
             },
                 createToken,
                 chargeCardWithToken,
@@ -30,7 +30,7 @@ Hilary.scope('heinz').register({
             self.year = ko.observable('');
 
             /**
-            * Create token on click  
+            * Create token on click
             */
             self.pay = function () {
                 console.log(self.amount);
@@ -53,7 +53,7 @@ Hilary.scope('heinz').register({
             };
 
             /**
-            * Redirect to charge card 
+            * Redirect to charge card
             **/
             chargeCardWithToken = function (status, response) {
                 if (!response.error) {
@@ -65,7 +65,7 @@ Hilary.scope('heinz').register({
                         contentType: "application/json; charset=utf-8",
                         data: JSON.stringify({
                             token: response.id,
-                            amount: Math.round(paymentAmount.totalAmount.toFixed(2) * 100)
+                            amount: Math.round(user.cart.totalAmount.toFixed(2) * 100)
                         })
                     }).done(confirmPayment).fail(failurePayment);
 

@@ -84,5 +84,23 @@ module.exports.factory = function (db, User, Blueprint, exceptions, is) {
         console.log("Successfully update the cart!!!");
     };
 
+    self.updateOrderHistory = function (email, orderhistory, callback) {
+        if (is.not.string(email)) {
+            exceptions.throwArgumentException('', 'uid');
+            return;
+        }
+        if (is.not.function(callback)) {
+            exceptions.throwArgumentException('', 'callback');
+            return;
+        }
+
+        collection.updateOne(
+            { "email": email },
+            {$set: {"orderhistory": orderhistory}},
+            function(err, results) {callback(err);}
+        );
+        console.log("Successfully update the order history!!!");
+    };
+
     return self;
 };

@@ -8,10 +8,10 @@ Hilary.scope('heinz').register({
     factory: function (ko, Book, exceptions) {
         'use strict';
 
-        var Cart = function (cart) {
+        var Cart = function (user) {
             var self = {};
             self.books = ko.observableArray();
-            self.totalAmount = ko.observable(cart.totalAmount.toFixed(2));
+            self.totalAmount = ko.observable(user.cart.totalAmount.toFixed(2));
 
             self.addCart = function (book) {
                 if (!book) {
@@ -39,8 +39,8 @@ Hilary.scope('heinz').register({
                 }
             };
 
-            if (cart.books) {
-                self.addCarts(cart.books);
+            if (user.cart.books) {
+                self.addCarts(user.cart.books);
             }
 
             return self;

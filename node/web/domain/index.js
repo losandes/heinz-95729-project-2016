@@ -5,5 +5,6 @@ module.exports = [
     require('./products/productsRepo.js'),
     require('./users/User.js'),
     require('./users/usersRepo.js'),
-    require('./cart/Cart.js')
+    require('./cart/Cart.js'),
+    require('./orderhistory/OrderHistory.js')
 ];

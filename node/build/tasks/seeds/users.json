@@ -3,24 +3,28 @@
         "_id": "564d420206fd376a5b560026",
     	"email": "shopper1@95729.com",
     	"name": "Shopper 1",
-        "cart": {"totalAmount":0, "books":[]}
+        "cart": {"totalAmount":0, "books":[]},
+        "orderhistory": {"totalAmountOfHistory":0, "booksOfHistory":[]}
     },
     {
         "_id": "564d420206fd376a5b560027",
     	"email": "shopper2@95729.com",
     	"name": "Shopper 2",
-        "cart": {"totalAmount":0, "books":[]}
+        "cart": {"totalAmount":0, "books":[]},
+        "orderhistory": {"totalAmountOfHistory":0, "booksOfHistory":[]}
     },
     {
         "_id": "564d420206fd376a5b560028",
     	"email": "shopper3@95729.com",
     	"name": "Shopper 3",
-        "cart": {"totalAmount":0, "books":[]}
+        "cart": {"totalAmount":0, "books":[]},
+        "orderhistory": {"totalAmountOfHistory":0, "booksOfHistory":[]}
     },
     {
         "_id": "564d420206fd376a5b560029",
     	"email": "shopper4@95729.com",
     	"name": "Shopper 4",
-        "cart": {"totalAmount":0, "books":[]}
+        "cart": {"totalAmount":0, "books":[]},
+        "orderhistory": {"totalAmountOfHistory":0, "booksOfHistory":[]}
     }
 ]
