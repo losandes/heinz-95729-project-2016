@@ -1,7 +1,7 @@
 Hilary.scope('heinz').register({
     name: 'checkoutController',
-    dependencies: ['newGidgetModule', 'GidgetRoute', 'locale', 'viewEngine', 'Orders', 'Payment', 'jQuery','router'],
-    factory: function ($this, GidgetRoute, locale, viewEngine, Orders, Payment, $,router) {
+    dependencies: ['newGidgetModule', 'GidgetRoute', 'locale', 'viewEngine','Order', 'Orders', 'Payment', 'jQuery','router'],
+    factory: function ($this, GidgetRoute, locale, viewEngine, Order,Orders, Payment, $,router) {
         'use strict';
 
         // temporary put it here, hard code the page to a search result
@@ -194,10 +194,11 @@ Hilary.scope('heinz').register({
                     } else if(data == "204") {
                         console.log("Payment succeeded!");
                         // should redirect user to payment successful page
+
                         $.ajax({
                             url: '/api/paymentSuccessful',
                             method: 'POST'
-                        }).done(function (data){
+                        }).done(function (data1){
                           $.ajax({
                               url: '/api/count',
                               method: 'GET'
@@ -218,11 +219,11 @@ Hilary.scope('heinz').register({
                             var cart = document.getElementById("cart-count");
                             var vm = ko.contextFor(cart);
                             vm.$data.cartCount(data);
-                            
+                            var results2 = new Orders(data1);
                             viewEngine.setVM({
                                 template: 't-paymentSuccess',
                                 // Consider putting user information in the data
-                                data: {}
+                                data: results2
                               });
                           });
 

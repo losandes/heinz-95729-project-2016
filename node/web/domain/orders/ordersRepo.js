@@ -166,9 +166,9 @@ module.exports.factory = function (db, Order, Blueprint, exceptions, is) {
         }
         // actually replace an order
         collection.findAndModify({"email": email},[],{$setOnInsert: { "email": email} },{ upsert:true}, callback);
-        collection.update( {"email" : email, "items.title" : payload.title },{$inc : {"items.$.quantity" : 1, "total_quantity" : 1}} ,{upsert:false }, callback);
+        collection.update( {"email" : email, "items.title" : payload.title, "items.url" : payload.url },{$inc : {"items.$.quantity" : 1, "total_quantity" : 1}} ,{upsert:false }, callback);
         collection.update({email : email , "items.title" : { $ne : payload.title}},
-                    {$addToSet : {"items" : {"title" : payload.title, "price" : payload.price , "quantity" : 1 }},$inc : {"total_quantity" : 1}},
+                    {$addToSet : {"items" : {"title" : payload.title, "price" : payload.price ,"url" : payload.url , "quantity" : 1 }},$inc : {"total_quantity" : 1}},
                            {upsert:false}, callback);
     };
 
@@ -189,10 +189,9 @@ module.exports.factory = function (db, Order, Blueprint, exceptions, is) {
           console.log("title at index 0: "+order.total_quantity);
           for (var i in itemsArray)
           {
-            collection.findAndModify({"email": email1},[],{$setOnInsert: { "email": email1} },{ upsert:true}, callback);
-            collection.update( {"email" : email1, "items.title" : itemsArray[i].title },{$inc : {"items.$.quantity" : itemsArray[i].quantity}} ,{upsert:false }, callback);
+            collection.update( {"email" : email1, "items.title" : itemsArray[i].title, "items.url" : itemsArray[i].url },{$inc : {"items.$.quantity" : itemsArray[i].quantity}} ,{upsert:false }, callback);
             collection.update({"email" : email1 , "items.title" : { $ne : itemsArray[i].title}},
-                        {$addToSet : {"items" : {"title" : itemsArray[i].title, "price" : itemsArray[i].price , "quantity" : itemsArray[i].quantity }}},
+                        {$addToSet : {"items" : {"title" : itemsArray[i].title, "price" : itemsArray[i].price ,"url" : itemsArray[i].url , "quantity" : itemsArray[i].quantity }}},
                                {upsert:false}, callback);
           }
           collection.update( {"email" : email1 },{$inc : {"total_quantity" : order.total_quantity}} ,{upsert:false }, callback);

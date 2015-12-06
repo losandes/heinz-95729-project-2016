@@ -23,7 +23,11 @@ Hilary.scope('heinz').register({
             thumbnailLink: {
                 type: 'string',
                 required: false
-            }
+            },
+           url: {
+               type: 'string',
+               required: false
+           },
         });
 
         Product = function (product) {
@@ -43,6 +47,7 @@ Hilary.scope('heinz').register({
             self.description = ko.observable(product.description || undefined);
             self.metadata = ko.observable(product.metadata || undefined);
             self.price = ko.observable(product.price || undefined);
+            self.url=ko.observable(product.url || undefined);
             self.images = ko.observableArray();
             self.thumbnailLink = ko.observable(product.thumbnailLink || '/images/products/default.png');
 
@@ -62,7 +67,7 @@ Hilary.scope('heinz').register({
             };
 			self.price.click = function () {
 				count++;
-				
+
         console.log(product.uid);
         router.navigate('/product?product='+product.uid);
             };

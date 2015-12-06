@@ -29,7 +29,11 @@ module.exports.factory = function (Blueprint, ObjectID, exceptions) {
         }),
         price: 'money',
         thumbnailLink: 'string',
-        type: 'string'
+        type: 'string',
+       url: {
+           type: 'string',
+           required: false
+       },
     });
 
     /*
@@ -57,7 +61,7 @@ module.exports.factory = function (Blueprint, ObjectID, exceptions) {
         self.price = product.price;
         self.thumbnailLink = product.thumbnailLink;
         self.type = product.type;
-
+        self.url=product.url;
         return self;
     };
 
