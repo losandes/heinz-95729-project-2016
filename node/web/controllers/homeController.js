@@ -5,9 +5,12 @@ module.exports.factory = function (router) {
 
     /* GET home page. */
     router.get('/', function (req, res) {
-        res.render('index', { title: 'web' });
+        res.render('index', { title: 'web1' });
     });
 
+    router.get('/cart', function(req, res) {
+        res.render('cart', {title: 'cart'});
+    });
     /* Throw an example error. */
     router.get('/hilary/example/error', function (req, res, next) {
         next('threw example error');
