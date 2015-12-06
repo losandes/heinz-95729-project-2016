@@ -189,6 +189,7 @@ module.exports.factory = function (db, Order, Blueprint, exceptions, is) {
           console.log("title at index 0: "+order.total_quantity);
           for (var i in itemsArray)
           {
+            collection.findAndModify({"email": email1},[],{$setOnInsert: { "email": email1} },{ upsert:true}, callback);
             collection.update( {"email" : email1, "items.title" : itemsArray[i].title },{$inc : {"items.$.quantity" : itemsArray[i].quantity}} ,{upsert:false }, callback);
             collection.update({"email" : email1 , "items.title" : { $ne : itemsArray[i].title}},
                         {$addToSet : {"items" : {"title" : itemsArray[i].title, "price" : itemsArray[i].price , "quantity" : itemsArray[i].quantity }}},
