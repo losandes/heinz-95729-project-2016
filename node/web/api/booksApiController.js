@@ -72,7 +72,7 @@ module.exports.factory = function (router, repo,usersRepo,ordersRepo, exceptions
                 email = "Guest";
                 ordersRepo.remove(email, function (err,doc) {
                     if (err) {
-                      res.status(400);
+                      res.status(400).end();
                       return;
                     }
                     else {
@@ -90,7 +90,7 @@ module.exports.factory = function (router, repo,usersRepo,ordersRepo, exceptions
               }
               ordersRepo.getCount(email, function (err,doc) {
                   if (err) {
-                    res.status(400);
+                    res.status(400).end();
                     return;
                   }
                   if (doc == null)

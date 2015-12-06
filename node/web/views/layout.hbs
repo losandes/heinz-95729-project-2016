@@ -11,10 +11,11 @@
     <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="/css/main.css" />
     <script src="/scripts/lib/modernizr.custom.js"></script>
-    <script> function SignOutIcon() {if(window.location.pathname != "/login" &&  window.location.pathname != "/Guest" && window.document.cookie && window.document.cookie!="email=Guest"){document.getElementById("logout").innerHTML = "<a href=\"/logout\"><span style= \"position:fixed; right:10px;top:5px;\"><b>Logout</b> <i class=\"fa fa-sign-out\"\></a>";}}
-    </script>
+    <!-- <script> function SignOutIcon() {if(window.location.pathname != "/login" &&  window.location.pathname != "/Guest" && window.document.cookie && window.document.cookie!="email=Guest"){document.getElementById("logout").innerHTML = "<a href=\"/logout\"><span style= \"position:fixed; right:10px;top:5px;\"><b>Logout</b> <i class=\"fa fa-sign-out\"\></a>";}}
+     </script> -->
 </head>
-<body onload="SignOutIcon()" >
+<!-- <body onload="SignOutIcon()" > -->
+<body>
     <header id="header">
         <h1><a href="/">Papyr</a></h1>
 
@@ -26,18 +27,31 @@
                 </span>
             </div><!-- /input-group -->
         </div>
+
+        <div class="dropdown">
+            <button class="btn btn-primary dropdown-toggle" id="menu1" type="button" data-toggle="dropdown"><span class="caret"></span></button>
+            <ul class="dropdown-menu" role="menu" aria-labelledby="menu1">
+                <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Your Orders</a></li>
+                <li role="presentation" class="divider"></li>
+                <li role="presentation"><a role="menuitem" tabindex="-1" href="/logout">Logout</a></li>    
+            </ul>
+        </div> 
+
         <nav>
-    <!--
-            <span data-bind="foreach: links">
+    
+           <!--  <span data-bind="foreach: links">
                 <a data-bind="text: text, href: href"></a>
-            </span>
-    -->
-            <a href="/checkout">
-                <i class="fa fa-shopping-cart"><span id="cart-count" data-bind="text: cartCount"></span></i>
-            </a>
-            <div id="logout">
-            </div>
-        </nav>
+            </span> -->
+    
+            <a href="/checkout"> 
+                 <i class="fa fa-shopping-cart"><span id="cart-count" data-bind="text: cartCount"></span></i> 
+             </a> 
+            <!-- <div id="logout"> -->
+            <!-- </div> -->
+        </nav> 
+
+        
+
     </header>
     <div class="container">
         {{{body}}}

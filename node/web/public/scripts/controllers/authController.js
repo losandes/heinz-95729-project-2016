@@ -54,7 +54,12 @@ Hilary.scope('heinz').register({
                 url: '/api/logout',
                 method: 'GET'
             }).done(function (data) {
-              router.navigate("/login");
+                // clear cart count icon display
+                var cart = document.getElementById("cart-count");
+                var vm = ko.contextFor(cart);
+                vm.$data.cartCount(null);
+
+                router.navigate("/login");
             });
           }
         });
