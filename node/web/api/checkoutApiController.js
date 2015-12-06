@@ -132,7 +132,18 @@ module.exports.factory = function (router, repo, exceptions, stripe, usersRepo) 
                   email = req.cookies.email;
                 }
               }
-              repo.get(email, function (err,doc) {
+              repo.find({ query: { email: email }}, function (err, orders) {
+                  if (err) {
+                      exceptions.throwException(err);
+                      res.status(400);
+                      return;
+                  }
+
+                  console.log("Oh!!!/api/checkout query db succeed!\n");
+
+                  res.send(orders);
+              });
+              repo.find({ query: { email: email }}, function (err,doc) {
                   if (err) {
                     res.status(400);
                     return;
@@ -156,8 +167,7 @@ module.exports.factory = function (router, repo, exceptions, stripe, usersRepo) 
                               }
                               else {
                                 {
-                                  count = doc.total_quantity;
-                                  res.send(String(count));
+                                  res.send(doc);
                                 }
                               }
 
