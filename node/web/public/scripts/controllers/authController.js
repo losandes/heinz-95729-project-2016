@@ -59,6 +59,9 @@ Hilary.scope('heinz').register({
                 var vm = ko.contextFor(cart);
                 vm.$data.cartCount(null);
 
+                // Set visible links
+                vm.$data.isLogin(false);
+
                 router.navigate("/login");
             });
           }

@@ -11,11 +11,11 @@
     <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="/css/main.css" />
     <script src="/scripts/lib/modernizr.custom.js"></script>
-    <script> function SignOutIcon() {if(window.location.pathname != "/login" &&  window.location.pathname != "/Guest" && window.document.cookie && window.document.cookie!="email=Guest"){document.getElementById("logout").innerHTML = "<a href=\"/logout\"><span style= \"position:fixed; right:10px;top:5px;\"><b>Logout</b> <i class=\"fa fa-sign-out\"\></a>";}}
-     </script>
+<!--    <script> function SignOutIcon() {if(window.location.pathname != "/login" &&  window.location.pathname != "/Guest" && window.document.cookie && window.document.cookie!="email=Guest"){document.getElementById("logout").innerHTML = "<a href=\"/logout\"><span style= \"position:fixed; right:10px;top:5px;\"><b>Logout</b> <i class=\"fa fa-sign-out\"\></a>";}}
+     </script> -->
 </head>
- <body onload="SignOutIcon()" >
-<!-- <body> --->
+ <!-- <body onload="SignOutIcon()" > -->
+<body>
     <header id="header">
         <h1><a href="/">Papyr</a></h1>
 
@@ -27,15 +27,17 @@
                 </span>
             </div><!-- /input-group -->
         </div>
-<!--
+
         <div class="dropdown">
             <button class="btn btn-primary dropdown-toggle" id="menu1" type="button" data-toggle="dropdown"><span class="caret"></span></button>
             <ul class="dropdown-menu" role="menu" aria-labelledby="menu1">
-                <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Your Orders</a></li>
-                <li role="presentation" class="divider"></li>
-                <li role="presentation"><a role="menuitem" tabindex="-1" href="/logout">Logout</a></li>
+                <li data-bind="visible: isLogin" role="presentation"><a role="menuitem" tabindex="-1" href="#">Your Orders</a></li>
+                <li data-bind="visible: !isLogin()" role="presentation"><a role="menuitem" tabindex="-1" href="/login">Login</a></li>
+                <li data-bind="visible: !isLogin()" role="presentation"><a role="menuitem" tabindex="-1" href="/register">Register</a></li>
+                <li data-bind="visible: isLogin" role="presentation" class="divider"></li>
+                <li data-bind="visible: isLogin" role="presentation"><a role="menuitem" tabindex="-1" href="/logout">Logout</a></li>
             </ul>
-        </div> -->
+        </div> 
 
         <nav>
 

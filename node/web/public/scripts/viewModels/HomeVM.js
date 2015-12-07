@@ -36,6 +36,18 @@ Hilary.scope('heinz').register({
 
 
             self.cartCount = ko.observable();
+            self.isLogin = ko.observable(false);
+
+            self.setIslogin = ko.computed(function() {
+
+                var cookie = window.document.cookie
+                console.log("Guest cookie"+cookie);
+                if(cookie != null &&  cookie != "email=Guest")
+                {
+                    self.isLogin(true);
+                }                
+
+            });
 
             // self.updateCartCount = ko.computed(function() {
 
