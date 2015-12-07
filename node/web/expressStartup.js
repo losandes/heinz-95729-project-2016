@@ -33,7 +33,7 @@ module.exports.factory = function (app, path, cookieParser, bodyParser, serveSta
     after = function () {
         // make 404's a greedy index route for the SPA
         app.use(function (req, res) {
-            res.render('index', { title: 'web' });
+            res.render('index', { title: 'web'});
         });
 
         // error handlers

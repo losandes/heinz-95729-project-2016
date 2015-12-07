@@ -57,6 +57,11 @@ Hilary.scope('heinz').register({
                 return '/' + type + '/' + self.uid() + '/buy_a_book';
             });
 
+            //Chetan - Adding multiple items to cart functionality
+            self.addItemToCartLink = ko.computed(function () {
+                return '/' + type + '/' + self.uid() + '/addToCart';
+            });
+
             self.deleteABookLink = ko.computed(function () {
                 return '/' + type + '/' + self.uid() + '/delete_a_book';
             });
@@ -66,6 +71,8 @@ Hilary.scope('heinz').register({
             self.detailsLink.extend({ rateLimit: 50 });
             self.buyABookLink.extend({ rateLimit: 50 });
             self.deleteABookLink.extend({ rateLimit: 50 });
+            //Chetan - Adding multiple items to cart functionality
+            self.addItemToCartLink.extend({ rateLimit: 50 });
 
             self.click = function () {
                 router.navigate(self.detailsLink());
@@ -74,6 +81,12 @@ Hilary.scope('heinz').register({
             self.buyABook = function () {
                 router.navigate(self.buyABookLink());
                 console.log(self.buyABookLink());
+            };
+
+            //Chetan - Adding multiple items to cart functionality
+            self.addItemToCart = function () {
+                router.navigate(self.addItemToCartLink());
+                console.log(self.addItemToCartLink());
             };
 
             self.deleteABook = function () {
