@@ -15,6 +15,7 @@ module.exports.factory = function (Blueprint, exceptions, ObjectID) {
         var self = {};
 
         if (!blueprint.syncSignatureMatches(user).result) {
+            console.log("there is an error");
             exceptions.throwArgumentException('', 'product', blueprint.syncSignatureMatches(user).errors);
             return;
         }
@@ -22,6 +23,8 @@ module.exports.factory = function (Blueprint, exceptions, ObjectID) {
         self._id = new ObjectID(user._id);
         self.name = user.name;
         self.email = user.email;
+        self.cart = user.cart;
+        self.orderhistory = user.orderhistory;
 
         return self;
     };

@@ -7,16 +7,14 @@
                     <a class="thumbnail-img" href="javascript:void(0);" data-bind="click: product.click">
                         <img src="" alt="" data-bind="src: product.thumbnailLink, attr: { alt: product.thumbnailAlt }">
                     </a>
-
                     <div class="caption">
                         <h3><a href="javascript:void(0);" data-bind="text: product.title, click: product.click"></a></h3>
                         <div class="description" data-bind="html: product.description"></div>
                         <div class="overlay"></div>
-                        <a class="buy-now" href="javascript:void(0);" data-bind="currency: product.price"></a>
+                        <a class="buy-now" href="javascript:void(0);" data-bind="currency: product.price, click: product.addItemToCart"></a>
                     </div>
                 </div>
             </div>
         </div>
-
     </div>
 </script>

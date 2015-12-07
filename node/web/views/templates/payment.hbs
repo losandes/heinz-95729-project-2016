@@ -1,0 +1,42 @@
+<script id="t-payment" type="text/html">
+ <div data-bind="with: data">
+     <div class="pay">
+         <h3>Total price:</h3>
+         <h3><p data-bind="text: amount"></p></h3>
+     </div>
+     <form class="form-horizontal" id="payment" action="/login" method="post" role="form">
+
+        <div class="form-group">
+            <label for="PaymentDetails" class="col-sm-2">Payment Details</label>
+        </div>
+        <div class="form-group">
+            <label for="cardNo" class="col-sm-1">Card Number</label>
+            <div class="col-sm-4">
+                <input type="text" data-bind="textInput: cardNo" class="form-control" name="cardNo" id="cardNo" placeholder="Enter card number">
+            </div>
+       </div>
+        <div class="form-group">
+            <label for="name" class="col-sm-1">Name on Card</label>
+            <div class="col-sm-4">
+                <input type="text" data-bind="textInput: name" name="name" class="form-control" id="name" placeholder="Enter name as shown on card" />
+            </div>
+            <label for="cvc" class="col-sm-1">CVC</label>
+            <div class="col-sm-2">
+                <input type="text" data-bind="textInput: cvc" class="form-control" name="cvc" id="cvc" placeholder="Enter CVC" />
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="month" class="col-sm-1">Expiry month</label>
+            <div class="col-sm-2">
+                <input type="text" name="month" data-bind="textInput: month" class="form-control" id="month" placeholder="Enter expiry month" />
+            </div>
+            <label for="year" class="col-sm-1">Expiry year</label>
+            <div class="col-sm-2">
+                <input type="text" name="year" data-bind="textInput: year" class="form-control" id="year" placeholder="Enter expiry year" />
+            </div>
+        </div>
+
+        <button class="btn btn-success" data-bind="click: pay" type="submit">Complete Payment</button>
+     </form>
+ </div>
+</script>
