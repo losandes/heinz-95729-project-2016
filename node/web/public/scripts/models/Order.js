@@ -24,6 +24,7 @@ Hilary.scope('heinz').register({
             self.title = ko.observable(orderItem.title);
             self.price = ko.observable(orderItem.price);
             self.quantity = ko.observable(orderItem.quantity);
+            self.url=ko.observable(orderItem.url);
 
             // supported operations: subtotal price of a single item
             self.subtotal = ko.pureComputed(function() {
@@ -61,7 +62,6 @@ Hilary.scope('heinz').register({
             self.total = ko.pureComputed(function() {
                 var total = 0;
                 $.each(self.items(), function() { total += this.subtotal() });
-
                 // Don't want too many digits, ceil it
                 // 1.74444 => 1.75
                 // 1.005 => 1.01
@@ -74,11 +74,6 @@ Hilary.scope('heinz').register({
                 var total = 0;
                 $.each(self.items(), function() { total += Number(this.quantity()) });
                 console.log("total quantity:" +total );
-
-                var cart = document.getElementById("cart-count");
-                var vm = ko.contextFor(cart);
-                vm.$data.cartCount(total);
-
                 return total;
 
             });
@@ -100,7 +95,9 @@ Hilary.scope('heinz').register({
                             return {
                                 title: item.title(),
                                 price: item.price(),
+                                url: item.url(),
                                 quantity: item.quantity()
+
                             }
                         }),
                     total_quantity: self.totalQuantity()
@@ -128,7 +125,9 @@ Hilary.scope('heinz').register({
                                 return {
                                     title: item.title(),
                                     price: item.price(),
+                                    url: item.url(),
                                     quantity: item.quantity()
+
                                 }
                             }),
                         // isCompleted: self.isCompleted()
