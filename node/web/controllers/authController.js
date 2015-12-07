@@ -27,7 +27,7 @@ module.exports.factory = function (router, repo) {
                     if (!err) {
                         console.log('orderhistory: ', user.orderhistory);
                         addCookie(user, res);
-                        res.redirect('/');
+                        res.redirect('/home');
                     } else {
                         res.status(400);
                     }

@@ -20,6 +20,25 @@ Hilary.scope('heinz').register({
             }
         });
 
+
+        //Chetan - Adding functionality to add multiple items to the cart.
+        $this.get['/book/:uid/addToCart'] = new GidgetRoute({
+            routeHandler: function (err, req) {
+                $.ajax({
+                    url: '/api/book/addToCart/' + req.params.uid,
+                    method: 'GET'
+                }).done(function (data) {
+                    //console.log("chetan"+data.books.length);
+                    $("#cartTotal").text(data.books.length + " item(s)");
+                    //$(this).find($("cartUpdate")).removeClass('fa-shopping-cart').addClass('fa-user');
+                    //document.getElementById("shoppingCartIcon").className = "fa fa-user";
+                    //window.alert("You added the book to the cart.")
+                    //window.location.replace('/cart');
+                });
+            }
+        });
+
+
         $this.get['/book/:uid/delete_a_book'] = new GidgetRoute({
             routeHandler: function (err, req) {
                 $.ajax({
@@ -50,6 +69,7 @@ Hilary.scope('heinz').register({
                     url: '/api/cart',
                     method: 'GET'
                 }).done(function (data) {
+                    $("#cartTotal").text(data.cart.books.length + " item(s)");
                     console.log(data);
                     viewEngine.setVM({
                         template: 't-cart',

@@ -21,10 +21,20 @@ Hilary.scope('heinz').register({
 
         $this.get['/login'] = new GidgetRoute({
             routeHandler: function () {
-                viewEngine.setVM({
-                    template: 't-login',
-                    data: {}
+                $.ajax({
+                    url: '/api/cart',
+                    method: 'GET'
+                }).done(function (data) {
+                    console.log("asdasddc  sc"+ data.cart.books.length);
+                    $("#cartTotal").text(data.cart.books.length + " item(s)");
+                    console.log("came to login");
+                    viewEngine.setVM({
+                        template: 't-login',
+                        data: {}
+                    });
                 });
+
+
             }
         });
 
@@ -36,6 +46,7 @@ Hilary.scope('heinz').register({
                     method: 'GET'
                 }).done(function (data) {
                     console.log(data);
+                    $("#cartTotal").text(data.cart.books.length + " item(s)");
                     viewEngine.setVM({
                         template: 't-profile',
                         data: new ProfileVM(data)
@@ -44,12 +55,24 @@ Hilary.scope('heinz').register({
             }
         });
 
+
+
         $this.get['/loginWithError'] = new GidgetRoute({
             routeHandler: function () {
-                viewEngine.setVM({
-                    template: 't-loginWithError',
-                    data: { }
+                $.ajax({
+                    url: '/api/cart',
+                    method: 'GET'
+                }).done(function (data) {
+                    console.log("asdasddc  sc"+ data.cart.books.length);
+                    $("#cartTotal").text(data.cart.books.length + " item(s)");
+                    console.log("came to login");
+                    viewEngine.setVM({
+                        template: 't-loginWithError',
+                        data: {}
+                    });
                 });
+
+
             }
         });
 
@@ -72,19 +95,41 @@ Hilary.scope('heinz').register({
         // Register a new account
         $this.get['/register'] = new GidgetRoute({
             routeHandler: function () {
-                viewEngine.setVM({
-                    template: 't-register',
-                    data: {}
+                $.ajax({
+                    url: '/api/cart',
+                    method: 'GET'
+                }).done(function (data) {
+                    //console.log("asdasddc  sc"+ data.cart.books.length);
+                    $("#cartTotal").text(data.cart.books.length + " item(s)");
+                    console.log("came to login");
+                    viewEngine.setVM({
+                        template: 't-register',
+                        data: {}
+                    });
                 });
+
+
             }
         });
 
+
+
         $this.get['/registerWithError'] = new GidgetRoute({
             routeHandler: function () {
-                viewEngine.setVM({
-                    template: 't-registerWithError',
-                    data: {}
+                $.ajax({
+                    url: '/api/cart',
+                    method: 'GET'
+                }).done(function (data) {
+                    console.log("asdasddc  sc"+ data.cart.books.length);
+                    $("#cartTotal").text(data.cart.books.length + " item(s)");
+                    console.log("came to login");
+                    viewEngine.setVM({
+                        template: 't-registerWithError',
+                        data: {}
+                    });
                 });
+
+
             }
         });
 
