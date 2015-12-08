@@ -9,13 +9,20 @@ Hilary.scope('heinz').register({
             Order,
             OrderItem;
 
+        // email is not required when the order is with an orderid
         blueprint = new Blueprint({
-            email: 'string',
+            order_id: {
+                type: 'string',
+                required: false
+            },
+            email: {
+                type: 'string',
+                required: false
+            },
             items: {
                 type: 'array',
                 required: false
-            },
-            // isCompleted : 'boolean'
+            }
         });
 
         // single order item
@@ -43,6 +50,7 @@ Hilary.scope('heinz').register({
 
             order = order || {};
 
+            self.order_id = ko.observable(order.order_id);
             self.email = ko.observable(order.email);
           	self.items = ko.observableArray();
             // self.isCompleted = ko.observable(order.isCompleted);
@@ -74,6 +82,11 @@ Hilary.scope('heinz').register({
                 var total = 0;
                 $.each(self.items(), function() { total += Number(this.quantity()) });
                 console.log("total quantity:" +total );
+
+                var cart = document.getElementById("cart-count");
+                var vm = ko.contextFor(cart);
+                vm.$data.cartCount(total);
+
                 return total;
 
             });

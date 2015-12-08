@@ -65,13 +65,14 @@ Hilary.scope('heinz').register({
 
         // temporary put it here, hard code the page to a search result
         // GET /checkout
-        $this.get['/orderhistory'] = new GidgetRoute({
+        $this.get['/orderHistory'] = new GidgetRoute({
             routeHandler: function (err, req) {
                 $.ajax({
                     // consider add email, now hard code on server side first
-                    url: '/api/checkout',
+                    url: '/api/orderHistory',
                     method: 'GET'
                 }).done(function (data) {
+                    console.log(data);
                     var results = new Orders(data);
 
                     if (results.orders().length > 0) {
