@@ -194,15 +194,14 @@ module.exports.factory = function (db, Order, Blueprint, exceptions, is) {
                 }
                   if (order1 == null)
                   {
-                    console.log("Test1");
+
                     collection.update({"email": email1},{"email": email1, "items": order.items},{upsert:true}, callback);
                     collection.update( {"email" : email1 },{$inc : {"total_quantity" : order.total_quantity}} ,{upsert:false }, callback);
                     collection.deleteOne({"email": "Guest"}, callback);
-                    console.log("testttttt1:"+JSON.stringify(order));
                     callback(null, new Order(order));
                   }
                   else {
-                    console.log("Test2");
+
                     for (var i in itemsArray)
                     {
                       collection.update( {"email" : email1, "items.title" : itemsArray[i].title },{$inc : {"items.$.quantity" : itemsArray[i].quantity}} ,{upsert:false }, callback);
@@ -212,7 +211,6 @@ module.exports.factory = function (db, Order, Blueprint, exceptions, is) {
                     }
                     collection.update( {"email" : email1 },{$inc : {"total_quantity" : order.total_quantity}} ,{upsert:false }, callback);
                     collection.deleteOne({"email": "Guest"}, callback);
-                    console.log("Testttt2222:"+JSON.stringify(order));
                     callback(null, new Order(order));
                   }
               });
