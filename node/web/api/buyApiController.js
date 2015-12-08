@@ -178,5 +178,54 @@ module.exports.factory = function (router, repo, exceptions, Cart, usersRepo, Or
         }
     });
 
+
+    router.get('/api/book/addToCart/:uid', function (req, res) {
+        var newbook,
+            cart;
+        repo.get(req.params.uid, function (err, book) {
+            if (err) {
+                exceptions.throwException(err);
+                res.status(400);
+                return;
+            }
+            //console.log("in here mate"+book);
+
+            newbook = book;
+            if (req.cookies.auth === undefined) {
+                if (req.session.cart === undefined) {
+                    req.session.cart = {};
+                    req.session.cart.totalAmount = 0;
+                    req.session.cart.books = [];
+                }
+                req.session.cart = new Cart(req.session.cart);
+                req.session.cart = req.session.cart.addToCart(newbook);
+                res.send(req.session.cart);
+            } else {
+                usersRepo.get(req.cookies.auth.email, function (err, user) {
+                    if (!err) {
+                        console.log("Success in adding a book");
+                        console.log("user---->", user);
+                        cart = new Cart(user.cart);
+                        console.log("cartBeforAdd----->", cart);
+                        cart = cart.addToCart(newbook);
+                        console.log("cartAfterAdd----->", cart);
+                    } else {
+                        console.log("Error in adding a book", err);
+                    }
+
+                    usersRepo.updateCart(req.cookies.auth.email, cart, function (err) {
+                        if (!err) {
+                            console.log("Success in updating a book");
+                        }
+                    });
+                });
+                res.send(cart);
+            }
+
+            //res.send("cc");
+            //res.send(book);
+        });
+    });
+
     return router;
 };
