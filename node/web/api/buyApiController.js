@@ -102,8 +102,8 @@ module.exports.factory = function (router, repo, exceptions, Cart, usersRepo, Or
                 req.session.orderhistory.totalAmountOfHistory = 0;
                 req.session.orderhistory.booksOfHistory = [];
             }
-            req.session.orderhistory = new Orderhistory(req.session.orderhistory);
-            req.session.orderhistory = req.session.orderhistory.addToOrderhistory(req.session.cart);
+            //req.session.orderhistory = new Orderhistory(req.session.orderhistory);
+            //req.session.orderhistory = req.session.orderhistory.addToOrderhistory(req.session.cart);
             res.send(req.session);
         } else {
             usersRepo.get(req.cookies.auth.email, function (err, user) {
