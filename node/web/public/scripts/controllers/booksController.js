@@ -47,7 +47,19 @@ Hilary.scope('heinz').register({
                 });
             }
         });
-
+        $this.get['/cart'] = new GidgetRoute ({
+            routeHandler: function (err, req) {
+             viewEngine.setVM({
+                        template: 'cart',
+                        data: { books: books }
+                    });
+            }
+        });
+         $this.post['/cart'] = new GidgetRoute ({
+           routeHandler: function (err, req) {
+            console.log(req.payload);
+           }
+        });
         // GET /books/
         // Get a list of books
         $this.get['/books'] = new GidgetRoute({

@@ -60,7 +60,9 @@ Hilary.scope('heinz').register({
             self.click = function () {
                 router.navigate(self.detailsLink());
             };
-
+            self.buyNow = function() {
+                router.post('/cart', self);
+            }
             return self;
         };
 

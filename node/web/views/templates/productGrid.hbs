@@ -12,12 +12,7 @@
                         <h3><a href="javascript:void(0);" data-bind="text: product.title, click: product.click"></a></h3>
                         <div class="description" data-bind="html: product.description"></div>
                         <div class="overlay"></div>
-                        <form method="get" action="/cart">
-                            <a class="buy-now" data-bind="currency: product.price"></a>
-                            <input  type="submit" name="product" value=
-                            "Add to Cart" class="button">
-                        </form>
-                
+                        <a class="buy-now" href="javascript:void(0);" data-bind="currency: product.price, click: product.buyNow"></a>
                     </div>
                 </div>
             </div>
