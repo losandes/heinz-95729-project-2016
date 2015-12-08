@@ -143,9 +143,9 @@ module.exports.factory = function (router, repo, exceptions, stripe, usersRepo) 
 
                   res.send(orders);
               });
-              repo.find({ query: { email: email }}, function (err,doc) {
+              repo.get(email, function (err,doc) {
                   if (err) {
-                    res.status(400);
+                    //res.status(400);
                     return;
                   }
                   if (doc == null)
@@ -154,21 +154,18 @@ module.exports.factory = function (router, repo, exceptions, stripe, usersRepo) 
                       repo.remove(email,function (err, doc1) {
 
                         if (err) {
-                          res.status(400);
+                        //  res.status(400);
                           return;
                         }
                         else {
                           {
-                            console.log("Going to update users table"+ doc);
+                            console.log("Going to update users table"+ doc.email);
                             usersRepo.update(doc, function (err, doc2) {
                               if (err) {
-                                res.status(400);
+                                //res.status(400);
                                 return;
                               }
                               else {
-                                {
-                                  res.send(doc);
-                                }
                               }
 
                             });
