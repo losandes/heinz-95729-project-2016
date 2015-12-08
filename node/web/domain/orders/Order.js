@@ -11,16 +11,18 @@ module.exports.factory = function (Blueprint, ObjectID, exceptions) {
     // meet the minimum requirements for being a Product
     */
     blueprint = new Blueprint({
-        _id: {
+        order_id: {
             type: 'object',
             required: false
         },
-        email: 'string',
+        email: {
+            type: 'string',
+            required: false
+        },
         items: {
             type: 'array',
             required: false
-        },
-        // isCompleted : 'boolean'
+        }
         
     });
 

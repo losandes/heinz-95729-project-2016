@@ -27,7 +27,7 @@ module.exports.factory = function (db, User, Blueprint, exceptions, is) {
     */
     self.get = function (email, callback) {
         if (is.not.string(email)) {
-            exceptions.throwArgumentException('', 'uid');
+            exceptions.throwArgumentException('', 'email');
             return;
         }
 
@@ -75,7 +75,7 @@ module.exports.factory = function (db, User, Blueprint, exceptions, is) {
         collection.updateOne(
           {email : payload.email},
           {
-            $addToSet: { "Orders": {"order_id":payload._id,"order_details":payload.items} }
+            $addToSet: { "orders": {"order_id":payload._id,"items":payload.items} }
           }
           , callback);
     };

@@ -4,6 +4,40 @@ module.exports.factory = function (router, repo, exceptions, stripe, usersRepo) 
     'use strict';
 
     // get order
+    router.get('/api/orderHistory', function (req, res) {
+        console.log("Oh!!!/api/orderHistory is called");
+        //console.log(req);
+
+        // the query should return one order that's supposed to be not completed
+        // but return all the orders for simplicity now?
+        var email = "";
+        if(!req.cookies.email)
+        {
+          email = "Guest";
+        }
+        else {
+          {
+            email = req.cookies.email;
+          }
+        }
+        console.log(email);
+        usersRepo.get(email, function (err, user) {
+            if (err) {
+                exceptions.throwException(err);
+                res.status(400);
+                return;
+            }
+
+            console.log(user.orders);
+            //var orderHistory = new OrderHistory(user.orders);
+            console.log("Oh!!!/api/orderHistory query db succeed!\n");
+
+            res.send(user.orders);
+        });
+    });
+
+
+    // get order
     router.get('/api/checkout', function (req, res) {
         console.log("Oh!!!/api/checkout is called with req:\n");
         //console.log(req);
@@ -32,7 +66,6 @@ module.exports.factory = function (router, repo, exceptions, stripe, usersRepo) 
             res.send(orders);
         });
     });
-
 
 
     // save order
