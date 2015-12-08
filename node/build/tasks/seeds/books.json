@@ -77,7 +77,8 @@
         },
         "price": 2.99,
         "thumbnailLink": "/images/books/fourgifts.jpg",
-        "type": "book"
+        "type": "book",
+        "url": "http://www.amazon.com/The-Four-Gifts-Priest-Received/dp/1933016752"
     }, {
         "_id": "5623c1263b952eb796d79dfc",
         "uid": "hitchhikers_guide_galaxy",
@@ -95,7 +96,8 @@
         },
         "price": 4.59,
         "thumbnailLink": "/images/books/hitchiker.jpeg",
-        "type": "book"
+        "type": "book",
+        "url": "http://www.amazon.com/Hitchhikers-Guide-Galaxy-Douglas-Adams/dp/0345391802"
     }, {
         "_id": "5623c1263b952eb796d79dfd",
         "uid": "leave_you",
@@ -110,7 +112,8 @@
         },
         "price": 7.99,
         "thumbnailLink": "/images/books/whereILeaveYou.jpg",
-        "type": "book"
+        "type": "book",
+        "url": "http://www.amazon.com/This-Is-Where-Leave-You/dp/0452296366"
     }, {
         "_id": "5623c1263b952eb796d79dfe",
         "uid": "lost_for_words",
@@ -125,7 +128,8 @@
         },
         "price": 11.04,
         "thumbnailLink": "/images/books/lostForWords.jpg",
-        "type": "book"
+        "type": "book",
+        "url": "http://www.amazon.com/Lost-Words-Edward-St-Aubyn/dp/0374280290"
     }, {
         "_id": "5623c1263b952eb796d79dff",
         "uid": "restaurant_at_end_universe",
@@ -144,7 +148,8 @@
         },
         "price": 6.83,
         "thumbnailLink": "/images/books/restaurantuniverse.jpeg",
-        "type": "book"
+        "type": "book",
+        "url":"http://www.amazon.com/The-Restaurant-at-End-Universe/dp/0345391810"
     }, {
         "_id": "5623c1263b952eb796d79e00",
         "uid": "rise_and_fall",
@@ -159,7 +164,8 @@
         },
         "price": 11.84,
         "thumbnailLink": "/images/books/riseAndFall.jpg",
-        "type": "book"
+        "type": "book",
+        "url": "http://www.amazon.com/The-Rise-Fall-Great-Powers/dp/0812982398"
     }, {
         "_id": "5623c1263b952eb796d79e01",
         "uid": "siddhartha",
@@ -178,7 +184,8 @@
         },
         "price": 0.99,
         "thumbnailLink": "/images/books/siddhartha.jpg",
-        "type": "book"
+        "type": "book",
+        "url": "http://www.amazon.com/Siddhartha-Hermann-Hesse/dp/0553208845"
   }, {
         "_id": "5623c1263b952eb796d79e02",
         "uid": "still_life_with_woodpecker",
@@ -193,7 +200,8 @@
         },
         "price": 9.99,
         "thumbnailLink": "/images/books/woodpecker.jpg",
-        "type": "book"
+        "type": "book",
+        "url": "http://www.amazon.com/Still-Life-Woodpecker-Tom-Robbins/dp/0553348973"
     }, {
         "_id": "5623c1263b952eb796d79e03",
         "uid": "swamplandia",
@@ -211,7 +219,8 @@
         },
         "price": 9.99,
         "thumbnailLink": "/images/books/swamplandia.jpg",
-        "type": "book"
+        "type": "book",
+        "url": "http://www.amazon.com/Swamplandia-Vintage-Contemporaries-Karen-Russell/dp/0307276686"
     }, {
         "_id": "5623c1263b952eb796d79e04",
         "uid": "tibetan_peach_pie",
@@ -226,7 +235,8 @@
         },
         "price": 12.74,
         "thumbnailLink": "/images/books/tibetanPeachPie.jpg",
-        "type": "book"
+        "type": "book",
+        "url": "http://www.amazon.com/Tibetan-Peach-Pie-Account-Imaginative/dp/006226740X"
     }, {
         "_id": "5623c1263b952eb796d79e05",
         "uid": "universe_everything",
@@ -245,7 +255,8 @@
         },
         "price": 5.99,
         "thumbnailLink": "/images/books/lifeandeverything.jpeg",
-        "type": "book"
+        "type": "book",
+        "url": "http://www.amazon.com/Universe-Everything-Hitchhikers-Guide-Galaxy/dp/0345391829"
     }, {
         "_id": "5623c1263b952eb796d79e06",
         "uid": "visit_from_goon_squad",
@@ -260,7 +271,8 @@
         },
         "price": 9.77,
         "thumbnailLink": "/images/books/goonSquad.jpg",
-        "type": "book"
+        "type": "book",
+        "url": "http://www.amazon.com/Visit-Goon-Squad-Jennifer-Egan/dp/0307477479"
     }, {
         "_id": "5623c1263b952eb796d79e07",
         "uid": "white_tiger",
@@ -279,7 +291,8 @@
         },
         "price": 8.62,
         "thumbnailLink": "/images/books/whiteTiger.jpg",
-        "type": "book"
+        "type": "book",
+        "url": "http://www.amazon.com/The-White-Tiger-A-Novel/dp/1416562605"
     }, {
         "_id": "5623c1263b952eb796d79e08",
         "uid": "wild",
@@ -294,7 +307,8 @@
         },
         "price": 6.99,
         "thumbnailLink": "/images/books/wild.jpg",
-        "type": "book"
+        "type": "book",
+        "url": "http://www.amazon.com/Wild-Found-Pacific-Crest-Trail/dp/0307476073"
     }, {
         "_id": "5623c1263b952eb796d79e09",
         "uid": "wild_ducks",
@@ -309,7 +323,8 @@
         },
         "price": 9.41,
         "thumbnailLink": "/images/books/flyingBackward.jpg",
-        "type": "book"
+        "type": "book",
+        "url": "http://www.amazon.com/Wild-Ducks-Flying-Backward-Robbins/dp/0553383531"
     }, {
         "_id": "5623c1263b952eb796d79e0a",
         "uid": "yellow_sun",
@@ -324,6 +339,7 @@
         },
         "price": 8.99,
         "thumbnailLink": "/images/books/yellowSun.jpg",
-        "type": "book"
+        "type": "book",
+        "url": "http://www.amazon.com/Half-Yellow-Chimamanda-Ngozi-Adichie/dp/1400095204"
     }
 ]
