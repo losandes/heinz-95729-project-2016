@@ -7,12 +7,17 @@ Hilary.scope('heinz').register({
     factory: function () {
         'use strict';
 
-        var PaymentSuccessVM;
+        var PaymentSuccessVM,
+            title;
 
         //payment details
         PaymentSuccessVM = function () {
+            title = JSON.parse(localStorage.getItem('cart')).books[0].title;
+            title = title.replace("\\W", "+");
+            title = 'http://www.amazon.com/s/ref=nb_sb_ss_c_0_13?url=search-alias%3Dstripbooks&field-keywords=' + title + '&sprefix=' + title + '%2Caps%2C159';
+
             window.onload = function () {
-                setTimeout("window.open('http://www.amazon.com/')", 3000);
+                setTimeout("window.open('" + title + "')", 3000);
             }
         };
         return PaymentSuccessVM;
