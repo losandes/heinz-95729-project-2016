@@ -9,11 +9,10 @@ Hilary.scope('heinz').register({
         $this.get['/checkout'] = new GidgetRoute({
             routeHandler: function (err, req) {
               console.log("Guest cookie"+ window.document.cookie )
-              if(window.document.cookie == "email=Guest")
+              if(window.document.cookie == "email=Guest" || window.document.cookie == "")
               {
                 router.navigate('/Guest');
-              }
-                else {
+              } else {
 
                   $.ajax({
                       // consider add email, now hard code on server side first

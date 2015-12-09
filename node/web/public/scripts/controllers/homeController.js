@@ -16,47 +16,54 @@ Hilary.scope('heinz').register({
 
 
         $this.get['/registered'] = function () {
-            viewEngine.setVM({
-                template: 't-empty',
-                data: {
-                    heading: locale.pages.home.empty.heading,
-                    body: locale.pages.home.empty.body
-                }
-            });
+             $.ajax({
+                  url: '/api/count',
+                  method: 'GET'
+              }).done(function (data) {
+                  // Get the view model for id="cart-count" and update value
+                  var cart = document.getElementById("cart-count");
+                  var vm = ko.contextFor(cart);
+                  vm.$data.isLogin(true);
+                
+                  if (data > 0)
+                  {
+                      vm.$data.cartCount(data);
+                  }
+                  viewEngine.setVM({
+                      template: 't-empty',
+                      data: {
+                          heading: locale.pages.home.empty.heading,
+                          body: locale.pages.home.empty.body
+                      }
+                  });
+              });
         };
 
         $this.get['/loggedin'] = new GidgetRoute({
           routeHandler: function (err, req) {
+
+            console.log("/loggedin called");
+
             $.ajax({
                 url: '/api/count',
                 method: 'GET'
             }).done(function (data) {
-              if (data > 0)
-              {
-                // var cart = document.getElementById("cart");
-                // cart.style.color = "#fff";
-                // cart.style.background= "#ff0000";
-                // cart.style.fontSize= "12px";
-                // cart.style.padding = "0 5px";
-                // cart.style.position = "absolute";
-                // cart.style.marginLeft="-2px";
-                // cart.style.verticalAlign = top;
-                // cart.style.borderRadius = "50px 15px";
-                // cart.innerHTML = "";
-                // cart.appendChild(document.createTextNode(data));
-
                 // Get the view model for id="cart-count" and update value
                 var cart = document.getElementById("cart-count");
                 var vm = ko.contextFor(cart);
-                vm.$data.cartCount(data);
-              }
-              viewEngine.setVM({
-                  template: 't-empty',
-                  data: {
-                      heading: locale.pages.home.empty.heading,
-                      body: locale.pages.home.empty.body
-                  }
-              });
+                vm.$data.isLogin(true);
+
+                if (data > 0)
+                {   
+                    vm.$data.cartCount(data);
+                }
+                viewEngine.setVM({
+                    template: 't-empty',
+                    data: {
+                        heading: locale.pages.home.empty.heading,
+                        body: locale.pages.home.empty.body
+                    }
+                });
             });
           }
         });
@@ -82,31 +89,19 @@ Hilary.scope('heinz').register({
                     });
                 }
             });
-              $.ajax({
-                  url: '/api/count',
-                  method: 'GET'
-              }).done(function (data) {
-                if (data > 0)
-                {
-              //     var cart = document.getElementById("cart");
-          				// cart.style.color = "#fff";
-          				// cart.style.background= "#ff0000";
-          				// cart.style.fontSize= "12px";
-          				// cart.style.padding = "0 5px";
-          				// cart.style.position = "absolute";
-          				// cart.style.marginLeft="-2px";
-          				// cart.style.verticalAlign = top;
-          				// cart.style.borderRadius = "50px 15px";
-          				// cart.innerHTML = "";
-          				// cart.appendChild(document.createTextNode(data));
-                   
-                      // Get the view model for id="cart-count" and update value
-                      var cart = document.getElementById("cart-count");
-                      var vm = ko.contextFor(cart);
-                      vm.$data.cartCount(data);
-                }
+              // $.ajax({
+              //     url: '/api/count',
+              //     method: 'GET'
+              // }).done(function (data) {
+              //   if (data > 0)
+              //   {  
+              //       // Get the view model for id="cart-count" and update value
+              //       var cart = document.getElementById("cart-count");
+              //       var vm = ko.contextFor(cart);
+              //       vm.$data.cartCount(data);
+              //   }
 
-              });
+              // });
 
           }
         });
@@ -119,22 +114,10 @@ Hilary.scope('heinz').register({
               }).done(function (data) {
                 if (data > 0)
                 {
-              //     var cart = document.getElementById("cart");
-          				// cart.style.color = "#fff";
-          				// cart.style.background= "#ff0000";
-          				// cart.style.fontSize= "12px";
-          				// cart.style.padding = "0 5px";
-          				// cart.style.position = "absolute";
-          				// cart.style.marginLeft="-2px";
-          				// cart.style.verticalAlign = top;
-          				// cart.style.borderRadius = "50px 15px";
-          				// cart.innerHTML = "";
-          				// cart.appendChild(document.createTextNode(data));
-
-                      // Get the view model for id="cart-count" and update value
-                      var cart = document.getElementById("cart-count");
-                      var vm = ko.contextFor(cart);
-                      vm.$data.cartCount(data);
+                    // Get the view model for id="cart-count" and update value
+                    var cart = document.getElementById("cart-count");
+                    var vm = ko.contextFor(cart);
+                    vm.$data.cartCount(data);
                 }
               });
           }

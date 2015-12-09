@@ -180,6 +180,12 @@ module.exports.factory = function (db, Order, Blueprint, exceptions, is) {
               return;
           }
           console.log("Array testttttt: "+order);
+          if(order == null) {
+            // The guest doesn't have any item in his cart
+            callback(false);
+            return;
+          }
+
           var result = new Order(order);
           console.log("Array: "+JSON.stringify(result.items));
           var itemsArray = result.items;

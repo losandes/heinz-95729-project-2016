@@ -43,7 +43,9 @@ Hilary.scope('heinz').register({
 					if(response.error) {
 						console.log("acqure token failed!");
                         alert(response.error.message+' Please retry.');
-						// router.post("/payment", token);
+                        
+                        // reenable submit button
+                        self.canSubmit(true);
 					} else {
 						console.log("acqure token success!");
 						console.log(response);

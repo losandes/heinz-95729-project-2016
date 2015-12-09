@@ -37,8 +37,13 @@ module.exports.factory = function (db, User, Blueprint, exceptions, is) {
         }
 
         collection.find({ email: email }).limit(1).next(function (err, doc) {
+            
             if (err) {
                 callback(err);
+                return;
+            } else if(!doc) {
+                // doc shouldn't be null
+                callback(true);
                 return;
             }
 
@@ -59,7 +64,25 @@ module.exports.factory = function (db, User, Blueprint, exceptions, is) {
             exceptions.throwArgumentException('', 'callback');
             return;
         }
-       collection.updateOne({"email":payload.email},payload,{upsert:true}, callback);
+
+        // Check email doesn't exist first
+        collection.find({ email: payload.email }).limit(1).next(function (err, doc) {
+            
+            // shouldn't exist
+            if(err) {
+                callback(err);
+                return;
+            } else if(!doc) {
+                collection.updateOne({"email":payload.email},payload,{upsert:true}, callback);
+                return;
+            } else {
+                // exist before, return error
+                callback(true);
+                return;
+            }
+            
+        });
+       
     };
 
     self.update = function (payload, callback) {

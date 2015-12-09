@@ -40,9 +40,9 @@ Hilary.scope('heinz').register({
 
             self.setIslogin = ko.computed(function() {
 
-                var cookie = window.document.cookie
+                var cookie = window.document.cookie;
                 console.log("Guest cookie"+cookie);
-                if(cookie != null &&  cookie != "email=Guest")
+                if(cookie != null &&  cookie != "email=Guest" && cookie != "")
                 {
                     self.isLogin(true);
                 }                

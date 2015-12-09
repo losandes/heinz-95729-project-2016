@@ -6,7 +6,7 @@ module.exports.factory = function (router, repo,usersRepo,ordersRepo, exceptions
         repo.find({ query: { $text: { $search: req.query.q }, type: 'book' } }, function (err, books) {
             if (err) {
                 exceptions.throwException(err);
-                res.status(400);
+                res.status(400).end();
                 return;
             }
             res.send(books);
@@ -17,7 +17,7 @@ module.exports.factory = function (router, repo,usersRepo,ordersRepo, exceptions
         repo.get(req.params.uid, function (err, book) {
             if (err) {
                 exceptions.throwException(err);
-                res.status(400);
+                res.status(400).end();
                 return;
             }
 
@@ -31,7 +31,7 @@ module.exports.factory = function (router, repo,usersRepo,ordersRepo, exceptions
       repo.get(req.query.product, function (err, book) {
             if (err) {
                 exceptions.throwException(err);
-                res.status(400);
+                res.status(400).end();
                 return;
             }
             var email = "";
@@ -48,13 +48,13 @@ module.exports.factory = function (router, repo,usersRepo,ordersRepo, exceptions
             }
             ordersRepo.updateCart(email,book, function (err, user){
               if (err){
-                res.status(400);
+                res.status(400).end();
                 return;
               }
               });
               ordersRepo.getCount(email, function (err,doc) {
                   if (err) {
-                    res.status(400);
+                    res.status(400).end();
                     return;
                   }
                   count = doc.total_quantity;
@@ -80,8 +80,7 @@ module.exports.factory = function (router, repo,usersRepo,ordersRepo, exceptions
                           maxAge = authCookieExpiryDurationMinutes * 60 * 1000;
                       res.cookie('email', email, { maxAge: maxAge, httpOnly: false });
                     }
-
-              });
+                });
               }
               else {
                 {

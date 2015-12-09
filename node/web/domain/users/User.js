@@ -12,7 +12,7 @@ module.exports.factory = function (Blueprint, exceptions, ObjectID) {
         orders: new Blueprint({
 
                 type: 'array',
-                required: true
+                required: false
 
         })
     });
