@@ -13,7 +13,7 @@
                         <label>Quantity:</label>
                         <div class="amountOfBooks" data-bind="text: book.amountofBooks"></div>
                         <label>Price:</label>
-                        <div class="pay" data-bind="text: book.price"></div>
+                        <div class="pay" data-bind="currency: book.price"></div>
                         </div>
                     </div>
                 </div>
@@ -24,7 +24,7 @@
  <div data-bind="with: data">
      <div class="pay;padding-bottom:25px;">
          <label>Purchase total</label>
-         <p data-bind="text: amount"></p>
+         <p data-bind="currency: amount"></p>
      </div>
      <form class="form-horizontal" id="payment" action="/login" method="post" role="form">
 
