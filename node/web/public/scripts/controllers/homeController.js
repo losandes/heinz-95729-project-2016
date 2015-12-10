@@ -5,27 +5,16 @@ Hilary.scope('heinz').register({
         'use strict';
 
       $this.get['/'] = function () {
-        $.ajax({
-             url: '/api/count',
-             method: 'GET'
-         }).done(function (data) {
-             // Get the view model for id="cart-count" and update value
-             var cart = document.getElementById("cart-count");
-             var vm = ko.contextFor(cart);
-             if (data > 0)
-             {
-                 vm.$data.cartCount(data);
-             }
-             viewEngine.setVM({
-                 template: 't-empty',
-                 data: {
-                     heading: locale.pages.home.empty.heading,
-                     body: locale.pages.home.empty.body
-                 }
-             });
-         });
+            viewEngine.setVM({
+                template: 't-empty',
+                data: {
+                    heading: locale.pages.home.empty.heading,
+                    body: locale.pages.home.empty.body
+                }
+            });
           };
-          
+
+
         $this.get['/registered'] = function () {
              $.ajax({
                   url: '/api/count',
