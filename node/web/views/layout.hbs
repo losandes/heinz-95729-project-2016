@@ -32,12 +32,11 @@
             <button class="btn btn-primary dropdown-toggle" id="menu1" type="button" data-toggle="dropdown"><span class="caret"></span></button>
             <ul class="dropdown-menu" role="menu" aria-labelledby="menu1">
                 <li data-bind="visible: isLogin" role="presentation"><a role="menuitem" tabindex="-1" href="/orderHistory">Your Orders</a></li>
-                <li data-bind="visible: !isLogin()" role="presentation"><a role="menuitem" tabindex="-1" href="/login">Login</a></li>
                 <li data-bind="visible: !isLogin()" role="presentation"><a role="menuitem" tabindex="-1" href="/register">Register</a></li>
                 <li data-bind="visible: isLogin" role="presentation" class="divider"></li>
                 <li data-bind="visible: isLogin" role="presentation"><a role="menuitem" tabindex="-1" href="/logout">Logout</a></li>
             </ul>
-        </div> 
+        </div>
 
         <nav>
 
@@ -49,7 +48,7 @@
                  <i class="fa fa-shopping-cart"><span id="cart-count" data-bind="text: cartCount"></span></i>
              </a>
              <div id="logout">
-            </div> 
+            </div>
         </nav>
 
 

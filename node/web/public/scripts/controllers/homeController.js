@@ -5,16 +5,27 @@ Hilary.scope('heinz').register({
         'use strict';
 
       $this.get['/'] = function () {
-            viewEngine.setVM({
-                template: 't-empty',
-                data: {
-                    heading: locale.pages.home.empty.heading,
-                    body: locale.pages.home.empty.body
-                }
-            });
+        $.ajax({
+             url: '/api/count',
+             method: 'GET'
+         }).done(function (data) {
+             // Get the view model for id="cart-count" and update value
+             var cart = document.getElementById("cart-count");
+             var vm = ko.contextFor(cart);
+             if (data > 0)
+             {
+                 vm.$data.cartCount(data);
+             }
+             viewEngine.setVM({
+                 template: 't-empty',
+                 data: {
+                     heading: locale.pages.home.empty.heading,
+                     body: locale.pages.home.empty.body
+                 }
+             });
+         });
           };
-
-
+          
         $this.get['/registered'] = function () {
              $.ajax({
                   url: '/api/count',
@@ -24,7 +35,7 @@ Hilary.scope('heinz').register({
                   var cart = document.getElementById("cart-count");
                   var vm = ko.contextFor(cart);
                   vm.$data.isLogin(true);
-                
+
                   if (data > 0)
                   {
                       vm.$data.cartCount(data);
@@ -54,7 +65,7 @@ Hilary.scope('heinz').register({
                 vm.$data.isLogin(true);
 
                 if (data > 0)
-                {   
+                {
                     vm.$data.cartCount(data);
                 }
                 viewEngine.setVM({
@@ -94,7 +105,7 @@ Hilary.scope('heinz').register({
               //     method: 'GET'
               // }).done(function (data) {
               //   if (data > 0)
-              //   {  
+              //   {
               //       // Get the view model for id="cart-count" and update value
               //       var cart = document.getElementById("cart-count");
               //       var vm = ko.contextFor(cart);
