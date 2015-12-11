@@ -25,6 +25,13 @@ module.exports.factory = function (router, repo, exceptions) {
             res.send(book);
         });
     });
+     router.get('/api/book/addToCart/:uid', function (req, res) {
+        repo.get(req.params.uid, function (err, book) {
+            console.log("server controller get called");      
+            res.send("success")
+            });
+        });
+
 
     return router;
 };

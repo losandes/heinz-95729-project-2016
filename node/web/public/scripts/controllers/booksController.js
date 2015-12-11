@@ -47,6 +47,18 @@ Hilary.scope('heinz').register({
                 });
             }
         });
+        $this.get['/book/:uid/addToCart'] = new GidgetRoute({
+            routeHandler: function(err, req) {
+                console.log("booksController get called");
+                 $.ajax({
+                    url: '/api/book/addToCart/' + req.params.uid,
+                    method: 'GET'
+                }).done(function (data) {
+                    console.log("booksController done");
+                   
+                 });
+                }
+            });
         $this.get['/cart'] = new GidgetRoute ({
             routeHandler: function (err, req) {
              viewEngine.setVM({
