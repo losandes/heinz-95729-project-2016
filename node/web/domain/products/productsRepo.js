@@ -64,7 +64,7 @@ module.exports.factory = function (db, Product, Blueprint, exceptions, is) {
                 callback(err);
                 return;
             }
-      
+
             callback(null, new Product(doc));
         });
     };
@@ -109,6 +109,16 @@ module.exports.factory = function (db, Product, Blueprint, exceptions, is) {
             callback(null, products);
         });
     };
+//    self.remove = function (uid, callback){
 
+  //    if (is.not.object({'email':uid})) {
+  //      exceptions.throwArgumentException('', 'uid');
+  //      return;
+  //    }
+  //    if (is.not.function(callback)) {
+  //      exceptions.throwArgumentException('', 'callback');
+  //      return;
+  //    }
+  //  };
     return self;
 };

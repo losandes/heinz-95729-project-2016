@@ -29,11 +29,11 @@ module.exports.factory = function (router, repo, urepo, exceptions) {
      router.get('/api/book/addToCart/:uid', function (req, res) {
         console.log(req.cookies.auth);
          if (req.cookies.auth == undefined) {
-           res.send("noUser");
+           res.send('noUser');
            return;
         }
         else {
-                console.log("server controller get called");      
+                console.log('server controller get called');
                 repo.get(req.params.uid, function (err, book) {
                     if (err) {
                         exceptions.throwException(err);
@@ -45,24 +45,36 @@ module.exports.factory = function (router, repo, urepo, exceptions) {
 
                 });
         });
-               
-          
+
+
             }
+        repo.get(req.params.uid, function (err, book) {
+            console.log('server controller get called');
+            res.send('success');
+            });
         });
 
     router.get('/api/checkout', function (req, res) {
-        console.log("checkout cookie: ")
+        console.log('checkout cookie: ');
         if (req.cookies.auth == undefined) {
-           res.send("noUser");
+           res.send('noUser');
         }
 
+<<<<<<< HEAD
         urepo.getCart(req.cookies.auth.email, function (err, cart) {
             console.log("after getCart");
             if (cart == "emptyCart") {
                 res.send("emptyCart");
             } 
+=======
+        urepo.getCart(req.params.uid, function (err, cart) {
+            console.log('before no user');
+            if (cart == 'noUser') {
+                res.redirect('/login');
+            }
+>>>>>>> ed216d9f223690eb7b7f585a13189b879766c340
             });
     });
-     
+
     return router;
 };
