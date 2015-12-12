@@ -29,40 +29,44 @@ module.exports.factory = function (router, repo, urepo, exceptions) {
      router.get('/api/book/addToCart/:uid', function (req, res) {
         console.log(req.cookies.auth);
          if (req.cookies.auth == undefined) {
-           res.send("noUser");
+           res.send('noUser');
            return;
         }
         else {
-                console.log("server controller get called");      
+                console.log('server controller get called');
                 repo.get(req.params.uid, function (err, book) {
                     if (err) {
                         exceptions.throwException(err);
                         res.status(400);
                         return;
                     }
-                    
+
                 urepo.updateCart(req.cookies.auth.email, book, function(err, cart) {
 
                 });
         });
-               
-          
+
+
             }
+        repo.get(req.params.uid, function (err, book) {
+            console.log('server controller get called');
+            res.send('success');
+            });
         });
 
     router.get('/api/checkout', function (req, res) {
-        console.log("checkout cookie: ")
+        console.log('checkout cookie: ');
         if (req.cookies.auth == undefined) {
-           res.send("noUser");
+           res.send('noUser');
         }
 
         urepo.getCart(req.params.uid, function (err, cart) {
-            console.log("before no user");
-            if (cart == "noUser") {
+            console.log('before no user');
+            if (cart == 'noUser') {
                 res.redirect('/login');
-            } 
+            }
             });
     });
-     
+
     return router;
 };
