@@ -38,7 +38,10 @@ module.exports.factory = function (router, repo) {
         repo.get(req.body.email, function (err, user) {
             if (!err) {
                 addCookie(user, res);
+                console.log("/login cookei: ")
+                console.log(res.cookie.auth == undefined);
                 res.redirect('/');
+
             } else {
                 res.status(400);
             }

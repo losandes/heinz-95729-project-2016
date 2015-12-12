@@ -1,6 +1,6 @@
 module.exports.name = 'booksApiController';
-module.exports.dependencies = ['router', 'productsRepo', 'exceptions'];
-module.exports.factory = function (router, repo, exceptions) {
+module.exports.dependencies = ['router', 'productsRepo', 'usersRepo', 'exceptions'];
+module.exports.factory = function (router, repo, urepo, exceptions) {
     'use strict';
 
     router.get('/api/books/search', function (req, res) {
@@ -25,13 +25,44 @@ module.exports.factory = function (router, repo, exceptions) {
             res.send(book);
         });
     });
+
      router.get('/api/book/addToCart/:uid', function (req, res) {
-        repo.get(req.params.uid, function (err, book) {
-            console.log("server controller get called");      
-            res.send("success")
-            });
+        console.log(req.cookies.auth);
+         if (req.cookies.auth == undefined) {
+           res.send("noUser");
+           return;
+        }
+        else {
+                console.log("server controller get called");      
+                repo.get(req.params.uid, function (err, book) {
+                    if (err) {
+                        exceptions.throwException(err);
+                        res.status(400);
+                        return;
+                    }
+                    
+                urepo.updateCart(req.cookies.auth.email, book, function(err, cart) {
+
+                });
+        });
+               
+          
+            }
         });
 
+    router.get('/api/checkout', function (req, res) {
+        console.log("checkout cookie: ")
+        if (req.cookies.auth == undefined) {
+           res.send("noUser");
+        }
 
+        urepo.getCart(req.params.uid, function (err, cart) {
+            console.log("before no user");
+            if (cart == "noUser") {
+                res.redirect('/login');
+            } 
+            });
+    });
+     
     return router;
 };

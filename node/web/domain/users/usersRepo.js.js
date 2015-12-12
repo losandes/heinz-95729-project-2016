@@ -1,8 +1,8 @@
 module.exports.name = 'usersRepo';
 module.exports.singleton = true;
 //module.exports.blueprint = ['repoBlueprint'];
-module.exports.dependencies = ['db', 'User', 'Blueprint', 'exceptions', 'is'];
-module.exports.factory = function (db, User, Blueprint, exceptions, is) {
+module.exports.dependencies = ['db', 'User', 'Blueprint', 'exceptions', 'is', 'Cart'];
+module.exports.factory = function (db, User, Blueprint, exceptions, is, Cart) {
     'use strict';
 
     var self = {
@@ -60,6 +60,66 @@ module.exports.factory = function (db, User, Blueprint, exceptions, is) {
 
         collection.insertOne(payload, callback);
     };
+    self.updateCart = function (email, book, callback) {
+        if (is.not.string(email)) {
+            exceptions.throwArgumentException('', 'uid');
+            return;
+        }
+        if (is.not.function(callback)) {
+            exceptions.throwArgumentException('', 'callback');
+            return;
+        }
+        var cart = new Cart();
+        cart.addToCart(book);
+        collection.updateOne(
+            { "email": email },
+            {$set: {"cart": cart}},
+            function(err, results) {callback(err);}
+        );
+        console.log("Successfully update the cart!!!");
+    };
+    self.getCart = function(email, callback) {
+        console.log("usersRepo getCart");
+         if (is.not.string(email)) {
+            exceptions.throwArgumentException('', 'uid');
+            return;
+        }
+        if (is.not.function(callback)) {
+            exceptions.throwArgumentException('', 'callback');
+            return;
+        }
 
+       collection.find({ email: email }).limit(1).next(function (err, doc) {
+            if (err) {
+                callback(err);
+                return;
+            }
+            if (doc == null) {
+                console.log("doc is empty");
+                callback("noUser");
+                return;
+            }
+            console.log(doc);
+            callback(null, new User(doc));
+        });
+       return self;
+    };
+    self.updateOrderHistory = function (email, orderhistory, callback) {
+        if (is.not.string(email)) {
+            exceptions.throwArgumentException('', 'uid');
+            return;
+        }
+        if (is.not.function(callback)) {
+            exceptions.throwArgumentException('', 'callback');
+            return;
+        }
+
+        collection.updateOne(
+            { "email": email },
+            {$set: {"orderhistory": orderhistory}},
+            function(err, results) {callback(err);}
+        );
+        console.log("Successfully update the order history!!!");
+    };
     return self;
 };

@@ -55,25 +55,31 @@ Hilary.scope('heinz').register({
                     method: 'GET'
                 }).done(function (data) {
                     console.log("booksController done");
-                   
+                   if (data == "noUser") {
+                        window.alert("login first");
+                    }
                  });
                 }
             });
-        // $this.get['/cart'] = new GidgetRoute ({
-        //     routeHandler: function (err, req) {
-        //      viewEngine.setVM({
-        //                 template: 'cart',
-        //                 data: { books: books }
-        //             });
-        //     }
-        // });
-        //  $this.post['/cart'] = new GidgetRoute ({
-        //    routeHandler: function (err, req) {
-        //     console.log(req.payload);
-        //    }
-        // });
-        // GET /books/
-        // Get a list of books
+
+        $this.get['/checkout'] = new GidgetRoute({
+           routeHandler: function(err, req) {
+                console.log("client checkout get called");
+                 $.ajax({
+                    url: '/api/checkout',
+                    method: 'GET'
+                }).done(function (data) {
+                    console.log(data);
+                    console.log("booksController done");
+                    if (data == "noUser") {
+                        window.alert("login first");
+                    }
+                    else  {
+
+                    }
+                 });
+                }
+        });
         $this.get['/books'] = new GidgetRoute({
             routeHandler: function () {
                 viewEngine.setVM({
