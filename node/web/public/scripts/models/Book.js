@@ -10,7 +10,7 @@ Hilary.scope('heinz').register({
 
             self.thumbnailLink = ko.observable(book.thumbnailLink || '/images/books/default.png');
             self.reviews = ko.observableArray();
-
+            self.amountofBooks = ko.observable(book.amountofBooks || undefined);
             return self;
         };
 

@@ -61,6 +61,7 @@ module.exports.factory = function (db, User, Blueprint, exceptions, is, Cart) {
         collection.insertOne(payload, callback);
     };
     self.updateCart = function (email, book, callback) {
+        console.log("updateCart");
         if (is.not.string(email)) {
             exceptions.throwArgumentException('', 'uid');
             return;
@@ -71,6 +72,7 @@ module.exports.factory = function (db, User, Blueprint, exceptions, is, Cart) {
         }
         var cart = new Cart();
         cart.addToCart(book);
+
         collection.updateOne(
             { "email": email },
             {$set: {"cart": cart}},
@@ -80,6 +82,7 @@ module.exports.factory = function (db, User, Blueprint, exceptions, is, Cart) {
     };
     self.getCart = function(email, callback) {
         console.log("usersRepo getCart");
+        console.log(email);
          if (is.not.string(email)) {
             exceptions.throwArgumentException('', 'uid');
             return;
@@ -88,7 +91,7 @@ module.exports.factory = function (db, User, Blueprint, exceptions, is, Cart) {
             exceptions.throwArgumentException('', 'callback');
             return;
         }
-
+        
        collection.find({ email: email }).limit(1).next(function (err, doc) {
             if (err) {
                 callback(err);
@@ -96,11 +99,18 @@ module.exports.factory = function (db, User, Blueprint, exceptions, is, Cart) {
             }
             if (doc == null) {
                 console.log("doc is empty");
-                callback("noUser");
+                callback(null, "doc is empty");
                 return;
             }
-            console.log(doc);
-            callback(null, new User(doc));
+            console.log("doc has something");
+            var user = new User(doc);
+            console.log(user.cart == undefined)
+            if(user.cart == undefined) {
+                callback(null, "emptyCart")
+            }
+            else {
+
+            }
         });
        return self;
     };
