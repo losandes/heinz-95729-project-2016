@@ -40,7 +40,7 @@ module.exports.factory = function (router, repo, urepo, exceptions) {
                         res.status(400);
                         return;
                     }
-                    
+
                 urepo.updateCart(req.cookies.auth.email, book, function(err, cart) {
 
                 });
@@ -56,10 +56,10 @@ module.exports.factory = function (router, repo, urepo, exceptions) {
            res.send("noUser");
         }
 
-        urepo.getCart(req.params.uid, function (err, cart) {
-            console.log("before no user");
-            if (cart == "noUser") {
-                res.redirect('/login');
+        urepo.getCart(req.cookies.auth.email, function (err, cart) {
+            console.log("after getCart");
+            if (cart == "emptyCart") {
+                res.send("emptyCart");
             } 
             });
     });

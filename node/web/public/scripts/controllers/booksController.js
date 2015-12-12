@@ -74,8 +74,8 @@ Hilary.scope('heinz').register({
                     if (data == "noUser") {
                         window.alert("login first");
                     }
-                    else  {
-
+                    else if (data == "emptyCart") {
+                        window.alert("cart is empty");
                     }
                  });
                 }
