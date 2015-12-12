@@ -77,6 +77,10 @@ Hilary.scope('heinz').register({
                     else if (data == "emptyCart") {
                         window.alert("cart is empty");
                     }
+                    //show the shopping cart
+                    else {
+                        
+                    }
                  });
                 }
         });

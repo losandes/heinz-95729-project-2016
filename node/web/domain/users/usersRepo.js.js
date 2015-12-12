@@ -109,7 +109,7 @@ module.exports.factory = function (db, User, Blueprint, exceptions, is, Cart) {
                 callback(null, "emptyCart")
             }
             else {
-                
+
             }
         });
        return self;

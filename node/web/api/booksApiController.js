@@ -60,19 +60,12 @@ module.exports.factory = function (router, repo, urepo, exceptions) {
            res.send('noUser');
         }
 
-<<<<<<< HEAD
         urepo.getCart(req.cookies.auth.email, function (err, cart) {
             console.log("after getCart");
             if (cart == "emptyCart") {
                 res.send("emptyCart");
             } 
-=======
-        urepo.getCart(req.params.uid, function (err, cart) {
-            console.log('before no user');
-            if (cart == 'noUser') {
-                res.redirect('/login');
-            }
->>>>>>> ed216d9f223690eb7b7f585a13189b879766c340
+
             });
     });
 
