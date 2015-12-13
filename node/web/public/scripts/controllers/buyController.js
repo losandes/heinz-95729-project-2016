@@ -28,7 +28,8 @@ Hilary.scope('heinz').register({
                     url: '/api/book/addToCart/' + req.params.uid,
                     method: 'GET'
                 }).done(function (data) {
-                    //console.log("chetan"+data.books.length);
+                    console.log("chetan"+data.books.length);
+                    console.log("again");
                     $("#cartTotal").text(data.books.length + " item(s)");
                     //$(this).find($("cartUpdate")).removeClass('fa-shopping-cart').addClass('fa-user');
                     //document.getElementById("shoppingCartIcon").className = "fa fa-user";
