@@ -75,7 +75,12 @@ Hilary.scope('heinz').register({
                         window.alert('login first');
                     }
                     else if (data == "emptyCart") {
-                        window.alert("cart is empty");
+                       // window.alert("cart is empty");
+                       
+                       viewEngine.setVM({
+                          template: 't-empty', 
+                          data: {}
+                         });
                     }
                     //show the shopping cart
                     else {
