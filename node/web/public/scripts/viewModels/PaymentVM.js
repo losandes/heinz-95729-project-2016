@@ -1,6 +1,6 @@
 Hilary.scope('heinz').register({
     name: 'PaymentVM',
-    dependencies: ['jQuery', 'ko', 'router', 'Stripe'],
+    dependencies: ['jQuery', 'ko', 'router', 'Stripe','Book'],
     factory: function ($, ko, router, Stripe) {
         'use strict';
 
@@ -16,6 +16,7 @@ Hilary.scope('heinz').register({
                 month: undefined,
                 year: undefined,
                 pay: undefined,
+                books:undefined,
                 amount: user.cart.totalAmount.toFixed(2)
             },
                 createToken,
@@ -28,6 +29,8 @@ Hilary.scope('heinz').register({
             self.cvc = ko.observable('');
             self.month = ko.observable('');
             self.year = ko.observable('');
+            console.log(JSON.parse(localStorage.getItem('cart')).books);
+            self.books = ko.observable(JSON.parse(localStorage.getItem('cart')).books);
 
             /**
             * Create token on click

@@ -102,8 +102,7 @@ module.exports.factory = function (router, repo, exceptions, Cart, usersRepo, Or
                 req.session.orderhistory.totalAmountOfHistory = 0;
                 req.session.orderhistory.booksOfHistory = [];
             }
-            //req.session.orderhistory = new Orderhistory(req.session.orderhistory);
-            //req.session.orderhistory = req.session.orderhistory.addToOrderhistory(req.session.cart);
+
             res.send(req.session);
         } else {
             usersRepo.get(req.cookies.auth.email, function (err, user) {
@@ -215,13 +214,13 @@ module.exports.factory = function (router, repo, exceptions, Cart, usersRepo, Or
 
                     usersRepo.updateCart(req.cookies.auth.email, cart, function (err) {
                         if (!err) {
-                            console.log("Success in updating a book");
+                            console.log("Success in updating a book -book");
                         }
                     });
                 });
                 res.send(cart);
             }
-
+            
             //res.send("cc");
             //res.send(book);
         });
