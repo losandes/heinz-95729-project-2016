@@ -41,6 +41,7 @@ Hilary.scope('heinz').register({
 
             if (user.cart.books) {
                 self.addCarts(user.cart.books);
+                localStorage.setItem('cart',JSON.stringify(user.cart));
             }
 
             return self;
