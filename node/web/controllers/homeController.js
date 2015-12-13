@@ -9,9 +9,6 @@ module.exports.factory = function (router) {
     };
     /* GET home page. */
     router.get('/', function (req, res) {
-        //console.log('req.cookies login: ', req.cookies);
-        //cleanCookie(res);
-        //console.log('req.cookies login: ', req.cookies);
         res.render('index', { title: 'web' });
     });
 

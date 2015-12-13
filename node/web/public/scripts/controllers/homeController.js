@@ -14,7 +14,6 @@ Hilary.scope('heinz').register({
                 url: '/api/cart',
                 method: 'GET'
             }).done(function (data) {
-                console.log("asdasddc  sc"+ data.cart.books.length);
                 $("#cartTotal").text(data.cart.books.length + " item(s)");
                 viewEngine.setVM({
                     template: 't-empty',

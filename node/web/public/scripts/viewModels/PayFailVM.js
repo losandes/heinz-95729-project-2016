@@ -11,9 +11,7 @@ Hilary.scope('heinz').register({
 
         //payment details
         PaymentFailVM = function () {
-            window.onload = function () {
-                setTimeout("window.location.replace('/cart')", 3000);
-            }
+            setTimeout("window.location.replace('/cart')", 2000);
         };
         return PaymentFailVM;
     }

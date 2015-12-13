@@ -36,7 +36,6 @@ Hilary.scope('heinz').register({
                 var i;
 
                 for (i = 0; i < books.length; i += 1) {
-                    console.log("books.length--->" + books.length);
                     self.addOrderHistory(books[i]);
                 }
             };

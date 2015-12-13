@@ -80,13 +80,13 @@ Hilary.scope('heinz').register({
 
             self.buyABook = function () {
                 router.navigate(self.buyABookLink());
-                console.log(self.buyABookLink());
+                //console.log(self.buyABookLink());
             };
 
             //Chetan - Adding multiple items to cart functionality
             self.addItemToCart = function () {
                 router.navigate(self.addItemToCartLink());
-                console.log(self.addItemToCartLink());
+                //console.log(self.addItemToCartLink());
             };
 
             self.deleteABook = function () {
