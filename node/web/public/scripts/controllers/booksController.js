@@ -55,21 +55,19 @@ Hilary.scope('heinz').register({
                     method: 'GET'
                 }).done(function (data) {
                     console.log('booksController done');
-
-                    console.log(data);
-                    var book = new Book(data);
-
-                    viewEngine.setVM({
-                        template: 't-book-details',
-                        data: { book: book }
-                    });
+                   
 
                    if (data === 'noUser') {
                         window.alert('login first');
                     }
-                    else {
-                        window.alert("You added the book to the cart.")
-                    }
+                   else {
+                     var book = new Book(data);
+
+                    viewEngine.setVM({
+                        template: 't-cart',
+                        data: { book: book }
+                    });
+                   }
                  });
                 }
             });
