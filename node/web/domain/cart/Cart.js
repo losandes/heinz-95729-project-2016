@@ -15,11 +15,15 @@ module.exports.factory = function (Blueprint, ObjectID, exceptions) {
             deleteOneFromCart: undefined,
             deleteFromCart: undefined
         };
-        console.log("In Cart.js");
+        //console.log("Here in Cart--->", cart);
+        //console.log("Here in Cart--->", cart.books);
+        //console.log("Here in Cart--->", cart.totalAmount);
+        //var self = {};
+
+        // define the Product properties from the product argument
         self.totalAmount = cart.totalAmount;
         self.books = cart.books;
         self.addToCart = function (book) {
-            console.log("Cart.js addtoCart function called");
             var isInCart = false;
             var i;
             for (i = 0; i < self.books.length; i++) {

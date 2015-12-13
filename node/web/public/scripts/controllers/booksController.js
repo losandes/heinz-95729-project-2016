@@ -55,6 +55,7 @@ Hilary.scope('heinz').register({
                     method: 'GET'
                 }).done(function (data) {
                     console.log('booksController done');
+
                     console.log(data);
                     var book = new Book(data);
 
@@ -62,7 +63,8 @@ Hilary.scope('heinz').register({
                         template: 't-book-details',
                         data: { book: book }
                     });
-                   if (data == 'noUser') {
+
+                   if (data === 'noUser') {
                         window.alert('login first');
                     }
                     else {
@@ -81,11 +83,16 @@ Hilary.scope('heinz').register({
                 }).done(function (data) {
                     console.log(data);
                     console.log('booksController done');
-                    if (data == 'noUser') {
+                    if (data === 'noUser') {
                         window.alert('login first');
                     }
                     else if (data == "emptyCart") {
-                        window.alert("cart is empty");
+                       // window.alert("cart is empty");
+                       
+                       viewEngine.setVM({
+                          template: 't-empty', 
+                          data: {}
+                         });
                     }
                     //show the shopping cart
                     else {
