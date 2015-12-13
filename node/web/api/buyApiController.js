@@ -179,6 +179,7 @@ module.exports.factory = function (router, repo, exceptions, Cart, usersRepo, Or
 
 
     router.get('/api/book/addToCart/:uid', function (req, res) {
+        //console.log("cccccccccccccccccccccccccccccccccccccccccccccccccccccccc-ima here");
         var newbook,
             cart;
         repo.get(req.params.uid, function (err, book) {
@@ -202,23 +203,27 @@ module.exports.factory = function (router, repo, exceptions, Cart, usersRepo, Or
             } else {
                 usersRepo.get(req.cookies.auth.email, function (err, user) {
                     if (!err) {
-                        console.log("Success in adding a book");
-                        console.log("user---->", user);
+                        //console.log("Success in adding a book");
+                        //console.log("user---->", user);
                         cart = new Cart(user.cart);
-                        console.log("cartBeforAdd----->", cart);
+                        //console.log("cartBeforAdd----->", cart);
                         cart = cart.addToCart(newbook);
-                        console.log("cartAfterAdd----->", cart);
+                        //console.log("cartAfterAdd----->", cart);
                     } else {
                         console.log("Error in adding a book", err);
                     }
 
                     usersRepo.updateCart(req.cookies.auth.email, cart, function (err) {
                         if (!err) {
+                            console.log("Successxx in updating a book");
+                            console.log("ccccccccccccccccccccccc-sending cart");
+                            res.send(cart);
                             console.log("Success in updating a book -book");
                         }
                     });
                 });
-                res.send(cart);
+
+                //res.send(cart);
             }
             
             //res.send("cc");

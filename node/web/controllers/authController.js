@@ -45,7 +45,7 @@ module.exports.factory = function (router, repo) {
         repo.get(req.body.email, function (err, user) {
             if (!err) {
                 addCookie(user, res);
-                res.redirect('/');
+                res.redirect('/home');
             } else {
                 res.redirect('/loginWithError');
                 //res.status(400);
@@ -79,7 +79,7 @@ module.exports.factory = function (router, repo) {
     router.post('/profile', function (req, res) {
         console.log('profile--->', req.body);
         cleanCookie(res);
-        res.redirect('/');
+        res.redirect('/home');
     });
 
     return router;

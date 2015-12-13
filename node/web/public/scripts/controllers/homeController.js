@@ -4,6 +4,11 @@ Hilary.scope('heinz').register({
     factory: function ($this, GidgetRoute, locale, viewEngine, Products, $) {
         'use strict';
 
+
+        $this.get['/'] = function () {
+            //window.location.replace('/home');
+        };
+
         $this.get['/home'] = function () {
             $.ajax({
                 url: '/api/cart',
