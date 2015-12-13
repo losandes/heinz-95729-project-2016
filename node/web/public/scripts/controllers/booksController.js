@@ -55,7 +55,7 @@ Hilary.scope('heinz').register({
                     method: 'GET'
                 }).done(function (data) {
                     console.log('booksController done');
-                   if (data == 'noUser') {
+                   if (data === 'noUser') {
                         window.alert('login first');
                     }
                  });
@@ -71,7 +71,7 @@ Hilary.scope('heinz').register({
                 }).done(function (data) {
                     console.log(data);
                     console.log('booksController done');
-                    if (data == 'noUser') {
+                    if (data === 'noUser') {
                         window.alert('login first');
                     }
                     else if (data == "emptyCart") {

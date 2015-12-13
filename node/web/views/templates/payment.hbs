@@ -1,0 +1,45 @@
+<script id="t-payment" type="text/html">
+    <div class="pay" data-bind="with: data">
+        <h1 data-bind="Total"></h1>
+        <div data-bind="text: total"></div>
+    </div>
+
+    <form action="" method="POST" id="payment-form">
+        <span class="payment-errors"></span>
+
+        <div class="form-row">
+          <label>
+            <span>Card Number</span>
+            <input type="text" size="20" data-stripe="number"/>
+          </label>
+        </div>
+
+        <div class="form-row">
+          <label>
+            <span>CVC</span>
+            <input type="text" size="4" data-stripe="cvc"/>
+          </label>
+        </div>
+
+        <div class="form-row">
+          <label>
+            <span>Expiration (MM/YYYY)</span>
+            <input type="text" size="2" data-stripe="exp-month"/>
+          </label>
+          <span> / </span>
+          <input type="text" size="4" data-stripe="exp-year"/>
+        </div>
+
+        <button class=btn btn-success> data-bind="click: pay" type="submit">Submit Payment</button>
+
+
+//    class="stripe-button"
+//    data-key="pk_test_6pRNASCoBOKtIshFeQd4XMUh"
+//    data-amount="2000"
+//    data-name="Test Info"
+//    data-description="2 books ($20.00)"
+//    data-image="/128x128.png"
+//    data-locale="auto">
+
+</form>
+</script>
