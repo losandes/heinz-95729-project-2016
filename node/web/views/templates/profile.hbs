@@ -36,7 +36,9 @@
                     <!--</a>-->
                     <div class="caption">
                         <h3><a href="javascript:void(0);" data-bind="text: book.title, click: book.click"></a></h3>
-                        <div class="description" data-bind="html: book.description"></div>
+                        <div class="description" data-bind="html: book.description">
+                        </div>
+                        <button class="btn btn-success btn-lg" href="javascript:void(0);" data-bind="click: book.buyABook">Buy it again</button>
                         <h5>Quantity:</h5>
                         <div class="amountOfBooks" data-bind="text: book.amountofBooks"></div>
                         <h5>Price:</h5>
