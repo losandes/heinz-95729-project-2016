@@ -10,34 +10,50 @@ Hilary.scope('heinz').register({
         // GET /payment
         // payments
         $this.get['/payment'] = new GidgetRoute({
-           routeHandler: function (err, req) {
-               $.ajax({
-                   url: '/api/buy',
-                   method: 'GET'
-               }).done(function (data) {
-                   console.log(data);
-                   viewEngine.setVM({
-                       template: 't-payment',
-                       data: new PaymentVM(data)
-                   });
-               });
-            }
-        });
-
-        $this.get['/paysuccess'] = new GidgetRoute({
-            routeHandler: function () {
-                viewEngine.setVM({
-                    template: 't-paysuccess',
-                    data: new PaymentSuccessVM()
+            routeHandler: function (err, req) {
+                $.ajax({
+                    url: '/api/buy',
+                    method: 'GET'
+                }).done(function (data) {
+                    $("#cartTotal").text(data.cart.books.length + " item(s)");
+                    //console.log(data.cart);
+                    //console.log("s");
+                    viewEngine.setVM({
+                        template: 't-payment',
+                        data: new PaymentVM(data)
+                    });
                 });
             }
         });
-
+ 
+        $this.get['/paysuccess'] = new GidgetRoute({
+            routeHandler: function () {
+                $.ajax({
+                    url: '/api/cart',
+                    method: 'GET'
+                }).done(function (data) {
+                    $("#cartTotal").text(data.cart.books.length + " item(s)");
+                    console.log(data);
+                    viewEngine.setVM({
+                        template: 't-paysuccess',
+                        data: new PaymentSuccessVM()
+                    });
+                });
+            }
+        });
+ 
         $this.get['/payfailed'] = new GidgetRoute({
             routeHandler: function () {
-                viewEngine.setVM({
-                    template: 't-payfailed',
-                    data: new PaymentFailVM()
+                $.ajax({
+                    url: '/api/cart',
+                    method: 'GET'
+                }).done(function (data) {
+                    $("#cartTotal").text(data.cart.books.length + " item(s)");
+                    console.log(data);
+                    viewEngine.setVM({
+                        template: 't-payfailed',
+                        data: new PaymentFailVM()
+                    });
                 });
             }
         });

@@ -13,9 +13,7 @@ Hilary.scope('heinz').register({
                     url: '/api/book/buy_a_book/' + req.params.uid,
                     method: 'GET'
                 }).done(function (data) {
-                    console.log(data);
-                    //window.alert("You added the book to the cart.")
-                    window.location.replace('/cart');
+                   window.location.replace('/cart');
                 });
             }
         });
@@ -44,7 +42,6 @@ Hilary.scope('heinz').register({
                     url: '/api/book/delete_a_book/' + req.params.uid,
                     method: 'GET'
                 }).done(function (data) {
-                    console.log(data);
                     window.location.replace('/cart');
                 });
             }
@@ -56,7 +53,6 @@ Hilary.scope('heinz').register({
                     url: '/api/book/buy_a_book/' + req.params.uid,
                     method: 'GET'
                 }).done(function (data) {
-                    console.log(data);
                     window.location.replace('/cart');
                 });
             }
@@ -69,7 +65,6 @@ Hilary.scope('heinz').register({
                     method: 'GET'
                 }).done(function (data) {
                     $("#cartTotal").text(data.cart.books.length + " item(s)");
-                    console.log(data);
                     viewEngine.setVM({
                         template: 't-cart',
                         data: new CartVM(data)

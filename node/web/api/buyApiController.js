@@ -27,12 +27,9 @@ module.exports.factory = function (router, repo, exceptions, Cart, usersRepo, Or
             } else {
                 usersRepo.get(req.cookies.auth.email, function (err, user) {
                     if (!err) {
-                        console.log("Success in adding a book");
-                        console.log("user---->", user);
                         cart = new Cart(user.cart);
-                        console.log("cartBeforAdd----->", cart);
                         cart = cart.addToCart(newbook);
-                        console.log("cartAfterAdd----->", cart);
+
                     } else {
                         console.log("Error in adding a book", err);
                     }
@@ -73,7 +70,6 @@ module.exports.factory = function (router, repo, exceptions, Cart, usersRepo, Or
                     if (err) {
                         console.log("Error in deleting a book3");
                     } else {
-                        console.log("Success in deleting a book");
                         cart = new Cart(user.cart);
                         cart = cart.deleteOneFromCart(newbook);
                     }
@@ -109,8 +105,6 @@ module.exports.factory = function (router, repo, exceptions, Cart, usersRepo, Or
                 if (err) {
                     console.log("Error in buying a book6");
                 } else {
-                    console.log("Success in buying a book");
-                    console.log("User--->" + user.orderhistory.booksOfHistory);
                     orderhistory = new Orderhistory(user.orderhistory);
                     orderhistory = orderhistory.addToOrderHistory(user.cart);
                 }
@@ -141,10 +135,9 @@ module.exports.factory = function (router, repo, exceptions, Cart, usersRepo, Or
         } else {
             usersRepo.get(req.cookies.auth.email, function (err, user) {
                 if (err) {
-                    console.log("Error in buying a book6");
+                    console.log("Error in buying a book");
                 } else {
                     console.log("Success in buying a book");
-                    console.log("User--->" + user.orderhistory.booksOfHistory);
                 }
                 res.send(user);
             });
@@ -163,7 +156,7 @@ module.exports.factory = function (router, repo, exceptions, Cart, usersRepo, Or
                 if (err) {
                     console.log("Error in deleting a book3");
                 } else {
-                    console.log("Success in deleting a book");
+                    
                     cart = new Cart(user.cart);
                     cart = cart.cleanCart();
                 }
@@ -179,7 +172,6 @@ module.exports.factory = function (router, repo, exceptions, Cart, usersRepo, Or
 
 
     router.get('/api/book/addToCart/:uid', function (req, res) {
-        //console.log("cccccccccccccccccccccccccccccccccccccccccccccccccccccccc-ima here");
         var newbook,
             cart;
         repo.get(req.params.uid, function (err, book) {
@@ -188,7 +180,6 @@ module.exports.factory = function (router, repo, exceptions, Cart, usersRepo, Or
                 res.status(400);
                 return;
             }
-            //console.log("in here mate"+book);
 
             newbook = book;
             if (req.cookies.auth === undefined) {
@@ -203,22 +194,18 @@ module.exports.factory = function (router, repo, exceptions, Cart, usersRepo, Or
             } else {
                 usersRepo.get(req.cookies.auth.email, function (err, user) {
                     if (!err) {
-                        //console.log("Success in adding a book");
-                        //console.log("user---->", user);
+                        
                         cart = new Cart(user.cart);
-                        //console.log("cartBeforAdd----->", cart);
                         cart = cart.addToCart(newbook);
-                        //console.log("cartAfterAdd----->", cart);
+                        
                     } else {
                         console.log("Error in adding a book", err);
                     }
 
                     usersRepo.updateCart(req.cookies.auth.email, cart, function (err) {
                         if (!err) {
-                            console.log("Successxx in updating a book");
-                            console.log("ccccccccccccccccccccccc-sending cart");
-                            res.send(cart);
-                            console.log("Success in updating a book -book");
+                           res.send(cart);
+                           
                         }
                     });
                 });

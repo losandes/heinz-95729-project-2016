@@ -15,11 +15,7 @@ module.exports.factory = function (Blueprint, ObjectID, exceptions) {
         var self = {
             addToOrderHistory: undefined
         };
-        //console.log("Here in Cart--->", cart);
-        //console.log("Here in Cart--->", cart.books);
-        //console.log("Here in Cart--->", cart.totalAmount);
-        //var self = {};
-
+        
         // define the Product properties from the product argument
         self.totalAmountOfHistory = orderHistory.totalAmountOfHistory;
         self.booksOfHistory = orderHistory.booksOfHistory;
