@@ -1,8 +1,8 @@
 module.exports.name = 'usersRepo';
 module.exports.singleton = true;
 //module.exports.blueprint = ['repoBlueprint'];
-module.exports.dependencies = ['db', 'User', 'Blueprint', 'exceptions', 'is', 'Cart'];
-module.exports.factory = function (db, User, Blueprint, exceptions, is, Cart) {
+module.exports.dependencies = ['db', 'User', 'Blueprint', 'exceptions', 'is'];
+module.exports.factory = function (db, User, Blueprint, exceptions, is) {
     'use strict';
 
     var self = {
@@ -60,7 +60,7 @@ module.exports.factory = function (db, User, Blueprint, exceptions, is, Cart) {
 
         collection.insertOne(payload, callback);
     };
-    self.updateCart = function (email, book, callback) {
+    self.updateCart = function (email, cart, callback) {
         console.log("updateCart");
         if (is.not.string(email)) {
             exceptions.throwArgumentException('', 'uid');
@@ -70,8 +70,8 @@ module.exports.factory = function (db, User, Blueprint, exceptions, is, Cart) {
             exceptions.throwArgumentException('', 'callback');
             return;
         }
-        var cart = new Cart();
-        cart.addToCart(book);
+        // var cart = new Cart();
+        // cart.addToCart(book);
 
         collection.updateOne(
             { "email": email },

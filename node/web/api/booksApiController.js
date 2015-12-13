@@ -1,6 +1,6 @@
 module.exports.name = 'booksApiController';
-module.exports.dependencies = ['router', 'productsRepo', 'usersRepo', 'exceptions'];
-module.exports.factory = function (router, repo, urepo, exceptions) {
+module.exports.dependencies = ['router', 'productsRepo', 'usersRepo', 'exceptions', 'Cart'];
+module.exports.factory = function (router, repo, urepo, exceptions, Cart) {
     'use strict';
 
     router.get('/api/books/search', function (req, res) {
@@ -33,26 +33,48 @@ module.exports.factory = function (router, repo, urepo, exceptions) {
            return;
         }
         else {
-                console.log('server controller get called');
-                repo.get(req.params.uid, function (err, book) {
+                var cart;
+                console.log('server controller addtoCart get called');
+                if (req.cookies.cart === undefined) {
+                    console.log("come into cookie cart");
+                    req.cookies.cart = {};
+                    req.cookies.cart.totalAmount = 0;
+                    req.cookies.cart.books = [];
+                
+                    console.log(req.cookies.cart);
+                    cart = new Cart(req.cookies.cart);
+                    }
+                    else {
+                          urepo.get(req.cookies.auth.email, function(err, user) {
+                            cart = new Cart(user.cart);
+                             
+                         });
+                     }
+                    repo.get(req.params.uid, function (err, book) {
                     if (err) {
                         exceptions.throwException(err);
                         res.status(400);
                         return;
                     }
-
-                urepo.updateCart(req.cookies.auth.email, book, function(err, cart) {
-
+                    console.log(">>>>>>>>>>>>");
+                    cart.addToCart(book);
+                    urepo.updateCart(req.cookies.auth.email, cart, function(err) {
+                        if (err) {
+                            console.log("adding book to cart failed");
+                            return;
+                        }
+                        console.log("successfully added a book to cart");
+                        res.send(book);
+                    });
+                   
                 });
-        });
-
-
-            }
-        repo.get(req.params.uid, function (err, book) {
-            console.log('server controller get called');
-            res.send('success');
-            });
-        });
+        }
+        // repo.get(req.params.uid, function (err, book) {
+        //     console.log('server controller get called');
+        //     res.send('success');
+        //     });
+        
+    });
 
     router.get('/api/checkout', function (req, res) {
         console.log('checkout cookie: ');

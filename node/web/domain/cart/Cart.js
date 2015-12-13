@@ -1,45 +1,82 @@
+
 module.exports.name = 'Cart';
 module.exports.dependencies = ['Blueprint', 'ObjectID', 'exceptions'];
 module.exports.factory = function (Blueprint, ObjectID, exceptions) {
     'use strict';
 
     var Cart = {};
-    Cart = function(cart) {
+
+     // This is the Product constructor, which will be returned by this factory
+    Cart = function (cart) {
+        // often times, we use selfies to provide a common object on which
+        // to define properties. It's also common to see `var self = this`.
+        var self = {
+            addToCart: undefined,
+            deleteOneFromCart: undefined,
+            deleteFromCart: undefined
+        };
+        console.log("In Cart.js");
         self.totalAmount = cart.totalAmount;
         self.books = cart.books;
-        self.user = cart.user;
         self.addToCart = function (book) {
-             var inCart = false;
-             var i;
+            console.log("Cart.js addtoCart function called");
+            var isInCart = false;
+            var i;
             for (i = 0; i < self.books.length; i++) {
-                if (self.books[i].uid === book.uid) {
-                    inCart = true;
+                if (self.books[i].uid !== book.uid) {
+                    isInCart = false;
+                    continue;
+                } else {
+                    isInCart = true;
                     self.books[i].amountofBooks = self.books[i].amountofBooks + 1;
                     break;
                 }
-                else {
-                  inCart = false;
-                    continue;
-                } 
             }
-            if (inCart === false) {
+            if (isInCart === false) {
                 book.amountofBooks = 1;
                 self.books.push(book);
             }
             self.totalAmount = self.totalAmount + book.price;
             return self;
-        
+        };
+
+        self.deleteOneFromCart = function (book) {
+            var i;
+            for (i = 0; i < self.books.length; i++) {
+                if (self.books[i].uid !== book.uid) {
+                    continue;
+                } else {
+                    if (self.books[i].amountofBooks === 1) {
+                        self.deleteFromCart(book);
+                        break;
+                    } else {
+                        self.books[i].amountofBooks = self.books[i].amountofBooks - 1;
+                        break;
+                    }
+                }
+            }
+            self.totalAmount = self.totalAmount - book.price;
+            return self;
         };
 
         self.deleteFromCart = function (book) {
             var i;
-            for (i = 0; i < self.books.length; i ++) {
-                if (self.books[i].uid === book.uid) {
+            for (i = 0; i < self.books.length; i++) {
+                if (self.books[i].uid !== book.uid) {
+                    continue;
+                } else {
                     self.books.splice(i, 1);
                 }
+            }
             return self;
         };
+        self.cleanCart = function () {
+            self.books = [];
+            self.totalAmount = 0;
+            return self;
+        };
+        return self;
+    };
 
-        return Cart;
-
-    }；
+    return Cart;
+};
