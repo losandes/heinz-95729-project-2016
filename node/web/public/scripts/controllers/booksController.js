@@ -55,14 +55,12 @@ Hilary.scope('heinz').register({
                     method: 'GET'
                 }).done(function (data) {
                     console.log('booksController done');
-                   
-
                    if (data === 'noUser') {
                         window.alert('login first');
                     }
                    else {
                      var book = new Book(data);
-
+                     console.log(book);
                     viewEngine.setVM({
                         template: 't-cart',
                         data: { book: book }
@@ -85,16 +83,16 @@ Hilary.scope('heinz').register({
                         window.alert('login first');
                     }
                     else if (data == "emptyCart") {
-                       // window.alert("cart is empty");
-                       
-                       viewEngine.setVM({
-                          template: 't-empty', 
-                          data: {}
-                         });
+                       window.alert("cart is empty");
                     }
                     //show the shopping cart
                     else {
-
+                        var book = new Book(data);
+                     console.log(book);
+                    viewEngine.setVM({
+                        template: 't-cart',
+                        data: { book: book }
+                    });
                     }
                  });
                 }

@@ -104,12 +104,11 @@ module.exports.factory = function (db, User, Blueprint, exceptions, is) {
             }
             console.log("doc has something");
             var user = new User(doc);
-            console.log(user.cart == undefined)
             if(user.cart == undefined) {
                 callback(null, "emptyCart")
             }
             else {
-
+                callback(null, user.cart)
             }
         });
        return self;

@@ -87,8 +87,9 @@ module.exports.factory = function (router, repo, urepo, exceptions, Cart) {
             if (cart == "emptyCart") {
                 res.send("emptyCart");
             }
-
-
+            console.log(cart);
+            var book = cart.books[0];
+            res.send(book);
             });
     });
 

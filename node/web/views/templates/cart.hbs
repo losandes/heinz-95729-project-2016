@@ -1,37 +1,74 @@
+<!-- Adapted From: http://tympanus.net/Development/AnimatedBooks/ -->
 <script id="t-cart" type="text/html">
-    <div>
-        <h3>Cart:</h3>
-    </div>
-    <div class="book-component">
-        <div class="row" data-bind="foreach: { data: data.books(), as: 'book' }">
-            <div class="col-sm-6 col-md-4 book-col" style="padding:25px;border:1px solid lightgreen;">
-                <div class="thumbnail">
-                    <!--<a class="thumbnail-img" href="javascript:void(0);" data-bind="click: book.click">-->
-                        <!--<img src="" alt="" data-bind="src: book.thumbnailLink, attr: { alt: book.thumbnailAlt }">-->
-                    <!--</a>-->
-                    <div class="caption">
-                        <h3><a href="javascript:void(0);" data-bind="text: book.title, click: book.click"></a></h3>
-                        <!--<div class="description" data-bind="html: book.description"></div>-->
-                        <div class="btn-group-vertical" style= "float:right;">
-                            <button class="btn btn-success btn-lg" href="javascript:void(0);" data-bind="click: book.buyABook">Add a book</button>
-                            <button class="btn btn-danger btn-lg" href="javascript:void(0);" data-bind="click: book.deleteABook">Delete a book</button>
-                        </div>
-                        <h5>Amount:</h5>
-                        <div class="amountOfBooks" data-bind="text: book.amountofBooks"></div>
-                        <h5>Price:</h5>
-                        <div class="overlay">
-                        </div>
-                        <a class="buy-now" href="javascript:void(0);" data-bind="currency: book.price"></a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="pay" data-bind="with: data">
-        <h3>Total price:</h3>
-        <h3><p data-bind="text: totalAmount"></p></h3>
-        <a href="/payment"><button class="btn btn-success" href="javascript:void(0);" >Check out</button></a>
-        <a href="/"><button class="btn btn-success">Continue shopping</button></a>
-    </div>
+    <div class="book-component details" data-bind="with: data">
+        <figure class='book'>
 
+        <!-- Front -->  
+            <h1>Shopping Cart</h1>
+            <ul class='hardcover_front'>
+                <li>
+                    <!-- ko if: book.thumbnailLink != null -->
+                    <img src="" alt="" data-bind="attr: { src: book.thumbnailLink, alt: book.thumbnailAlt }">
+                    <!-- /ko -->
+                    <!-- ko if: book.thumbnailLink == null -->
+                    <div class="coverDesign yellow">
+<!--
+                        <span class="ribbon">NEW</span>
+                        <h1>CSS</h1>
+                        <p>TRANSFORM</p>
+-->
+                    </div>
+                    <!-- /ko -->
+                </li>
+                <li></li>
+            </ul>
+
+        <!-- Pages -->
+
+            <ul class='page'>
+                <li></li>
+                <li>
+                    <a class="btn" data-bind="href: book.detailsLink">READ MORE</a>
+                </li>
+                <li></li>
+                <li></li>
+                <li></li>
+            </ul>
+
+        <!-- Back -->
+
+            <ul class='hardcover_back'>
+                <li></li>
+                <li></li>
+            </ul>
+            <ul class='book_spine'>
+                <li></li>
+                <li></li>
+            </ul>
+            <figcaption>
+                <h1  data-bind="text: book.title"></h1>
+                <div data-bind="foreach: book.authors">
+                    <span data-bind="text: book.name"></span>
+                </div>
+                <div data-bind="html: book.description"></div>
+            </figcaption>
+        </figure>
+        <div class="purchase">
+            <button class="btn btn-success btn-buy" data-bind="currency: book.price"></button>
+
+        </div>     
+        
+    </div>
+<script src="https://checkout.stripe.com/checkout.js"></script>
 </script>
+<form action="/charge" method="POST">
+  <script
+    src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+    data-key="pk_test_6pRNASCoBOKtIshFeQd4XMUh"
+    data-image="/img/documentation/checkout/marketplace.png"
+    data-name="Stripe.com"
+    data-description="2 widgets"
+    data-amount="2000"
+    data-locale="auto">
+  </script>
+</form>
