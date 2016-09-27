@@ -7,8 +7,14 @@ Hilary.scope('heinz').register({
         // route with `before` and `after` pipelines, using GidgetRoute
         $this.get['/gidget/example'] = new GidgetRoute({
             routeHandler: function () {
+
+                // you may need to use AJAX to connect with the server here
+                // check out the homeController search route for an example
+
                 viewEngine.setVM({
+                    // the id of your template goes here
                     template: 't-empty',
+                    // data from your model goes here (i.e. `new MyModel()`)
                     data: {
                         heading: locale.pages.home.empty.heading,
                         body: 'Route: "/gidget/example"'
