@@ -32,6 +32,15 @@
             <a href="/checkout">
                 <i class="fa fa-shopping-cart"></i>
             </a>
+
+            <a href="/login">
+                <i class="fa fa-sign-in"></i>
+            </a>
+
+            <a href="/register">
+                <i class="fa fa-user"></i>
+            </a>
+
         </nav>
     </header>
     <div class="container">
@@ -47,7 +56,10 @@
     {{> bookDetails}}
     {{> login}}
     {{> register}}
-
+    {{> payment}}
+    {{> PaymentFail}}
+    {{> PaymentSuccess}}
+    {{> cart}}
     <!-- /templates -->
 
     <!-- Lib CDN's-->
@@ -80,6 +92,8 @@
     <script src="/scripts/utils.js"></script>
     <script src="/scripts/ViewEngine.js"></script>
     <script src="/scripts/startup.js"></script>
+
+    
 
 </body>
 </html>

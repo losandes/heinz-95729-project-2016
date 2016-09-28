@@ -47,9 +47,56 @@ Hilary.scope('heinz').register({
                 });
             }
         });
+        $this.get['/book/:uid/addToCart'] = new GidgetRoute({
+            routeHandler: function(err, req) {
+                console.log('booksController get called');
+                 $.ajax({
+                    url: '/api/book/addToCart/' + req.params.uid,
+                    method: 'GET'
+                }).done(function (data) {
+                    console.log('booksController done');
+                   if (data === 'noUser') {
+                        window.alert('login first');
+                    }
+                   else {
+                     var book = new Book(data);
+                     console.log(book);
+                    viewEngine.setVM({
+                        template: 't-cart',
+                        data: { book: book }
+                    });
+                   }
+                 });
+                }
+            });
 
-        // GET /books/
-        // Get a list of books
+        $this.get['/checkout'] = new GidgetRoute({
+           routeHandler: function(err, req) {
+                console.log('client checkout get called');
+                 $.ajax({
+                    url: '/api/checkout',
+                    method: 'GET'
+                }).done(function (data) {
+                    console.log(data);
+                    console.log('booksController done');
+                    if (data === 'noUser') {
+                        window.alert('login first');
+                    }
+                    else if (data == "emptyCart") {
+                       window.alert("cart is empty");
+                    }
+                    //show the shopping cart
+                    else {
+                        var book = new Book(data);
+                     console.log(book);
+                    viewEngine.setVM({
+                        template: 't-cart',
+                        data: { book: book }
+                    });
+                    }
+                 });
+                }
+        });
         $this.get['/books'] = new GidgetRoute({
             routeHandler: function () {
                 viewEngine.setVM({

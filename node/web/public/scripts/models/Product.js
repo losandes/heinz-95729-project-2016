@@ -52,15 +52,20 @@ Hilary.scope('heinz').register({
             self.detailsLink = ko.computed(function () {
                 return '/' + type + '/' + self.uid();
             });
-
+            self.buyNowLink = ko.computed(function() {
+                return '/' + type + '/' + self.uid() + '/addToCart';
+            });
             // Ensure updates no more than once per 50-millisecond period
             self.thumbnailAlt.extend({ rateLimit: 50 });
             self.detailsLink.extend({ rateLimit: 50 });
+            self.buyNowLink.extend({rateLimit: 50});
 
             self.click = function () {
                 router.navigate(self.detailsLink());
             };
-
+            self.buyNow = function() {
+                router.navigate(self.buyNowLink());
+            }
             return self;
         };
 

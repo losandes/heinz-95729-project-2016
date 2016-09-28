@@ -16,10 +16,12 @@ module.exports.factory = function (router, repo) {
 
     router.post('/register', function (req, res) {
         repo.create(req.body, function (err, result) {
+            console.log("server register");
             if (!err && result.insertedId) {
                 repo.get(req.body.email, function (err, user) {
                     if (!err) {
                         addCookie(user, res);
+                        console.log("redirect");
                         res.redirect('/');
                     } else {
                         res.status(400);
@@ -36,7 +38,10 @@ module.exports.factory = function (router, repo) {
         repo.get(req.body.email, function (err, user) {
             if (!err) {
                 addCookie(user, res);
+                console.log("/login cookei: ")
+                console.log(res.cookie.auth == undefined);
                 res.redirect('/');
+
             } else {
                 res.status(400);
             }

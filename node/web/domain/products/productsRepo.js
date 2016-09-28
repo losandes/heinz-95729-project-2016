@@ -51,7 +51,7 @@ module.exports.factory = function (db, Product, Blueprint, exceptions, is) {
             exceptions.throwArgumentException('', 'callback');
             return;
         }
-
+        console.log(uid);
         // This uses mongodb's find feature to obtain 1 document, by
         // limiting the result. `find` and `limit` return promises, so
         // the query isn't executed until `next` is called. It receives a
