@@ -1,0 +1,52 @@
+<script id="t-cart" type="text/html">
+    <div>
+        <h3>Shopping Cart</h3>
+        <h5>Click on 'Confirm Checkout to purchase the items in your cart'</h5>
+    </div>
+    <div class="book-component">
+        <div class="row" style="padding:25px"  data-bind="foreach: { data: data.books(), as: 'book' }">
+            <div class="thumbnail col-sm-6 col-md-4 padding-right:25px padding-left:25px " style=" border:1px solid lightgreen;">
+               <div class="row" >
+                    <div class="col-md-4">
+                        <img src="" class="thumbnail-img-payment"  alt="" data-bind="src: book.thumbnailLink, attr: { alt: book.thumbnailAlt }">
+                    </div>
+                    <div class="caption">
+                        <h3><a href="javascript:void(0);" data-bind="text: book.title, click: book.click"></a></h3>
+                        <!--<div class="description" data-bind="html: book.description"></div>-->
+                        <div class="row">
+                         <div class="col-sm-4" style= "padding-right:25px;">
+                            <div class="row" style= "padding-bottom:5px;"> 
+                                <label class="col-sm-5">Amount:</label>
+                                <div class="amountOfBooks col-sm-3" data-bind="text: book.amountofBooks"></div>
+                            </div>
+                            <div class="row" style= "padding-bottom:5px;"> 
+                                <label class="col-sm-5 pull-left">Price:</label>
+                                <div class="pay col-sm-3" data-bind="currency: book.price"></div>
+                            </div>
+                       </div>   
+                        <div class="btn-group-vertical" class= "col-sm-4 pull-right">
+                            <div class="row" style= "padding-bottom:5px;">
+                                <button class="btn btn-white btn-pluss width:5px pull-right;" href="javascript:void(0);" data-bind="click: book.buyABook">+</button>
+                                <label>Add</label>
+                            </div>
+                            <div class="row" style= "padding-bottom:5px;">
+                                <button class="btn btn-danger btn-minuse width:5px  pull-right;" href="javascript:void(0);" data-bind="click: book.deleteABook">-</button>
+                                <label>Remove</label>
+                            </div>
+                        </div>
+                        </div>
+                    </div>
+                    
+               </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="pay" data-bind="with: data">
+        <h3>Total price:</h3>
+        <h3><p data-bind="currency: totalAmount"></p></h3>
+        <a href="/payment"><button class="btn btn-success" href="javascript:void(0);" >Confirm Checkout</button></a>
+        <a href="/"><button class="btn btn-success">Continue shopping</button></a>
+    </div>
+
+</script>

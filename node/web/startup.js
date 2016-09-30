@@ -26,7 +26,10 @@ var Hilary = require('hilary'),
             bodyParser = require('body-parser'),
             less = require('less-middleware'),
             debug = require('debug')('expressdefault:server'),
-            serveStatic = require('serve-static');
+            serveStatic = require('serve-static'),
+            stripe = require("stripe")("sk_test_pyrNc5uk6hcBrWc0zswegEyc"),
+            session = require('express-session'),
+            cookieParser = require('cookie-parser');
             //isWin = /^win/.test(process.platform);
 
         /*
@@ -37,7 +40,16 @@ var Hilary = require('hilary'),
         // normally would when using the service-location anti-pattern (i.e. node will to do it's
         // own caching and GC, as normal)
         */
-
+        expressSingleton.use(cookieParser());
+        expressSingleton.use(session({
+            secret: '12345',
+            name: 'testapp',
+            cookie: {maxAge: 80000 },
+            resave: false,
+            saveUninitialized: true,
+            cart: {totalAmount:0, books:[]},
+            orderhistory: {totalAmountOfHistory:0, booksOfHistory:[]}
+        }));
         scope.register({ name: 'express',               factory: function () { return express; }});          // lib
         scope.register({ name: 'expressSingleton',      factory: function () { return expressSingleton; }}); // single instance used for app
         scope.register({ name: 'router',                factory: function () { return router; }});           // route engine
@@ -48,6 +60,7 @@ var Hilary = require('hilary'),
         scope.register({ name: 'less',                  factory: function () { return less; }});
         scope.register({ name: 'debug',                 factory: function () { return debug; }});
         scope.register({ name: 'serve-static',          factory: function () { return serveStatic; }});
+        scope.register({ name: 'stripe',                factory: function () { return stripe; }});
 
         /*
         // Alternatively, you can let Hilary gracefully degrade to node's require function.

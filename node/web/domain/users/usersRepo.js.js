@@ -13,6 +13,7 @@ module.exports.factory = function (db, User, Blueprint, exceptions, is) {
             remove: undefined
         },
         collection = db.collection(User.db.collection),
+        newUser,
         i;
 
     // ensure the indexes exist
@@ -28,7 +29,6 @@ module.exports.factory = function (db, User, Blueprint, exceptions, is) {
             exceptions.throwArgumentException('', 'uid');
             return;
         }
-
         if (is.not.function(callback)) {
             exceptions.throwArgumentException('', 'callback');
             return;
@@ -37,6 +37,11 @@ module.exports.factory = function (db, User, Blueprint, exceptions, is) {
         collection.find({ email: email }).limit(1).next(function (err, doc) {
             if (err) {
                 callback(err);
+                return;
+            }
+            //Add here
+            if (doc === null) {
+                callback(true);
                 return;
             }
 
@@ -59,6 +64,42 @@ module.exports.factory = function (db, User, Blueprint, exceptions, is) {
         }
 
         collection.insertOne(payload, callback);
+    };
+
+    self.updateCart = function (email, cart, callback) {
+        if (is.not.string(email)) {
+            exceptions.throwArgumentException('', 'uid');
+            return;
+        }
+        if (is.not.function(callback)) {
+            exceptions.throwArgumentException('', 'callback');
+            return;
+        }
+
+        collection.updateOne(
+            { "email": email },
+            {$set: {"cart": cart}},
+            function(err, results) {callback(err);}
+        );
+        console.log("Successfully update the cart!!!");
+    };
+
+    self.updateOrderHistory = function (email, orderhistory, callback) {
+        if (is.not.string(email)) {
+            exceptions.throwArgumentException('', 'uid');
+            return;
+        }
+        if (is.not.function(callback)) {
+            exceptions.throwArgumentException('', 'callback');
+            return;
+        }
+
+        collection.updateOne(
+            { "email": email },
+            {$set: {"orderhistory": orderhistory}},
+            function(err, results) {callback(err);}
+        );
+        console.log("Successfully update the order history!!!");
     };
 
     return self;

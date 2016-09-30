@@ -4,15 +4,31 @@ Hilary.scope('heinz').register({
     factory: function ($this, GidgetRoute, locale, viewEngine, Products, $) {
         'use strict';
 
+
         $this.get['/'] = function () {
-            viewEngine.setVM({
-                template: 't-empty',
-                data: {
-                    heading: locale.pages.home.empty.heading,
-                    body: locale.pages.home.empty.body
-                }
-            });
+            //window.location.replace('/home');
         };
+
+        $this.get['/home'] = function () {
+            $.ajax({
+                url: '/api/cart',
+                method: 'GET'
+            }).done(function (data) {
+                $("#cartTotal").text(data.cart.books.length + " item(s)");
+                viewEngine.setVM({
+                    template: 't-empty',
+                    data: {
+                        heading: locale.pages.home.empty.heading,
+                        body: locale.pages.home.empty.body
+                    }
+                });
+            });
+
+        };
+
+
+
+
 
         // GET /#/search/?q=searchterm
         // search for products

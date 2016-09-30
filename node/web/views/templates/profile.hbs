@@ -1,0 +1,59 @@
+<script id="t-profile" type="text/html">
+    
+   
+    <div  class ="form-group" data-bind="with: data">
+        <label class="col-sm-2 control-label">Name:</label>
+        <div class="col-sm-10">
+            <p class="form-control-static" data-bind="text: name"></p>
+        </div>
+        
+    </div>
+    <div  class ="form-group" data-bind="with: data">
+        <label class="col-sm-2 control-label">Email address:</label>
+        <div class="col-sm-10">
+            <p class="form-control-static" data-bind="text: email"></p>
+        </div>
+        
+    </div>
+    <div  class ="form-group" data-bind="with: data">
+        <label class="col-sm-2 control-label">Total price:</label>
+        <div style="padding-bottom:10px;" class="col-sm-10">
+            <p class="form-control-static" data-bind="text: totalAmount"></p>
+        </div>
+        
+    </div>
+    
+    
+    <div>
+        <label class="col-sm-2 control-label">Order history:</label>
+    </div>
+    <div class="book-component">
+        <div class="row" data-bind="foreach: { data: data.books(), as: 'book' }">
+                <div class="col-sm-12 col-md-12 book-col" style="padding-left:25px;padding-right:25px;border:1px ;">
+                <div class="thumbnail">
+                    <!--<a class="thumbnail-img" href="javascript:void(0);" data-bind="click: book.click">-->
+                    <!--<img src="" alt="" data-bind="src: book.thumbnailLink, attr: { alt: book.thumbnailAlt }">-->
+                    <!--</a>-->
+                    <div class="caption">
+                        <h3><a href="javascript:void(0);" data-bind="text: book.title, click: book.click"></a></h3>
+                        <div class="description" data-bind="html: book.description">
+                        </div>
+                        <button class="btn btn-success btn-lg" href="javascript:void(0);" data-bind="click: book.buyABook">Buy it again</button>
+                        <h5>Quantity:</h5>
+                        <div class="amountOfBooks" data-bind="text: book.amountofBooks"></div>
+                        <h5>Price:</h5>
+                        <div class="overlay">
+                        </div>
+                        <a class="buy-now" href="javascript:void(0);" data-bind="currency: book.price"></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <form class="form-horizontal" id="logout" action="/profile" method="post" role="form">
+        <div>
+            <button  class="btn btn-success" type="submit">Log out</button>
+        </div>
+    </form>
+
+</script>

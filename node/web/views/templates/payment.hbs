@@ -1,0 +1,64 @@
+<script id="t-payment" type="text/html">
+    <div class="book-component">
+        <div><h4><label>Complete purchase</label></h4></div>
+        <div><label>Items:</label></div>
+        <div class="row" style="padding:25px;" data-bind="foreach: { data: data.books(), as: 'book' }">
+            <div class="col-sm-4 col-md-3 book-col" style=" border:1px;">
+                <div class="row" >
+                    <div class="col-md-5">
+                    <img src="" class="thumbnail-img-payment"  alt="" data-bind="src: book.thumbnailLink, attr: { alt: book.thumbnailAlt }">
+                    </div>
+                    <div class="col-md-5">
+                        <div class="title" data-bind="text: book.title"></div>
+                        <label>Quantity:</label>
+                        <div class="amountOfBooks" data-bind="text: book.amountofBooks"></div>
+                        <label>Price:</label>
+                        <div class="pay" data-bind="currency: book.price"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+ <div data-bind="with: data">
+     <div class="pay;padding-bottom:25px;">
+         <label>Purchase total</label>
+         <p data-bind="currency: amount"></p>
+     </div>
+     <form class="form-horizontal" id="payment" action="/login" method="post" role="form">
+
+        <div class="form-group">
+            <h4><label for="PaymentDetails" class="col-sm-2">Payment Details</label></h4>
+        </div>
+        <div class="form-group">
+            <label for="cardNo" class="col-sm-2">Card Number</label>
+            <div class="col-sm-4">
+                <input type="text" data-bind="textInput: cardNo" class="form-control" name="cardNo" id="cardNo" placeholder="Enter card number">
+            </div>
+       </div>
+        <div class="form-group">
+            <label for="name" class="col-sm-2">Name on Card</label>
+            <div class="col-sm-4">
+                <input type="text" data-bind="textInput: name" name="name" class="form-control" id="name" placeholder="Enter name as shown on card" />
+            </div>
+            <label for="cvc" class="col-sm-1">CVC</label>
+            <div class="col-sm-2">
+                <input type="text" data-bind="textInput: cvc" class="form-control" name="cvc" id="cvc" placeholder="Enter CVC" />
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="month" class="col-sm-2">Expiry month</label>
+            <div class="col-sm-2">
+                <input type="text" name="month" data-bind="textInput: month" class="form-control" id="month" placeholder="Enter expiry month" />
+            </div>
+            <label for="year" class="col-sm-1">Expiry year</label>
+            <div class="col-sm-2">
+                <input type="text" name="year" data-bind="textInput: year" class="form-control" id="year" placeholder="Enter expiry year" />
+            </div>
+        </div>
+
+        <button class="btn btn-success" data-bind="click: pay" type="submit">Complete Payment</button>
+     </form>
+ </div>
+</script>

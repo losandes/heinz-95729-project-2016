@@ -5,7 +5,8 @@ module.exports.factory = function (router, repo) {
 
     var authCookieExpiryDurationMinutes = 43200, // 30 days
         maxAge = authCookieExpiryDurationMinutes * 60 * 1000,
-        addCookie;
+        addCookie,
+        cleanCookie;
 
     addCookie = function (user, res) {
         // normally, you wouldn't set a plain old user object as the
@@ -13,34 +14,66 @@ module.exports.factory = function (router, repo) {
         res.cookie('auth', user, { maxAge: maxAge, httpOnly: true });
     };
 
+    cleanCookie = function (res) {
+        res.clearCookie('auth');
+    };
 
     router.post('/register', function (req, res) {
+        req.body.cart = {totalAmount:0, books:[]};
+        req.body.orderhistory = {totalAmountOfHistory:0, booksOfHistory:[]};
         repo.create(req.body, function (err, result) {
             if (!err && result.insertedId) {
                 repo.get(req.body.email, function (err, user) {
                     if (!err) {
                         addCookie(user, res);
-                        res.redirect('/');
+                        res.redirect('/home');
                     } else {
                         res.status(400);
                     }
                 });
             } else {
-                res.status(400);
+                res.redirect('/registerWithError');
+                //res.status(400);
             }
         });
     });
 
     router.post('/login', function (req, res) {
-        console.log(req.body);
-        repo.get(req.body.email, function (err, user) {
+       repo.get(req.body.email, function (err, user) {
             if (!err) {
                 addCookie(user, res);
-                res.redirect('/');
+                res.redirect('/home');
             } else {
-                res.status(400);
+                res.redirect('/loginWithError');
+                //res.status(400);
             }
         });
+    });
+
+    router.get('/logincheck', function (req, res) {
+        if ( req.cookies.auth === undefined) {
+            res.send('404');
+        } else {
+            console.log('error checking user in db.');
+            res.send('200');
+        }
+    });
+
+    //router.post('/loginWithError', function (req, res) {
+    //    console.log(req.body);
+    //    repo.get(req.body.email, function (err, user) {
+    //        if (!err) {
+    //            addCookie(user, res);
+    //            res.redirect('/');
+    //        } else {
+    //            res.redirect('/loginWithError');
+    //        }
+    //    });
+    //});
+
+    router.post('/profile', function (req, res) {
+        cleanCookie(res);
+        res.redirect('/home');
     });
 
     return router;
