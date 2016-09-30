@@ -10,7 +10,9 @@ module.exports.factory = function (db, User, Blueprint, exceptions, is) {
             find: undefined,
             create: undefined,
             update: undefined,
-            remove: undefined
+            remove: undefined,
+            getCount: undefined
+
         },
         collection = db.collection(User.db.collection),
         i;
@@ -25,7 +27,7 @@ module.exports.factory = function (db, User, Blueprint, exceptions, is) {
     */
     self.get = function (email, callback) {
         if (is.not.string(email)) {
-            exceptions.throwArgumentException('', 'uid');
+            exceptions.throwArgumentException('', 'email');
             return;
         }
 
@@ -35,8 +37,13 @@ module.exports.factory = function (db, User, Blueprint, exceptions, is) {
         }
 
         collection.find({ email: email }).limit(1).next(function (err, doc) {
+            
             if (err) {
                 callback(err);
+                return;
+            } else if(!doc) {
+                // doc shouldn't be null
+                callback(true);
                 return;
             }
 
@@ -58,8 +65,62 @@ module.exports.factory = function (db, User, Blueprint, exceptions, is) {
             return;
         }
 
-        collection.insertOne(payload, callback);
+        // Check email doesn't exist first
+        collection.find({ email: payload.email }).limit(1).next(function (err, doc) {
+            
+            // shouldn't exist
+            if(err) {
+                callback(err);
+                return;
+            } else if(!doc) {
+                collection.updateOne({"email":payload.email},payload,{upsert:true}, callback);
+                return;
+            } else {
+                // exist before, return error
+                callback(true);
+                return;
+            }
+            
+        });
+       
     };
 
+    self.update = function (payload, callback) {
+        if (is.not.object(payload)) {
+            exceptions.throwArgumentException('', 'payload');
+            return;
+        }
+        if (is.not.function(callback)) {
+            exceptions.throwArgumentException('', 'callback');
+            return;
+        }
+
+        collection.updateOne(
+          {email : payload.email},
+          {
+            $addToSet: { "orders": {"order_id":payload._id,"items":payload.items} }
+          }
+          , callback);
+    };
+    self.getCount = function (email,callback) {
+        if (is.not.string(email)) {
+            exceptions.throwArgumentException('', 'payload');
+            return;
+        }
+
+        if (is.not.function(callback)) {
+            exceptions.throwArgumentException('', 'callback');
+            return;
+        }
+
+        collection.find({email : email},{ _id:0, quantity: 1}).next (function (err, doc) {
+            if (err) {
+                callback(err);
+                return;
+            }
+
+            callback(null, doc);
+        });
+    };
     return self;
 };

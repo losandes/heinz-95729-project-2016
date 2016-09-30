@@ -11,10 +11,14 @@
     <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="/css/main.css" />
     <script src="/scripts/lib/modernizr.custom.js"></script>
+<!--    <script> function SignOutIcon() {if(window.location.pathname != "/login" &&  window.location.pathname != "/Guest" && window.document.cookie && window.document.cookie!="email=Guest"){document.getElementById("logout").innerHTML = "<a href=\"/logout\"><span style= \"position:fixed; right:10px;top:5px;\"><b>Logout</b> <i class=\"fa fa-sign-out\"\></a>";}}
+     </script> -->
 </head>
+ <!-- <body onload="SignOutIcon()" > -->
 <body>
     <header id="header">
         <h1><a href="/">Papyr</a></h1>
+
         <div class="search-form">
             <div class="input-group input-group-lg">
                 <input type="text" class="form-control" placeholder="search" data-bind="textInput: searchString">
@@ -23,16 +27,32 @@
                 </span>
             </div><!-- /input-group -->
         </div>
+
+        <div class="dropdown">
+            <button class="btn btn-primary dropdown-toggle" id="menu1" type="button" data-toggle="dropdown"><span class="caret"></span></button>
+            <ul class="dropdown-menu" role="menu" aria-labelledby="menu1">
+                <li data-bind="visible: isLogin" role="presentation"><a role="menuitem" tabindex="-1" href="/orderHistory">Your Orders</a></li>
+                <li data-bind="visible: !isLogin()" role="presentation"><a role="menuitem" tabindex="-1" href="/register">Register</a></li>
+                <li data-bind="visible: isLogin" role="presentation" class="divider"></li>
+                <li data-bind="visible: isLogin" role="presentation"><a role="menuitem" tabindex="-1" href="/logout">Logout</a></li>
+            </ul>
+        </div>
+
         <nav>
-    <!--
-            <span data-bind="foreach: links">
+
+           <!--  <span data-bind="foreach: links">
                 <a data-bind="text: text, href: href"></a>
-            </span>
-    -->
+            </span> -->
+
             <a href="/checkout">
-                <i class="fa fa-shopping-cart"></i>
-            </a>
+                 <i class="fa fa-shopping-cart"><span id="cart-count" data-bind="text: cartCount"></span></i>
+             </a>
+             <div id="logout">
+            </div>
         </nav>
+
+
+
     </header>
     <div class="container">
         {{{body}}}
@@ -46,7 +66,13 @@
     {{> productGrid}}
     {{> bookDetails}}
     {{> login}}
+    {{> loginGuest}}
     {{> register}}
+    {{> checkout}}
+    {{> orderHistory}}
+    {{> payment}}
+    {{> paymentSuccess}}
+    {{> orderNoResults}}
 
     <!-- /templates -->
 
@@ -54,6 +80,7 @@
     <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-2.1.4.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/knockout/3.3.0/knockout-min.js"></script>
+    <script src="https://js.stripe.com/v2/"></script>
 
     <script src="/scripts/lib/bower_components/hilary/release/hilary.min.js"></script>
     <script src="/scripts/lib/bower_components/gidget/release/gidget.min.js"></script>
@@ -66,6 +93,9 @@
     <script src="/scripts/controllers/booksController.js"></script>
     <script src="/scripts/controllers/homeController.js"></script>
     <script src="/scripts/controllers/exampleController.js"></script>
+    <script src="/scripts/controllers/checkoutController.js"></script>
+
+
 
     <script src="/scripts/locale/en_US.js"></script>
 
@@ -73,6 +103,11 @@
     <script src="/scripts/models/Books.js"></script>
     <script src="/scripts/models/Product.js"></script>
     <script src="/scripts/models/Products.js"></script>
+    <script src="/scripts/models/Order.js"></script>
+    <script src="/scripts/models/Orders.js"></script>
+    <script src="/scripts/models/Payment.js"></script>
+    <script src="/scripts/models/User.js"></script>
+
 
     <script src="/scripts/viewModels/HomeVM.js"></script>
 

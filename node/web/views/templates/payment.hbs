@@ -1,0 +1,32 @@
+
+<script id="t-payment" type="text/html">
+
+<form id="stripe-payment-form" data-bind="with: data" role="form">
+    <div class="form-group">
+        <label for="stripe-payment-cardnumber">Card Number</label>
+        <input type="text" class="form-control" data-bind='value: cardNum, valueUpdate: "afterkeydown"'/>
+    </div>    
+
+    <div class="form-group">
+        <label for="stripe-payment-cvc">CVC</label>
+        <input type="text" class="form-control" data-bind='value: cvc, valueUpdate: "afterkeydown"' />
+    </div>
+
+    <div class="form-group form-group-expiration">
+        <label for="stripe-payment-expiration">Expiration (MM/YY)</label>
+        <input type="text" maxlength="2" class="form-control form-control-expiration" data-bind='value: expMonth, valueUpdate: "afterkeydown"' />
+        <label for="stripe-payment-expiration">/</label>
+        <input type="text" maxlength="2" class="form-control form-control-expiration" data-bind='value: expYear, valueUpdate: "afterkeydown"' />
+    </div>
+
+    <button class="btn btn-success" type="submit" data-bind='click: requestPayment, enable: canSubmit()'>
+        Pay <span data-bind='text: formatCurrency(amount())'></span>
+    </button>
+</form>
+
+
+</script>
+
+
+
+

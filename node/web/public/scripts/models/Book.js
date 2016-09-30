@@ -1,8 +1,8 @@
 Hilary.scope('heinz').register({
     name: 'Book',
     singleton: true,
-    dependencies: ['ko', 'Product'],
-    factory: function (ko, Product) {
+    dependencies: ['router','ko', 'Product'],
+    factory: function (router,ko, Product) {
         'use strict';
 
         var Book = function (book) {
@@ -10,7 +10,10 @@ Hilary.scope('heinz').register({
 
             self.thumbnailLink = ko.observable(book.thumbnailLink || '/images/books/default.png');
             self.reviews = ko.observableArray();
-
+            self.price.click = function () {
+              console.log("Inside book click:"+book.uid);
+              router.navigate('/product?product='+book.uid);
+                  };
             return self;
         };
 

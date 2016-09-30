@@ -6,7 +6,9 @@ var Hilary = require('hilary'),
     ObjectID = require('mongodb').ObjectID,
     exceptions,
     composeExpress,
-    configureApplicationLifecycle;
+    configureApplicationLifecycle,
+    stripe = require('stripe')('sk_test_TzshgiuA3I9XSAk0YaERmfrU') // secret API key (found on stripe account dashboard)
+    ;
 
 // composition helpers
 // These are wrapped in an iife, for code folding only
@@ -135,6 +137,9 @@ Hilary.scope('heinz').Bootstrapper({
             }
         });
 
+        // Don't know where to put, then put it here
+        scope.register({ name: 'stripe', singleton: true, factory: function () { return stripe; } });
+        
         scope.register({ name: 'ObjectID', singleton: true, factory: function () { return ObjectID; } });
         scope.register({ name: 'Blueprint', singleton: true, factory: function () { return Hilary.Blueprint; } });
         scope.register({ name: 'is', singleton: true, factory: function () { return scope.getContext().is; } });

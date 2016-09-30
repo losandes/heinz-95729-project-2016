@@ -1,10 +1,10 @@
-﻿<script id="t-login" type="text/html">
+<script id="t-login-guest" type="text/html">
     <form id="user-login" data-bind="with: data" role="form">
         <div class="form-group">
             <label for="user-login-email">Email address</label>
             <input type="email" name="email" class="form-control" id="user-login-email" placeholder="Enter email" data-bind="value: email" />
         </div>
-        <button class="btn btn-success" type="submit" data-bind='click: requestLogin, enable: canSubmit()'>Login</button>
+        <button class="btn btn-success" type="submit" data-bind='click: requestGuestLogin, enable: canSubmit()'>Login</button>
     </form>
 </script>
 
