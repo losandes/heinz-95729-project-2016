@@ -1,4 +1,4 @@
-Acatar Build Tools
+Build Tools
 ==================
 
 We use grunt for many things: running the app, running tests, environment setup.

@@ -5,7 +5,7 @@ var Spawner = require('./Spawner'),
 module.exports = function (grunt) {
     'use strict';
 
-    grunt.registerTask('install', 'installs dependencies (i.e. node modules and bower components)', function () {
+    grunt.registerTask('start', 'starts the app', function () {
         var spawner = new Spawner(),
             done = this.async(),
             makeAction,
@@ -33,11 +33,7 @@ module.exports = function (grunt) {
         };
 
         series.push(function (callback) {
-            spawner.spawnThis('npm', ['install'], { cwd: '../web' }, callback);
-        });
-
-        series.push(function (callback) {
-            spawner.spawnThis('bower', ['install'], { cwd: '../web/public/scripts/lib' }, callback);
+            spawner.spawnThis('npm', ['start'], { cwd: grunt.config('path-to-web') }, callback);
         });
 
         async.parallel(series, doneHandler);

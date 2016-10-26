@@ -1,5 +1,5 @@
 {
-  "name": "<%= projectName %>-lib",
+  "name": "heinz-95729-web",
   "version": "0.0.0",
   "description": "external client-js dependencies for <%= projectName %>",
   "ignore": [
