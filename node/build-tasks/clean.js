@@ -39,8 +39,8 @@ module.exports = function (grunt) {
             done();
         };
 
-        series.push(makeAction('node_modules', '../web'));
-        series.push(makeAction('bower_components', '../web/public/scripts/lib'));
+        series.push(makeAction('node_modules', grunt.config('path-to-web')));
+        series.push(makeAction('bower_components', grunt.config('path-to-bower-libs')));
 
         async.series(series, doneHandler);
     });

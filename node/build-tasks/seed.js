@@ -6,7 +6,7 @@ var mongodb = require('mongodb'),
     env = nconf
         .env()
         .argv()
-        .file('environment', '../environment/environment.json'),
+        .file('environment', './environment/environment.json'),
     seeds = require('./seeds');
 
 module.exports = function (grunt) {
