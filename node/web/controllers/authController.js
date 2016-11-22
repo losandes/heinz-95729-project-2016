@@ -15,6 +15,8 @@ module.exports.factory = function (router, repo) {
 
 
     router.post('/register', function (req, res) {
+		//console.log(req)
+		//console.log(res)
         repo.create(req.body, function (err, result) {
             if (!err && result.insertedId) {
                 repo.get(req.body.email, function (err, user) {

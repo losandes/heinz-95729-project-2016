@@ -8,20 +8,24 @@ module.exports.factory = function (Blueprint, exceptions, ObjectID) {
 
     blueprint = new Blueprint({
         name: 'string',
-        email: 'string'
+        email: 'string',
+		//super_permission: 'bool',
+		password: 'string'
     });
 
     User = function (user) {
         var self = {};
-
+		console.log(user)
         if (!blueprint.syncSignatureMatches(user).result) {
-            exceptions.throwArgumentException('', 'product', blueprint.syncSignatureMatches(user).errors);
+            exceptions.throwArgumentException('', 'user', blueprint.syncSignatureMatches(user).errors); //typo
             return;
         }
 
         self._id = new ObjectID(user._id);
         self.name = user.name;
         self.email = user.email;
+		//self.super_permission = user.super_permission;
+		self.password = user.password;
 
         return self;
     };
