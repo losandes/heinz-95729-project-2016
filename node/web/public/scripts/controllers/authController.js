@@ -4,6 +4,24 @@ Hilary.scope('heinz').register({
     factory: function ($this, GidgetRoute, locale, viewEngine) {
         'use strict';
 
+		$this.get['/error_reg'] = new GidgetRoute({
+			routeHandler: function (err, req) {
+				viewEngine.setVM({
+					template: 't-error-reg',
+					data: {warning: "You have already registered the same account or Email is invalid"}
+				});
+			}
+		});
+
+		$this.get['/error'] = new GidgetRoute({
+			routeHandler: function () {
+				viewEngine.setVM({
+					template: 't-error',
+					data: {}
+				});
+			}
+		});
+
         // GET /#/login
         // login
         $this.get['/login'] = new GidgetRoute({
@@ -33,6 +51,15 @@ Hilary.scope('heinz').register({
                 });
             }
         });
+
+		$this.get['/succ'] = new GidgetRoute({
+			routeHandler: function () {
+				viewEngine.setVM({
+					template: 't-regsucc',
+					data: {}
+				});
+			}
+		});
 
         return $this;
     }

@@ -17,33 +17,56 @@ module.exports.factory = function (router, repo) {
     router.post('/register', function (req, res) {
 		//console.log(req)
 		//console.log(res)
+		req.body.privilege = 'user'
+		console.log(req.email)
+
+		if (req.body.email == "") {
+			res.redirect('/error_reg')
+			return;
+		}
+
         repo.create(req.body, function (err, result) {
             if (!err && result.insertedId) {
                 repo.get(req.body.email, function (err, user) {
                     if (!err) {
                         addCookie(user, res);
-                        res.redirect('/');
+                        res.send("Register Successfully!")
                     } else {
-                        res.status(400);
+						//just pass the buck
+						res.redirect('/error_reg')
+                        //res.status(400);
                     }
                 });
             } else {
-                res.status(400);
+				//res.status(400);
+
+				res.redirect('/error_reg')
             }
         });
     });
 
     router.post('/login', function (req, res) {
         console.log(req.body);
+
         repo.get(req.body.email, function (err, user) {
             if (!err) {
                 addCookie(user, res);
                 res.redirect('/');
             } else {
-                res.status(400);
+				res.send(err)
+                //res.status(400);
             }
         });
     });
+
+	router.post('/error_reg', function (req, res) {
+		res.redirect('/register');
+	});
+
+	router.post('/cart', function (req, res) {
+		console.log(req.data.book.title);
+		//todo
+	});
 
     return router;
 };

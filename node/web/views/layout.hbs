@@ -29,9 +29,10 @@
                 <a data-bind="text: text, href: href"></a>
             </span>
     -->
-            <a href="/checkout">
-                <i class="fa fa-shopping-cart"></i>
-            </a>
+            <a href="/checkout"><i class="fa fa-shopping-cart"></i></a>
+            <a href="/login"><i>Login</i></a>
+            <a href="/register"><i>Register</i></a>
+
         </nav>
     </header>
     <div class="container">
@@ -47,6 +48,8 @@
     {{> bookDetails}}
     {{> login}}
     {{> register}}
+    {{> errorreg}}
+    {{> error}}
 
     <!-- /templates -->
 

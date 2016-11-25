@@ -1,8 +1,13 @@
 [
     {
         "_id": "564d420206fd376a5b560026",
-    	"email": "admin@wonderful_store.com",
+    	"email": "admin@admin",
     	"name": "Admin",
-	    "password": "Admin@1"
+	    "privilege": "admin",
+	    "history": [
+		    {
+			    "book": "How to be an admin"
+		    }
+	    ]
     }
 ]

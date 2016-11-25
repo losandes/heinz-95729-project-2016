@@ -35,8 +35,8 @@ module.exports.factory = function (db, User, Blueprint, exceptions, is) {
         }
 
         collection.find({ email: email }).limit(1).next(function (err, doc) {
-            if (err) {
-                callback(err);
+            if (doc == null) {
+                callback("email not found");
                 return;
             }
 
@@ -57,25 +57,7 @@ module.exports.factory = function (db, User, Blueprint, exceptions, is) {
             exceptions.throwArgumentException('', 'callback');
             return;
         }
-		console.log(payload)
 
-		var x = collection.findOne({name: {$eq: payload.name}})
-		if (x) {
-			console.log(x)
-			exceptions.throwArgumentException('', 'same name');
-			return;
-		}
-
-		if (collection.findOne({email: {$eq: payload.email}})) {
-			exceptions.throwArgumentException('', 'same email');
-			return;
-		}
-
-		if (payload.password[0] == payload.password[1]) {
-			exceptions.throwArgumentException('', 'same password');
-			return;
-		}
-		payload.super_permission = False
         collection.insertOne(payload, callback);
     };
 

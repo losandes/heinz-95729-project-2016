@@ -9,8 +9,7 @@ module.exports.factory = function (Blueprint, exceptions, ObjectID) {
     blueprint = new Blueprint({
         name: 'string',
         email: 'string',
-		//super_permission: 'bool',
-		password: 'string'
+		privilege: 'string'
     });
 
     User = function (user) {
@@ -24,8 +23,7 @@ module.exports.factory = function (Blueprint, exceptions, ObjectID) {
         self._id = new ObjectID(user._id);
         self.name = user.name;
         self.email = user.email;
-		//self.super_permission = user.super_permission;
-		self.password = user.password;
+		self.privilege = user.privilege
 
         return self;
     };
