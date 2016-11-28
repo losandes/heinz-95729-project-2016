@@ -31,7 +31,7 @@ module.exports.factory = function (Blueprint, ObjectID, exceptions) {
     /*
     // This is the Checkout constructor, which will be returned by this factory
     */
-    Checkout = function (Checkout) {
+    Checkout = function (checkout) {
         // often times, we use selfies to provide a common object on which
         // to define properties. It's also common to see `var self = this`.
         var self = {};
@@ -46,9 +46,11 @@ module.exports.factory = function (Blueprint, ObjectID, exceptions) {
 
         // define the Checkout properties from the Checkout argument
         self._id = new ObjectID(checkout._id);
+
         self.email = checkout.email;
         self.shoppingCartId = checkout.shoppingCartId;
         self.books = checkout.books;
+
 
         return self;
     };
