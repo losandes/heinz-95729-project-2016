@@ -1,3 +1,10 @@
+// This function will be rewritten later
+function convert_error_to_string(type) {
+	if (type === '1') {
+		return 'The email name cannot be null';
+	}
+}
+
 Hilary.scope('heinz').register({
     name: 'authController',
     dependencies: ['newGidgetModule', 'GidgetRoute', 'locale', 'viewEngine'],
@@ -8,7 +15,7 @@ Hilary.scope('heinz').register({
 			routeHandler: function (err, req) {
 				viewEngine.setVM({
 					template: 't-error-reg',
-					data: {warning: "You have already registered the same account or Email is invalid"}
+					data: {warning: convert_error_to_string(req.uri.query.q)}
 				});
 			}
 		});

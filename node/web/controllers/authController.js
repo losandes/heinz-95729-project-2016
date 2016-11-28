@@ -21,7 +21,9 @@ module.exports.factory = function (router, repo) {
 		console.log(req.email)
 
 		if (req.body.email == "") {
-			res.redirect('/error_reg')
+			//test:
+			// res.redirect('/error_reg')
+			res.redirect('/error_reg?q=' + "1");
 			return;
 		}
 
