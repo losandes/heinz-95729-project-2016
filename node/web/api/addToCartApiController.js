@@ -1,5 +1,5 @@
 module.exports.name = 'addToCartApiController';
-module.exports.dependencies = ['router', 'addToCartRepo', 'exceptions'];
+module.exports.dependencies = ['router', 'checkoutRepo', 'exceptions'];
 module.exports.factory = function (router, repo, exceptions) {
     'use strict';
 

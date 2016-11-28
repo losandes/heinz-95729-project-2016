@@ -1,7 +1,7 @@
 /*
 // See the README.md for info on this module
 */
-module.exports.name = 'checkout';
+module.exports.name = 'Checkout';
 module.exports.dependencies = ['Blueprint', 'ObjectID', 'exceptions'];
 module.exports.factory = function (Blueprint, ObjectID, exceptions) {
     'use strict';
