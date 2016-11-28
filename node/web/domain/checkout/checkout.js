@@ -1,7 +1,7 @@
 /*
 // See the README.md for info on this module
 */
-module.exports.name = 'Checkout';
+module.exports.name = 'checkout';
 module.exports.dependencies = ['Blueprint', 'ObjectID', 'exceptions'];
 module.exports.factory = function (Blueprint, ObjectID, exceptions) {
     'use strict';
@@ -31,7 +31,7 @@ module.exports.factory = function (Blueprint, ObjectID, exceptions) {
     /*
     // This is the Checkout constructor, which will be returned by this factory
     */
-    Checkout = function (Checkout) {
+    Checkout = function (checkout) {
         // often times, we use selfies to provide a common object on which
         // to define properties. It's also common to see `var self = this`.
         var self = {};
@@ -53,7 +53,7 @@ module.exports.factory = function (Blueprint, ObjectID, exceptions) {
         self.price = checkout.price;
         self.thumbnailLink = checkout.thumbnailLink;
         self.type = checkout.type;
-
+        self.status = checkout.status;
         return self;
     };
 
