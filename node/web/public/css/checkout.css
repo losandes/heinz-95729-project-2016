@@ -12,12 +12,12 @@ Side note: I know that this style of nesting in SASS doesn't result in the most 
 
 .product-details {
   float: left;
-  width: 37%;
+  width: 45%;
 }
 
 .product-price {
   float: left;
-  width: 12%;
+  width: 20%;
 }
 
 .product-quantity {
@@ -27,7 +27,8 @@ Side note: I know that this style of nesting in SASS doesn't result in the most 
 
 .product-removal {
   float: left;
-  width: 9%;
+  width: 15%;
+  text-align:center;
 }
 
 .product-line-price {
@@ -136,20 +137,20 @@ label {
 .totals .totals-item label {
   float: left;
   clear: both;
-  width: 79%;
+  width: 75%;
   text-align: right;
 }
 .totals .totals-item .totals-value {
   float: right;
-  width: 21%;
-  text-align: right;
+  width: 20%;
+  text-align: left;
 }
 .totals .totals-item-total {
   font-family: "HelveticaNeue-Medium", "Helvetica Neue Medium";
 }
 
 .checkout {
-  float: right;
+  float: left;
   border: 0;
   margin-top: 20px;
   padding: 6px 25px;
@@ -157,6 +158,8 @@ label {
   color: #fff;
   font-size: 25px;
   border-radius: 3px;
+  margin-left: 45%;
+  margin-bottom: 20px;
 }
 
 .checkout:hover {
