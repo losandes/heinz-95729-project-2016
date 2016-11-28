@@ -1,15 +1,31 @@
 Hilary.scope('heinz').register({
     name: 'checkoutController',
-    dependencies: ['newGidgetModule', 'GidgetRoute', 'locale', 'viewEngine', 'Products', 'jQuery'],
-    factory: function ($this, GidgetRoute, locale, viewEngine, Products, $) {
+    dependencies: ['newGidgetModule', 'GidgetRoute', 'locale', 'viewEngine','Checkout','Products', 'jQuery'],
+    factory: function ($this, GidgetRoute, locale, viewEngine, Checkout, Products, $) {
         'use strict';
-
+        
         $this.get['/checkout'] = function () {
             viewEngine.setVM({
-                template: 't-checkout',
-                
+                template: 't-checkoutCopy'
             });
         };
+        
+        /*
+        $this.get['/checkout/:email'] = new GidgetRoute({
+            routeHandler: function (err, req) {
+                $.ajax({
+                    url: '/api/checkout/' + req.params.uid
+                }).done(function (data) {
+                    var checkout = new Checkout(data);
+
+                    viewEngine.setVM({
+                        template: 't-checkout',
+                        data: { checkout: checkout }
+                    });
+                });
+            }
+        });*/
+        
 
         // GET /#/search/?q=searchterm
         // search for products
