@@ -46,13 +46,9 @@ module.exports.factory = function (Blueprint, ObjectID, exceptions) {
 
         // define the Checkout properties from the Checkout argument
         self._id = new ObjectID(checkout._id);
-        self.email = checkout.uid;
-        self.shoppingCartId = checkout.title;
-        self.description = checkout.description;
-        self.metadata = checkout.metadata;
-        self.price = checkout.price;
-        self.thumbnailLink = checkout.thumbnailLink;
-        self.type = checkout.type;
+        self.email = checkout.email;
+        self.shoppingCartId = checkout.shoppingCartId;
+        self.books = checkout.books;
 
         return self;
     };
@@ -63,7 +59,7 @@ module.exports.factory = function (Blueprint, ObjectID, exceptions) {
     */
     Checkout.db = {
         // This is the name of the collection
-        collection: 'shoppingCart',
+        collection: 'checkout',
         // The indexes improve query performance
         indexes: [
             // This index enforces a unique uid, it allows multiple nulls
@@ -71,7 +67,7 @@ module.exports.factory = function (Blueprint, ObjectID, exceptions) {
             // so a null should never be present.
             {
                 keys: { name: 1 },
-                options: { name: 'unq.shoppingCart.email', unique: true, sparse: true }
+                options: { name: 'unq.checkout.email', unique: true, sparse: true }
             },
             // This is the full-text index, which is used for searching
             // '$**' indicates that all text properties should be included
@@ -79,14 +75,14 @@ module.exports.factory = function (Blueprint, ObjectID, exceptions) {
             // for performance reasons.
             {
                 keys: { '$**': 'text' },
-                options: { name: 'idx.shoppingCart.$text', background: true }
+                options: { name: 'idx.checkout.$text', background: true }
             },
             // Because we may filter our queries by shoppingCart type, we index
             // the type property. We allow this to process in the background,
             // for performance reasons.
             {
                 keys: { type: 1 },
-                options: { name: 'unq.shoppingCart.type', background: true }
+                options: { name: 'unq.checkout.type', background: true }
             }
         ]
     };
