@@ -39,11 +39,11 @@ module.exports.factory = function (db, Checkout, Blueprint, exceptions, is) {
     /*
     // Get a single Checkout
     */
-    self.get = function (uid, callback) {
+    self.get = function (email, callback) {
         // Blueprint isn't helpful for defending arguments, when they are
         // not objects. Here we defend the function arguments by hand.
-        if (is.not.string(uid)) {
-            exceptions.throwArgumentException('', 'uid');
+        if (is.not.string(email)) {
+            exceptions.throwArgumentException('', 'email');
             return;
         }
 
@@ -57,7 +57,7 @@ module.exports.factory = function (db, Checkout, Blueprint, exceptions, is) {
         // the query isn't executed until `next` is called. It receives a
         // callback function so it can perform the IO asynchronously, and
         // free up the event-loop, while it's waiting.
-        collection.find({ uid: uid }).limit(1).next(function (err, doc) {
+        collection.find({ email: email }).limit(1).next(function (err, doc) {
             if (err) {
                 callback(err);
                 return;
@@ -67,45 +67,21 @@ module.exports.factory = function (db, Checkout, Blueprint, exceptions, is) {
         });
     };
 
-    /*
-    // Find Checkout(s)
+     /*
+    // Create a shopping cart for a user
     */
-    self.find = function (options, callback) {
-        // Since options is an object, we can use Blueprint to validate it.
-        if (!findOptionsBlueprint.syncSignatureMatches(options).result) {
-            exceptions.throwArgumentException('', 'options', findOptionsBlueprint.syncSignatureMatches(options).errors);
+    self.create = function (payload, callback) {
+        if (is.not.object(payload)) {
+            exceptions.throwArgumentException('', 'payload');
             return;
         }
 
-        // But we'll make sure a callback function was provided, by hand
         if (is.not.function(callback)) {
             exceptions.throwArgumentException('', 'callback');
             return;
         }
 
-        // Set default skip and limit values if they weren't set
-        var skip = options.skip || 0,
-            limit = options.limit || 20;
-
-        // This uses mongodb's find feature to obtain multiple documents,
-        // although it still limits the result set. `find`, `skip`, and `limit`
-        // return promises, so the query isn't executed until `toArray` is
-        // called. It receives a callback function so it can perform the
-        // IO asynchronously, and free up the event-loop, while it's waiting.
-        collection.find(options.query).skip(skip).limit(limit).toArray(function (err, docs) {
-            var checkouts = [], i;
-
-            if (err) {
-                callback(err);
-                return;
-            }
-
-            for (i = 0; i < docs.length; i += 1) {
-                checkouts.push(new Checkout(docs[i]));
-            }
-
-            callback(null, checkouts);
-        });
+        collection.insertOne(payload, callback);
     };
 
     return self;
