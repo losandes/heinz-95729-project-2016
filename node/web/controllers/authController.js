@@ -15,14 +15,11 @@ module.exports.factory = function (router, repo) {
 
 
     router.post('/register', function (req, res) {
-		//console.log(req)
-		//console.log(res)
 		req.body.privilege = 'user'
 		console.log(req.email)
 
 		if (req.body.email == "") {
-			//test:
-			// res.redirect('/error_reg')
+			//res.render('templates/errorreg', data);
 			res.redirect('/error_reg?q=' + "1");
 			return;
 		}
@@ -53,7 +50,8 @@ module.exports.factory = function (router, repo) {
         repo.get(req.body.email, function (err, user) {
             if (!err) {
                 addCookie(user, res);
-                res.redirect('/');
+                //res.redirect('/login_succ');
+				res.render('index', { title: 'FancyBookStore', upIsUp: false, login_user: req.body.email});
             } else {
 				res.send(err)
                 //res.status(400);
@@ -67,6 +65,7 @@ module.exports.factory = function (router, repo) {
 
 	router.post('/cart', function (req, res) {
 		console.log(req.data.book.title);
+		res.status(501); //Not implement yet
 		//todo
 	});
 

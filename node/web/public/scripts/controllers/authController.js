@@ -35,7 +35,7 @@ Hilary.scope('heinz').register({
             routeHandler: function () {
                 viewEngine.setVM({
                     template: 't-login',
-                    data: { }
+                    data: {}
                 });
             }
         });
@@ -64,6 +64,15 @@ Hilary.scope('heinz').register({
 				viewEngine.setVM({
 					template: 't-regsucc',
 					data: {}
+				});
+			}
+		});
+
+		$this.get['/login_succ'] = new GidgetRoute({
+			routeHandler: function () {
+				viewEngine.setVM({
+					template: 't-succ-login',
+					data: {warning: "Login successfully"}
 				});
 			}
 		});
