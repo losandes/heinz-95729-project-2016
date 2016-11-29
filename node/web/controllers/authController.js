@@ -46,13 +46,14 @@ module.exports.factory = function (router, repo) {
             if (!err) {
                 addCookie(user, res);
 
-
-				var data = {
-					title: 'FancyBookStore',
-					waitLogin: false,
-					login_user: req.body.email
-				}
-				res.render('index', data);
+				repo.finduser(req.body.email, function(name) {
+					var data = {
+						title: 'FancyBookStore',
+						waitLogin: false,
+						login_user: name
+					}
+					res.render('index', data);
+				});
             } else {
 				res.redirect('/error_login');
             }

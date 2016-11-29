@@ -44,6 +44,26 @@ module.exports.factory = function (db, User, Blueprint, exceptions, is) {
         });
     };
 
+	self.finduser = function (email, callback) {
+		if (is.not.string(email)) {
+			exceptions.throwArgumentException('', 'uid');
+			return;
+		}
+
+		if (is.not.function(callback)) {
+			exceptions.throwArgumentException('', 'callback');
+			return;
+		}
+
+		collection.findOne({ email: email }, function (err, doc) {
+			if (doc) {
+				callback(doc.name);
+			} else {
+				exceptions.throwArgumentException('', 'doc');
+			}
+		});
+	};
+
     /*
     // Create a user
     */
