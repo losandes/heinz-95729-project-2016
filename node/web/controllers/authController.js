@@ -19,7 +19,6 @@ module.exports.factory = function (router, repo) {
 		console.log(req.email)
 
 		if (req.body.email == "") {
-			//res.render('templates/errorreg', data);
 			res.redirect('/error_reg?q=' + "1");
 			return;
 		}
@@ -29,17 +28,13 @@ module.exports.factory = function (router, repo) {
                 repo.get(req.body.email, function (err, user) {
                     if (!err) {
                         addCookie(user, res);
-                        res.send("Register Successfully!")
+						res.redirect('/succ_reg');
                     } else {
-						//just pass the buck
-						res.redirect('/error_reg')
-                        //res.status(400);
+						res.redirect('/error_reg?q=' + "3");
                     }
                 });
             } else {
-				//res.status(400);
-
-				res.redirect('/error_reg')
+				res.redirect('/error_reg?q=' + "2");
             }
         });
     });
@@ -50,11 +45,16 @@ module.exports.factory = function (router, repo) {
         repo.get(req.body.email, function (err, user) {
             if (!err) {
                 addCookie(user, res);
-                //res.redirect('/login_succ');
-				res.render('index', { title: 'FancyBookStore', upIsUp: false, login_user: req.body.email});
+
+
+				var data = {
+					title: 'FancyBookStore',
+					waitLogin: false,
+					login_user: req.body.email
+				}
+				res.render('index', data);
             } else {
-				res.send(err)
-                //res.status(400);
+				res.redirect('/error_login');
             }
         });
     });
@@ -63,9 +63,21 @@ module.exports.factory = function (router, repo) {
 		res.redirect('/register');
 	});
 
+	router.post('/error_login', function (req, res) {
+		res.redirect('/login');
+	});
+
+	router.post('/succ_reg', function (req, res) {
+		res.redirect('/login');
+	});
+
+	router.post('/succ_login', function (req, res) {
+		res.redirect('/index');
+	});
+
 	router.post('/cart', function (req, res) {
 		console.log(req.data.book.title);
-		res.status(501); //Not implement yet
+		res.send(501); //Not implement yet
 		//todo
 	});
 

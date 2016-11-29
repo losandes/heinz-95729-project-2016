@@ -32,7 +32,7 @@
                 <a data-bind="text: text, href: href"></a>
             </span>
     -->
-            {{#if upIsUp}}
+            {{#if waitLogin}}
                 <a href="/checkout">
                     <i class="fa fa-shopping-cart"></i>
                 </a>
@@ -65,8 +65,10 @@
     {{> bookDetails}}
     {{> login}}
     {{> register}}
-    {{> errorreg}}
+    {{> error_reg}}
     {{> error}}
+    {{> error_login}}
+    {{> succ_reg}}
     {{> succ_login}}
 
     <!-- /templates -->

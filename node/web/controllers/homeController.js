@@ -7,7 +7,7 @@ module.exports.factory = function (router) {
     router.get('/', function (req, res) {
 		var data = {
 			title: 'web',
-			upIsUp: true
+			waitLogin: true
 		}
         res.render('index', data);
     });
