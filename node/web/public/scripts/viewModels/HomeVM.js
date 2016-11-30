@@ -6,16 +6,28 @@ Hilary.scope('heinz').register({
 
         var HomeVM;
 
-        HomeVM = function () {
-            var self = {
-                    searchString: undefined,
-                    go: undefined,
-                    onSearchInputChanged: undefined
-                },
-                oldSearchString;
+		var self = {
+			searchString: undefined,
+			go: undefined,
+			onSearchInputChanged: undefined,
+			isAuthenticated: false
+		};
 
-            self.searchString = ko.observable('');
-            self.go = function () {
+		var HomeAuthenticateState = function(state) {
+			if (state == true) {
+				self.isAuthenticated = true;
+				console.log('WOWOW' + self.isAuthenticated);
+			} else {
+				self.isAuthenticated = false;
+			}
+		}
+
+        HomeVM = function () {
+
+            var  oldSearchString;
+
+			self.searchString = ko.observable('');
+			self.go = function () {
                 if (self.searchString().length) {
                     router.navigate('/search/?q=' + self.searchString());
                     oldSearchString = self.searchString();
@@ -25,18 +37,21 @@ Hilary.scope('heinz').register({
             };
 
             // subscribe to self.searchString, and auto-search when it changes
-            self.onSearchInputChanged = ko.computed(function () {
+			self.onSearchInputChanged = ko.computed(function () {
                 if (self.searchString() !== oldSearchString) {
-                    self.go();
+					self.go();
                 }
             });
 
             // but don't auto-search more than twice per second
-            self.onSearchInputChanged.extend({ rateLimit: 500 });
+			self.onSearchInputChanged.extend({ rateLimit: 500 });
 
             return self;
         };
 
-        return HomeVM;
+        return {
+        	HomeVM: HomeVM,
+			HomeAuthenticateState: HomeAuthenticateState
+		};
     }
 });

@@ -76,7 +76,7 @@
                 throw err;
             }
 
-            var HomeVM = scope.resolve('HomeVM'),
+            var HomeVM = scope.resolve('HomeVM').HomeVM,
                 viewEngine = scope.resolve('viewEngine');
 
             ko.applyBindings(new HomeVM(), $('#header')[0]);

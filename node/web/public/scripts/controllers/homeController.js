@@ -14,6 +14,18 @@ Hilary.scope('heinz').register({
             });
         };
 
+		$this.get['/users'] = new GidgetRoute({
+			routeHandler: function (err, req) {
+				$.ajax({
+					url: '/api/users/?q=' + req.uri.query.q,
+					method: 'GET'
+				}).done(function (data) {
+					console.log('Hey!')
+					Hilary.scope('heinz').resolve('HomeVM').HomeAuthenticateState(true);
+				});
+			}
+		});
+
         // GET /#/search/?q=searchterm
         // search for products
         $this.get['/search'] = new GidgetRoute({

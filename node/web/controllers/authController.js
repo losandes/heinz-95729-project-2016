@@ -52,7 +52,9 @@ module.exports.factory = function (router, repo) {
 						waitLogin: false,
 						login_user: name
 					}
-					res.render('index', data);
+
+					res.redirect('/users/?q=' + name);
+					//res.render('index', data);
 				});
             } else {
 				res.redirect('/error_login');
