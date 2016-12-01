@@ -11,10 +11,10 @@ Hilary.scope('heinz').register({
         };
         
         
-        $this.get['/checkout/:email'] = new GidgetRoute({
+        $this.get['/checkout/:userId'] = new GidgetRoute({
             routeHandler: function (err, req) {
                 $.ajax({
-                    url: '/api/checkout/' + req.params.email
+                    url: '/api/checkout/' + req.params.userId
                 }).done(function (data) {
                     if(data){
                         var checkout = new Checkout(data);

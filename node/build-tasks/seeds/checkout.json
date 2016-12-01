@@ -1,7 +1,7 @@
 [
     {
         "_id": "964d420206fd376a5b560020",
-        "email": "shopper1",
+        "userId": "shopper1",
         "shoppingCartId": 1,
         "books": [
         	{
@@ -28,7 +28,7 @@
     },
     {
         "_id": "964d420206fd376a5b560021",
-        "email": "shopper2",
+        "userId": "shopper2",
         "shoppingCartId": 2,
         "books": [
             {

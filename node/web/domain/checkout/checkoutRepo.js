@@ -39,11 +39,11 @@ module.exports.factory = function (db, Checkout, Blueprint, exceptions, is) {
     /*
     // Get a single Checkout
     */
-    self.get = function (email, callback) {
+    self.get = function (userId, callback) {
         // Blueprint isn't helpful for defending arguments, when they are
         // not objects. Here we defend the function arguments by hand.
-        if (is.not.string(email)) {
-            exceptions.throwArgumentException('', 'email');
+        if (is.not.string(userId)) {
+            exceptions.throwArgumentException('', 'userId');
             return;
         }
 
@@ -57,7 +57,7 @@ module.exports.factory = function (db, Checkout, Blueprint, exceptions, is) {
         // the query isn't executed until `next` is called. It receives a
         // callback function so it can perform the IO asynchronously, and
         // free up the event-loop, while it's waiting.
-        collection.find({ email: email }).limit(1).next(function (err, doc) {
+        collection.find({ userId: userId }).limit(1).next(function (err, doc) {
             if (err) {
                 callback(err);
                 return;

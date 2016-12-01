@@ -9,7 +9,7 @@ Hilary.scope('heinz').register({
             Checkout;
 
         blueprint = new Blueprint({
-            email:'string',
+            userId:'string',
             shoppingCartId: 'number',
             books: new Blueprint({
                 keywords: {
@@ -31,7 +31,7 @@ Hilary.scope('heinz').register({
 
             var type = checkout.type || 'checkout';
 
-            self.email = ko.observable(checkout.email);
+            self.userId = ko.observable(checkout.userId);
             self.shoppingCartId= ko.observable(checkout.shoppingCartId|| undefined);
             self.books = ko.observable(checkout.books || undefined);
            
