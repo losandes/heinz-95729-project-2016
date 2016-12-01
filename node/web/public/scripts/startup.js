@@ -1,4 +1,4 @@
-(function (scope, Hilary, $, Gidget, ko) {
+(function (scope, Hilary, $, Gidget, ko, authState) {
     'use strict';
 
     var mainSelector = '#main',
@@ -70,6 +70,7 @@
             gidgetApp.registerModule(scope.resolve('authController'));
             gidgetApp.registerModule(scope.resolve('booksController'));
             gidgetApp.registerModule(scope.resolve('exampleController'));
+			gidgetApp.registerModule(scope.resolve('userController'));
         },
         onComposed: function (err) {
             if (err) {
@@ -81,7 +82,8 @@
 
             ko.applyBindings(new HomeVM(), $('#header')[0]);
             ko.applyBindings(viewEngine.mainVM, $main[0]);
+			//authState.initAuthentication();
         }
     });
 
-}(Hilary.scope('heinz'), Hilary, jQuery, Gidget, ko));
+}(Hilary.scope('heinz'), Hilary, jQuery, Gidget, ko, Hilary.scope('heinz').resolve('authState')));

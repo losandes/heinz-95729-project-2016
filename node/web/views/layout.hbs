@@ -32,7 +32,7 @@
                 <a data-bind="text: text, href: href"></a>
             </span>
     -->
-            <!-- ko ifnot: authenticateState -->
+            <!-- ko ifnot: isAuthenticated -->
             <a href="/checkout">
                 <i class="fa fa-shopping-cart"></i>
             </a>
@@ -44,7 +44,7 @@
                 <button type="button" id = "register-button" class="btn btn-default navbar-btn">Register</button>
             </a>
             <!-- /ko -->
-            <!-- ko if: authenticateState -->
+            <!-- ko if: isAuthenticated -->
             <a href="/checkout">
                 <i class="fa fa-shopping-cart"></i>
             </a>
@@ -93,6 +93,7 @@
     <script src="/scripts/controllers/booksController.js"></script>
     <script src="/scripts/controllers/homeController.js"></script>
     <script src="/scripts/controllers/exampleController.js"></script>
+    <script src="/scripts/controllers/userController.js"></script>
 
     <script src="/scripts/locale/en_US.js"></script>
 
@@ -100,7 +101,6 @@
     <script src="/scripts/models/Books.js"></script>
     <script src="/scripts/models/Product.js"></script>
     <script src="/scripts/models/Products.js"></script>
-    <script src="/scripts/models/authenticateState.js"></script>
 
     <script src="/scripts/viewModels/HomeVM.js"></script>
 

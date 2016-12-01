@@ -1,7 +1,7 @@
 Hilary.scope('heinz').register({
     name: 'HomeVM',
-    dependencies: ['jQuery', 'ko', 'router', 'authenticateState'],
-    factory: function ($, ko, router, authenticateState) {
+    dependencies: ['jQuery', 'ko', 'router'],
+    factory: function ($, ko, router) {
         'use strict';
 
         var HomeVM;
@@ -11,15 +11,13 @@ Hilary.scope('heinz').register({
 			searchString: undefined,
 			go: undefined,
 			onSearchInputChanged: undefined,
-			isAuthenticated: undefined,
-			loginUser: "Test"
+			loginUser: ko.observable(''),
+			isAuthenticated: ko.observable(false)
 		};
 
         HomeVM = function () {
 
             var  oldSearchString;
-
-			data.isAuthenticated = authenticateState.getAuthenticateState();
 
 			data.searchString = ko.observable('');
 			data.go = function () {
@@ -40,12 +38,17 @@ Hilary.scope('heinz').register({
 
             // but don't auto-search more than twice per second
 			data.onSearchInputChanged.extend({ rateLimit: 500 });
-
             return data;
         };
 
+        var setAuthenticated = function() {
+        	console.log('I am here: setAuthenticated()');
+        	data.isAuthenticated(true);
+		}
+
         return {
-        	HomeVM: HomeVM
+        	HomeVM: HomeVM,
+			setAuthenticated: setAuthenticated
 		};
     }
 });

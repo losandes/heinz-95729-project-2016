@@ -1,7 +1,7 @@
 Hilary.scope('heinz').register({
     name: 'homeController',
-    dependencies: ['newGidgetModule', 'GidgetRoute', 'locale', 'viewEngine', 'Products', 'jQuery', 'authenticateState'],
-    factory: function ($this, GidgetRoute, locale, viewEngine, Products, $, authenticateState) {
+    dependencies: ['newGidgetModule', 'GidgetRoute', 'locale', 'viewEngine', 'Products', 'jQuery'],
+    factory: function ($this, GidgetRoute, locale, viewEngine, Products, $) {
         'use strict';
 
         $this.get['/'] = function () {
@@ -13,18 +13,6 @@ Hilary.scope('heinz').register({
                 }
             });
         };
-
-		$this.get['/users'] = new GidgetRoute({
-			routeHandler: function (err, req) {
-				$.ajax({
-					url: '/api/users/?q=' + req.uri.query.q,
-					method: 'GET'
-				}).done(function (data) {
-					authenticateState.changeAuthenticateState(true);
-
-				});
-			}
-		});
 
         // GET /#/search/?q=searchterm
         // search for products
