@@ -36,7 +36,7 @@ module.exports.factory = function (Blueprint, exceptions, ObjectID) {
             },
 			{
 				keys: { userId: 1 },
-				options: { name: 'unq.users.userId', unique: true, sparse: true }
+				options: { name: 'unq.users.id', unique: true, sparse: true }
 			}
         ]
     };

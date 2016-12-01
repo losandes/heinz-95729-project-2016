@@ -20,37 +20,25 @@ module.exports.factory = function (router, repo) {
 		if (req.body.email == "" || req.body.name == "" ||
 			req.body.userId == "") {
 			res.redirect('/report?error=' + "invalid");
-			return;
 		}
 
-		// Test if the email is already registered
-		repo.find.ifEmailExists(req.body.email, function (err, doc) {
-			if (doc != null) {
-				res.redirect('/report?error=' + "email");
-			}
-			if (err != null) {
-				res.redirect('/report?error=' + "db");
-			}
-		});
-
-		// Test if the userId is already registered
-		repo.find.ifUserIdExists(req.body.userId, function (err, doc) {
-			if (doc != null) {
-				res.redirect('/report?error=' + "userId");
-			}
-
-			if (err != null) {
-				res.redirect('/report?error=' + "db");
-			}
-		});
-
-        repo.create(req.body, function (err, result) {
-            if (!err && result.insertedId) {
+		repo.create(req.body, function (err, result) {
+			if (!err && result.insertedId) {
 				res.redirect('/succ_reg');
-            } else {
-				res.redirect('/report?error=' + "db");
-            }
-        });
+			} else {
+				console.log(err.message);
+				if (err.message.indexOf("unq.users.email") >= 0) {
+					res.redirect('/report?error=' + "email");
+					return;
+				} else if (err.message.indexOf("unq.users.id") >= 0) {
+					res.redirect('/report?error=' + "userId");
+					return;
+				} else {
+					res.redirect('/report?error=' + "db");
+				}
+				return;
+			}
+		});
     });
 
     router.post('/login', function (req, res) {
