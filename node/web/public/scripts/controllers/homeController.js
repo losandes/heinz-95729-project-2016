@@ -1,7 +1,7 @@
 Hilary.scope('heinz').register({
     name: 'homeController',
-    dependencies: ['newGidgetModule', 'GidgetRoute', 'locale', 'viewEngine', 'Products', 'jQuery'],
-    factory: function ($this, GidgetRoute, locale, viewEngine, Products, $) {
+    dependencies: ['newGidgetModule', 'GidgetRoute', 'locale', 'viewEngine', 'Products', 'jQuery', 'authenticateState'],
+    factory: function ($this, GidgetRoute, locale, viewEngine, Products, $, authenticateState) {
         'use strict';
 
         $this.get['/'] = function () {
@@ -20,8 +20,8 @@ Hilary.scope('heinz').register({
 					url: '/api/users/?q=' + req.uri.query.q,
 					method: 'GET'
 				}).done(function (data) {
-					console.log('Hey!')
-					Hilary.scope('heinz').resolve('HomeVM').HomeAuthenticateState(true);
+					authenticateState.changeAuthenticateState(true);
+
 				});
 			}
 		});
