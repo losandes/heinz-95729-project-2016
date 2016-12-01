@@ -16,13 +16,19 @@ Hilary.scope('heinz').register({
                 $.ajax({
                     url: '/api/checkout/' + req.params.email
                 }).done(function (data) {
-                    var checkout = new Checkout(data);
-                    console.log(checkout);
-                    viewEngine.setVM({
-                        template: 't-checkout',
-                        data: { checkout: checkout }
-                    });
-                    recalculateCart();
+                    if(data){
+                        var checkout = new Checkout(data);
+                        
+                        viewEngine.setVM({
+                            template: 't-checkout',
+                            data: { checkout: checkout }
+                        });
+                        recalculateCart();
+                    } else {
+                        viewEngine.setVM({
+                            template: 't-checkout-empty'
+                        });
+                    }
                     
 
                 });
