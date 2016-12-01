@@ -71,6 +71,7 @@
             gidgetApp.registerModule(scope.resolve('booksController'));
             gidgetApp.registerModule(scope.resolve('exampleController'));
             gidgetApp.registerModule(scope.resolve('checkoutController'));
+            gidgetApp.registerModule(scope.resolve('addToCartController'));
         },
         onComposed: function (err) {
             if (err) {
