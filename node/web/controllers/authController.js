@@ -61,16 +61,6 @@ module.exports.factory = function (router, repo) {
         });
     });
 
-	router.post('/error_reg', function (req, res) {
-		res.redirect('/register');
-		return;
-	});
-
-	router.post('/error_login', function (req, res) {
-		res.redirect('/login');
-		return;
-	});
-
 	router.post('/succ_reg', function (req, res) {
 		res.redirect('/login');
 		return;
@@ -79,12 +69,6 @@ module.exports.factory = function (router, repo) {
 	router.post('/succ_login', function (req, res) {
 		res.redirect('/index');
 		return;
-	});
-
-	router.post('/cart', function (req, res) {
-		console.log(req.data.book.title);
-		res.send(501); //Not implement yet
-		//todo
 	});
 
     return router;
