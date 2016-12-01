@@ -22,6 +22,7 @@ Hilary.scope('heinz').register({
                         template: 't-checkout',
                         data: { checkout: checkout }
                     });
+                    recalculateCart();
                     
 
                 });
@@ -37,3 +38,4 @@ Hilary.scope('heinz').register({
         return $this;
     }
 });
+

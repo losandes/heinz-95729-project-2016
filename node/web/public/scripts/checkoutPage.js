@@ -2,9 +2,6 @@
 var taxRate = 0.05;
 var shippingRate = 15.00; 
 var fadeTime = 300;
-recalculateCart();
-
-
 
 $('.product-removal button').click( function() {
   removeItem(this);
@@ -18,7 +15,6 @@ function recalculateCart()
  
   /* Sum up row totals */
   $('.product').each(function () {
-    alert("in fn");
     subtotal += parseFloat($(this).children('.product-price').text());
     alert(parseFloat($(this).children('.product-price').text()));
   });
@@ -56,3 +52,6 @@ function removeItem(removeButton)
     recalculateCart();
   });
 }
+
+
+  
