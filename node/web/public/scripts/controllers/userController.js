@@ -10,8 +10,6 @@ Hilary.scope('heinz').register({
 					url: '/api/users/?q=' + req.uri.query.q,
 					method: 'GET'
 				}).done(function (data) {
-					//authenticateState.changeAuthenticateState(true);
-					//authState.alreadyAuthentication();
 					homeVmSingleton.signin();
 				});
 			}

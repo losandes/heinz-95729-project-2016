@@ -20,13 +20,14 @@ module.exports.factory = function (router, repo) {
 		if (req.body.email == "" || req.body.name == "" ||
 			req.body.userId == "") {
 			res.redirect('/report?error=' + "invalid");
+			return;
 		}
 
 		repo.create(req.body, function (err, result) {
 			if (!err && result.insertedId) {
 				res.redirect('/succ_reg');
+				return;
 			} else {
-				console.log(err.message);
 				if (err.message.indexOf("unq.users.email") >= 0) {
 					res.redirect('/report?error=' + "email");
 					return;
@@ -35,6 +36,7 @@ module.exports.factory = function (router, repo) {
 					return;
 				} else {
 					res.redirect('/report?error=' + "db");
+					return;
 				}
 				return;
 			}
@@ -42,42 +44,41 @@ module.exports.factory = function (router, repo) {
     });
 
     router.post('/login', function (req, res) {
-        console.log(req.body);
+        repo.get(req.body.email, req.body.userId, function (err, doc) {
+			if (err) {
+				res.redirect('/report?error=' + "db");
+				return;
+			}
 
-        repo.get(req.body.email, function (err, user) {
-            if (!err) {
-                addCookie(user, res);
-
-				repo.finduser(req.body.email, function(name) {
-					var data = {
-						title: 'FancyBookStore',
-						waitLogin: false,
-						login_user: name
-					}
-
-					res.redirect('/users/?q=' + name);
-					//res.render('index', data);
-				});
-            } else {
-				res.redirect('/error_login');
-            }
+        	if (!doc) {
+				res.redirect('/report?error=' + "login");
+				return;
+			} else {
+				addCookie(doc, res);
+				res.redirect('/users/?q=' + req.body.userId);
+				return;
+			}
         });
     });
 
 	router.post('/error_reg', function (req, res) {
 		res.redirect('/register');
+		return;
 	});
 
 	router.post('/error_login', function (req, res) {
 		res.redirect('/login');
+		return;
 	});
 
 	router.post('/succ_reg', function (req, res) {
 		res.redirect('/login');
+		return;
 	});
 
 	router.post('/succ_login', function (req, res) {
 		res.redirect('/index');
+		return;
 	});
 
 	router.post('/cart', function (req, res) {

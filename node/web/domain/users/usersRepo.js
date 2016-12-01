@@ -23,6 +23,29 @@ module.exports.factory = function (db, User, Blueprint, exceptions, is) {
     /*
     // Get a single user
     */
+	self.get = function (email, userId, callback) {
+		if (is.not.string(email)) {
+			exceptions.throwArgumentException('', 'uid');
+			return;
+		}
+
+		if (is.not.string(userId)) {
+			exceptions.throwArgumentException('', 'uid');
+			return;
+		}
+
+		if (is.not.function(callback)) {
+			exceptions.throwArgumentException('', 'callback');
+			return;
+		}
+
+		collection.findOne({ email: email, userId: userId }, function (err, doc) {
+			console.log(err);
+			console.log(doc);
+			callback(err, doc);
+		});
+	};
+
     self.find = {
     	 ifEmailExists : function (email, callback) {
 			if (is.not.string(email)) {
