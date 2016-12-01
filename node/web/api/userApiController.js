@@ -4,7 +4,6 @@ module.exports.factory = function (router, repo, exceptions) {
 	'use strict';
 
 	router.get('/api/users', function (req, res) {
-		console.log('GREAT!' + 'query string is ' + req.query.q);
 		res.send(req.query.q);
 	});
 

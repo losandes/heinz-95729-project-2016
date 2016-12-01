@@ -1,7 +1,7 @@
 Hilary.scope('heinz').register({
 	name: 'userController',
-	dependencies: ['newGidgetModule', 'GidgetRoute', 'locale', 'viewEngine', 'Products', 'jQuery', 'HomeVM'],
-	factory: function ($this, GidgetRoute, locale, viewEngine, Products, $, HomeVM) {
+	dependencies: ['newGidgetModule', 'GidgetRoute', 'locale', 'viewEngine', 'Products', 'jQuery', 'homeVmSingleton'],
+	factory: function ($this, GidgetRoute, locale, viewEngine, Products, $, homeVmSingleton) {
 		'use strict';
 
 		$this.get['/users'] = new GidgetRoute({
@@ -12,7 +12,7 @@ Hilary.scope('heinz').register({
 				}).done(function (data) {
 					//authenticateState.changeAuthenticateState(true);
 					//authState.alreadyAuthentication();
-					HomeVM.setAuthenticated();
+					homeVmSingleton.signin();
 				});
 			}
 		});
