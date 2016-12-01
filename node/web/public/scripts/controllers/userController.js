@@ -11,6 +11,7 @@ Hilary.scope('heinz').register({
 					method: 'GET'
 				}).done(function (data) {
 					homeVmSingleton.signin();
+					homeVmSingleton.signUser(data);
 				});
 			}
 		});
