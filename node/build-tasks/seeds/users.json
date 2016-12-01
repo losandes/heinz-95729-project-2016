@@ -1,13 +1,8 @@
 [
-    {
-        "_id": "564d420206fd376a5b560026",
-    	"email": "admin@admin",
-    	"name": "Admin",
-	    "privilege": "admin",
-	    "history": [
-		    {
-			    "book": "How to be an admin"
-		    }
-	    ]
-    }
+	{
+		"_id": "564d420206fd376a5b560026",
+		"email": "shopper1@95729.com",
+		"name": "Shopper 1",
+		"userId": "shopper1"
+	}
 ]

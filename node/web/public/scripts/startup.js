@@ -86,6 +86,7 @@
 			gidgetApp.registerModule(scope.resolve('booksController'));
 			gidgetApp.registerModule(scope.resolve('exampleController'));
 			gidgetApp.registerModule(scope.resolve('userController'));
+			gidgetApp.registerModule(scope.resolve('errorController'));
 		},
 		onComposed: function (err) {
 			if (err) {

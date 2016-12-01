@@ -15,26 +15,40 @@ module.exports.factory = function (router, repo) {
 
 
     router.post('/register', function (req, res) {
-		req.body.privilege = 'user'
-		console.log(req.email)
+		//console.log(req.email)
 
-		if (req.body.email == "") {
-			res.redirect('/error_reg?q=' + "1");
+		if (req.body.email == "" || req.body.name == "" ||
+			req.body.userId == "") {
+			res.redirect('/report?error=' + "invalid");
 			return;
 		}
 
+		// Test if the email is already registered
+		repo.find.ifEmailExists(req.body.email, function (err, doc) {
+			if (doc != null) {
+				res.redirect('/report?error=' + "email");
+			}
+			if (err != null) {
+				res.redirect('/report?error=' + "db");
+			}
+		});
+
+		// Test if the userId is already registered
+		repo.find.ifUserIdExists(req.body.userId, function (err, doc) {
+			if (doc != null) {
+				res.redirect('/report?error=' + "userId");
+			}
+
+			if (err != null) {
+				res.redirect('/report?error=' + "db");
+			}
+		});
+
         repo.create(req.body, function (err, result) {
             if (!err && result.insertedId) {
-                repo.get(req.body.email, function (err, user) {
-                    if (!err) {
-                        addCookie(user, res);
-						res.redirect('/succ_reg');
-                    } else {
-						res.redirect('/error_reg?q=' + "3");
-                    }
-                });
+				res.redirect('/succ_reg');
             } else {
-				res.redirect('/error_reg?q=' + "2");
+				res.redirect('/report?error=' + "db");
             }
         });
     });
