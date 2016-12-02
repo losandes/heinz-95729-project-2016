@@ -16,6 +16,7 @@ function recalculateCart()
     if(total == 0){
       $('.checkout').fadeOut(fadeTime);
       $('.emptyShoppingCart').show();
+      document.getElementById('.emptyShoppingCart').style.display="block"
       $('.shopping-cart').hide();
     }else{
       $('.checkout').fadeIn(fadeTime);
