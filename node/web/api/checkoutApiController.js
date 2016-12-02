@@ -5,8 +5,8 @@ module.exports.factory = function (router, repo, exceptions) {
 
     
 
-    router.get('/api/checkout/:email', function (req, res) {
-        repo.get(req.params.email, function (err, checkout) {
+    router.get('/api/checkout/:userId', function (req, res) {
+        repo.get(req.params.userId, function (err, checkout) {
             if (err) {
                 exceptions.throwException(err);
                 res.status(400);
