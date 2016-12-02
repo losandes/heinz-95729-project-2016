@@ -54,12 +54,10 @@
             </figcaption>
         </figure>
 
-        <div class="purchase" action="/login">
-            <button class="btn btn-success btn-buy" data-bind="currency: book.price"></button>
-        </div>
+        
 
         <form action="/cart" method="post" role="form">
-            <button class="btn btn-success btn-cart" type="submit">Add to cart</button>
+            <button class="btn btn-success btn-cart" type="submit" data-bind="currency: book.price"></button>
         </form>
     </div>
 </script>
