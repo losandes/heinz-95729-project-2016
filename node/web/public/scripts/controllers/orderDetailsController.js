@@ -4,7 +4,7 @@ Hilary.scope('heinz').register({
     factory: function ($this, GidgetRoute, locale, viewEngine, Products, $) {
         'use strict';
 
-        $this.get['/orderDetails'] = function () {
+        $this.get['/orderDetails/:userId'] = function () {
             viewEngine.setVM({
                 template: 't-orderDetails',
                 
