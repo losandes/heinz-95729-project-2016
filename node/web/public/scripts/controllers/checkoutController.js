@@ -10,6 +10,11 @@ Hilary.scope('heinz').register({
             });
         };
         
+        $this.get['/payment/:userId'] = function () {
+            viewEngine.setVM({
+                template: 't-checkout-payment'
+            });
+        };        
         
         $this.get['/checkout/:userId'] = new GidgetRoute({
             routeHandler: function (err, req) {
@@ -23,14 +28,13 @@ Hilary.scope('heinz').register({
                             template: 't-checkout',
                             data: { checkout: checkout }
                         });
-                        recalculateCart();
+
+                        recalculateCart();                        
                     } else {
                         viewEngine.setVM({
                             template: 't-checkout-empty'
                         });
                     }
-                    
-
                 });
             }
         });
