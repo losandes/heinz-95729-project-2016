@@ -1,6 +1,7 @@
 
 
 
+
 function stripeCall() {
   var $form = $('#payment-form');
   //$form.submit(function(event) {
