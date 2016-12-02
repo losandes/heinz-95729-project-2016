@@ -9,7 +9,7 @@ Hilary.scope('heinz').register({
                 template: 't-empty',
                 data: {
                     heading: locale.pages.home.empty.heading,
-                    body: locale.pages.home.empty.body
+                    body: locale.pages.home.empty.body,
                 }
             });
         };
@@ -39,6 +39,6 @@ Hilary.scope('heinz').register({
             }
         });
 
-        return $this;
+		return $this;
     }
 });

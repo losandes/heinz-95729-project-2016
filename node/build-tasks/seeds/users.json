@@ -1,22 +1,8 @@
 [
-    {
-        "_id": "564d420206fd376a5b560026",
-    	"email": "shopper1@95729.com",
-    	"name": "Shopper 1"
-    },
-    {
-        "_id": "564d420206fd376a5b560027",
-    	"email": "shopper2@95729.com",
-    	"name": "Shopper 2"
-    },
-    {
-        "_id": "564d420206fd376a5b560028",
-    	"email": "shopper3@95729.com",
-    	"name": "Shopper 3"
-    },
-    {
-        "_id": "564d420206fd376a5b560029",
-    	"email": "shopper4@95729.com",
-    	"name": "Shopper 4"
-    }
+	{
+		"_id": "564d420206fd376a5b560026",
+		"email": "shopper1@95729.com",
+		"name": "Shopper 1",
+		"userId": "shopper1"
+	}
 ]

@@ -4,13 +4,40 @@ Hilary.scope('heinz').register({
     factory: function ($this, GidgetRoute, locale, viewEngine) {
         'use strict';
 
+		$this.get['/succ_reg'] = new GidgetRoute({
+			routeHandler: function (err, req) {
+				viewEngine.setVM({
+					template: 't-succ-reg',
+					data: {info: 'Successfully Register a new account'}
+				});
+			}
+		});
+
+		$this.get['/succ_login'] = new GidgetRoute({
+			routeHandler: function (err, req) {
+				viewEngine.setVM({
+					template: 't-succ-login',
+					data: {info: 'Successfully Login'}
+				});
+			}
+		});
+
+		$this.get['/error'] = new GidgetRoute({
+			routeHandler: function () {
+				viewEngine.setVM({
+					template: 't-error',
+					data: {}
+				});
+			}
+		});
+
         // GET /#/login
         // login
         $this.get['/login'] = new GidgetRoute({
             routeHandler: function () {
                 viewEngine.setVM({
                     template: 't-login',
-                    data: { }
+                    data: {}
                 });
             }
         });

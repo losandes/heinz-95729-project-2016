@@ -5,7 +5,7 @@ Hilary.scope('heinz').register({
             'home': {
                 'empty': {
                     'heading': 'Welcome to Papyr!',
-                    'body': 'To get started, you can search for books. Try "adams", "wild", "robbins", "swamp", "india", "tropper", "di", "world", or "novel". If nothing returns, make sure you ran `grunt seed`.'
+                    'body': 'Let\'s have fun:)'
                 }
             },
             'errors': {
