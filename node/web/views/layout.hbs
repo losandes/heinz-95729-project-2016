@@ -21,7 +21,7 @@
     <header id="header">
         <h1><a href="/">Papyr</a></h1>
         <div class="search-form">
-            <div class="input-group input-group-lg">
+            <div class="input-group input-group-lg search-textbox">
                 <input type="text" class="form-control" placeholder="search" data-bind="textInput: searchString">
                 <span class="input-group-btn">
                     <button class="btn btn-default" type="button" data-bind="click: go">Go!</button>
@@ -42,6 +42,7 @@
                 <i class="fa fa-shopping-cart"></i>
             </a>
             <a href="/login">
+
                 <button type="button" class="btn btn-default navbar-btn">Sign in</button>
             </a>
 
@@ -75,6 +76,7 @@
     {{> login}}
     {{> register}}
     {{> checkout}}
+
     {{> checkoutEmpty}}
     {{> checkoutCopy}}
     {{> payment}}
@@ -82,6 +84,9 @@
     {{> succ_reg}}
     {{> succ_login}}
     {{> report}}
+
+
+    {{> orderDetails}}
 
 
     <!-- /templates -->
@@ -104,6 +109,7 @@
     <script src="/scripts/controllers/exampleController.js"></script>
 
     <script src="/scripts/controllers/checkoutController.js"></script>
+    <script src="/scripts/controllers/orderDetailsController.js"></script>
 
     <script src="/scripts/controllers/userController.js"></script>
     <script src="/scripts/controllers/errorController.js"></script>
