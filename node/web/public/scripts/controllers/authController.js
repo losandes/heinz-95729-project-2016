@@ -50,6 +50,12 @@ Hilary.scope('heinz').register({
             }
         });
 
+		$this.get['/logout'] = new GidgetRoute({
+			routeHandler: function () {
+				return true; // ignore
+			}
+		});
+
         // GET /register
         // Register a new account
         $this.get['/register'] = new GidgetRoute({

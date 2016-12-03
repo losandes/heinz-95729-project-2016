@@ -8,7 +8,9 @@ module.exports.factory = function (User) {
         if (authCookie) {
             res.locals.user = req.cookies.auth.userId;//new User(authCookie);
 			res.locals.isAuthenticated = true;
-        }
+        } else {
+			res.locals.isAuthenticated = false;
+		}
 
         next();
     };
