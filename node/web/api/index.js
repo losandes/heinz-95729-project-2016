@@ -8,6 +8,7 @@ module.exports = [
 
 
 	require('./userApiController.js'),
-	require('./errorApiController.js')
+	require('./errorApiController.js'),
+	require('./orderHistoryApiController.js')
 
 ];

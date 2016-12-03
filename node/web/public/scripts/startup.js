@@ -88,7 +88,9 @@
 			gidgetApp.registerModule(scope.resolve('userController'));
 			gidgetApp.registerModule(scope.resolve('errorController'));
 			gidgetApp.registerModule(scope.resolve('checkoutController'));
+			gidgetApp.registerModule(scope.resolve('orderHistoryController'));
 			//gidgetApp.registerModule(scope.resolve('addToCartController'));
+			
 		},
 		onComposed: function (err) {
 			if (err) {
