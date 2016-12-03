@@ -34,9 +34,7 @@
             </span>
     -->
             <!-- ko ifnot: isAuthenticated -->
-            <a href="/checkout">
-                <i class="fa fa-shopping-cart"></i>
-            </a>
+            
             <a href="/login">
                 <button type="button" class="btn btn-default navbar-btn">Sign in</button>
             </a>
@@ -46,12 +44,15 @@
             </a>
             <!-- /ko -->
             <!-- ko if: isAuthenticated -->
-            <a href="/checkout">
+            <a href="/checkout/shopper1">
                 <i class="fa fa-shopping-cart"></i>
             </a>
             Welcome <span data-bind="text: loginUser"> </span> !
             <a href="/logout">
                 <button type="button" class="btn btn-default navbar-btn">Log out</button>
+            </a>
+            <a href="/orderHistory/shopper1">
+                <button type="button" class="btn btn-default navbar-btn">Order History</button>
             </a>
             <!-- /ko -->
 
