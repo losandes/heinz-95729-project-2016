@@ -50,7 +50,7 @@ module.exports.factory = function (Blueprint, ObjectID, exceptions) {
         self._id = new ObjectID(order._id);
         self.date = order.date;
         self.userId = order.userId;
-        self.ordertId = order.orderId;
+        self.orderId = order.orderId;
         self.total = order.total;
         self.books = order.books;
 

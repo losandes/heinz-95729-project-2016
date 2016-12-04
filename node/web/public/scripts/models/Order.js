@@ -8,7 +8,7 @@ Hilary.scope('heinz').register({
         var blueprint,
             Order;
 
-        blueprint = new Blueprint({
+       /* blueprint = new Blueprint({
             _id: {
                 type: 'object',
                 required: false
@@ -23,7 +23,7 @@ Hilary.scope('heinz').register({
                     required: false
                 }
             })
-        });
+        });*/
 
         Order = function (order) {
             var self = {};
@@ -40,7 +40,7 @@ Hilary.scope('heinz').register({
             self._id = new ObjectID(order._id);
             self.date = order.date;
             self.userId = order.userId;
-            self.ordertId = order.orderId;
+            self.orderId = order.orderId;
             self.total = order.total;
             self.books = order.books;
                
