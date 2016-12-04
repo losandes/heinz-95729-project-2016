@@ -61,6 +61,15 @@ Hilary.scope('heinz').register({
             }
         });
 
+        $this.get['/succ_addtoCart'] = new GidgetRoute({
+          routeHandler: function (err, req) {
+            viewEngine.setVM({
+              template: 't-succ-addtoCart',
+              data: {info: 'Book added to Cart'} 
+            });
+          }
+        });
+
         return $this;
     }
 });

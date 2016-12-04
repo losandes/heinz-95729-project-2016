@@ -81,8 +81,27 @@ module.exports.factory = function (db, Checkout, Blueprint, exceptions, is) {
             return;
         }
 
+     collection.deleteOne({"book.uid": payload.book.uid , "userId": payload.userId },callback );
+
         collection.insertOne(payload, callback);
     };
+
+    /*
+   // Deleate a shopping cart for a user
+   */
+   self.delete = function (userId, uid, callback) {
+
+       if (is.not.function(callback)) {
+           exceptions.throwArgumentException('', 'callback');
+           return;
+       }
+
+       collection.deleteOne({"book.uid": uid , "userId": userId },callback );
+
+       collection.insertOne(payload, callback);
+   };
+
+
 
     return self;
 };
