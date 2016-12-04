@@ -1,0 +1,17 @@
+<script id="t-report-reg" type="text/html">
+    <div class="error-component" data-bind="with: data">
+        <div class="error-detail"></div>
+        <div class="error-detail">
+            <code data-bind="text: report"></code>
+        </div>
+    </div>
+    <form id="error-login" action="/error_reg" method="post" role="form">
+        <button class="btn btn-success" type="submit" onclick="goBack()">Go back</button>
+    </form>
+</script>
+
+<script>
+    function goBack() {
+    	window.history.back();
+    }
+</script>

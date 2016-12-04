@@ -18,7 +18,7 @@ module.exports.factory = function (Blueprint, ObjectID, exceptions) {
             type: 'object',
             required: false
         },
-        email:'string',
+        userId:'string',
         shoppingCartId: 'number',
         books: new Blueprint({
             keywords: {
@@ -47,7 +47,7 @@ module.exports.factory = function (Blueprint, ObjectID, exceptions) {
         // define the Checkout properties from the Checkout argument
         self._id = new ObjectID(checkout._id);
 
-        self.email = checkout.email;
+        self.userId = checkout.userId;
         self.shoppingCartId = checkout.shoppingCartId;
         self.books = checkout.books;
 
@@ -69,7 +69,7 @@ module.exports.factory = function (Blueprint, ObjectID, exceptions) {
             // so a null should never be present.
             {
                 keys: { name: 1 },
-                options: { name: 'unq.checkout.email', unique: true, sparse: true }
+                options: { name: 'unq.checkout.userId', unique: true, sparse: true }
             },
             // This is the full-text index, which is used for searching
             // '$**' indicates that all text properties should be included

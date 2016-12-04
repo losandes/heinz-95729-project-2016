@@ -4,6 +4,10 @@
   <div class="checkout-component details" data-bind="with: data">
   <h1>Shopping Cart</h1>
 
+  <div class = "emptyShoppingCart" style = "display:none;">
+    <p> No books added in the shopping cart</p>
+  </div>
+
   <div class="shopping-cart">
 
     <div class="column-labels">
@@ -24,7 +28,7 @@
             <p class="product-description" data-bind="html: b.description"</p>
           </div>
           <div class="product-removal">
-            <button class="remove-product">
+            <button class="remove-product" onclick="removeItem(this)">
               Remove
             </button>
           </div>
@@ -38,7 +42,7 @@
     <div class="totals">
       <div class="totals-item">
         <label>Total</label>
-        <div class="totals-value" id="cart-subtotal"></div>
+        <div class="totals-value" id="cart-total"></div>
       </div>
     </div>
       
