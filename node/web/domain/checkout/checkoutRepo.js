@@ -63,22 +63,34 @@ module.exports.factory = function (db, Checkout, Blueprint, exceptions, is) {
                 return;
             }
 
-            callback(null, new Checkout(doc));
+			if (doc) {
+				callback(null, new Checkout(doc));
+			} else {
+				callback(null, null);
+			}
         });
     };
 
-    self.update = function (payload, callback) {
-		if (is.not.object(payload)) {
-			exceptions.throwArgumentException('', 'payload');
+    self.update = function (userId, books, callback) {
+		if (is.not.string(userId)) {
+			exceptions.throwArgumentException('', 'userId');
 			return;
 		}
-
+/*
+    	if (is.not.object(books)) {
+			exceptions.throwArgumentException('', 'update books');
+			return;
+		}
+*/
 		if (is.not.function(callback)) {
 			exceptions.throwArgumentException('', 'callback');
 			return;
 		}
 
-		collection.insertOne(payload, callback);
+		collection.update(
+			{"userId": userId},
+			{$push: {"books": { $each: books }}}
+		, callback);
 	};
 
      /*
