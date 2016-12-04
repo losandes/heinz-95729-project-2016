@@ -71,8 +71,9 @@ module.exports.factory = function (db, Checkout, Blueprint, exceptions, is) {
         });
     };
 
-    self.update = function (userId, books, callback) {
-		if (is.not.string(userId)) {
+    self.update = function (userId, book, callback) {
+
+    if (is.not.string(userId)) {
 			exceptions.throwArgumentException('', 'userId');
 			return;
 		}
@@ -86,11 +87,16 @@ module.exports.factory = function (db, Checkout, Blueprint, exceptions, is) {
 			exceptions.throwArgumentException('', 'callback');
 			return;
 		}
+    collection.update(
+      {"userId": userId},
+      {$pull: {"books": {"uid": book.uid}}, function(err, data) {
+        }}
+       );
 
 		collection.update(
 			{"userId": userId},
-			{$push: {"books": { $each: books }}}
-		, callback);
+			{$push: {"books": { $each: book }}}
+		, callback)
 	};
 
      /*
@@ -107,7 +113,7 @@ module.exports.factory = function (db, Checkout, Blueprint, exceptions, is) {
             return;
         }
 
-     collection.deleteOne({"book.uid": payload.book.uid , "userId": payload.userId },callback );
+//        collection.deleteOne({"book.uid": payload.book.uid , "userId": payload.userId },callback );
 
         collection.insertOne(payload, callback);
     };
@@ -115,18 +121,20 @@ module.exports.factory = function (db, Checkout, Blueprint, exceptions, is) {
     /*
    // Deleate a shopping cart for a user
    */
-   self.delete = function (userId, uid, callback) {
+
+   self.remove = function (userId, uid, callback) {
 
        if (is.not.function(callback)) {
            exceptions.throwArgumentException('', 'callback');
            return;
        }
 
-       collection.deleteOne({"book.uid": uid , "userId": userId },callback );
+       collection.update(
+         {userId: userId},
+         {$pull: {books: {uid: uid}}}
+          );
 
-       collection.insertOne(payload, callback);
    };
-
 
 
     return self;

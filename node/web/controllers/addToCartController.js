@@ -8,7 +8,12 @@ module.exports.factory = function (router, checkoutrepo, bookrepo, exceptions) {
         console.log ('---------------');
         console.log (req.body);
 
-        if (req.body.uid == '' || req.body.userId == '') {
+        var currentUserId=req.cookies.auth.userId;
+
+        console.log (currentUserId);
+
+
+        if (req.body.uid == '' ) {
            return;
         }
 
@@ -19,8 +24,10 @@ module.exports.factory = function (router, checkoutrepo, bookrepo, exceptions) {
                 return;
             }
 
+
+
             var newcheckout = {
-               userId : req.body.userId,
+               userId : currentUserId,
                book : book1
             };
 
@@ -30,7 +37,7 @@ module.exports.factory = function (router, checkoutrepo, bookrepo, exceptions) {
                 return;
               }
                 return;
-            });   
+            });
 
         });
 

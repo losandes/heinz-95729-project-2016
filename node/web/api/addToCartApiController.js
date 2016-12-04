@@ -4,18 +4,18 @@ module.exports.factory = function (router, checkoutRepo, productsRepo, exception
 	'use strict';
 
 	router.post('/addtoCart', function (req, res) {
-		req.query.q = "wild"; //Test only
+		//req.query.q = req.body.uid; //Test only
 
 		var userId = req.cookies.auth.userId;
 
 		console.log("Find Now");
-		productsRepo.find({ query: { $text: { $search: req.query.q }, type: 'book' } }, function (err, books) {
+		productsRepo.find({query: {uid: req.body.uid, type: 'book' }}, function (err, book) {
 			if (err) {
 				res.redirect('/report?error=' + "db");
 				return;
 			}
 
-			if (!books) {
+			if (!book) {
 				// Books not found
 				res.redirect('/report?error=' + "nosuchbook");
 				return;
@@ -32,7 +32,7 @@ module.exports.factory = function (router, checkoutRepo, productsRepo, exception
 				if (result) {
 					// Update
 					console.log("Update Now");
-					checkoutRepo.update(userId, books, function (err, result) {
+					checkoutRepo.update(userId, book, function (err, result) {
 						if (!err) {
 							res.redirect('/report?error=' + "addCart");
 							return;
@@ -46,8 +46,11 @@ module.exports.factory = function (router, checkoutRepo, productsRepo, exception
 					console.log("Create Now");
 					var checkoutData = {
 						"userId": userId,
-						"books": books
+						"books": book
 					}
+
+			
+
 					checkoutRepo.create(checkoutData, function (err, result) {
 						if (!err) {
 							res.redirect('/report?error=' + "addCart");
