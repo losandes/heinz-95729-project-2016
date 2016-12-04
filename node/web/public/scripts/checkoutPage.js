@@ -36,5 +36,9 @@ function removeItem(removeButton)
   });
 }
 
-
-  
+function directToCheckout()
+{
+  var userId = document.getElementById("userid").innerHTML;
+  userId = $.trim(userId);
+  window.location.href = "/checkout/" + userId;
+}

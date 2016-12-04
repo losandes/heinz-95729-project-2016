@@ -47,10 +47,10 @@
             <!-- /ko -->
 
             <!-- ko if: {{isAuthenticated}} -->
-            <a href="/checkout/shopper1">
+            <a onclick="directToCheckout()">
                 <i class="fa fa-shopping-cart"></i>
             </a>
-            <span id="userid"> Welcome {{user}} </span> !
+             Welcome <span id="userid"> {{user}} </span> !
             <a href="/logout">
                 <button type="button" class="btn btn-default navbar-btn">Log out</button>
             </a>
