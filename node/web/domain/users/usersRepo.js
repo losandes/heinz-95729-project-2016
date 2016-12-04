@@ -40,8 +40,8 @@ module.exports.factory = function (db, User, Blueprint, exceptions, is) {
 		}
 
 		collection.findOne({ email: email, userId: userId }, function (err, doc) {
-			console.log(err);
-			console.log(doc);
+			//console.log(err);
+			//console.log(doc);
 			callback(err, doc);
 		});
 	};
