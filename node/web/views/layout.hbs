@@ -33,8 +33,10 @@
                 <a data-bind="text: text, href: href"></a>
             </span>
     -->
-            <!-- ko ifnot: isAuthenticated -->
-            
+
+
+            <!-- ko ifnot: {{isAuthenticated}} -->
+
             <a href="/login">
                 <button type="button" class="btn btn-default navbar-btn">Sign in</button>
             </a>
@@ -43,11 +45,12 @@
                 <button type="button" id = "register-button" class="btn btn-default navbar-btn">Register</button>
             </a>
             <!-- /ko -->
-            <!-- ko if: isAuthenticated -->
+
+            <!-- ko if: {{isAuthenticated}} -->
             <a href="/checkout/shopper1">
                 <i class="fa fa-shopping-cart"></i>
             </a>
-            Welcome <span data-bind="text: loginUser"> </span> !
+            <span id="userid"> Welcome {{user}} </span> !
             <a href="/logout">
                 <button type="button" class="btn btn-default navbar-btn">Log out</button>
             </a>
@@ -101,7 +104,6 @@
 
     <script src="/scripts/controllers/checkoutController.js"></script>
 
-    <script src="/scripts/controllers/userController.js"></script>
     <script src="/scripts/controllers/errorController.js"></script>
 
 

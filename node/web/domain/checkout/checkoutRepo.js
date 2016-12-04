@@ -72,6 +72,20 @@ module.exports.factory = function (db, Checkout, Blueprint, exceptions, is) {
         });
     };
 
+    self.update = function (payload, callback) {
+		if (is.not.object(payload)) {
+			exceptions.throwArgumentException('', 'payload');
+			return;
+		}
+
+		if (is.not.function(callback)) {
+			exceptions.throwArgumentException('', 'callback');
+			return;
+		}
+
+		collection.insertOne(payload, callback);
+	};
+
      /*
     // Create a shopping cart for a user
     */
