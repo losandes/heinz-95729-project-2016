@@ -1,40 +1,35 @@
 Hilary.scope('heinz').register({
     name: 'orderDetailsController',
-    dependencies: ['newGidgetModule', 'GidgetRoute', 'locale', 'viewEngine', 'Products', 'jQuery'],
-    factory: function ($this, GidgetRoute, locale, viewEngine, Products, $) {
+    dependencies: ['newGidgetModule', 'GidgetRoute', 'locale', 'viewEngine', 'Checkout','Products', 'jQuery'],
+    factory: function ($this, GidgetRoute, locale, viewEngine,Checkout, Products, $) {
         'use strict';
 
-        $this.get['/orderDetails/:userId'] = function () {
+        /*$this.get['/orderDetails/:userId'] = function () {
             viewEngine.setVM({
                 template: 't-orderDetails',
                 
             });
-        };
+        };*/
 
-        // GET /#/search/?q=searchterm
-        // search for products
-        $this.get['/search'] = new GidgetRoute({
+       $this.get['/orderDetails/:userId'] = new GidgetRoute({
             routeHandler: function (err, req) {
                 $.ajax({
-                    url: '/api/search?q=' + req.uri.query.q,
-                    method: 'GET'
+                    url: '/api/checkout/' + req.params.userId
                 }).done(function (data) {
-                    var results = new Products(data);
-
-                    if (results.products().length > 0) {
+                    if(data){
+                        var checkout = new Checkout(data);
+                        
                         viewEngine.setVM({
-                            template: 't-product-grid',
-                            data: results
+                            template: 't-orderDetails',
+                            data: { checkout: checkout }
                         });
-                    } else {
-                        viewEngine.setVM({
-                            template: 't-no-results',
-                            data: { searchterm: req.uri.query.q }
-                        });
+                        recalculateCart();
                     }
+
                 });
             }
         });
+        
 
         return $this;
     }
