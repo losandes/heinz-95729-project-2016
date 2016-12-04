@@ -4,5 +4,7 @@ module.exports = [
     require('./products/Product.js'),
     require('./products/productsRepo.js'),
     require('./users/User.js'),
-    require('./users/usersRepo.js')
+    require('./users/usersRepo.js'),
+    require('./checkout/Checkout.js'),
+    require('./checkout/checkoutRepo.js')
 ];

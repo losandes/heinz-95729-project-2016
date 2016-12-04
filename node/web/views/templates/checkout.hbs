@@ -1,83 +1,101 @@
 
 <script id="t-checkout" type="text/html">
 
-    <div class="checkout-component details" data-bind="with: data">
-       
-        <body>
+  <div class="checkout-component details" data-bind="with: data">
   <h1>Shopping Cart</h1>
 
-<div class="shopping-cart">
-
-  <div class="column-labels">
-    <label class="product-image">Image</label>
-    <label class="product-details">Product</label>
-    <label class="product-price">Price</label>
-    <label class="product-removal">Remove</label>
-    <label class="product-line-price">Total</label>
+  <div class = "emptyShoppingCart" style = "display:none;">
+    <p> No books added in the shopping cart</p>
   </div>
 
-  <div class="product">
-    <div class="product-image">
-      <img src="http://s.cdpn.io/3/dingo-dog-bones.jpg">
-    </div>
-    <div class="product-details">
-      <div class="product-title">Dingo Dog Bones</div>
-      <p class="product-description">The best dog bones of all time. Holy crap. Your dog will be begging for these things! I got curious once and ate one myself. I'm a fan.</p>
-    </div>
-    <div class="product-price">12.99</div>
-    <div class="product-removal">
-      <button class="remove-product">
-        Remove
-      </button>
-    </div>
-    <div class="product-line-price">25.98</div>
-  </div>
+  <div class="shopping-cart">
 
-  <div class="product">
-    <div class="product-image">
-      <img src="http://s.cdpn.io/3/large-NutroNaturalChoiceAdultLambMealandRiceDryDogFood.png">
+    <div class="column-labels">
+      <label class="product-image">Image</label>
+      <label class="product-details">Product</label>   
+      <label class="product-removal">Remove</label>
+      <label class="product-price">Price</label>    
     </div>
-    <div class="product-details">
-      <div class="product-title">Nutro™ Adult Lamb and Rice Dog Food</div>
-      <p class="product-description">Who doesn't like lamb and rice? We've all hit the halal cart at 3am while quasi-blackout after a night of binge drinking in Manhattan. Now it's your dog's turn!</p>
-    </div>
-    <div class="product-price">45.99</div>
     
-    <div class="product-removal">
-      <button class="remove-product">
-        Remove
-      </button>
-    </div>
-    <div class="product-line-price">45.99</div>
-  </div>
+    
+      <div data-bind="foreach: { data: checkout.books, as: 'b' }">
+        <div class = "product">
+          <div class="product-image">
+            <img src="" alt="" data-bind="src: b.thumbnailLink, attr: { alt: b.thumbnailAlt }">
+          </div>
+          <div class="product-details">
+            <div class="product-title" data-bind="text: b.title"></div>
+            <p class="product-description" data-bind="html: b.description"</p>
+          </div>
+          <div class="product-removal">
+            <button class="remove-product" onclick="removeItem(this)">
+              Remove
+            </button>
+          </div>
+          <div class="product-price" data-bind="text: b.price"></div>    
+        </div>
+      </div>    
+    
 
-  <div class="totals">
-    <div class="totals-item">
-      <label>Subtotal</label>
-      <div class="totals-value" id="cart-subtotal">71.97</div>
+    
+
+    <div class="totals">
+      <div class="totals-item">
+        <label>Total</label>
+        <div class="totals-value" id="cart-total"></div>
+      </div>
     </div>
-    <div class="totals-item">
-      <label>Tax (5%)</label>
-      <div class="totals-value" id="cart-tax">3.60</div>
-    </div>
-    <div class="totals-item">
-      <label>Shipping</label>
-      <div class="totals-value" id="cart-shipping">15.00</div>
-    </div>
-    <div class="totals-item totals-item-total">
-      <label>Grand Total</label>
-      <div class="totals-value" id="cart-total">90.57</div>
-    </div>
-  </div>
       
-      <button class="checkout">Pay</button>
+    <button data-toggle = "modal" data-target = "#payModal" class="checkout">Checkout</button>
 
 </div>
-  <script src='http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
-
-    <script src="js/index.js"></script>
-
-</body>
-
+<div class="modal fade" id="payModal" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true" style="display: none;">
+  <div class="modal-dialog">
+  <div class="modal-content">
+    <div class="modal-header">
+      <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
+      <h3 class="modal-title" id="lineModalLabel">Enter your Credit Card Details</h3>
     </div>
+    <div class="modal-body">
+      
+            <!-- content goes here -->
+      <form action="/your-charge-code" method="POST" id="payment-form">
+        <span class="payment-errors"></span>
+              
+              <div class="form-group">
+                <label>
+                  <span>Card Number</span>
+                  <input type="text" size="20" data-stripe="number">
+                </label>
+              </div>
+              <div class="form-group">
+                <label>
+                  <span>Expiration (MM/YY)</span>
+                  <input type="text" size="2" data-stripe="exp_month">
+                </label>
+                <span> / </span>
+                <input type="text" size="2" data-stripe="exp_year">
+              </div>
+              <div class="form-group">
+                <label>
+                  <span>CVC</span>
+                  <input type="text" size="4" data-stripe="cvc">
+                </label>
+                
+              </div>  
+              <div class="form-group">
+                <label>
+                  <span>Billing ZIP Code</span>
+                  <input type="text" size="6" data-stripe="address_zip">
+                </label>
+              </div>
+              <input type="submit" class="submit btn btn-success" value="Submit Payment">              
+            </form>
+    </div>    
+  </div>
+  </div>
+</div>  
+
+
+
 </script>

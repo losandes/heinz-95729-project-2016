@@ -53,8 +53,10 @@
                 <div data-bind="html: book.description"></div>
             </figcaption>
         </figure>
-        <div class="purchase">
-            <button class="btn btn-success btn-buy" data-bind="currency: book.price"></button>
-        </div>        
+
+        <form action="/cart" method="post" role="form">
+            <button class="btn btn-success btn-cart" type="submit" data-bind="currency: book.price"></button>
+        </form>
+
     </div>
 </script>
