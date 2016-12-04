@@ -1,13 +1,13 @@
 /*
 // See the README.md for info on this module
 */
-module.exports.name = 'OrderHistory';
+module.exports.name = 'Order';
 module.exports.dependencies = ['Blueprint', 'ObjectID', 'exceptions'];
 module.exports.factory = function (Blueprint, ObjectID, exceptions) {
     'use strict';
 
     var blueprint,
-        OrderHistory;
+        Order;
 
     /*
     // This blueprint will be used to validate objects, and ensure that they
@@ -33,7 +33,7 @@ module.exports.factory = function (Blueprint, ObjectID, exceptions) {
     /*
     // This is the Product constructor, which will be returned by this factory
     */
-    OrderHistory = function (order) {
+    Order = function (order) {
         // often times, we use selfies to provide a common object on which
         // to define properties. It's also common to see `var self = this`.
         var self = {};
@@ -61,7 +61,7 @@ module.exports.factory = function (Blueprint, ObjectID, exceptions) {
     // The db object is used to create and connect to the appropriate database
     // collection, which is similar to a table in relational storage.
     */
-    OrderHistory.db = {
+    Order.db = {
         // This is the name of the collection
         collection: 'orderHistory',
         // The indexes improve query performance

@@ -4,8 +4,8 @@
 module.exports.name = 'orderHistoryRepo';
 module.exports.singleton = true;
 //module.exports.blueprint = ['repoBlueprint'];
-module.exports.dependencies = ['db', 'OrderHistory' ,'Blueprint', 'exceptions', 'is'];
-module.exports.factory = function (db, OrderHistory, Blueprint, exceptions, is) {
+module.exports.dependencies = ['db', 'Order','Blueprint', 'exceptions', 'is'];
+module.exports.factory = function (db, Order, Blueprint, exceptions, is) {
     'use strict';
 
     var self = {
@@ -39,11 +39,11 @@ module.exports.factory = function (db, OrderHistory, Blueprint, exceptions, is) 
     /*
     // Get a single order
     */
-    self.get = function (orderId, callback) {
+    self.get = function (userId, callback) {
         // Blueprint isn't helpful for defending arguments, when they are
         // not objects. Here we defend the function arguments by hand.
-        if (is.not.string(orderId)) {
-            exceptions.throwArgumentException('', 'orderId');
+        if (is.not.string(userId)) {
+            exceptions.throwArgumentException('', 'userId');
             return;
         }
 
@@ -57,7 +57,7 @@ module.exports.factory = function (db, OrderHistory, Blueprint, exceptions, is) 
         // the query isn't executed until `next` is called. It receives a
         // callback function so it can perform the IO asynchronously, and
         // free up the event-loop, while it's waiting.
-        collection.find({ orderId: orderId}).limit(1).next(function (err, doc) {
+        collection.find({ userId: userId}).limit(1).next(function (err, doc) {
             if (err) {
                 callback(err);
                 return;
