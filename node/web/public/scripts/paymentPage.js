@@ -1,6 +1,5 @@
-
-
-
+var userId = document.getElementById("userid").innerHTML;
+userId = $.trim(userId);
 
 function stripeCall() {
   var $form = $('#payment-form');
@@ -36,12 +35,16 @@ function stripeResponseHandler(status, response) {
 
     // Submit the form:
     $form.get(0).submit();
+    directToOrderDetails();
   }
 };
 
 function directToPayment()
 {
-  var userId = document.getElementById("userid").innerHTML;
-  userId = $.trim(userId);
   window.location.href = "/payment/" + userId;
+}
+
+function directToOrderDetails()
+{
+  window.location.href = "/orderDetails/" + userId;
 }
