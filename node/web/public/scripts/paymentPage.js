@@ -38,3 +38,10 @@ function stripeResponseHandler(status, response) {
     $form.get(0).submit();
   }
 };
+
+function directToPayment()
+{
+  var userId = document.getElementById("userid").innerHTML;
+  userId = $.trim(userId);
+  window.location.href = "/payment/" + userId;
+}
