@@ -11,8 +11,6 @@ Hilary.scope('heinz').register({
 					searchString: undefined,
 					go: undefined,
 					onSearchInputChanged: undefined,
-					loginUser: ko.observable(""),
-					isAuthenticated: ko.observable(false)
 				},
 				oldSearchString;
 
@@ -35,19 +33,6 @@ Hilary.scope('heinz').register({
 
 			// but don't auto-search more than twice per second
 			self.onSearchInputChanged.extend({ rateLimit: 500 });
-
-			self.signin = function () {
-				self.isAuthenticated(true);
-			};
-
-			self.signUser = function(name) {
-				self.loginUser(name);
-			}
-
-			self.fetchUser = function() {
-				return self.loginUser();
-			}
-
 			return self;
 		};
 

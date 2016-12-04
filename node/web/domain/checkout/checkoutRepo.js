@@ -57,7 +57,12 @@ module.exports.factory = function (db, Checkout, Blueprint, exceptions, is) {
         // the query isn't executed until `next` is called. It receives a
         // callback function so it can perform the IO asynchronously, and
         // free up the event-loop, while it's waiting.
-        collection.find({ userId: userId }).limit(1).next(function (err, doc) {
+        //collection.find({$and: [ {'books.status': 'add'}, { userId: userId }]}).limit(1).next(function (err, doc) {
+        collection.find({ userId : userId , 
+                     "books": { $all: [
+                                    { "$elemMatch" : { "status": "add"} }
+                                  ] }
+                   }).limit(1).next(function (err, doc) {    
             if (err) {
                 callback(err);
                 return;
@@ -66,6 +71,20 @@ module.exports.factory = function (db, Checkout, Blueprint, exceptions, is) {
             callback(null, new Checkout(doc));
         });
     };
+
+    self.update = function (payload, callback) {
+		if (is.not.object(payload)) {
+			exceptions.throwArgumentException('', 'payload');
+			return;
+		}
+
+		if (is.not.function(callback)) {
+			exceptions.throwArgumentException('', 'callback');
+			return;
+		}
+
+		collection.insertOne(payload, callback);
+	};
 
      /*
     // Create a shopping cart for a user

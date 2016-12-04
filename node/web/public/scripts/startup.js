@@ -84,9 +84,10 @@
 			gidgetApp.registerModule(scope.resolve('homeController'));
 			gidgetApp.registerModule(scope.resolve('authController'));
 			gidgetApp.registerModule(scope.resolve('booksController'));
-			gidgetApp.registerModule(scope.resolve('exampleController'));
+
 			gidgetApp.registerModule(scope.resolve('userController'));
 			gidgetApp.registerModule(scope.resolve('errorController'));			
+			gidgetApp.registerModule(scope.resolve('errorController'));
 			gidgetApp.registerModule(scope.resolve('checkoutController'));
 			//gidgetApp.registerModule(scope.resolve('addToCartController'));
 			gidgetApp.registerModule(scope.resolve('orderDetailsController'));
