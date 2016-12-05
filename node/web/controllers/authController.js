@@ -75,7 +75,6 @@ module.exports.factory = function (router, repo) {
 	router.get('/logout', function (req, res) {
 		res.cookie('auth', req.cookies.auth, { maxAge: 0, httpOnly: true });
 		res.redirect("/index");
-		return;
 	})
 
     return router;

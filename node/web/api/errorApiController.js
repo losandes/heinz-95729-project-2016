@@ -15,7 +15,12 @@ module.exports.factory = function (router, repo, exceptions) {
 			res.send("DB errors");
 		} else if (req.query.error == 'login') {
 			res.send("Login Failed. Please check your Email or Userid");
-		} else {
+		} else if (req.query.error == 'nosuchbook') {
+			res.send("No such book.");
+		} else if (req.query.error == 'addCart') {
+			res.send("Add Cart successfully");
+		} else
+		{
 			res.send("Unknown error")
 		}
 	});
