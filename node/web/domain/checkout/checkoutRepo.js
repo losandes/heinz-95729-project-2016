@@ -71,7 +71,7 @@ module.exports.factory = function (db, Checkout, Blueprint, exceptions, is) {
         });
     };
 
-    self.update = function (userId, book, callback) {
+    self.update = function (userId, books, callback) {
 
     if (is.not.string(userId)) {
 			exceptions.throwArgumentException('', 'userId');
@@ -87,15 +87,17 @@ module.exports.factory = function (db, Checkout, Blueprint, exceptions, is) {
 			exceptions.throwArgumentException('', 'callback');
 			return;
 		}
+
+
     collection.update(
       {"userId": userId},
-      {$pull: {"books": {"uid": book.uid}}, function(err, data) {
+      {$pull: {"books": {"uid": books[0].uid}}, function(err, data) {
         }}
        );
 
 		collection.update(
 			{"userId": userId},
-			{$push: {"books": { $each: book }}}
+			{$push: {"books": { $each: books }}}
 		, callback)
 	};
 
@@ -135,6 +137,24 @@ module.exports.factory = function (db, Checkout, Blueprint, exceptions, is) {
           );
 
    };
+
+   /*
+  // update a shopping cart status for one element
+  */
+
+  self.updateStatus = function (userId, uid, status, callback) {
+
+      if (is.not.function(callback)) {
+          exceptions.throwArgumentException('', 'callback');
+          return;
+      }
+
+      collection.update(
+        {userId: userId},
+        {$pull: {books: {uid: uid}}}
+         );
+
+  };
 
 
     return self;
