@@ -8,7 +8,7 @@ Hilary.scope('heinz').register({
         var blueprint,
             Order;
 
-       /* blueprint = new Blueprint({
+        /*blueprint = new Blueprint({
             _id: {
                 type: 'object',
                 required: false
@@ -28,16 +28,16 @@ Hilary.scope('heinz').register({
         Order = function (order) {
             var self = {};
 
-            if (!blueprint.syncSignatureMatches(order).result) {
+            /*if (!blueprint.syncSignatureMatches(order).result) {
                 exceptions.throwArgumentException('A order argument is required to create a new Order', 'order', blueprint.syncSignatureMatches(order).errors);
                 return;
             }
-
+*/
             order = order || {};
 
             var type = order.type || 'order';
 
-            self._id = new ObjectID(order._id);
+           // self._id = new ObjectID(order._id);
             self.date = order.date;
             self.userId = order.userId;
             self.orderId = order.orderId;

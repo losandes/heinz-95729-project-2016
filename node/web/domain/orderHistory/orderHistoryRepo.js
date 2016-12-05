@@ -57,49 +57,23 @@ module.exports.factory = function (db, Order, Blueprint, exceptions, is) {
         // the query isn't executed until `next` is called. It receives a
         // callback function so it can perform the IO asynchronously, and
         // free up the event-loop, while it's waiting.
-        collection.find({ userId: userId}).limit(1).next(function (err, doc) {
+        /*collection.find({ userId: userId}).limit(1).next(function (err, doc) {
             if (err) {
                 callback(err);
                 return;
             }
 
             callback(null, new Order(doc));
-        });
-    };
-
-    /*
-    // Find order(s)
-    */
-    self.find = function (options, callback) {
-        // Since options is an object, we can use Blueprint to validate it.
-        if (!findOptionsBlueprint.syncSignatureMatches(options).result) {
-            exceptions.throwArgumentException('', 'options', findOptionsBlueprint.syncSignatureMatches(options).errors);
-            return;
-        }
-
-        // But we'll make sure a callback function was provided, by hand
-        if (is.not.function(callback)) {
-            exceptions.throwArgumentException('', 'callback');
-            return;
-        }
-
-        // Set default skip and limit values if they weren't set
-        var skip = options.skip || 0,
-            limit = options.limit || 20;
-
-        // This uses mongodb's find feature to obtain multiple documents,
-        // although it still limits the result set. `find`, `skip`, and `limit`
-        // return promises, so the query isn't executed until `toArray` is
-        // called. It receives a callback function so it can perform the
-        // IO asynchronously, and free up the event-loop, while it's waiting.
-        collection.find(options.query).skip(skip).limit(limit).toArray(function (err, docs) {
+        });*/
+        
+        collection.find({ userId: userId}).limit(20).toArray(function (err, docs) {
             var orders = [], i;
 
             if (err) {
                 callback(err);
                 return;
             }
-
+            console.log(docs.length);
             for (i = 0; i < docs.length; i += 1) {
                 orders.push(new Order(docs[i]));
             }
@@ -107,6 +81,8 @@ module.exports.factory = function (db, Order, Blueprint, exceptions, is) {
             callback(null, orders);
         });
     };
+
+    
 
     return self;
 };

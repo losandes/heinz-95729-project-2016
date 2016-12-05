@@ -13,7 +13,7 @@ module.exports.factory = function (Blueprint, ObjectID, exceptions) {
     // This blueprint will be used to validate objects, and ensure that they
     // meet the minimum requirements for being a Product
     */
-    blueprint = new Blueprint({
+    /*blueprint = new Blueprint({
         _id: {
             type: 'object',
             required: false
@@ -28,7 +28,7 @@ module.exports.factory = function (Blueprint, ObjectID, exceptions) {
                 required: false
             }
         })
-    });
+    });*/
 
     /*
     // This is the Product constructor, which will be returned by this factory
@@ -39,15 +39,16 @@ module.exports.factory = function (Blueprint, ObjectID, exceptions) {
         var self = {};
 
         // Validate the the product argument passes muster with the Product blueprint
-        if (!blueprint.syncSignatureMatches(order).result) {
+        
+        /*if (!blueprint.syncSignatureMatches(order).result) {
             // If it doesn't, throw an argument exception
             exceptions.throwArgumentException('', 'order', blueprint.syncSignatureMatches(order).errors);
             // We don't know whether or not it will actually throw, so return undefined;
             return;
-        }
+        }*/
 
         // define the Product properties from the product argument
-        self._id = new ObjectID(order._id);
+       // self._id = new ObjectID(order._id);
         self.date = order.date;
         self.userId = order.userId;
         self.orderId = order.orderId;

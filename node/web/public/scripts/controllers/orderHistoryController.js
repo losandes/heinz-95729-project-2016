@@ -11,11 +11,10 @@ Hilary.scope('heinz').register({
                 }).done(function (data) {
                     console.log(data);
                     //if(data){
-                        var order = new Order(data);
-                        
+                        var orders = new Orders(data);
                         viewEngine.setVM({
                             template: 't-orderHistory',
-                            data: { order: order }
+                            data: orders
                         });
                         
                     //} 

@@ -5,27 +5,24 @@ Side note: I know that this style of nesting in SASS doesn't result in the most 
 */
 /* Global settings */
 /* Global "table" column settings */
-.product-image {
+.product-image, .order-number {
   float: left;
   width: 20%;
+  text-align: center;
 }
 
-.product-details {
+.product-details, .books {
   float: left;
   width: 45%;
 }
 
-.product-price {
+.product-price, .total-price {
   float: left;
   width: 20%;
 }
 
-.product-quantity {
-  float: left;
-  width: 10%;
-}
 
-.product-removal {
+.product-removal, .order-date {
   float: left;
   width: 15%;
   text-align:center;
@@ -58,7 +55,7 @@ Side note: I know that this style of nesting in SASS doesn't result in the most 
 
 /* Apply clearfix in a few places */
 /* Apply dollar signs */
-.product .product-price:before, .product .product-line-price:before, .totals-value:before {
+.product .product-price:before, .totals-value:before, .product .total-price:before {
   content: '$';
 }
 

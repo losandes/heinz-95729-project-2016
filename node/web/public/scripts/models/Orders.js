@@ -40,7 +40,8 @@ Hilary.scope('heinz').register({
 
             return self;
         };
-
+        console.log("orders:");
+        console.log(Orders);
         return Orders;
 
     }
