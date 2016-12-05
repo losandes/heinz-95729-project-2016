@@ -19,7 +19,6 @@ module.exports.factory = function (Blueprint, ObjectID, exceptions) {
             required: false
         },
         userId:'string',
-        shoppingCartId: 'number',
         books: new Blueprint({
             keywords: {
                 type: 'array',
