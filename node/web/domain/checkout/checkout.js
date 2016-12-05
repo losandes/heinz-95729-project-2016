@@ -15,12 +15,7 @@ module.exports.factory = function (Blueprint, ObjectID, exceptions) {
     */
     blueprint = new Blueprint({
         userId:'string',
-        books: new Blueprint({
-            keywords: {
-                type: 'array',
-                required: false
-            }
-        })
+        books: 'array'
     });
 
     /*

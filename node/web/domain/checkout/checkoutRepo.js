@@ -58,21 +58,16 @@ module.exports.factory = function (db, Checkout, Blueprint, exceptions, is) {
         // callback function so it can perform the IO asynchronously, and
         // free up the event-loop, while it's waiting.
         //collection.find({$and: [ {'books.status': 'add'}, { userId: userId }]}).limit(1).next(function (err, doc) {
-        collection.find({ userId : userId , 
-                     "books": { $all: [
-                                    { "$elemMatch" : { "status": "add"} }
-                                  ] }
-                   }).limit(1).next(function (err, doc) {    
+        collection.find({ userId : userId }).limit(1).next(function (err, doc) {    
             if (err) {
                 callback(err);
                 return;
             }
 
-			if (doc) {
-				callback(null, new Checkout(doc));
-			} else {
-				callback(null, null);
-			}
+    			
+    				callback(null, new Checkout(doc));
+    			
+
         });
     };
 

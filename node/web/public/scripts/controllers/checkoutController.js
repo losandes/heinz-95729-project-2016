@@ -4,11 +4,6 @@ Hilary.scope('heinz').register({
     factory: function ($this, GidgetRoute, locale, viewEngine, Checkout, Checkouts, Products, $) {
         'use strict';
         
-        $this.get['/checkout'] = function () {
-            viewEngine.setVM({
-                template: 't-checkoutCopy'
-            });
-        };
         
         $this.get['/payment/:userId'] = function () {
             viewEngine.setVM({
@@ -21,6 +16,7 @@ Hilary.scope('heinz').register({
                 $.ajax({
                     url: '/api/checkout/' + req.params.userId
                 }).done(function (data) {
+                    console.log(data);
                     if(data){
                         var checkout = new Checkout(data);
                         
