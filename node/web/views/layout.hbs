@@ -3,35 +3,67 @@
 <head>
     <title>{{title}}</title>
     <meta charset="utf-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta http-equiv="X-UA-Compatible" content=IE=edge" />
     <meta name="description" content="" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
 
     <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
     <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="/css/main.css" />
+    <link rel="stylesheet" href="/css/checkout.css"/>
     <script src="/scripts/lib/modernizr.custom.js"></script>
+    <script type="text/javascript" src="https://js.stripe.com/v2/"></script>
+    <script type="text/javascript">
+      Stripe.setPublishableKey('pk_test_YzInUmr3xCMvmvU6ce6ekifq');
+    </script>
 </head>
 <body>
     <header id="header">
         <h1><a href="/">Papyr</a></h1>
         <div class="search-form">
-            <div class="input-group input-group-lg">
+            <div class="input-group input-group-lg search-textbox">
                 <input type="text" class="form-control" placeholder="search" data-bind="textInput: searchString">
                 <span class="input-group-btn">
                     <button class="btn btn-default" type="button" data-bind="click: go">Go!</button>
                 </span>
             </div><!-- /input-group -->
         </div>
+
         <nav>
+
+
     <!--
             <span data-bind="foreach: links">
                 <a data-bind="text: text, href: href"></a>
             </span>
     -->
-            <a href="/checkout">
+
+
+            <!-- ko ifnot: {{isAuthenticated}} -->
+
+            <a href="/login">
+
+                <button type="button" class="btn btn-default navbar-btn">Sign in</button>
+            </a>
+
+            <a href="/register">
+                <button type="button" id = "register-button" class="btn btn-default navbar-btn">Register</button>
+            </a>
+            <!-- /ko -->
+
+            <!-- ko if: {{isAuthenticated}} -->
+            <a onclick="directToCheckout()">
                 <i class="fa fa-shopping-cart"></i>
             </a>
+             Welcome <span id="userid"> {{user}} </span> !
+            <a href="/logout">
+                <button type="button" class="btn btn-default navbar-btn">Log out</button>
+            </a>
+            <a href="/orderHistory/shopper1">
+                <button type="button" class="btn btn-default navbar-btn">Order History</button>
+            </a>
+            <!-- /ko -->
+
         </nav>
     </header>
     <div class="container">
@@ -47,6 +79,19 @@
     {{> bookDetails}}
     {{> login}}
     {{> register}}
+    {{> checkout}}
+
+    {{> orderDetails}}
+
+    {{> checkoutEmpty}}
+    {{> checkoutCopy}}
+    {{> payment}}
+    {{> error}}
+    {{> succ_reg}}
+    {{> succ_login}}
+    {{> report}}
+    {{> orderHistory}}
+
 
     <!-- /templates -->
 
@@ -67,12 +112,23 @@
     <script src="/scripts/controllers/homeController.js"></script>
     <script src="/scripts/controllers/exampleController.js"></script>
 
+    <script src="/scripts/controllers/checkoutController.js"></script>
+    <script src="/scripts/controllers/orderDetailsController.js"></script>
+
+    <script src="/scripts/controllers/errorController.js"></script>
+    <script src="/scripts/controllers/orderHistoryController.js"></script>
+
+
     <script src="/scripts/locale/en_US.js"></script>
 
     <script src="/scripts/models/Book.js"></script>
     <script src="/scripts/models/Books.js"></script>
     <script src="/scripts/models/Product.js"></script>
     <script src="/scripts/models/Products.js"></script>
+    <script src="/scripts/models/Checkout.js"></script>
+    <script src="/scripts/models/Checkouts.js"></script>
+    <script src="/scripts/models/Order.js"></script>
+    <script src="/scripts/models/Orders.js"></script>
 
     <script src="/scripts/viewModels/HomeVM.js"></script>
 
@@ -80,6 +136,8 @@
     <script src="/scripts/utils.js"></script>
     <script src="/scripts/ViewEngine.js"></script>
     <script src="/scripts/startup.js"></script>
+    <script src="/scripts/checkoutPage.js"></script>
+    <script src="/scripts/paymentPage.js"></script>
 
 </body>
 </html>

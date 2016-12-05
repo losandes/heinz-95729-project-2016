@@ -1,0 +1,50 @@
+[
+    {
+        "_id": "644d420206fd376a5b560020",
+        "orderId":1,
+        "userId": "shopper1",
+        "date": "10/10/2016",
+        "total": 21.76,
+        "books": [
+        	{
+                "uid": "before_go",
+                "title": "One Last Thing Before I Go",
+                "price": 8.77,
+                "thumbnailLink": "/images/books/beforeIGo.jpg",
+                "type": "book"
+            },
+            {
+            
+                "uid": "bend_of_the_world",
+                "title": "The Bend of the World: A Novel",
+                "price": 12.99,
+                "thumbnailLink": "/images/books/bendOfTheWorld.jpg",
+                "type": "book"
+            }
+        ]
+    },
+    {
+        "_id": "644d420206fd376a5b560021",
+        "orderId":2,
+        "userId": "shopper1",
+        "date": "10/10/2016",
+        "total": 21.76,
+        "books": [
+            {
+                "uid": "before_go",
+                "title": "One Last Thing Before I Go",
+                "price": 8.77,
+                "thumbnailLink": "/images/books/beforeIGo.jpg",
+                "type": "book"
+            },
+            {
+            
+                "uid": "bend_of_the_world",
+                "title": "The Bend of the World: A Novel",
+                "price": 12.99,
+                "thumbnailLink": "/images/books/bendOfTheWorld.jpg",
+                "type": "book"
+            }
+        ]
+    }
+]

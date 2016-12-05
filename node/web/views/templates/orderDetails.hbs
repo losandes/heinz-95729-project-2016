@@ -1,0 +1,49 @@
+
+<script id="t-orderDetails" type="text/html">
+
+    <div class="orderDetails-component details" data-bind="with: data">
+       
+<h1>Order Details</h1>
+<h2> Your order has been confirmed</h2>
+
+  <div class="order-details">
+
+    <div class="column-labels">
+      <label class="product-image">Image</label>
+      <label class="product-details">Product</label>   
+      
+      <label class="product-download">Download</label>  
+      <label class="product-price">Price</label>  
+    </div>
+    
+    
+      <div data-bind="foreach: { data: checkout.books, as: 'b' }">
+        <div class = "product">
+          <div class="product-image">
+            <img src="" alt="" data-bind="src: b.thumbnailLink, attr: { alt: b.thumbnailAlt }">
+          </div>
+          <div class="product-details">
+            <div class="product-title" data-bind="text: b.title"></div>
+            <p class="product-description" data-bind="html: b.description"</p>
+          </div>
+          <div class="product-download">
+          <a href ="http://www.pdf995.com/samples/pdf.pdf"> 
+            <button class="download-product">
+              Download
+            </button>
+          </a>
+          </div>
+          <div class="product-price" data-bind="text: b.price"></div>              
+        </div>
+      </div>    
+    <div class="totals">
+      <div class="totals-item">
+        <label>Total</label>
+        <div class="totals-value" id="cart-total"></div>
+      </div>
+    </div>
+</div>
+
+
+
+</script>
