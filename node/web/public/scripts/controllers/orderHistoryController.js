@@ -9,7 +9,7 @@ Hilary.scope('heinz').register({
                 $.ajax({
                     url: '/api/orderHistory/' + req.params.userId
                 }).done(function (data) {
-                    console.log(data);
+                    //console.log(data);
                     //if(data){
                         var orders = new Orders(data);
                         viewEngine.setVM({
