@@ -14,10 +14,6 @@ module.exports.factory = function (Blueprint, ObjectID, exceptions) {
     // meet the minimum requirements for being a Checkout/shopping kart
     */
     blueprint = new Blueprint({
-        _id: {
-            type: 'object',
-            required: false
-        },
         userId:'string',
         books: new Blueprint({
             keywords: {
