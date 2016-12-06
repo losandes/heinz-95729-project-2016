@@ -48,3 +48,8 @@ function directToOrderDetails()
 {
   window.location.href = "/orderDetails/" + userId;
 }
+
+function directToOrderHistory()
+{
+  window.location.href = "/orderHistory/" + userId;
+}
