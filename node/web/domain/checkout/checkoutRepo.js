@@ -146,7 +146,7 @@ module.exports.factory = function (db, Checkout, Blueprint, exceptions, is) {
            return;
        }
 
-	   console.log(books);
+	   //console.log(books);
 	   collection.update(
 		   {"userId": userId},
 		   {$pull: {"books": {"uid": books[0].uid}}}, function(err) {

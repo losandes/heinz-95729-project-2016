@@ -46,12 +46,13 @@ function directToPayment()
 
 function directToOrderDetails()
 {
+	$.post("/removeCart");
   window.location.href = "/orderDetails/" + userId;
 }
 
 function directToOrderHistory()
 {
-  $.post("/removeCart");
+
   window.location.href = "/orderHistory/" + userId;
 	
 }
