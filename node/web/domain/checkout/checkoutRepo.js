@@ -64,8 +64,11 @@ module.exports.factory = function (db, Checkout, Blueprint, exceptions, is) {
                 return;
             }
 
-    			
+    			if(doc) {
     				callback(null, new Checkout(doc));
+          } else {
+             callback(null,null);
+          }
     			
 
         });
