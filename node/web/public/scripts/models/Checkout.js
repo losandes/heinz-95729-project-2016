@@ -10,13 +10,7 @@ Hilary.scope('heinz').register({
 
         blueprint = new Blueprint({
             userId:'string',
-            shoppingCartId: 'number',
-            books: new Blueprint({
-                keywords: {
-                    type: 'array',
-                    required: false
-                }
-            })
+            books: 'array'
         });
 
         Checkout = function (checkout) {

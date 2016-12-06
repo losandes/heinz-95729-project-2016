@@ -35,67 +35,13 @@
           <div class="product-price" data-bind="text: b.price"></div>    
         </div>
       </div>    
-    
-
-    
-
     <div class="totals">
       <div class="totals-item">
         <label>Total</label>
         <div class="totals-value" id="cart-total"></div>
       </div>
     </div>
-      
-    <button data-toggle = "modal" data-target = "#payModal" class="checkout">Checkout</button>
-
+    
+      <button onclick= "directToPayment()" id ="checkoutButton" class="checkout">Checkout</button>
 </div>
-<div class="modal fade" id="payModal" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true" style="display: none;">
-  <div class="modal-dialog">
-  <div class="modal-content">
-    <div class="modal-header">
-      <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
-      <h3 class="modal-title" id="lineModalLabel">Enter your Credit Card Details</h3>
-    </div>
-    <div class="modal-body">
-      
-            <!-- content goes here -->
-      <form action="/your-charge-code" method="POST" id="payment-form">
-        <span class="payment-errors"></span>
-              
-              <div class="form-group">
-                <label>
-                  <span>Card Number</span>
-                  <input type="text" size="20" data-stripe="number">
-                </label>
-              </div>
-              <div class="form-group">
-                <label>
-                  <span>Expiration (MM/YY)</span>
-                  <input type="text" size="2" data-stripe="exp_month">
-                </label>
-                <span> / </span>
-                <input type="text" size="2" data-stripe="exp_year">
-              </div>
-              <div class="form-group">
-                <label>
-                  <span>CVC</span>
-                  <input type="text" size="4" data-stripe="cvc">
-                </label>
-                
-              </div>  
-              <div class="form-group">
-                <label>
-                  <span>Billing ZIP Code</span>
-                  <input type="text" size="6" data-stripe="address_zip">
-                </label>
-              </div>
-              <input type="submit" class="submit btn btn-success" value="Submit Payment">              
-            </form>
-    </div>    
-  </div>
-  </div>
-</div>  
-
-
-
 </script>

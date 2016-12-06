@@ -6,5 +6,7 @@ module.exports = [
     require('./users/User.js'),
     require('./users/usersRepo.js'),
     require('./checkout/Checkout.js'),
-    require('./checkout/checkoutRepo.js')
+    require('./checkout/checkoutRepo.js'),
+    require('./orderHistory/Order.js'),
+    require('./orderHistory/orderHistoryRepo.js')
 ];

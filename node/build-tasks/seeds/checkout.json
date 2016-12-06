@@ -1,68 +1,38 @@
-[
-    {
-        "_id": "964d420206fd376a5b560020",
-        "userId": "shopper1",
-        "shoppingCartId": 1,
-        "books": [
-        	{
-                
-                "uid": "before_go",
-                "title": "One Last Thing Before I Go",
-                "description": "“Mistakes have been made.” Drew Silver has begun to accept that life isn’t going to turn out as he expected. His fleeting fame as the drummer for a one-hit wonder rock band is nearly a decade behind him. His ex-wife is about to marry a terrific guy. And his Princeton-bound teenage daughter Casey has just confided in him that she’s pregnant—because Silver is the one she cares least about letting down.",
-                "price": 8.77,
-                "thumbnailLink": "/images/books/beforeIGo.jpg",
-                "type": "book",
-                "status":"add"
+{
+    "_id": "5844cd947f00032d10bca80e",
+    "userId": "shopper1",
+    "books": [
+        {
+            "_id":"5623c1263b952eb796d79e08",
+            "uid": "wild",
+            "title": "Wild: From Lost To Found on the Pacific Coast Trail",
+            "description": "At twenty-two, Cheryl Strayed thought she had lost everything. In the wake of her mother’s death, her family scattered and her own marriage was soon destroyed. Four years later, with nothing more to lose, she made the most impulsive decision of her life: to hike the Pacific Crest Trail from the Mojave Desert through California and Oregon to Washington State “and to do it alone. She had no experience as a long-distance hiker, and the trail was little more than an idea, vague and outlandish and full of promise. But it was a promise of piecing back together a life that had come undone.",
+            "metadata": {
+                "authors": [
+                    {
+                        "name": "Cheryl Strayed"
+                    }
+                ]
             },
-            {
-            
-                "uid": "bend_of_the_world",
-                "title": "The Bend of the World: A Novel",
-                "description": "In the most audacious literary debut to come out of the Steel City since The Mysteries of Pittsburgh, we meet Peter Morrison, twenty-nine and comfortably adrift in a state of not-quite-adulthood, less concerned about the general direction of his life than with his suspicion that all his closest relationships are the products of inertia. He and his girlfriend float along in the same general direction, while his parents are acting funny, though his rich, hypochondriac grandmother is still good for admission to the better parties. He spends his days clocking into Global Solutions (a firm whose purpose remains unnervingly ambiguous) and his weekends listening to the half-imagined rants of his childhood best friend, Johnny.",
-                "price": 12.99,
-                "thumbnailLink": "/images/books/bendOfTheWorld.jpg",
-                "type": "book",
-                "status":"delete"
-            }
-        ]
-    },
-    {
-        "_id": "964d420206fd376a5b560021",
-        "userId": "shopper2",
-        "shoppingCartId": 2,
-        "books": [
-            {
-                
-                "uid": "dependency_injection",
-                "title": "Dependency Injection in .NET",
-                "description": "Dependency Injection in .NET, winner of the 2013 Jolt Awards for Productivity, presents core DI patterns in plain C#, so you'll fully understand how DI works, covers integration with standard Microsoft technologies like ASP.NET MVC, and teaches you to use DI frameworks like Structure Map, Castle Windsor, and Unity.",
-                "price": 32.16,
-                "thumbnailLink": "/images/books/dependencyInjection.jpg",
-                "type": "book",
-                "status":"add"
+            "price": 6.99,
+            "thumbnailLink": "/images/books/wild.jpg",
+            "type": "book"
+        },
+        {
+            "_id": "5623c1263b952eb796d79e09",
+            "uid": "wild_ducks",
+            "title": "Wild Ducks Flying Backward",
+            "description": "Whether he is rocking with the Doors, depoliticizing Picasso’s Guernica, lamenting the angst-ridden state of contemporary literature, or drooling over tomato sandwiches and a species of womanhood he calls “the genius waitress,” Robbins’s briefer writings often exhibit the same five traits that perhaps best characterize his novels: an imaginative wit, a cheerfully brash disregard for convention, a sweetly nasty eroticism, a mystical but keenly observant eye, and an irrepressible love of language.",
+            "metadata": {
+                "authors": [
+                    {
+                        "name": "Tom Robbins"
+                    }
+                ]
             },
-            {
-            
-                "uid": "bend_of_the_world",
-                "title": "The Bend of the World: A Novel",
-                "description": "In the most audacious literary debut to come out of the Steel City since The Mysteries of Pittsburgh, we meet Peter Morrison, twenty-nine and comfortably adrift in a state of not-quite-adulthood, less concerned about the general direction of his life than with his suspicion that all his closest relationships are the products of inertia. He and his girlfriend float along in the same general direction, while his parents are acting funny, though his rich, hypochondriac grandmother is still good for admission to the better parties. He spends his days clocking into Global Solutions (a firm whose purpose remains unnervingly ambiguous) and his weekends listening to the half-imagined rants of his childhood best friend, Johnny.",
-                "price": 12.99,
-                "thumbnailLink": "/images/books/bendOfTheWorld.jpg",
-                "type": "book",
-                "status":"add"
-            },
-            {
-                
-                "uid": "hitchhikers_guide_galaxy",
-                "title": "The Hitchhiker's Guide to the Galaxy",
-                "description": "Seconds before the Earth is demolished to make way for a galactic freeway, Arthur Dent is plucked off the planet by his friend Ford Prefect, a researcher for the revised edition of The Hitchhiker's Guide to the Galaxy who, for the last fifteen years, has been posing as an out-of-work actor. Together this dynamic pair begin a journey through space aided by quotes from The Hitchhiker's ",
-                "price": 4.59,
-                "thumbnailLink": "/images/books/hitchiker.jpeg",
-                "type": "book",
-                "status":"add"
-            }
-        ]
-    }
-
-
-]
+            "price": 9.41,
+            "thumbnailLink": "/images/books/flyingBackward.jpg",
+            "type": "book"
+        }
+    ]
+}

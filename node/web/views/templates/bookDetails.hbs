@@ -54,9 +54,18 @@
             </figcaption>
         </figure>
 
-        <form action="/cart" method="post" role="form">
-            <button class="btn btn-success btn-cart" type="submit" data-bind="currency: book.price"></button>
-        </form>
+
+
+<form form="form1" action='/addtoCart' method="post" role="form">
+  <button class="btn btn-success btn-cart" type="submit"  data-bind="currency: book.price"></button>
+  <div class="form-group">
+        <input type="hidden" name="uid" class="form-control" id="uid" data-bind="value: book.uid"  />
+
+  </div>
+
+
+</form>
+
 
     </div>
 </script>

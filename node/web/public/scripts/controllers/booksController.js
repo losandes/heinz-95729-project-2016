@@ -13,7 +13,7 @@ Hilary.scope('heinz').register({
                     method: 'GET'
                 }).done(function (data) {
                     var books = new Books(data);
-
+                    console.log(books);
                     if (books.books().length > 0) {
                         viewEngine.setVM({
                             template: 't-book-grid',

@@ -1,0 +1,33 @@
+
+<script id="t-orderHistory" type="text/html">
+
+  <div class="orderHistory-component details" >
+	  <h1>Order History</h1>
+
+	  <div class="order-history">
+
+	    <div class="column-labels">
+	      <label class="order-number">Order#</label>
+	      <label class="books">Books Purchased</label>   
+	      <label class="total-price">Total Price</label>
+	      <label class="order-date">Date</label>    
+	    </div>
+	    <div>
+	    <div data-bind="foreach: { data: data.orders(), as: 'order' }">
+	    	<div class = "product">
+	    		<div class="order-number" data-bind="text: order.orderId"> </div>
+		    	<div class="books" data-bind="foreach: { data: order.books, as: 'b' }">
+				  <div class="product-title" data-bind="text: b.title"></div> 
+			    </div>
+			    <div class="total-price" data-bind="text: order.total"> </div>
+			    <div class="order-date" data-bind="text: order.date"> </div>
+			</div>
+		</div>
+		    
+		</div>
+  
+	</div>  
+
+
+
+</script>

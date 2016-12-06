@@ -42,3 +42,4 @@ function directToCheckout()
   userId = $.trim(userId);
   window.location.href = "/checkout/" + userId;
 }
+

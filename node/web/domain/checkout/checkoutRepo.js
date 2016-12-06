@@ -58,32 +58,50 @@ module.exports.factory = function (db, Checkout, Blueprint, exceptions, is) {
         // callback function so it can perform the IO asynchronously, and
         // free up the event-loop, while it's waiting.
         //collection.find({$and: [ {'books.status': 'add'}, { userId: userId }]}).limit(1).next(function (err, doc) {
-        collection.find({ userId : userId , 
-                     "books": { $all: [
-                                    { "$elemMatch" : { "status": "add"} }
-                                  ] }
-                   }).limit(1).next(function (err, doc) {    
+        collection.find({ userId : userId }).limit(1).next(function (err, doc) {    
             if (err) {
                 callback(err);
                 return;
             }
 
-            callback(null, new Checkout(doc));
+    			if(doc) {
+    				callback(null, new Checkout(doc));
+          } else {
+             callback(null,null);
+          }
+    			
+
         });
     };
 
-    self.update = function (payload, callback) {
-		if (is.not.object(payload)) {
-			exceptions.throwArgumentException('', 'payload');
+    self.update = function (userId, books, callback) {
+
+    if (is.not.string(userId)) {
+			exceptions.throwArgumentException('', 'userId');
 			return;
 		}
-
+/*
+    	if (is.not.object(books)) {
+			exceptions.throwArgumentException('', 'update books');
+			return;
+		}
+*/
 		if (is.not.function(callback)) {
 			exceptions.throwArgumentException('', 'callback');
 			return;
 		}
 
-		collection.insertOne(payload, callback);
+
+    collection.update(
+      {"userId": userId},
+      {$pull: {"books": {"uid": books[0].uid}}, function(err, data) {
+        }}
+       );
+
+		collection.update(
+			{"userId": userId},
+			{$push: {"books": { $each: books }}}
+		, callback)
 	};
 
      /*
@@ -100,8 +118,47 @@ module.exports.factory = function (db, Checkout, Blueprint, exceptions, is) {
             return;
         }
 
+//        collection.deleteOne({"book.uid": payload.book.uid , "userId": payload.userId },callback );
+
         collection.insertOne(payload, callback);
     };
+
+    /*
+   // Deleate a shopping cart for a user
+   */
+
+   self.remove = function (userId, uid, callback) {
+
+       if (is.not.function(callback)) {
+           exceptions.throwArgumentException('', 'callback');
+           return;
+       }
+
+       collection.update(
+         {userId: userId},
+         {$pull: {books: {uid: uid}}}
+          );
+
+   };
+
+   /*
+  // update a shopping cart status for one element
+  */
+
+  self.updateStatus = function (userId, uid, status, callback) {
+
+      if (is.not.function(callback)) {
+          exceptions.throwArgumentException('', 'callback');
+          return;
+      }
+
+      collection.update(
+        {userId: userId},
+        {$pull: {books: {uid: uid}}}
+         );
+
+  };
+
 
     return self;
 };
