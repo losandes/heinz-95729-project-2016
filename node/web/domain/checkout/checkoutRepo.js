@@ -127,17 +127,20 @@ module.exports.factory = function (db, Checkout, Blueprint, exceptions, is) {
    // Deleate a shopping cart for a user
    */
 
-   self.remove = function (userId, uid, callback) {
+   self.remove = function (userId, books, callback) {
 
        if (is.not.function(callback)) {
            exceptions.throwArgumentException('', 'callback');
            return;
        }
 
-       collection.update(
-         {userId: userId},
-         {$pull: {books: {uid: uid}}}
-          );
+	   console.log(books);
+	   collection.update(
+		   {"userId": userId},
+		   {$pull: {"books": {"uid": books[0].uid}}, function(err, data) {
+				callback(err);
+		   }}
+	   );
 
    };
 

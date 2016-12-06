@@ -68,5 +68,34 @@ module.exports.factory = function (router, checkoutRepo, productsRepo, exception
 		});
 	});
 
+	router.post('/removeCart', function (req, res) {
+		//req.query.q = req.body.uid; //Test only
+
+		var userId = req.cookies.auth.userId;
+
+		console.log("removeCart Now" + req.body.uid);
+		productsRepo.find({query: {uid: req.body.uid, type: 'book' }}, function (err, books) {
+			if (err) {
+				res.redirect('/report?error=' + "db");
+				return;
+			}
+			console.log("Here we found" + books);
+			if (!books) {
+				// Books not found
+				res.redirect('/report?error=' + "nosuchbook");
+				return;
+			}
+
+			console.log("Remove");
+			// Test if the user is valid
+			checkoutRepo.remove(userId, books, function(err) {
+				if (err) {
+					res.redirect('/report?error=' + "db");
+					return;
+				}
+			})
+		});
+	});
+
 	return router;
 };

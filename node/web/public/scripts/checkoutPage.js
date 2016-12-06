@@ -34,6 +34,9 @@ function removeItem(removeButton)
     productRow.remove();
     recalculateCart();
   });
+
+	var uid = document.getElementById("uid").innerHTML;
+    $.post('/removeCart', {'uid': uid});
 }
 
 function directToCheckout()

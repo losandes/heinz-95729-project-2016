@@ -27,6 +27,7 @@
             <div class="product-title" data-bind="text: b.title"></div>
             <p class="product-description" data-bind="html: b.description"</p>
           </div>
+            <input type="hidden" name="uid" class="form-control" id="uid" data-bind="value: b.uid"  />
           <div class="product-removal">
             <button class="remove-product" onclick="removeItem(this)">
               Remove
