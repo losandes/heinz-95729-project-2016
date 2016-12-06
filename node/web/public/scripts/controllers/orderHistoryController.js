@@ -9,15 +9,19 @@ Hilary.scope('heinz').register({
                 $.ajax({
                     url: '/api/orderHistory/' + req.params.userId
                 }).done(function (data) {
-                    //console.log(data);
-                    //if(data){
+                    console.log(data.length);
+                    if(data.length>0){
                         var orders = new Orders(data);
                         viewEngine.setVM({
                             template: 't-orderHistory',
                             data: orders
                         });
                         
-                    //} 
+                    } else {
+                        viewEngine.setVM({
+                            template: 't-orderHistory-empty'
+                        });
+                    }
                     
 
                 });

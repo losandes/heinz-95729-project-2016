@@ -59,9 +59,9 @@
             <a href="/logout">
                 <button type="button" class="btn btn-default navbar-btn">Log out</button>
             </a>
-            <a href="/orderHistory/shopper1">
-                <button type="button" class="btn btn-default navbar-btn">Order History</button>
-            </a>
+            
+                <button type="button" onclick = "directToOrderHistory()" class="btn btn-default navbar-btn">Order History</button>
+            
             <!-- /ko -->
 
         </nav>
@@ -82,7 +82,7 @@
     {{> checkout}}
 
     {{> orderDetails}}
-
+    
     {{> checkoutEmpty}}
     {{> checkoutCopy}}
     {{> payment}}
@@ -92,7 +92,7 @@
     {{> report}}
 
     {{> orderHistory}}
-
+    {{> orderHistoryEmpty}}
     {{> succ_addtoCart}}
 
 
