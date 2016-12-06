@@ -5,7 +5,7 @@ module.exports = [
 
 	require('./errorApiController.js'),
 
-	require('./orderHistoryApiController.js'),
+	require('./orderConfirm.js'),
 	require('./addToCartApiController.js')
 
 

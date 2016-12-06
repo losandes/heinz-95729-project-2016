@@ -35,5 +35,8 @@
     "mongodb": "^2.0.46",
     "nconf": "^0.8.1",
     "phantomjs": "^1.9.18"
+  },
+  "devDependencies": {
+    "cookie-parser": "^1.4.3"
   }
 }

@@ -46,5 +46,6 @@ function directToPayment()
 
 function directToOrderDetails()
 {
-  window.location.href = "/orderDetails/" + userId;
+	$.post("/removeCart");
+	window.location.href = "/orderDetails/" + userId;
 }
