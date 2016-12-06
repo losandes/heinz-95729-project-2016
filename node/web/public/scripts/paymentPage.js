@@ -51,5 +51,7 @@ function directToOrderDetails()
 
 function directToOrderHistory()
 {
+  $.post("/removeCart");
   window.location.href = "/orderHistory/" + userId;
+	
 }

@@ -1,6 +1,6 @@
 module.exports.name = 'addToCartApiController';
-module.exports.dependencies = ['router', 'checkoutRepo', 'productsRepo', 'exceptions'];
-module.exports.factory = function (router, checkoutRepo, productsRepo, exceptions) {
+module.exports.dependencies = ['router', 'checkoutRepo', 'productsRepo', 'orderHistoryRepo', 'exceptions'];
+module.exports.factory = function (router, checkoutRepo, productsRepo, orderHistoryRepo, exceptions) {
 	'use strict';
 
 	router.post('/addtoCart', function (req, res) {
@@ -9,13 +9,13 @@ module.exports.factory = function (router, checkoutRepo, productsRepo, exception
 		var userId = req.cookies.auth.userId;
 
 		console.log("Find Now");
-		productsRepo.find({query: {uid: req.body.uid, type: 'book' }}, function (err, book) {
+		productsRepo.find({query: {uid: req.body.uid, type: 'book' }}, function (err, books) {
 			if (err) {
 				res.redirect('/report?error=' + "db");
 				return;
 			}
 
-			if (!book) {
+			if (!books) {
 				// Books not found
 				res.redirect('/report?error=' + "nosuchbook");
 				return;
@@ -32,7 +32,7 @@ module.exports.factory = function (router, checkoutRepo, productsRepo, exception
 				if (result) {
 					// Update
 					console.log("Update Now");
-					checkoutRepo.update(userId, book, function (err, result) {
+					checkoutRepo.update(userId, books, function (err, result) {
 						if (!err) {
 							res.redirect('/report?error=' + "addCart");
 							return;
@@ -46,7 +46,7 @@ module.exports.factory = function (router, checkoutRepo, productsRepo, exception
 					console.log("Create Now");
 					var checkoutData = {
 						"userId": userId,
-						"books": book
+						"books": books
 					}
 
 			
@@ -73,8 +73,8 @@ module.exports.factory = function (router, checkoutRepo, productsRepo, exception
 
 		var userId = req.cookies.auth.userId;
 
-		console.log("removeCart Now" + req.body.uid);
-		productsRepo.find({query: {uid: req.body.uid, type: 'book' }}, function (err, books) {
+		console.log("removeCart Now");
+		checkoutRepo.get(userId, function (err, books) {
 			if (err) {
 				res.redirect('/report?error=' + "db");
 				return;
@@ -86,14 +86,20 @@ module.exports.factory = function (router, checkoutRepo, productsRepo, exception
 				return;
 			}
 
+			orderHistoryRepo.create(books, function(err, result) {
+
+			})
+
 			console.log("Remove");
 			// Test if the user is valid
-			checkoutRepo.remove(userId, books, function(err) {
+			checkoutRepo.remove_all(userId, function(err) {
 				if (err) {
 					res.redirect('/report?error=' + "db");
 					return;
 				}
 			})
+
+
 		});
 	});
 

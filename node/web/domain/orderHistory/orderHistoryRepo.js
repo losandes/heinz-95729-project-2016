@@ -82,7 +82,22 @@ module.exports.factory = function (db, Order, Blueprint, exceptions, is) {
         });
     };
 
-    
+	self.create = function (payload, callback) {
+		if (is.not.object(payload)) {
+			exceptions.throwArgumentException('', 'payload');
+			return;
+		}
 
-    return self;
+		if (is.not.function(callback)) {
+			exceptions.throwArgumentException('', 'callback');
+			return;
+		}
+
+//        collection.deleteOne({"book.uid": payload.book.uid , "userId": payload.userId },callback );
+
+		collection.insertOne(payload, callback);
+	};
+
+
+	return self;
 };
