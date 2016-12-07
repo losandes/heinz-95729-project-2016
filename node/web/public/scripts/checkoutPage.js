@@ -31,7 +31,7 @@ function removeItem(removeButton)
   /* Remove row from DOM and recalc cart total */
   var productRow = $(removeButton).parent().parent();
   var uid = productRow.find('#uid').text();
-  $.post('/removeCart', {'uid': uid});
+  $.post('/removeItem', {'uid': uid});
   
   productRow.slideUp(fadeTime, function() {
     productRow.remove();

@@ -117,5 +117,32 @@ module.exports.factory = function (router, checkoutRepo, productsRepo, orderHist
 		});
 	});
 
+	router.post('/removeItem', function (req, res) {
+		//req.query.q = req.body.uid; //Test only
+
+		var userId = req.cookies.auth.userId;
+
+		//console.log("removeCart Now");
+		productsRepo.find({query: {uid: req.body.uid, type: 'book' }}, function (err, books) {
+			if (err) {
+				res.redirect('/report?error=' + "db");
+				return;
+			}
+
+			if (!books) {
+				// Books not found
+				res.redirect('/report?error=' + "nosuchbook");
+				return;
+			}
+
+			checkoutRepo.remove(userId, books, function(err) {
+				if (err) {
+					res.redirect('/report?error=' + "db");
+					return;
+				}
+			})
+		});
+	});
+
 	return router;
 };
