@@ -1,5 +1,9 @@
-var userId = document.getElementById("userid").innerHTML;
-userId = $.trim(userId);
+var userId = "";
+if(document.getElementById("userid")) {
+  userId = document.getElementById("userid").innerHTML;
+  userId = $.trim(userId);
+}
+
 
 function stripeCall() {
   var $form = $('#payment-form');
