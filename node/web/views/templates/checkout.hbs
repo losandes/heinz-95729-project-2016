@@ -24,13 +24,12 @@
             <img src="" alt="" data-bind="src: b.thumbnailLink, attr: { alt: b.thumbnailAlt }">
           </div>
           <div class="product-details">
-            <div style= "display:none" name="uid" id="uid" data-bind="text: b.uid"></div>
+            
             <div class="product-title" data-bind="text: b.title"></div>
             <p class="product-description" data-bind="html: b.description"</p><!--test-->
-          </div>
-            
+          </div>            
           <div class="product-removal">
-
+            <div style= "display:none" name="uid" id="uid" data-bind="text: b.uid"></div>
             <button class="remove-product" onclick="removeItem(this)">
               Remove
             </button>
