@@ -94,7 +94,7 @@ module.exports.factory = function (router, checkoutRepo, productsRepo, orderHist
 
 			var date = new Date();
 			var createHistory = {
-				books: books,
+				books: books.books,
 				orderId: OrderId,
 				userId: userId,
 				date: date.getDay() + "/" + date.getMonth() + "/" + date.getFullYear()

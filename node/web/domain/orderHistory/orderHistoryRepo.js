@@ -66,7 +66,7 @@ module.exports.factory = function (db, Order, Blueprint, exceptions, is) {
             callback(null, new Order(doc));
         });*/
         
-        collection.find({ userId: userId}).limit(20).toArray(function (err, docs) {
+        collection.find({ userId: userId}).toArray(function (err, docs) {
             var orders = [], i;
 
             if (err) {
