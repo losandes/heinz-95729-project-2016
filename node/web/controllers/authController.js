@@ -24,6 +24,12 @@ module.exports.factory = function (router, repo) {
 
 		repo.create(req.body, function (err, result) {
 			if (!err && result.insertedId) {
+				var doc = {
+					email: req.body.email,
+					userId: req.body.userId,
+					name: req.body.name
+				}
+				addCookie(doc, res);
 				res.redirect('/succ_reg');
 				return;
 			} else {
@@ -62,7 +68,7 @@ module.exports.factory = function (router, repo) {
 
 	router.post('/succ_reg', function (req, res) {
 		//console.log("test cookie" + req.cookies.auth.userId);
-		res.redirect('/login');
+		res.redirect('/index');
 		return;
 	});
 
