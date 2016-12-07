@@ -36,9 +36,40 @@ module.exports.factory = function (db, OrderDetails, Blueprint, exceptions, is) 
         }
     });
 
-    /*
-    // Get a single Orderdetails
-    */
+	self.create = function (payload, callback) {
+		if (is.not.object(payload)) {
+			exceptions.throwArgumentException('', 'payload');
+			return;
+		}
+
+		if (is.not.function(callback)) {
+			exceptions.throwArgumentException('', 'callback');
+			return;
+		}
+
+//        collection.deleteOne({"book.uid": payload.book.uid , "userId": payload.userId },callback );
+
+		collection.insertOne(payload, callback);
+	};
+
+	self.remove_all = function (userId, callback) {
+
+		if (is.not.function(callback)) {
+			exceptions.throwArgumentException('', 'callback');
+			return;
+		}
+
+		collection.deleteMany(
+			{"userId": userId}, function(err) {
+				callback(err);
+			});
+
+	};
+
+
+	/*
+	// Get a single Orderdetails
+	*/
     self.get = function (userId, callback) {
         // Blueprint isn't helpful for defending arguments, when they are
         // not objects. Here we defend the function arguments by hand.

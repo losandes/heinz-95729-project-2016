@@ -1,6 +1,6 @@
 module.exports.name = 'addToCartApiController';
-module.exports.dependencies = ['router', 'checkoutRepo', 'productsRepo', 'orderHistoryRepo', 'exceptions'];
-module.exports.factory = function (router, checkoutRepo, productsRepo, orderHistoryRepo, exceptions) {
+module.exports.dependencies = ['router', 'checkoutRepo', 'productsRepo', 'orderHistoryRepo', 'orderDetailsRepo', 'exceptions'];
+module.exports.factory = function (router, checkoutRepo, productsRepo, orderHistoryRepo, orderDetailsRepo, exceptions) {
 	'use strict';
 
 	var OrderId;
@@ -101,7 +101,29 @@ module.exports.factory = function (router, checkoutRepo, productsRepo, orderHist
 			};
 
 			orderHistoryRepo.create(createHistory, function(err, result) {
+				if (err) {
+					res.redirect('/report?error=' + "db");
+					return;
+				}
+			})
 
+			var orderDetail = {
+				books: books.books,
+				userId: userId
+			}
+
+			orderDetailsRepo.remove_all(userId, function(err) {
+				if (err) {
+					res.redirect('/report?error=' + "db");
+					return;
+				}
+			})
+
+			orderDetailsRepo.create(orderDetail, function(err) {
+				if (err) {
+					res.redirect('/report?error=' + "db");
+					return;
+				}
 			})
 
 			//console.log("Remove");
@@ -112,6 +134,7 @@ module.exports.factory = function (router, checkoutRepo, productsRepo, orderHist
 					return;
 				}
 			})
+
 
 
 		});
