@@ -51,12 +51,12 @@ module.exports.factory = function (router, repo) {
     router.post('/login', function (req, res) {
         repo.get(req.body.email, req.body.userId, function (err, doc) {
 			if (err) {
-				res.redirect('/report?error=' + "db");
+				res.redirect('/loginError');
 				return;
 			}
 
         	if (!doc) {
-				res.redirect('/report?error=' + "login");
+				res.redirect('/loginError');
 				return;
 			} else {
 				addCookie(doc, res);

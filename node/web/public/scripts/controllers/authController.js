@@ -75,6 +75,14 @@ Hilary.scope('heinz').register({
             });
           }
         });
+        $this.get['/loginError'] = new GidgetRoute({
+            routeHandler: function () {
+                viewEngine.setVM({
+                    template: 't-login-error',
+                    data: {}
+                });
+            }
+        });
 
         return $this;
     }
