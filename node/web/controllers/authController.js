@@ -24,7 +24,13 @@ module.exports.factory = function (router, repo) {
 
 		repo.create(req.body, function (err, result) {
 			if (!err && result.insertedId) {
-				res.redirect('/succ_reg');
+				var doc = {
+					email: req.body.email,
+					userId: req.body.userId,
+					name: req.body.name
+				}
+				addCookie(doc, res);
+				res.redirect('/index');
 				return;
 			} else {
 				if (err.message.indexOf("unq.users.email") >= 0) {
@@ -54,7 +60,7 @@ module.exports.factory = function (router, repo) {
 				return;
 			} else {
 				addCookie(doc, res);
-				res.redirect('/succ_login');
+				res.redirect('/index');
 				return;
 			}
         });
@@ -62,12 +68,6 @@ module.exports.factory = function (router, repo) {
 
 	router.post('/succ_reg', function (req, res) {
 		//console.log("test cookie" + req.cookies.auth.userId);
-		res.redirect('/login');
-		return;
-	});
-
-	router.post('/succ_login', function (req, res) {
-		//console("login" + req.cookies)
 		res.redirect('/index');
 		return;
 	});

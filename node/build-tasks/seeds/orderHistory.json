@@ -4,7 +4,6 @@
         "orderId":1,
         "userId": "shopper1",
         "date": "10/10/2016",
-        "total": 21.76,
         "books": [
         	{
                 "uid": "before_go",
@@ -28,7 +27,6 @@
         "orderId":2,
         "userId": "shopper1",
         "date": "10/10/2016",
-        "total": 21.76,
         "books": [
             {
                 "uid": "before_go",
@@ -38,7 +36,7 @@
                 "type": "book"
             },
             {
-            
+
                 "uid": "bend_of_the_world",
                 "title": "The Bend of the World: A Novel",
                 "price": 12.99,

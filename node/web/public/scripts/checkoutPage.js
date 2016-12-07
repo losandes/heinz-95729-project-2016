@@ -16,7 +16,7 @@ function recalculateCart()
     if(total == 0){
       $('.checkout').fadeOut(fadeTime);
       $('.emptyShoppingCart').show();
-      document.getElementById('.emptyShoppingCart').style.display="block"
+      //document.getElementById('.emptyShoppingCart').style.display="block"
       $('.shopping-cart').hide();
     }else{
       $('.checkout').fadeIn(fadeTime);
@@ -30,10 +30,15 @@ function removeItem(removeButton)
 {
   /* Remove row from DOM and recalc cart total */
   var productRow = $(removeButton).parent().parent();
+  var uid = productRow.find('#uid').text();
+  $.post('/removeItem', {'uid': uid});
+  
   productRow.slideUp(fadeTime, function() {
     productRow.remove();
     recalculateCart();
   });
+
+	
 }
 
 function directToCheckout()

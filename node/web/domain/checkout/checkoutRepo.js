@@ -13,7 +13,8 @@ module.exports.factory = function (db, Checkout, Blueprint, exceptions, is) {
             find: undefined,
             create: undefined,
             update: undefined,
-            remove: undefined
+            remove: undefined,
+			remove_all: undefined
         },
         collection = db.collection(Checkout.db.collection),
         findOptionsBlueprint,
@@ -58,19 +59,17 @@ module.exports.factory = function (db, Checkout, Blueprint, exceptions, is) {
         // callback function so it can perform the IO asynchronously, and
         // free up the event-loop, while it's waiting.
         //collection.find({$and: [ {'books.status': 'add'}, { userId: userId }]}).limit(1).next(function (err, doc) {
-        collection.find({ userId : userId }).limit(1).next(function (err, doc) {    
+        collection.find({ userId : userId }).limit(1).next(function (err, doc) {
             if (err) {
                 callback(err);
                 return;
             }
 
-    			if(doc) {
-    				callback(null, new Checkout(doc));
-          } else {
-             callback(null,null);
-          }
-    			
-
+			if(doc) {
+				callback(null, new Checkout(doc));
+			} else {
+				callback(null,null);
+			}
         });
     };
 
@@ -90,7 +89,6 @@ module.exports.factory = function (db, Checkout, Blueprint, exceptions, is) {
 			exceptions.throwArgumentException('', 'callback');
 			return;
 		}
-
 
     collection.update(
       {"userId": userId},
@@ -127,17 +125,33 @@ module.exports.factory = function (db, Checkout, Blueprint, exceptions, is) {
    // Deleate a shopping cart for a user
    */
 
-   self.remove = function (userId, uid, callback) {
+    self.remove_all = function (userId, callback) {
+
+		if (is.not.function(callback)) {
+			exceptions.throwArgumentException('', 'callback');
+			return;
+		}
+
+		collection.deleteMany(
+			{"userId": userId}, function(err) {
+				callback(err);
+			});
+
+	};
+
+   self.remove = function (userId, books, callback) {
 
        if (is.not.function(callback)) {
            exceptions.throwArgumentException('', 'callback');
            return;
        }
 
-       collection.update(
-         {userId: userId},
-         {$pull: {books: {uid: uid}}}
-          );
+	   //console.log(books);
+	   collection.update(
+		   {"userId": userId},
+		   {$pull: {"books": {"uid": books[0].uid}}}, function(err) {
+				callback(err);
+		   });
 
    };
 

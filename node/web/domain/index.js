@@ -8,5 +8,7 @@ module.exports = [
     require('./checkout/Checkout.js'),
     require('./checkout/checkoutRepo.js'),
     require('./orderHistory/Order.js'),
-    require('./orderHistory/orderHistoryRepo.js')
+    require('./orderHistory/orderHistoryRepo.js'),
+    require('./orderDetails/orderDetails.js'),
+    require('./orderDetails/orderDetailsRepo.js'),
 ];

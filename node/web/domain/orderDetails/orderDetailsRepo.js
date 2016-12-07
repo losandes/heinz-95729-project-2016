@@ -1,11 +1,11 @@
 /*
 // See the README.md for info on this module
 */
-module.exports.name = 'orderHistoryRepo';
+module.exports.name = 'orderDetailsRepo';
 module.exports.singleton = true;
 //module.exports.blueprint = ['repoBlueprint'];
-module.exports.dependencies = ['db', 'Order','Blueprint', 'exceptions', 'is'];
-module.exports.factory = function (db, Order, Blueprint, exceptions, is) {
+module.exports.dependencies = ['db', 'OrderDetails', 'Blueprint', 'exceptions', 'is'];
+module.exports.factory = function (db, OrderDetails, Blueprint, exceptions, is) {
     'use strict';
 
     var self = {
@@ -15,13 +15,13 @@ module.exports.factory = function (db, Order, Blueprint, exceptions, is) {
             update: undefined,
             remove: undefined
         },
-        collection = db.collection(Order.db.collection),
+        collection = db.collection(OrderDetails.db.collection),
         findOptionsBlueprint,
         i;
 
     // ensure the indexes exist
-    for (i = 0; i < Order.db.indexes.length; i += 1) {
-        collection.createIndex(Order.db.indexes[i].keys, Order.db.indexes[i].options);
+    for (i = 0; i < OrderDetails.db.indexes.length; i += 1) {
+        collection.createIndex(OrderDetails.db.indexes[i].keys, OrderDetails.db.indexes[i].options);
     }
 
     findOptionsBlueprint = new Blueprint({
@@ -36,9 +36,40 @@ module.exports.factory = function (db, Order, Blueprint, exceptions, is) {
         }
     });
 
-    /*
-    // Get a single order
-    */
+	self.create = function (payload, callback) {
+		if (is.not.object(payload)) {
+			exceptions.throwArgumentException('', 'payload');
+			return;
+		}
+
+		if (is.not.function(callback)) {
+			exceptions.throwArgumentException('', 'callback');
+			return;
+		}
+
+//        collection.deleteOne({"book.uid": payload.book.uid , "userId": payload.userId },callback );
+
+		collection.insertOne(payload, callback);
+	};
+
+	self.remove_all = function (userId, callback) {
+
+		if (is.not.function(callback)) {
+			exceptions.throwArgumentException('', 'callback');
+			return;
+		}
+
+		collection.deleteMany(
+			{"userId": userId}, function(err) {
+				callback(err);
+			});
+
+	};
+
+
+	/*
+	// Get a single Orderdetails
+	*/
     self.get = function (userId, callback) {
         // Blueprint isn't helpful for defending arguments, when they are
         // not objects. Here we defend the function arguments by hand.
@@ -57,47 +88,22 @@ module.exports.factory = function (db, Order, Blueprint, exceptions, is) {
         // the query isn't executed until `next` is called. It receives a
         // callback function so it can perform the IO asynchronously, and
         // free up the event-loop, while it's waiting.
-        /*collection.find({ userId: userId}).limit(1).next(function (err, doc) {
+        //collection.find({$and: [ {'books.status': 'add'}, { userId: userId }]}).limit(1).next(function (err, doc) {
+        collection.find({ userId : userId }).limit(1).next(function (err, doc) {    
             if (err) {
                 callback(err);
                 return;
             }
 
-            callback(null, new Order(doc));
-        });*/
-        
-        collection.find({ userId: userId}).toArray(function (err, docs) {
-            var orders = [], i;
+    			if(doc) {
+    				callback(null, new OrderDetails(doc));
+          } else {
+             callback(null,null);
+          }
+    			
 
-            if (err) {
-                callback(err);
-                return;
-            }
-            console.log(docs.length);
-            for (i = 0; i < docs.length; i += 1) {
-                orders.push(new Order(docs[i]));
-            }
-
-            callback(null, orders);
         });
     };
 
-	self.create = function (payload, callback) {
-		if (is.not.object(payload)) {
-			exceptions.throwArgumentException('', 'payload');
-			return;
-		}
-
-		if (is.not.function(callback)) {
-			exceptions.throwArgumentException('', 'callback');
-			return;
-		}
-
-//        collection.deleteOne({"book.uid": payload.book.uid , "userId": payload.userId },callback );
-
-		collection.insertOne(payload, callback);
-	};
-
-
-	return self;
+    return self;
 };

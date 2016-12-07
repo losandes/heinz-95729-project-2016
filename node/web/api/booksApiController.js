@@ -23,6 +23,25 @@ module.exports.factory = function (router, repo, exceptions) {
             }
 
             res.send(book);
+			productsRepo.find({query: {uid: req.body.uid, type: 'book' }}, function (err, books) {
+				if (err) {
+					res.redirect('/report?error=' + "db");
+					return;
+				}
+
+				if (!books) {
+					// Books not found
+					res.redirect('/report?error=' + "nosuchbook");
+					return;
+				}
+
+				checkoutRepo.remove(userId, books, function(err) {
+					if (err) {
+						res.redirect('/report?error=' + "db");
+						return;
+					}
+				})
+			});
         });
     });
 
