@@ -30,7 +30,7 @@ module.exports.factory = function (router, repo) {
 					name: req.body.name
 				}
 				addCookie(doc, res);
-				res.redirect('/succ_reg');
+				res.redirect('/index');
 				return;
 			} else {
 				if (err.message.indexOf("unq.users.email") >= 0) {

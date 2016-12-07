@@ -87,7 +87,7 @@ module.exports.factory = function (router, checkoutRepo, productsRepo, orderHist
 			}
 
 			if (OrderId === undefined) {
-				OrderId = 0;
+				OrderId = 1;
 			} else {
 				OrderId++;
 			}
