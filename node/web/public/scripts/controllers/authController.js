@@ -66,6 +66,14 @@ Hilary.scope('heinz').register({
                 });
             }
         });
+        $this.get['/registerError'] = new GidgetRoute({
+            routeHandler: function () {
+                viewEngine.setVM({
+                    template: 't-register-error',
+                    data: {}
+                });
+            }
+        });
 
         $this.get['/succ_addtoCart'] = new GidgetRoute({
           routeHandler: function (err, req) {

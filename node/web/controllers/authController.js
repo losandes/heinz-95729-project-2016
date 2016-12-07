@@ -18,7 +18,7 @@ module.exports.factory = function (router, repo) {
 
 		if (req.body.email == "" || req.body.name == "" ||
 			req.body.userId == "") {
-			res.redirect('/report?error=' + "invalid");
+			res.redirect('/registerError');
 			return;
 		}
 
@@ -34,13 +34,13 @@ module.exports.factory = function (router, repo) {
 				return;
 			} else {
 				if (err.message.indexOf("unq.users.email") >= 0) {
-					res.redirect('/report?error=' + "email");
+					res.redirect('/registerError');
 					return;
 				} else if (err.message.indexOf("unq.users.id") >= 0) {
-					res.redirect('/report?error=' + "userId");
+					res.redirect('/registerError');
 					return;
 				} else {
-					res.redirect('/report?error=' + "db");
+					res.redirect('/registerError');
 					return;
 				}
 				return;
