@@ -16,7 +16,7 @@ Hilary.scope('heinz').register({
                 $.ajax({
                     url: '/api/checkout/' + req.params.userId
                 }).done(function (data) {
-                    if(data.length>0){
+                    if(data){
                         var checkout = new Checkout(data);
                         
                         viewEngine.setVM({
