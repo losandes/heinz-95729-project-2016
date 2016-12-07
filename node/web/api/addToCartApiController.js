@@ -8,6 +8,7 @@ module.exports.factory = function (router, checkoutRepo, productsRepo, orderHist
 		//req.query.q = req.body.uid; //Test only
 
 		var userId = req.cookies.auth.userId;
+		console.log(userId);
 
 		//console.log("Find Now");
 		productsRepo.find({query: {uid: req.body.uid, type: 'book' }}, function (err, books) {
@@ -35,7 +36,7 @@ module.exports.factory = function (router, checkoutRepo, productsRepo, orderHist
 					//console.log("Update Now");
 					checkoutRepo.update(userId, books, function (err, result) {
 						if (!err) {
-							res.redirect('/report?error=' + "addCart");
+							res.redirect('/checkout/' + userId);
 							return;
 						} else {
 							res.redirect('/report?error=' + "db");
@@ -52,7 +53,7 @@ module.exports.factory = function (router, checkoutRepo, productsRepo, orderHist
 
 					checkoutRepo.create(checkoutData, function (err, result) {
 						if (!err) {
-							res.redirect('/report?error=' + "addCart");
+							res.redirect('/checkout/' + userId);
 							return;
 						} else {
 							res.redirect('/report?error=' + "db");
