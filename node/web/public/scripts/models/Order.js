@@ -8,31 +8,9 @@ Hilary.scope('heinz').register({
         var blueprint,
             Order;
 
-        /*blueprint = new Blueprint({
-            _id: {
-                type: 'object',
-                required: false
-            },
-            orderId: 'number',
-            userId: 'string',
-            date: 'string',
-            total: 'money',
-            books: new Blueprint({
-                keywords: {
-                    type: 'array',
-                    required: false
-                }
-            })
-        });*/
-
         Order = function (order) {
             var self = {};
 
-            /*if (!blueprint.syncSignatureMatches(order).result) {
-                exceptions.throwArgumentException('A order argument is required to create a new Order', 'order', blueprint.syncSignatureMatches(order).errors);
-                return;
-            }
-*/
             order = order || {};
 
             var type = order.type || 'order';

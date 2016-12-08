@@ -9,7 +9,6 @@ module.exports.factory = function (router, repo, exceptions) {
                 res.status(400);
                 return;
             }
-            //console.log(order);
             res.send(orderDetails);
 
         });

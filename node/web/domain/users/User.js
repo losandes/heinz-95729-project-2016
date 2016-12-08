@@ -14,7 +14,6 @@ module.exports.factory = function (Blueprint, exceptions, ObjectID) {
 
     User = function (user) {
         var self = {};
-        //console.log(user);
         if (!blueprint.syncSignatureMatches(user).result) {
             exceptions.throwArgumentException('', 'user', blueprint.syncSignatureMatches(user).errors); //typo
             return;

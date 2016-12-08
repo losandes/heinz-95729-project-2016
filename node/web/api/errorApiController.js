@@ -4,7 +4,6 @@ module.exports.factory = function (router, repo, exceptions) {
 	'use strict';
 
 	router.get('/api/report', function (req, res) {
-		//console.log(req.query.error);
 		if(req.query.error == 'invalid') {
 			res.send("Email/UserId/Name cannot be null");
 		} else if (req.query.error == 'email') {
@@ -19,8 +18,7 @@ module.exports.factory = function (router, repo, exceptions) {
 			res.send("No such book.");
 		} else if (req.query.error == 'addCart') {
 			res.send("Add Cart successfully");
-		} else
-		{
+		} else {
 			res.send("Unknown error")
 		}
 	});

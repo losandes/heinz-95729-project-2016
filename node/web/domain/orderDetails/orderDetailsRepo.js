@@ -47,8 +47,6 @@ module.exports.factory = function (db, OrderDetails, Blueprint, exceptions, is) 
 			return;
 		}
 
-//        collection.deleteOne({"book.uid": payload.book.uid , "userId": payload.userId },callback );
-
 		collection.insertOne(payload, callback);
 	};
 
@@ -59,13 +57,10 @@ module.exports.factory = function (db, OrderDetails, Blueprint, exceptions, is) 
 			return;
 		}
 
-		collection.deleteMany(
-			{"userId": userId}, function(err) {
+		collection.deleteMany({"userId": userId}, function(err) {
 				callback(err);
-			});
-
+		});
 	};
-
 
 	/*
 	// Get a single Orderdetails
@@ -95,13 +90,11 @@ module.exports.factory = function (db, OrderDetails, Blueprint, exceptions, is) 
                 return;
             }
 
-    			if(doc) {
-    				callback(null, new OrderDetails(doc));
-          } else {
-             callback(null,null);
-          }
-    			
-
+			if(doc) {
+				callback(null, new OrderDetails(doc));
+			} else {
+            	callback(null,null);
+			}
         });
     };
 

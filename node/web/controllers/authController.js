@@ -8,14 +8,10 @@ module.exports.factory = function (router, repo) {
         addCookie;
 
     addCookie = function (user, res) {
-        // normally, you wouldn't set a plain old user object as the
-        // value of the cookie - it's not secure.
         res.cookie('auth', user, { maxAge: maxAge, httpOnly: true });
     };
 
     router.post('/register', function (req, res) {
-		//console.log(req.email)
-
 		if (req.body.email == "" || req.body.name == "" ||
 			req.body.userId == "") {
 			res.redirect('/registerError');
@@ -67,7 +63,6 @@ module.exports.factory = function (router, repo) {
     });
 
 	router.post('/succ_reg', function (req, res) {
-		//console.log("test cookie" + req.cookies.auth.userId);
 		res.redirect('/index');
 		return;
 	});

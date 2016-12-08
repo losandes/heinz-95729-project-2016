@@ -18,7 +18,6 @@ module.exports.factory = function (router, orderHistoryRepo, exceptions) {
 				}
 				orders[i].total = sum;
 			}
-			console.log(orders);
             res.send(orders);
         });
     });
