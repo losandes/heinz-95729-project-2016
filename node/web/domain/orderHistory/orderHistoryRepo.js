@@ -51,22 +51,8 @@ module.exports.factory = function (db, Order, Blueprint, exceptions, is) {
             exceptions.throwArgumentException('', 'callback');
             return;
         }
-
-        // This uses mongodb's find feature to obtain 1 document, by
-        // limiting the result. `find` and `limit` return promises, so
-        // the query isn't executed until `next` is called. It receives a
-        // callback function so it can perform the IO asynchronously, and
-        // free up the event-loop, while it's waiting.
-        /*collection.find({ userId: userId}).limit(1).next(function (err, doc) {
-            if (err) {
-                callback(err);
-                return;
-            }
-
-            callback(null, new Order(doc));
-        });*/
         
-        collection.find({ userId: userId}).toArray(function (err, docs) {
+        collection.find({userId: userId}).toArray(function (err, docs) {
             var orders = [], i;
 
             if (err) {
@@ -92,8 +78,6 @@ module.exports.factory = function (db, Order, Blueprint, exceptions, is) {
 			exceptions.throwArgumentException('', 'callback');
 			return;
 		}
-
-//        collection.deleteOne({"book.uid": payload.book.uid , "userId": payload.userId },callback );
 
 		collection.insertOne(payload, callback);
 	};

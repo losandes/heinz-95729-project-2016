@@ -36,7 +36,6 @@ module.exports.factory = function (Blueprint, ObjectID, exceptions) {
 
         // define the Checkout properties from the Checkout argument
         self._id = new ObjectID(checkout._id);
-
         self.userId = checkout.userId;
         self.books = checkout.books;
 

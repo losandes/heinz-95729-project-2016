@@ -33,12 +33,6 @@ Hilary.scope('heinz').register({
                 });
             }
         });
-        
-
-
-        // GET /#/search/?q=searchterm
-        // search for products
-
 
         return $this;
     }

@@ -42,6 +42,5 @@ Hilary.scope('heinz').register({
         };
 
         return Products;
-
     }
 });

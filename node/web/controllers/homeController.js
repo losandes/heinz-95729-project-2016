@@ -5,11 +5,7 @@ module.exports.factory = function (router) {
 
     /* GET home page. */
     router.get('/', function (req, res) {
-		var data = {
-			title: 'web',
-			waitLogin: true
-		}
-        res.render('index', data);
+        res.render('index', {title: 'web'});
     });
 
     /* Throw an example error. */

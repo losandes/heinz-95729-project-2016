@@ -34,6 +34,5 @@ Hilary.scope('heinz').register({
         };
 
         return Checkout;
-
     }
 });

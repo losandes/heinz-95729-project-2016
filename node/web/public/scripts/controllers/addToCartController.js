@@ -4,7 +4,6 @@ Hilary.scope('heinz').register({
     factory: function ($this, GidgetRoute, locale, viewEngine, Checkout, Checkouts, Products, $) {
         'use strict';
 
-
         $this.post['/addtoCart'] = new GidgetRoute({
             routeHandler: function (err, req) {
                 $.ajax({
@@ -16,15 +15,9 @@ Hilary.scope('heinz').register({
                         template: 't-checkout',
                         data: { checkout: checkout }
                     });
-
-        //             recalculateCart();
-
-
                 });
             }
         });
-
-
 
         return $this;
     }

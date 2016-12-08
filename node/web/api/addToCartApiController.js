@@ -5,12 +5,9 @@ module.exports.factory = function (router, checkoutRepo, productsRepo, orderHist
 
 	var OrderId;
 	router.post('/addtoCart', function (req, res) {
-		//req.query.q = req.body.uid; //Test only
-
 		var userId = req.cookies.auth.userId;
 		console.log(userId);
 
-		//console.log("Find Now");
 		productsRepo.find({query: {uid: req.body.uid, type: 'book' }}, function (err, books) {
 			if (err) {
 				res.redirect('/report?error=' + "db");
@@ -23,7 +20,6 @@ module.exports.factory = function (router, checkoutRepo, productsRepo, orderHist
 				return;
 			}
 
-			//console.log("Get Now");
 			// Test if the user is valid
 			checkoutRepo.get(userId, function (err, result) {
 				if (err) {
@@ -33,7 +29,6 @@ module.exports.factory = function (router, checkoutRepo, productsRepo, orderHist
 
 				if (result) {
 					// Update
-					//console.log("Update Now");
 					checkoutRepo.update(userId, books, function (err, result) {
 						if (!err) {
 							res.redirect('/checkout/' + userId);
@@ -45,7 +40,6 @@ module.exports.factory = function (router, checkoutRepo, productsRepo, orderHist
 					})
 				} else {
 					// Create
-					//console.log("Create Now");
 					var checkoutData = {
 						"userId": userId,
 						"books": books
@@ -61,25 +55,19 @@ module.exports.factory = function (router, checkoutRepo, productsRepo, orderHist
 						}
 					})
 				}
-
 			})
-
-
 		});
 	});
 
+	// Make a payment
 	router.post('/removeCart', function (req, res) {
-		//req.query.q = req.body.uid; //Test only
-
 		var userId = req.cookies.auth.userId;
 
-		//console.log("removeCart Now");
 		checkoutRepo.get(userId, function (err, books) {
 			if (err) {
 				res.redirect('/report?error=' + "db");
 				return;
 			}
-			//console.log("Here we found" + books);
 			if (!books) {
 				// Books not found
 				res.redirect('/report?error=' + "nosuchbook");
@@ -101,7 +89,7 @@ module.exports.factory = function (router, checkoutRepo, productsRepo, orderHist
 			};
 
 			orderHistoryRepo.create(createHistory, function(err, result) {
-				if (err) {
+				if (err || !result.insertedId) {
 					res.redirect('/report?error=' + "db");
 					return;
 				}
@@ -119,14 +107,13 @@ module.exports.factory = function (router, checkoutRepo, productsRepo, orderHist
 				}
 			})
 
-			orderDetailsRepo.create(orderDetail, function(err) {
-				if (err) {
+			orderDetailsRepo.create(orderDetail, function(err, result) {
+				if (err || !result.insertedId) {
 					res.redirect('/report?error=' + "db");
 					return;
 				}
 			})
 
-			//console.log("Remove");
 			// Test if the user is valid
 			checkoutRepo.remove_all(userId, function(err) {
 				if (err) {
@@ -134,18 +121,13 @@ module.exports.factory = function (router, checkoutRepo, productsRepo, orderHist
 					return;
 				}
 			})
-
-
-
 		});
 	});
 
+	// Remove item from shopping cart
 	router.post('/removeItem', function (req, res) {
-		//req.query.q = req.body.uid; //Test only
-
 		var userId = req.cookies.auth.userId;
 
-		//console.log("removeCart Now");
 		productsRepo.find({query: {uid: req.body.uid, type: 'book' }}, function (err, books) {
 			if (err) {
 				res.redirect('/report?error=' + "db");
