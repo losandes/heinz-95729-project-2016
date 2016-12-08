@@ -93,11 +93,13 @@ module.exports.factory = function (router, checkoutRepo, productsRepo, orderHist
 			}
 
 			var date = new Date();
+			var month = date.getMonth() + 1;
 			var createHistory = {
 				books: books.books,
 				orderId: OrderId,
 				userId: userId,
-				date: date.getDay() + "/" + date.getMonth() + "/" + date.getFullYear()
+
+				date: date.getDate() + "/" + month + "/" + date.getFullYear()
 			};
 
 			orderHistoryRepo.create(createHistory, function(err, result) {
