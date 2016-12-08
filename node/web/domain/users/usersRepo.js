@@ -1,6 +1,5 @@
 module.exports.name = 'usersRepo';
 module.exports.singleton = true;
-//module.exports.blueprint = ['repoBlueprint'];
 module.exports.dependencies = ['db', 'User', 'Blueprint', 'exceptions', 'is'];
 module.exports.factory = function (db, User, Blueprint, exceptions, is) {
     'use strict';
@@ -23,26 +22,26 @@ module.exports.factory = function (db, User, Blueprint, exceptions, is) {
     /*
     // Get a single user
     */
-    self.get = function (email, callback) {
-        if (is.not.string(email)) {
-            exceptions.throwArgumentException('', 'uid');
-            return;
-        }
+	self.get = function (email, userId, callback) {
+		if (is.not.string(email)) {
+			exceptions.throwArgumentException('', 'uid');
+			return;
+		}
 
-        if (is.not.function(callback)) {
-            exceptions.throwArgumentException('', 'callback');
-            return;
-        }
+		if (is.not.string(userId)) {
+			exceptions.throwArgumentException('', 'uid');
+			return;
+		}
 
-        collection.find({ email: email }).limit(1).next(function (err, doc) {
-            if (err) {
-                callback(err);
-                return;
-            }
+		if (is.not.function(callback)) {
+			exceptions.throwArgumentException('', 'callback');
+			return;
+		}
 
-            callback(null, new User(doc));
-        });
-    };
+		collection.findOne({ email: email, userId: userId }, function (err, doc) {
+			callback(err, doc);
+		});
+	};
 
     /*
     // Create a user

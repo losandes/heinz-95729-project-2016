@@ -51,7 +51,7 @@ if (ConfirmStep  "Before running this script, you need to install Node.js and Gi
     choco install -y couchbasecommunityedition
 
     if (ConfirmStep  "Do you want to install Visual Studio Community (It takes a while)?" 20000) {
-        choco install visualstudio2015community
+        #choco install visualstudio2015community
     }
 
     if (ConfirmStep  "Provision-1 complete. This window will close. You need to start a new powershell session as an Administrator and execute ./provision-2" 30) {

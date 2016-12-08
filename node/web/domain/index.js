@@ -4,5 +4,11 @@ module.exports = [
     require('./products/Product.js'),
     require('./products/productsRepo.js'),
     require('./users/User.js'),
-    require('./users/usersRepo.js')
+    require('./users/usersRepo.js'),
+    require('./checkout/Checkout.js'),
+    require('./checkout/checkoutRepo.js'),
+    require('./orderHistory/Order.js'),
+    require('./orderHistory/orderHistoryRepo.js'),
+    require('./orderDetails/orderDetails.js'),
+    require('./orderDetails/orderDetailsRepo.js'),
 ];

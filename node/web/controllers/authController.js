@@ -8,40 +8,69 @@ module.exports.factory = function (router, repo) {
         addCookie;
 
     addCookie = function (user, res) {
-        // normally, you wouldn't set a plain old user object as the
-        // value of the cookie - it's not secure.
         res.cookie('auth', user, { maxAge: maxAge, httpOnly: true });
     };
 
-
     router.post('/register', function (req, res) {
-        repo.create(req.body, function (err, result) {
-            if (!err && result.insertedId) {
-                repo.get(req.body.email, function (err, user) {
-                    if (!err) {
-                        addCookie(user, res);
-                        res.redirect('/');
-                    } else {
-                        res.status(400);
-                    }
-                });
-            } else {
-                res.status(400);
-            }
-        });
+		if (req.body.email == "" || req.body.name == "" ||
+			req.body.userId == "") {
+			res.redirect('/registerError');
+			return;
+		}
+
+		repo.create(req.body, function (err, result) {
+			if (!err && result.insertedId) {
+				var doc = {
+					email: req.body.email,
+					userId: req.body.userId,
+					name: req.body.name
+				}
+				addCookie(doc, res);
+				res.redirect('/index');
+				return;
+			} else {
+				if (err.message.indexOf("unq.users.email") >= 0) {
+					res.redirect('/registerError');
+					return;
+				} else if (err.message.indexOf("unq.users.id") >= 0) {
+					res.redirect('/registerError');
+					return;
+				} else {
+					res.redirect('/registerError');
+					return;
+				}
+				return;
+			}
+		});
     });
 
     router.post('/login', function (req, res) {
-        console.log(req.body);
-        repo.get(req.body.email, function (err, user) {
-            if (!err) {
-                addCookie(user, res);
-                res.redirect('/');
-            } else {
-                res.status(400);
-            }
+        repo.get(req.body.email, req.body.userId, function (err, doc) {
+			if (err) {
+				res.redirect('/loginError');
+				return;
+			}
+
+        	if (!doc) {
+				res.redirect('/loginError');
+				return;
+			} else {
+				addCookie(doc, res);
+				res.redirect('/index');
+				return;
+			}
         });
     });
+
+	router.post('/succ_reg', function (req, res) {
+		res.redirect('/index');
+		return;
+	});
+
+	router.get('/logout', function (req, res) {
+		res.cookie('auth', req.cookies.auth, { maxAge: 0, httpOnly: true });
+		res.redirect("/index");
+	})
 
     return router;
 };

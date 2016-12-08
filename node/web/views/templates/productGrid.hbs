@@ -11,8 +11,12 @@
                     <div class="caption">
                         <h3><a href="javascript:void(0);" data-bind="text: product.title, click: product.click"></a></h3>
                         <div class="description" data-bind="html: product.description"></div>
-                        <div class="overlay"></div>
-                        <a class="buy-now" href="javascript:void(0);" data-bind="currency: product.price"></a>
+                        <form form="form1" action='/addtoCart' method="post" role="form">
+                          <button class="btn btn-success btn-cart" type="submit"  data-bind="currency: product.price"></button>
+                          <div class="form-group">
+                                <input type="hidden" name="uid" class="form-control" id="uid" data-bind="value: product.uid"  />
+                            </div>
+                        </form>
                     </div>
                 </div>
             </div>

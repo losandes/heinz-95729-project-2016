@@ -23,6 +23,7 @@ module.exports.factory = function (router, repo, exceptions) {
             }
 
             res.send(book);
+
         });
     });
 

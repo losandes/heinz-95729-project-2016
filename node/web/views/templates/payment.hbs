@@ -1,0 +1,39 @@
+<script id="t-checkout-payment" type="text/html">
+
+  
+  <h1>Payment Page</h1>
+  <h2 style ="text-align:center">Please enter your card details</h2>
+  <form method="POST" id="payment-form">
+        <div class="payment-errors"></div>
+        </br>
+              <div class="form-group">
+                <label>
+                  <span>Card Number</span>
+                  <input class="form-control" type="text" size="20" data-stripe="number">
+                </label>
+              </div>
+              <div class="form-group">
+                <label>
+                  <span>Expiration (MM/YY)</span>
+                  <input class="form-control"  type="text" size="2" data-stripe="exp_month">
+                </label>
+                <span> / </span>
+                <input type="text" size="2" data-stripe="exp_year">
+              </div>
+              <div class="form-group">
+                <label>
+                  <span>CVC</span>
+                  <input class="form-control" type="text" size="4" data-stripe="cvc">
+                </label>
+                
+              </div>  
+              <div class="form-group">
+                <label>
+                  <span>Billing ZIP Code</span>
+                  <input class="form-control" type="text" size="6" data-stripe="address_zip">
+                </label>
+              </div>             
+              <button type="submit" onclick = "stripeCall()" class="paymentButton btn btn-success" value="Submit Payment">Submit Payment  </button>            
+            </form>
+
+<script>

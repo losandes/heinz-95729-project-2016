@@ -1,6 +1,6 @@
 // main: main.less
 
-#user-registration-form, #user-login {
+#user-registration-form, #user-login, #payment-form {
     width: 400px;
     margin: auto;
     margin-top: 30px;
@@ -17,4 +17,26 @@
         height: 40px;
         .border-radius(0);
     }
+}
+
+#error-login {
+  width: 400px;
+  margin: auto;
+  margin-top: 30px;
+  padding: 30px;
+  padding-bottom: 1px;
+  border: none;
+  .border-radius(0);
+
+  button {
+    width: 398px;
+    margin-top: 100px;
+    margin-left: -29px;
+    height: 40px;
+    .border-radius(0);
+  }
+}
+
+.login-error, .register-error{
+  color:red;
 }
